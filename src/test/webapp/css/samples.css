@@ -1,0 +1,8 @@
+#render-div {
+    background: #b5bdc8;
+    background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+    background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+    background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 ); 
+    border: #000 1px solid;
+}

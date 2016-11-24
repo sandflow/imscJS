@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Samples</title>
+
+        <link rel="stylesheet" href="css/samples.css">
+
+
+        <script src="libs/sax.js"></script>
+        <script src="libs/imsc.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="js/samples.js"></script>
+
+    </head>
+    <body style="display: table-row">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div style="display: table-cell;vertical-align: top; padding: 10px; margin: 10px; width: 480px">
+
+            <div id="sample-list" style="height: 600px; overflow: scroll">
+
+            </div>
+        </div>
+
+        <div id="visual" style="display: table-cell; vertical-align: top; padding: 10px">
+            <div style="height : 360px ; width: 640px;" id="render-div"></div>
+            <p>
+                <label for="media-time">Media time (s):</label>
+                <input type="text" id="media-time" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="slider"></div>
+            <hr>
+            <div id="ref-images">
+                <p>Reference images</p>
+                <img id="ref" height="360" width="640" src="">
+            </div>
+            <div id="errors">
+            </div>
+        </div>
+
+    </body>
+</html>

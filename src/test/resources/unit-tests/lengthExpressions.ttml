@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tt xml:lang="en" xmlns="http://www.w3.org/ns/ttml" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" 
+xmlns:ttp="http://www.w3.org/ns/ttml#parameter" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text"
+xmlns:tts="http://www.w3.org/ns/ttml#styling" ttp:cellResolution="1 1" tts:extent="100px 100px">
+	<head>
+	</head>
+	<body>
+		<div>			
+			<p tts:fontSize="10.5%">10.5% of 1c with ttp:cellResolution="1 1" -> 10.5rh</p>
+            <p tts:fontSize="0.105em">0.105em of 1c with ttp:cellResolution="1 1" -> 10.5rh</p>
+            <p tts:fontSize="10.5px">10.5px with tts:extent="100px 100px" -> 10.5rh</p>
+            <p tts:fontSize="0.105c">0.105c with ttp:cellResolution="1 1" -> 10.5rh</p>
+		</div>
+	</body>
+</tt>

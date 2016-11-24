@@ -1,0 +1,7 @@
+{
+    "name" : "Pierre-Anthony Lemieux <pal@sandflow.com>",
+    "webappSrcDir" : "src/main/webapp",
+    "webappTestDir" : "src/test/webapp",
+    "webappBuildDir" : "build/public_html",
+    "unitTestsResourcesDir" : "src/test/resources"
+}
