@@ -552,7 +552,28 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling textAlign",
                 function (context, dom_element, isd_element, attr) {
-                    dom_element.style.textAlign = attr;
+                    
+                    var ta;
+                    var dir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
+                    
+                    /* handle UAs that do not understand start or end */
+                    
+                    if (attr === "start") {
+                                                   
+                        ta = dir === "ltr" ? "left" : "right";
+ 
+                    } else if (attr === "end") {
+                        
+                        ta = dir === "ltr" ? "right" : "left";
+                        
+                    } else {
+                        
+                        ta = attr;
+                        
+                    }
+                    
+                    dom_element.style.textAlign = ta;
+                    
                 }
         ),
         new HTMLStylingMapDefintion(

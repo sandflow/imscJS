@@ -44,11 +44,11 @@ $(function () {
 
         for (var i = 0; i < testSamples.length; i++) {
             var ifield = document.createElement("input");
-            ifield.onclick = function () {
-                selectSample(this.value);
+            ifield.onclick = function (event) {
+                selectSample(event.target.value);
             };
-            ifield.value = i;
             ifield.type = "radio";
+            ifield.value = i;
             ifield.name = "tests";
             ifield.id = "b" + i;
 
