@@ -29,8 +29,9 @@ Renders of IRT and TTML test vectors are available at [4], respectively.
 KNOWN ISSUES AND LIMITATIONS
 ============================
 
-imscJS is primarily developed on the latest released versions of Firefox and 
-Chrome. Microsoft Internet Explorer is not supported at this point. 
+imscJS is primarily developed on Chrome. Latest versions of Firefox, Safari, 
+Microsoft Internet Explorer and Microsoft Edge are intended to be supported
+nevertheless.
 
 imscJS is intended to reflect the most recent published versions of TTML1 and 
 IMSC1, as clarified by proposed resolutions to issues captured in their
