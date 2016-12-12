@@ -24,6 +24,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @module imscStyles
+ */
+
 ;
 (function (imscStyles, imscNames, imscUtils) { // wrapper for non-node envs
 

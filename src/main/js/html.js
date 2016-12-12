@@ -24,16 +24,41 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @module imscHTML
+ */
+
 ;
-(function (imscHTML, imscNames, imscStyles) { // wrapper for non-node envs
+(function (imscHTML, imscNames, imscStyles) {
+
+    /**
+     * Function that maps <pre>smpte:background</pre> URIs to URLs resolving to image resource
+     * @callback IMGResolver
+     * @param {string} <pre>smpte:background</pre> URI
+     * @return {string} PNG resource URL
+     */
 
 
-    imscHTML.render = function (isd, div, imgResolver, width, height) {
+    /**
+     * Renders an ISD object (returned by <pre>generateISD()</pre>) into a 
+     * <pre>div</pre> element, that must be attached to the DOM. Images URIs specified 
+     * by <pre>smpte:background</pre> attributes are mapped to image resource URLs
+     * by an <pre>imgResolver</pre> function that takes a single URI as input
+     * and return a URL, which can be a data URL, that will be used as the <code>src</code>
+     * of an <code>img</code> element. 
+     * 
+     * @param {Object} isd ISD to be rendered
+     * @param {Object} div DIV element into which the ISD is rendered
+     * @param {?IMGResolver} imgResolver Resolve <pre>smpte:background</pre> URIs into URLs.
+     * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+     */
+
+    imscHTML.render = function (isd, div, imgResolver, errorHandler) {
 
         /* maintain aspect ratio if specified */
 
-        height = height || div.clientHeight;
-        width = width || div.clientWidth;
+        var height = div.clientHeight;
+        var width = div.clientWidth;
 
         if (isd.aspectRatio !== null) {
 
@@ -279,7 +304,7 @@
     function processLinePaddingAndMultiRowAlign(elist, lp) {
 
         var line_head = null;
-        
+
         var lookingForHead = true;
 
         for (var i = 0; i <= elist.length; i++) {
@@ -290,13 +315,13 @@
 
             if (i !== elist.length && elist[i].element.localName === "br")
                 continue;
-            
+
             /* detect new line */
 
             if (line_head === null ||
                     i === elist.length ||
                     elist[i].element.getBoundingClientRect().top !== elist[line_head].element.getBoundingClientRect().top) {
-                              
+
                 /* apply right padding to previous line (if applicable and unless this is the first line) */
 
                 if (lp && (!lookingForHead)) {
@@ -307,7 +332,7 @@
 
                             addRightPadding(elist[i].element, elist[i].color, lp);
 
-                            if (elist[i].element.getBoundingClientRect().width !== 0 && 
+                            if (elist[i].element.getBoundingClientRect().width !== 0 &&
                                     elist[i].element.getBoundingClientRect().top === elist[line_head].element.getBoundingClientRect().top)
                                 break;
 
@@ -316,13 +341,13 @@
                         }
 
                     }
-                    
+
                     lookingForHead = true;
-                    
+
                     continue;
 
                 }
-                
+
                 /* explicit <br> unless already present */
 
                 if (i !== elist.length && line_head !== null && elist[i-1].element.localName !== "br") {
@@ -332,31 +357,31 @@
                     elist[i].element.parentElement.insertBefore(br, elist[i].element);
 
                     elist.splice(i, 0, {"element": br});
-                    
+
                     continue;
 
                 }
-                
+
                 /* apply left padding to current line (if applicable) */
-                
+
                 if (i !== elist.length && lp) {
-                    
+
                     /* find first non-zero */
-                    
+
                     for (; i < elist.length; i++) {
 
                         if (elist[i].element.getBoundingClientRect().width !== 0) {
                             break;
                         }
-                        
+
                     }
-                    
+
                     addLeftPadding(elist[i].element, elist[i].color, lp);
-                
+
                 }
-                
+
                 lookingForHead = false;
-                
+
                 line_head = i;
 
             }
@@ -739,8 +764,10 @@
         ),
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling zIndex",
-                null
-                ),
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.zIndex = attr;
+                }
+        ),
         new HTMLStylingMapDefintion(
                 "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage",
                 function (context, dom_element, isd_element, attr) {
