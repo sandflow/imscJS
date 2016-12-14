@@ -83,9 +83,11 @@
 
                 // remove redundant nested anonymous spans (9.3.3(1)(c))
 
-                if (estack[0].contents.length === 1 &&
+                if (estack[0] instanceof Span &&
+                        estack[0].contents.length === 1 &&
                         estack[0].contents[0] instanceof Span &&
-                        estack[0].contents[0].anon) {
+                        estack[0].contents[0].anon &&
+                        estack[0].text === null) {
 
                     estack[0].text = estack[0].contents[0].text;
                     estack[0].contents = [];
