@@ -24,14 +24,22 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-;
-(function (imscDoc, sax, imscNames, imscStyles, imscUtils) { // wrapper for non-node envs
+/**
+ * @module imscDoc
+ */
 
-    /*
-     * Parses an IMSC1 document into an in-memory representation.
+;
+(function (imscDoc, sax, imscNames, imscStyles, imscUtils) {
+    
+    /**
+     * Parses an IMSC1 document into an opaque in-memory representation that exposes
+     * a single method <pre>getMediaTimeEvents()</pre> that returns a list of time
+     * offsets (in seconds) of the ISD, i.e. the points in time where the visual
+     * representation of the document change.
      * 
-     * @param string xmlstring
-     * @returns Opaque in-memory representation of an IMSC1 document
+     * @param {string} xmlstring XML document
+     * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+     * @returns {Object} Opaque in-memory representation of an IMSC1 document
      */
 
     imscDoc.fromXML = function (xmlstring, errorHandler) {
@@ -197,7 +205,7 @@
 
                 } else if (node.local === 'head') {
 
-                    if (! (estack[0] instanceof TT)) {
+                    if (!(estack[0] instanceof TT)) {
                         reportFatal("Parent of <head> element is not <tt> at (" + this.line + "," + this.column + ")");
                     }
 
@@ -211,7 +219,7 @@
 
                 } else if (node.local === 'styling') {
 
-                    if (! (estack[0] instanceof Head)) {
+                    if (!(estack[0] instanceof Head)) {
                         reportFatal("Parent of <styling> element is not <head> at (" + this.line + "," + this.column + ")");
                     }
 
@@ -224,7 +232,7 @@
                     estack.unshift(doc.head.styling);
 
                 } else if (node.local === 'style') {
-                    
+
                     var s;
 
                     if (estack[0] instanceof Styling) {
@@ -270,7 +278,7 @@
 
                 } else if (node.local === 'layout') {
 
-                    if (! (estack[0] instanceof Head)) {
+                    if (!(estack[0] instanceof Head)) {
 
                         reportFatal(errorHandler, "Parent of <layout> element is not <head> at " + this.line + "," + this.column + ")");
 
@@ -288,7 +296,7 @@
 
                 } else if (node.local === 'region') {
 
-                    if (! (estack[0] instanceof Layout)) {
+                    if (!(estack[0] instanceof Layout)) {
                         reportFatal(errorHandler, "Parent of <region> element is not <layout> at " + this.line + "," + this.column + ")");
                     }
 
@@ -312,7 +320,7 @@
 
                 } else if (node.local === 'body') {
 
-                    if (! (estack[0] instanceof TT)) {
+                    if (!(estack[0] instanceof TT)) {
 
                         reportFatal(errorHandler, "Parent of <body> element is not <tt> at " + this.line + "," + this.column + ")");
 
@@ -780,7 +788,7 @@
         this.begin = t.begin;
         this.end = t.end;
 
-        this.styleAttrs = elementGetStyles(node);
+        this.styleAttrs = elementGetStyles(node, errorHandler);
 
         /* immediately merge referenced styles */
 
@@ -807,7 +815,7 @@
         this.begin = t.begin;
         this.end = t.end;
 
-        var styles = elementGetStyles(node);
+        var styles = elementGetStyles(node, errorHandler);
 
         for (var qname in styles) {
 
@@ -886,6 +894,12 @@
                     if (val !== null) {
 
                         s[qname] = val;
+
+                        /* TODO: consider refactoring errorHandler into parse and compute routines */
+                        
+                        if (sa === imscStyles.byName.zIndex) {
+                            reportWarning(errorHandler, "zIndex attribute present but not used by IMSC1 since regions do not overlap");
+                        }
 
                     } else {
 
@@ -1002,9 +1016,9 @@
         // initial value
 
         var fps = 30;
-        
+
         // match variable
-        
+
         var m;
 
         if (fps_attr !== null) {
@@ -1111,7 +1125,7 @@
         return {'h': h, 'w': w};
 
     }
-    
+
     function parseTimeExpression(tickRate, effectiveFrameRate, str) {
 
         var CLOCK_TIME_FRACTION_RE = /^(\d\d):(\d\d):(\d\d(?:\.\d+)?)$/;
@@ -1141,25 +1155,25 @@
         } else if ((m = OFFSET_MS_RE.exec(str)) !== null) {
 
             r = parseFloat(m[1]) / 1000.0;
-            
+
         } else if ((m = OFFSET_S_RE.exec(str)) !== null) {
 
             r = parseFloat(m[1]);
-            
+
         } else if ((m = OFFSET_H_RE.exec(str)) !== null) {
 
             r = parseFloat(m[1]) * 3600.0;
-            
+
         } else if ((m = OFFSET_M_RE.exec(str)) !== null) {
 
             r = parseFloat(m[1]) * 60.0;
-            
+
         } else if ((m = CLOCK_TIME_FRACTION_RE.exec(str)) !== null) {
 
             r = parseInt(m[1]) * 3600 +
                     parseInt(m[2]) * 60 +
                     parseFloat(m[3]);
-            
+
         } else if ((m = CLOCK_TIME_FRAMES_RE.exec(str)) !== null) {
 
             /* this assumes that HH:MM:SS is a clock-time-with-fraction */
@@ -1265,7 +1279,7 @@
         }
 
         /* offset begin per time container semantics */
-        
+
         b += start_off;
 
         /* set end */
@@ -1298,7 +1312,7 @@
 
             var sref = style.styleRefs.pop();
 
-            if (! (sref in styling.styles))
+            if (!(sref in styling.styles))
                 continue;
 
             mergeChainedStyles(styling, styling.styles[sref]);
@@ -1315,7 +1329,7 @@
 
             var sref = stylerefs[i];
 
-            if (! (sref in styling.styles)) {
+            if (!(sref in styling.styles)) {
                 reportError(errorHandler, "Unexistant style id referenced");
                 continue;
             }
@@ -1420,7 +1434,7 @@
 
 
 })(typeof exports === 'undefined' ? this.imscDoc = {} : exports,
-    typeof sax === 'undefined' ? require("sax") : sax,
-    typeof imscNames === 'undefined' ? require("./names") : imscNames,
-    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
-    typeof imscUtils === 'undefined' ? require("./utils") : imscUtils);
+        typeof sax === 'undefined' ? require("sax") : sax,
+        typeof imscNames === 'undefined' ? require("./names") : imscNames,
+        typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
+        typeof imscUtils === 'undefined' ? require("./utils") : imscUtils);

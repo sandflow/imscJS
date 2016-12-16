@@ -24,8 +24,24 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @module imscISD
+ */
+
+
 ;
 (function (imscISD, imscNames, imscStyles) { // wrapper for non-node envs
+
+    /** 
+     * Creates a canonical representation of an IMSC1 document returned by <pre>imscDoc.fromXML()</pre>
+     * at a given absolute offset in seconds. This offset does not have to be one of the values returned
+     * by <pre>getMediaTimeEvents()</pre>.
+     * 
+     * @param {Object} tt IMSC1 document
+     * @param {number} offset Absolute offset (in seconds)
+     * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+     * @returns {Object} Opaque in-memory representation of an ISD
+     */
 
     imscISD.generateISD = function (tt, offset, errorHandler) {
 

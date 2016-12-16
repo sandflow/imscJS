@@ -24,16 +24,41 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @module imscHTML
+ */
+
 ;
-(function (imscHTML, imscNames, imscStyles) { // wrapper for non-node envs
+(function (imscHTML, imscNames, imscStyles) {
+
+    /**
+     * Function that maps <pre>smpte:background</pre> URIs to URLs resolving to image resource
+     * @callback IMGResolver
+     * @param {string} <pre>smpte:background</pre> URI
+     * @return {string} PNG resource URL
+     */
 
 
-    imscHTML.render = function (isd, div, imgResolver, width, height) {
+    /**
+     * Renders an ISD object (returned by <pre>generateISD()</pre>) into a 
+     * <pre>div</pre> element, that must be attached to the DOM. Images URIs specified 
+     * by <pre>smpte:background</pre> attributes are mapped to image resource URLs
+     * by an <pre>imgResolver</pre> function that takes a single URI as input
+     * and return a URL, which can be a data URL, that will be used as the <code>src</code>
+     * of an <code>img</code> element. 
+     * 
+     * @param {Object} isd ISD to be rendered
+     * @param {Object} div DIV element into which the ISD is rendered
+     * @param {?IMGResolver} imgResolver Resolve <pre>smpte:background</pre> URIs into URLs.
+     * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+     */
+
+    imscHTML.render = function (isd, div, imgResolver, errorHandler) {
 
         /* maintain aspect ratio if specified */
 
-        height = height || div.clientHeight;
-        width = width || div.clientWidth;
+        var height = div.clientHeight;
+        var width = div.clientWidth;
 
         if (isd.aspectRatio !== null) {
 
@@ -183,35 +208,6 @@
 
                 }
 
-
-
-                // clean-up the span
-
-                /*var child = e.firstChild;
-                 
-                 var acctext = "";
-                 
-                 while (child) {
-                 
-                 var cur_child = child;
-                 
-                 child = child.nextSibling;
-                 
-                 if (cur_child.nodeName === "br" || child === null) {
-                 
-                 e.insertBefore(document.createTextNode(acctext), cur_child);
-                 
-                 acctext = "";
-                 
-                 } else {
-                 
-                 acctext += cur_child.textContent;
-                 
-                 e.removeChild(cur_child);
-                 
-                 }
-                 
-                 }*/
             } else {
                 e.textContent = isd_element.text;
             }
@@ -232,88 +228,181 @@
 
         if ((context.lp || context.mra) && isd_element.kind === "p") {
 
-            // insert explicit line breaks for multirow align and line padding
+            var elist = [];
 
-            insertExplicitBrAndPadding(proc_e, context.lp, null);
+            constructElementList(proc_e, elist, "red");
 
-            if (context.lp) delete context.lp;
-            if (context.mra) delete context.mra;
+            /* TODO: linePadding only supported for horizontal scripts */
+
+            processLinePaddingAndMultiRowAlign(elist, context.lp * context.h);
+
+            /* TODO: clean-up the span */
+
+            // clean-up the span
+
+            /*var child = e.firstChild;
+             
+             var acctext = "";
+             
+             while (child) {
+             
+             var cur_child = child;
+             
+             child = child.nextSibling;
+             
+             if (cur_child.nodeName === "br" || child === null) {
+             
+             e.insertBefore(document.createTextNode(acctext), cur_child);
+             
+             acctext = "";
+             
+             } else {
+             
+             acctext += cur_child.textContent;
+             
+             e.removeChild(cur_child);
+             
+             }
+             
+             }*/
+
+            if (context.lp)
+                delete context.lp;
+            if (context.mra)
+                delete context.mra;
 
         }
 
     }
 
-    function insertExplicitBrAndPadding(e, lp, boundingrecttop) {
+    function constructElementList(element, elist, bgcolor) {
 
-        var child = e.firstChild;
+        if (element.childElementCount === 0) {
 
-        var last_top = boundingrecttop;
+            elist.push({"element": element, "bgcolor": bgcolor});
 
-        while (child) {
+        } else {
 
-            if (child.nodeType === Node.ELEMENT_NODE) {
+            var newbgcolor = element.style.backgroundColor || bgcolor;
 
-                var cur_top = child.getBoundingClientRect().top;
+            var child = element.firstChild;
 
-                // has the top of the bounding rect changed
-                // TODO: this fails on vertical scripts
+            while (child) {
 
-                if (cur_top !== last_top && child.localName !== "br") {
+                if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    // apparently bounding rects for <br> are not the same as other inline elements, so skip it
-
-                    if (child.previousSibling !== null && child.previousSibling.localName !== "br") {
-
-                        e.insertBefore(document.createElement("br"), child);
-
-                        // rewind to handle line padding
-
-                        child = child.previousSibling.previousSibling;
-
-                    } else {
-
-                        last_top = cur_top;
-
-                    }
+                    constructElementList(child, elist, newbgcolor);
 
                 }
 
-                if (lp && lp > 0) {
-                    
-                     var s;
-
-                    if ((child.previousSibling === null && boundingrecttop === null) ||
-                            (child.previousSibling !== null && child.previousSibling.localName === "br")) {
-
-                        s = "-0.5em 0 " + getComputedStyle(child).backgroundColor;
-
-                        if (child.style.boxShadow)
-                            s += "," + child.style.boxShadow;
-
-                        child.style.boxShadow = s;
-
-                    }
-
-                    if ((boundingrecttop === null && child.nextSibling === null) ||
-                            (child.nextSibling !== null && child.nextSibling.localName === "br")) {
-
-                        s = "0.5em 0 " + getComputedStyle(child).backgroundColor;
-
-                        if (child.style.boxShadow)
-                            s += "," + child.style.boxShadow;
-
-                        child.style.boxShadow = s;
-                    }
-
-                }
-
-                insertExplicitBrAndPadding(child, lp, last_top);
+                child = child.nextSibling;
             }
+        }
 
-            child = child.nextSibling;
+    }
+
+    function processLinePaddingAndMultiRowAlign(elist, lp) {
+
+        var line_head = null;
+
+        var lookingForHead = true;
+
+        for (var i = 0; i <= elist.length; i++) {
+
+            /* skip <br> since they apparently have a different box top than
+             * the rest of the line 
+             */
+
+            if (i !== elist.length && elist[i].element.localName === "br")
+                continue;
+
+            /* detect new line */
+
+            if (line_head === null ||
+                    i === elist.length ||
+                    elist[i].element.getBoundingClientRect().top !== elist[line_head].element.getBoundingClientRect().top) {
+
+                /* apply right padding to previous line (if applicable and unless this is the first line) */
+
+                if (lp && (!lookingForHead)) {
+
+                    for (; --i >= 0;) {
+
+                        if (elist[i].element.getBoundingClientRect().width !== 0) {
+
+                            addRightPadding(elist[i].element, elist[i].color, lp);
+
+                            if (elist[i].element.getBoundingClientRect().width !== 0 &&
+                                    elist[i].element.getBoundingClientRect().top === elist[line_head].element.getBoundingClientRect().top)
+                                break;
+
+                            removeRightPadding(elist[i].element);
+
+                        }
+
+                    }
+
+                    lookingForHead = true;
+
+                    continue;
+
+                }
+
+                /* explicit <br> unless already present */
+
+                if (i !== elist.length && line_head !== null && elist[i-1].element.localName !== "br") {
+
+                    var br = document.createElement("br");
+
+                    elist[i].element.parentElement.insertBefore(br, elist[i].element);
+
+                    elist.splice(i, 0, {"element": br});
+
+                    continue;
+
+                }
+
+                /* apply left padding to current line (if applicable) */
+
+                if (i !== elist.length && lp) {
+
+                    /* find first non-zero */
+
+                    for (; i < elist.length; i++) {
+
+                        if (elist[i].element.getBoundingClientRect().width !== 0) {
+                            break;
+                        }
+
+                    }
+
+                    addLeftPadding(elist[i].element, elist[i].color, lp);
+
+                }
+
+                lookingForHead = false;
+
+                line_head = i;
+
+            }
 
         }
 
+    }
+
+    function addLeftPadding(e, c, lp) {
+        e.style.paddingLeft = lp + "px";
+        e.style.backgroundColor = c;
+    }
+
+    function addRightPadding(e, c, lp) {
+        e.style.paddingRight = lp + "px";
+        e.style.backgroundColor = c;
+
+    }
+
+    function removeRightPadding(e) {
+        e.style.paddingRight = null;
     }
 
 
@@ -552,28 +641,28 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling textAlign",
                 function (context, dom_element, isd_element, attr) {
-                    
+
                     var ta;
                     var dir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
-                    
+
                     /* handle UAs that do not understand start or end */
-                    
+
                     if (attr === "start") {
-                                                   
+
                         ta = dir === "ltr" ? "left" : "right";
- 
+
                     } else if (attr === "end") {
-                        
+
                         ta = dir === "ltr" ? "right" : "left";
-                        
+
                     } else {
-                        
+
                         ta = attr;
-                        
+
                     }
-                    
+
                     dom_element.style.textAlign = ta;
-                    
+
                 }
         ),
         new HTMLStylingMapDefintion(
@@ -675,8 +764,10 @@
         ),
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling zIndex",
-                null
-                ),
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.zIndex = attr;
+                }
+        ),
         new HTMLStylingMapDefintion(
                 "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage",
                 function (context, dom_element, isd_element, attr) {
