@@ -789,6 +789,8 @@
         this.end = t.end;
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
+        
+        this.sets = [];
 
         /* immediately merge referenced styles */
 
