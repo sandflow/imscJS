@@ -791,6 +791,19 @@
                     return str;
                 },
                 null
+                ),
+
+        new StylingAttributeDefinition(
+                imscNames.ns_itts,
+                "forcedDisplay",
+                "false",
+                ['body', 'div', 'p', 'region', 'span'],
+                true,
+                true,
+                function (str) {
+                    return str === 'true' ? true : false;
+                },
+                null
                 )
     ];
 

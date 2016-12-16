@@ -48,7 +48,8 @@
      * by <pre>smpte:background</pre> attributes are mapped to image resource URLs
      * by an <pre>imgResolver</pre> function that takes a single URI as input
      * and return a URL, which can be a data URL, that will be used as the <code>src</code>
-     * of an <code>img</code> element. 
+     * of an <code>img</code> element. <pre>displayForcedOnlyMode</pre> sets the (boolean)
+     * value of the IMSC1 displayForcedOnlyMode parameter.
      * 
      * @param {Object} isd ISD to be rendered
      * @param {Object} element Element into which the ISD is rendered
@@ -56,11 +57,13 @@
      * @param {?number} eheight Height (in pixel) of the child <div>div</div> or null 
      *                  to use clientHeight of the parent element
      * @param {?number} ewidth Width (in pixel) of the child <div>div</div> or null
-     *                  to use clientHeight of the parent element 
+     *                  to use clientWidth of the parent element
+     * @param {?boolean} displayForcedOnlyMode Value of the IMSC1 displayForcedOnlyMode parameter,
+     *                   or false if null         
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
      */
 
-    imscHTML.render = function (isd, element, imgResolver, eheight, ewidth, errorHandler) {
+    imscHTML.render = function (isd, element, imgResolver, eheight, ewidth, displayForcedOnlyMode, errorHandler) {
 
         /* maintain aspect ratio if specified */
 
@@ -100,6 +103,7 @@
             regionH: null,
             regionW: null,
             imgResolver: imgResolver,
+            displayForcedOnlyMode : displayForcedOnlyMode || false,
             isd: isd
         };
 
@@ -787,6 +791,16 @@
 
                         dom_element.appendChild(img);
                     }
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay",
+                function (context, dom_element, isd_element, attr) {
+                    
+                    if (context.displayForcedOnlyMode && attr === false) {
+                        dom_element.style.visibility =  "hidden";
+                    }
+                    
                 }
         )
     ];
