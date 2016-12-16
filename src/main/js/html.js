@@ -587,9 +587,7 @@
                 function (context, dom_element, isd_element, attr) {
                     if (attr === "normal") {
 
-                        var fs = isd_element.styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"];
-
-                        dom_element.style.lineHeight = (fs * 1.2 * context.h) + "px";
+                        dom_element.style.lineHeight = "normal";
 
                     } else {
 
