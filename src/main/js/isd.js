@@ -285,12 +285,22 @@
             }
 
         }
+        
+        /* compute used value of lineHeight="normal" */
+        
+/*        if (isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] === "normal"  ) {
+            
+            isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] =
+                isd_element.styleAttrs[imscStyles.byName.fontSize.qname] * 1.2;
+
+        }
+        */
 
         /* remove styles that are not applicable */
 
         for (var qnameb in isd_element.styleAttrs) {
             var da = imscStyles.byQName[qnameb];
-
+            
             if (da.applies.indexOf(isd_element.kind) === -1) {
                 delete isd_element.styleAttrs[qnameb];
             }
