@@ -41,24 +41,31 @@
 
     /**
      * Renders an ISD object (returned by <pre>generateISD()</pre>) into a 
-     * <pre>div</pre> element, that must be attached to the DOM. Images URIs specified 
+     * parent element, that must be attached to the DOM. The ISD will be rendered
+     * into a child <pre>div</pre>
+     * with heigh and width equal to the clientHeight and clientWidth of the element,
+     * unless explicitly specified otherwise by the caller. Images URIs specified 
      * by <pre>smpte:background</pre> attributes are mapped to image resource URLs
      * by an <pre>imgResolver</pre> function that takes a single URI as input
      * and return a URL, which can be a data URL, that will be used as the <code>src</code>
      * of an <code>img</code> element. 
      * 
      * @param {Object} isd ISD to be rendered
-     * @param {Object} div DIV element into which the ISD is rendered
+     * @param {Object} element Element into which the ISD is rendered
      * @param {?IMGResolver} imgResolver Resolve <pre>smpte:background</pre> URIs into URLs.
+     * @param {?number} eheight Height (in pixel) of the child <div>div</div> or null 
+     *                  to use clientHeight of the parent element
+     * @param {?number} ewidth Width (in pixel) of the child <div>div</div> or null
+     *                  to use clientHeight of the parent element 
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
      */
 
-    imscHTML.render = function (isd, div, imgResolver, errorHandler) {
+    imscHTML.render = function (isd, element, imgResolver, eheight, ewidth, errorHandler) {
 
         /* maintain aspect ratio if specified */
 
-        var height = div.clientHeight;
-        var width = div.clientWidth;
+        var height = eheight || element.clientHeight;
+        var width = ewidth || element.clientWidth;
 
         if (isd.aspectRatio !== null) {
 
@@ -96,7 +103,7 @@
             isd: isd
         };
 
-        div.appendChild(rootcontainer);
+        element.appendChild(rootcontainer);
 
         for (var i in isd.contents) {
 
