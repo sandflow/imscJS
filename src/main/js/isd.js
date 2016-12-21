@@ -77,16 +77,23 @@
         /* prune if temporally inactive */
 
         if (offset < elem.begin || offset >= elem.end) return null;
+
         /* 
-         * determine the associated region
-         * (the region element does not reference a region) so use null
+         * set the associated region as specified by the regionID attribute, or the 
+         * inherited associated region otherwise
          */
 
-        var associated_region_id = parent !== null && elem.regionID !== '' ? elem.regionID : inherited_region_id;
+        var associated_region_id = 'regionID' in elem && elem.regionID !== '' ? elem.regionID : inherited_region_id;
 
-        /* prune the element if the associated region is not the target region */
+        /* prune the element if either:
+         * - the element is not terminal and the associated region is neither the default
+         *   region nor the parent region (this allows children to be associated with a 
+         *   region later on)
+         * - the element is terminal and the associated region is not the parent region
+         */
 
-        if (associated_region_id !== '' && associated_region_id !== region.id)
+        if (associated_region_id !== region.id &&
+                (('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
             return null;
 
         /* create an ISD element */
@@ -234,10 +241,10 @@
         /* TODO: get rid of spec_attr */
 
         for (var z in imscStyles.all) {
-            
+
             var cs = imscStyles.all[z];
 
-            if (! (cs.qname in spec_attr)) continue;
+            if (!(cs.qname in spec_attr)) continue;
 
             if (cs.compute !== null) {
 
@@ -279,42 +286,47 @@
              * the region of this element
              */
 
-            if (c !== null && (c.region_id === associated_region_id || associated_region_id === '')) {
+            if (c !== null) {
 
                 isd_element.contents.push(c.element);
+
             }
 
         }
-        
-        /* compute used value of lineHeight="normal" */
-        
-/*        if (isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] === "normal"  ) {
-            
-            isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] =
-                isd_element.styleAttrs[imscStyles.byName.fontSize.qname] * 1.2;
 
-        }
-        */
+        /* compute used value of lineHeight="normal" */
+
+        /*        if (isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] === "normal"  ) {
+         
+         isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] =
+         isd_element.styleAttrs[imscStyles.byName.fontSize.qname] * 1.2;
+         
+         }
+         */
 
         /* remove styles that are not applicable */
 
         for (var qnameb in isd_element.styleAttrs) {
             var da = imscStyles.byQName[qnameb];
-            
+
             if (da.applies.indexOf(isd_element.kind) === -1) {
                 delete isd_element.styleAttrs[qnameb];
             }
         }
 
-        /* trim white space if space is "default" */
+        /* collapse white space if space is "default" */
 
         if (isd_element.kind === 'span' && isd_element.text !== null && isd_element.space === "default") {
 
-            var trimmedspan = isd_element.text.trim();
+            var trimmedspan = isd_element.text.replace(/\s+/g, ' ');
 
             if (trimmedspan.length === 0) {
 
                 isd_element.text = null;
+
+            } else {
+
+                isd_element.text = trimmedspan;
 
             }
 
