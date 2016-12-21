@@ -85,12 +85,15 @@
 
         var associated_region_id = 'regionID' in elem && elem.regionID !== '' ? elem.regionID : inherited_region_id;
 
-        /* 
-         * immediately prune the element if the associated region is neither the default
-         * region nor the parent region
+        /* prune the element if either:
+         * - the element is not terminal and the associated region is neither the default
+         *   region nor the parent region (this allows children to be associated with a 
+         *   region later on)
+         * - the element is terminal and the associated region is not the parent region
          */
 
-        if (associated_region_id !== region.id && associated_region_id !== '')
+        if (associated_region_id !== region.id &&
+                (('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
             return null;
 
         /* create an ISD element */
@@ -286,15 +289,6 @@
             if (c !== null) {
 
                 isd_element.contents.push(c.element);
-                
-                /* associate this element with the child's region, 
-                 * which can only be equal to the default region or
-                 * the parent region
-                 */ 
-                
-                if (c.region_id === region.id) {
-                    associated_region_id = c.region_id;
-                }
 
             }
 
@@ -310,12 +304,6 @@
          }
          */
 
-        /*
-         * prune the element if the associated region is not the parent region
-         */
-        
-        if (associated_region_id !== region.id) return null;
-        
         /* remove styles that are not applicable */
 
         for (var qnameb in isd_element.styleAttrs) {
