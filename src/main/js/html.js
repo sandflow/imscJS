@@ -317,6 +317,8 @@
         var line_head = null;
 
         var lookingForHead = true;
+        
+        var foundBR = false;
 
         for (var i = 0; i <= elist.length; i++) {
 
@@ -324,8 +326,10 @@
              * the rest of the line 
              */
 
-            if (i !== elist.length && elist[i].element.localName === "br")
-                continue;
+            if (i !== elist.length && elist[i].element.localName === "br") {
+                foundBR = true;
+                continue;   
+            }
 
             /* detect new line */
 
@@ -361,13 +365,15 @@
 
                 /* explicit <br> unless already present */
 
-                if (i !== elist.length && line_head !== null && elist[i-1].element.localName !== "br") {
+                if (i !== elist.length && line_head !== null && (!foundBR)) {
 
                     var br = document.createElement("br");
 
                     elist[i].element.parentElement.insertBefore(br, elist[i].element);
 
                     elist.splice(i, 0, {"element": br});
+                    
+                    foundBR = true;
 
                     continue;
 
@@ -382,16 +388,17 @@
                     for (; i < elist.length; i++) {
 
                         if (elist[i].element.getBoundingClientRect().width !== 0) {
+                            addLeftPadding(elist[i].element, elist[i].color, lp);
                             break;
                         }
 
                     }
 
-                    addLeftPadding(elist[i].element, elist[i].color, lp);
-
                 }
 
                 lookingForHead = false;
+                
+                foundBR = false;
 
                 line_head = i;
 
