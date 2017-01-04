@@ -744,7 +744,26 @@
                 ['region'],
                 false,
                 true,
-                parseInt,
+                function (str) {
+                    
+                    var rslt;
+                    
+                    if (str === 'auto') {
+                        
+                        rslt = str;
+                        
+                    } else {
+                        
+                        rslt = parseInt(str);
+                        
+                        if (isNaN(rslt)) {
+                            rslt = null;
+                        }
+                        
+                    }
+                    
+                    return rslt;
+                },
                 null
                 ),
         new StylingAttributeDefinition(
