@@ -17,7 +17,9 @@ module.exports = function (grunt) {
                     '<%= properties.webappBuildDir %>/libs/': [
                         'sax:main',
                         'qunit-assert-close:main',
-                        'qunitjs:main'
+                        'qunitjs:main',
+                        'filesaver.js-npm:main',
+                        'jszip/dist/jszip.js'
                     ]
                 }
             }
