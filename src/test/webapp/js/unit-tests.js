@@ -211,11 +211,11 @@ function getReferenceDocPath(name) {
 }
 
 function getReferenceISDPath(name, offset) {
-    return "renders/" + name + "/isd/" + offset + ".json";
+    return "renders/" + name + "/isd/" + offset.toFixed(6).toString() + ".json";
 }
 
 function getReferenceHTMLPath(name, offset) {
-    return "renders/" + name + "/html/" + offset + ".html";
+    return "renders/" + name + "/html/" + offset.toFixed(6).toString() + ".html";
 }
 
 function customReviver(k, v) {
@@ -245,7 +245,7 @@ function asyncProcessRefFile(assert, finfo) {
 
             for (var i in events) {
 
-                p.push(asyncProcessOffset(assert, finfo.name, refdoc, events[i].toFixed(6).toString(), finfo.displayForcedOnlyMode));
+                p.push(asyncProcessOffset(assert, finfo.name, refdoc, events[i], finfo.displayForcedOnlyMode));
 
             }
 
