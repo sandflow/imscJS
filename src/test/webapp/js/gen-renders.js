@@ -89,7 +89,7 @@ function generateRenders() {
 
     var zip = new JSZip();
 
-    return loadFile("reference-files/file-list.json")
+    return loadFile("reference-files/test-list.json")
         .then(function (contents) {
             refFilesPaths = JSON.parse(contents);
 
@@ -125,7 +125,7 @@ function asyncProcessRefFile(root, zip, finfo) {
 
     var dir = zip.folder(finfo.name);
 
-    return loadFile(root + "files/" + finfo.name + ".ttml")
+    return loadFile(root + "ttml/" + finfo.name + ".ttml")
         .then(function (contents) {
             var doc = imsc.fromXML(contents, errorHandler);
 
@@ -166,10 +166,13 @@ function asyncProcessEvent(name, doc, zip, offset, displayForcedOnlyMode) {
     return new Promise(
         function (resolve) {
 
-            var exp_width = 800;
-            var exp_height = 450;
+            var exp_width = 480;
+            var exp_height = 270;
 
             var vdiv = document.getElementById('render-div');
+            
+            vdiv.style.height = exp_height + "px";
+            vdiv.style.width = exp_width + "px";
 
             while (vdiv.firstChild) {
                 vdiv.removeChild(vdiv.firstChild);
@@ -230,7 +233,7 @@ function asyncProcessEvent(name, doc, zip, offset, displayForcedOnlyMode) {
                 },
                 exp_height,
                 exp_width,
-                displayForcedOnlyMode,
+                displayForcedOnlyMode === true,
                 errorHandler
                 );
 

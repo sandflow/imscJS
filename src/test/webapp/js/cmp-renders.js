@@ -67,11 +67,11 @@ var render_height = 270;
 var render_width = 480;
 
 function getReferenceFilesPaths() {
-    return "file-list.json";
+    return "test-list.json";
 }
 
 function getReferenceFilePath(name) {
-    return "files/" + name + ".ttml";
+    return "ttml/" + name + ".ttml";
 }
 
 function getReferencePNGPath(name, offset) {
@@ -167,7 +167,7 @@ function asyncDisplayTest(div, finfo) {
 
             for (var i in events) {
 
-                asyncDisplayOffset(finfo.name, doc, events[i], png_div, r_div, finfo.displayForcedOnlyMode);
+                asyncDisplayOffset(finfo.name, doc, events[i], png_div, r_div, finfo.params.displayForcedOnlyMode);
 
             }
 
@@ -182,6 +182,8 @@ function asyncDisplayOffset(test_name, doc, offset, png_div, r_div, displayForce
     v_div.className = "render";
     v_div.style.height = render_height;
     v_div.style.width = render_width;
+    v_div.style.position = "relative";
+    v_div.style.background = "linear-gradient(135deg, #b5bdc8 0%,#828c95 36%,#28343b 100%)";
     
     r_div.appendChild(v_div);
     
@@ -193,14 +195,14 @@ function asyncDisplayOffset(test_name, doc, offset, png_div, r_div, displayForce
                             },
                             render_height,
                             render_width,
-                            displayForcedOnlyMode,
+                            displayForcedOnlyMode === true,
                             errorHandler
                             );
                         
     var i_div = document.createElement("td");
     i_div.className = "png";
-    i_div.style.height = render_height;
-    i_div.style.width = render_width;                    
+    i_div.style.height = render_height + "px";
+    i_div.style.width = render_width + "px";                    
 
     var img = document.createElement("img");
     

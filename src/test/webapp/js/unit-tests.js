@@ -199,11 +199,11 @@ QUnit.test(
 var reffiles_root = "reference-files/";
 
 function getReferenceFilesPaths() {
-    return "file-list.json";
+    return "test-list.json";
 }
 
 function getReferenceFilePath(name) {
-    return "files/" + name + ".ttml";
+    return "ttml/" + name + ".ttml";
 }
 
 function getReferenceDocPath(name) {
@@ -245,7 +245,7 @@ function asyncProcessRefFile(assert, finfo) {
 
             for (var i in events) {
 
-                p.push(asyncProcessOffset(assert, finfo.name, refdoc, events[i], finfo.displayForcedOnlyMode));
+                p.push(asyncProcessOffset(assert, finfo.name, refdoc, events[i], finfo.params.displayForcedOnlyMode));
 
             }
 

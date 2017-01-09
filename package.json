@@ -15,7 +15,7 @@
     },
     "devDependencies" : {
         "grunt": "latest",
-        "grunt-contrib-copy" : "latest",
+        "grunt-sync": "latest",
         "grunt-contrib-clean" : "latest",
         "grunt-npmcopy" : "latest",
         "qunit-assert-close" : "latest",

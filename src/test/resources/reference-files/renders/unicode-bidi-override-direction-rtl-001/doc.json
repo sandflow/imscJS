@@ -1,0 +1,226 @@
+{
+  "events": [
+    0,
+    10,
+    20,
+    22,
+    30
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "bottom": {
+          "id": "bottom",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 10,
+                "unit": "%"
+              },
+              "w": {
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 80,
+                "unit": "%"
+              },
+              "w": {
+                "value": 80,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling displayAlign": "after",
+            "http://www.w3.org/ns/ttml#styling writingMode": "lrtb"
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 10,
+            "end": 20,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "center",
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                255,
+                255,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling fontSize": {
+                "value": 160,
+                "unit": "%"
+              },
+              "http://www.w3.org/ns/ttml#styling fontFamily": [
+                "monospace"
+              ]
+            },
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 20,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n\t\t\t\tInline direction LTR and ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 20,
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                  "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride"
+                },
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "LTR",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 20,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": " inside. \n\t\t\t",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 22,
+            "end": 30,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "center",
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                255,
+                255,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling fontSize": {
+                "value": 160,
+                "unit": "%"
+              },
+              "http://www.w3.org/ns/ttml#styling fontFamily": [
+                "monospace"
+              ]
+            },
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 22,
+                "end": 30,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n\t\t\t\tInline direction LTR and ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 22,
+                "end": 30,
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                  "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride"
+                },
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "LTR",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 22,
+                "end": 30,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": " inside. \n\t\t\t",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 50,
+    "h": 30
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}
