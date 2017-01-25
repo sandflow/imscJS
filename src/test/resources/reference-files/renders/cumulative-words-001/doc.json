@@ -1,16 +1,10 @@
 {
   "events": [
     0,
-    12,
-    13,
-    14,
-    15,
-    16,
-    24,
-    25,
-    26,
-    27,
-    28
+    2,
+    4,
+    6,
+    10
   ],
   "head": {
     "layout": {
@@ -82,8 +76,8 @@
               },
               {
                 "kind": "span",
-                "begin": 12,
-                "end": 16,
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -102,7 +96,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -115,8 +109,8 @@
               },
               {
                 "kind": "span",
-                "begin": 13,
-                "end": 16,
+                "begin": 2,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -135,7 +129,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -148,8 +142,8 @@
               },
               {
                 "kind": "span",
-                "begin": 14,
-                "end": 16,
+                "begin": 4,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -168,7 +162,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -181,8 +175,8 @@
               },
               {
                 "kind": "span",
-                "begin": 15,
-                "end": 16,
+                "begin": 6,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -201,178 +195,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": " step-by-step.",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t",
-                "space": "default",
-                "anon": true
-              }
-            ],
-            "regionID": "bottom",
-            "sets": [],
-            "timeContainer": "par"
-          },
-          {
-            "kind": "p",
-            "begin": 0,
-            "end": "Infinity",
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "left"
-            },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t\t",
-                "space": "default",
-                "anon": true
-              },
-              {
-                "kind": "span",
-                "begin": 24,
-                "end": 28,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "These",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 25,
-                "end": 28,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": " words",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 26,
-                "end": 28,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": " appear",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 27,
-                "end": 28,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],

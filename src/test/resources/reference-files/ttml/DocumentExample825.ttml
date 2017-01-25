@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Modifications Copyright (c) 2017, Pierre-Anthony Lemieux (pal@palemieux.com)-->
+<tt:tt xmlns:tt="http://www.w3.org/ns/ttml" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text" tts:extent="640px 480px" xml:lang="en">
+  <head>
+    <metadata> 
+      <ttm:title>Specification Test - DocumentExample - 825</ttm:title>
+      <ttm:desc>This test contains the document example from the
+      section 8.2.5 of the DFXP 1.0 specification, with the 
+      region replacing with a styling.</ttm:desc>
+      <ttm:copyright>Copyright (C) 2008 W3C (MIT, ERCIM, Keio).</ttm:copyright>
+                </metadata>
+      <styling>
+	<style xml:id="s1" tts:extent="369px 119px" tts:backgroundColor="black" tts:color="white" tts:displayAlign="before" tts:textAlign="start"/>
+      </styling>
+
+  </head>
+  <body>
+    <div>
+  <p dur="5s" style="s1">
+    [[[
+    <span tts:display="none">
+      <set begin="1s" dur="1s" tts:display="auto"/>
+      Beautiful soup,
+    </span>
+    <span tts:display="none">
+      <set begin="2s" dur="1s" tts:display="auto"/>
+      so rich and green,
+    </span>
+    <span tts:display="none">
+      <set begin="3s" dur="1s" tts:display="auto"/>
+      waiting in a hot tureen!
+    </span>
+    ]]]
+  </p>
+    </div>    
+  </body>
+</tt:tt>

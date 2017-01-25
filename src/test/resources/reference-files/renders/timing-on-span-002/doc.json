@@ -1,10 +1,8 @@
 {
   "events": [
     0,
-    10,
-    20,
-    22,
-    30
+    4,
+    10
   ],
   "head": {
     "layout": {
@@ -76,8 +74,8 @@
               },
               {
                 "kind": "span",
-                "begin": 10,
-                "end": 20,
+                "begin": 0,
+                "end": 4,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -96,40 +94,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "One line Subtitle.",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 22,
-                "end": 30,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -149,7 +114,53 @@
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\t\t\t\t\n\t\t\t",
+                "text": " ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 4,
+                "end": 10,
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling fontSize": {
+                    "value": 160,
+                    "unit": "%"
+                  },
+                  "http://www.w3.org/ns/ttml#styling fontFamily": [
+                    "monospaceSerif"
+                  ]
+                },
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "One line Subtitle.",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\t\n\t\t\t",
                 "space": "default",
                 "anon": true
               }

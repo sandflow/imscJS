@@ -1,10 +1,7 @@
 {
   "events": [
     0,
-    10,
-    20,
-    22,
-    30
+    10
   ],
   "head": {
     "layout": {
@@ -75,16 +72,16 @@
         "contents": [
           {
             "kind": "p",
-            "begin": 10,
-            "end": 20,
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
             "contents": [
               {
                 "kind": "span",
-                "begin": 10,
-                "end": 20,
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
@@ -96,8 +93,8 @@
               },
               {
                 "kind": "span",
-                "begin": 10,
-                "end": 20,
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -110,7 +107,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -123,74 +120,8 @@
               },
               {
                 "kind": "span",
-                "begin": 10,
-                "end": 20,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t",
-                "space": "default",
-                "anon": true
-              }
-            ],
-            "regionID": "after",
-            "sets": [],
-            "timeContainer": "par"
-          },
-          {
-            "kind": "p",
-            "begin": 22,
-            "end": 30,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "center"
-            },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 22,
-                "end": 30,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t\t",
-                "space": "default",
-                "anon": true
-              },
-              {
-                "kind": "span",
-                "begin": 22,
-                "end": 30,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "Region padding, three values.",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 22,
-                "end": 30,
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",

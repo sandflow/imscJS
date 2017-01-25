@@ -1,14 +1,13 @@
 {
   "events": [
     0,
+    2,
+    4,
+    6,
     10,
     12,
     14,
-    16,
-    20,
-    22,
-    24,
-    26
+    16
   ],
   "head": {
     "layout": {
@@ -167,8 +166,8 @@
               },
               {
                 "kind": "span",
-                "begin": 10,
-                "end": 20,
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -187,7 +186,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -239,8 +238,8 @@
               },
               {
                 "kind": "span",
-                "begin": 12,
-                "end": 22,
+                "begin": 2,
+                "end": 12,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -259,7 +258,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -311,8 +310,8 @@
               },
               {
                 "kind": "span",
-                "begin": 14,
-                "end": 24,
+                "begin": 4,
+                "end": 14,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -331,7 +330,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -383,8 +382,8 @@
               },
               {
                 "kind": "span",
-                "begin": 16,
-                "end": 26,
+                "begin": 6,
+                "end": 16,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -403,7 +402,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],

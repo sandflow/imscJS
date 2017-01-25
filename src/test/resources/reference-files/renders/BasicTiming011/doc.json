@@ -1,0 +1,670 @@
+{
+  "events": [
+    0,
+    0.1875,
+    0.375,
+    0.5625,
+    0.75,
+    0.9375,
+    1.125,
+    1.3125,
+    1.5,
+    1.6875,
+    1.875,
+    2.0625,
+    2.25,
+    2.4375,
+    2.625,
+    2.8125,
+    3
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "rollup": {
+          "id": "rollup",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling displayAlign": "after",
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 0,
+                "unit": "%"
+              },
+              "w": {
+                "value": 0,
+                "unit": "%"
+              }
+            }
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": "Infinity",
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 0.1875,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "This ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 0.375,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "text ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 0.5625,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "should ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 0.75,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "br",
+                    "begin": 0.75,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  },
+                  {
+                    "kind": "span",
+                    "begin": 0.75,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "appear ",
+                    "space": "default",
+                    "anon": true
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 0.9375,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "one ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 1.125,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "word ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 1.3125,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "br",
+                    "begin": 1.3125,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  },
+                  {
+                    "kind": "span",
+                    "begin": 1.3125,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "At ",
+                    "space": "default",
+                    "anon": true
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 1.5,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "a  ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 1.6875,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "time ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 1.875,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "br",
+                    "begin": 1.875,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  },
+                  {
+                    "kind": "span",
+                    "begin": 1.875,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "spread ",
+                    "space": "default",
+                    "anon": true
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 2.0625,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "over ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 2.25,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "three ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 2.4375,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 2.4375,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "lines",
+                    "space": "default",
+                    "anon": true
+                  },
+                  {
+                    "kind": "br",
+                    "begin": 2.4375,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 2.625,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "br",
+                    "begin": 2.625,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 2.8125,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "br",
+                    "begin": 2.8125,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 3,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "br",
+                    "begin": 3,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": null,
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": "Infinity",
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n      ",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "rollup",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "rollup",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

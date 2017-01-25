@@ -1,0 +1,98 @@
+{
+  "events": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": 20,
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 10,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textOutline": "none"
+            },
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        This text should be outlined in blurred red from 5s to 10s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [
+              {
+                "begin": 5,
+                "end": 10,
+                "qname": "http://www.w3.org/ns/ttml#styling textOutline",
+                "value": {
+                  "color": [
+                    255,
+                    0,
+                    0,
+                    255
+                  ],
+                  "thickness": {
+                    "value": 1,
+                    "unit": "px"
+                  }
+                }
+              }
+            ],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

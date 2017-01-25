@@ -1,16 +1,10 @@
 {
   "events": [
     0,
-    16,
-    18,
-    20,
-    22,
-    24,
-    28,
-    30,
-    32,
-    34,
-    36
+    2,
+    4,
+    6,
+    10
   ],
   "head": {
     "layout": {
@@ -61,16 +55,16 @@
         "contents": [
           {
             "kind": "p",
-            "begin": 16,
-            "end": 20,
+            "begin": 0,
+            "end": 4,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
             "contents": [
               {
                 "kind": "span",
-                "begin": 16,
-                "end": 20,
+                "begin": 0,
+                "end": 4,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
@@ -82,8 +76,8 @@
               },
               {
                 "kind": "span",
-                "begin": 16,
-                "end": 20,
+                "begin": 0,
+                "end": 4,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -102,7 +96,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -115,8 +109,8 @@
               },
               {
                 "kind": "span",
-                "begin": 16,
-                "end": 20,
+                "begin": 0,
+                "end": 4,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
@@ -133,16 +127,16 @@
           },
           {
             "kind": "p",
-            "begin": 18,
-            "end": 22,
+            "begin": 2,
+            "end": 6,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
             "contents": [
               {
                 "kind": "span",
-                "begin": 18,
-                "end": 22,
+                "begin": 2,
+                "end": 6,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
@@ -154,8 +148,8 @@
               },
               {
                 "kind": "span",
-                "begin": 18,
-                "end": 22,
+                "begin": 2,
+                "end": 6,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -174,7 +168,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -187,8 +181,8 @@
               },
               {
                 "kind": "span",
-                "begin": 18,
-                "end": 22,
+                "begin": 2,
+                "end": 6,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
@@ -205,16 +199,16 @@
           },
           {
             "kind": "p",
-            "begin": 20,
-            "end": 24,
+            "begin": 4,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
             "contents": [
               {
                 "kind": "span",
-                "begin": 20,
-                "end": 24,
+                "begin": 4,
+                "end": 10,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
@@ -226,8 +220,8 @@
               },
               {
                 "kind": "span",
-                "begin": 20,
-                "end": 24,
+                "begin": 4,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -246,7 +240,7 @@
                     "unit": "%"
                   },
                   "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
+                    "monospaceSerif"
                   ]
                 },
                 "contents": [],
@@ -259,224 +253,8 @@
               },
               {
                 "kind": "span",
-                "begin": 20,
-                "end": 24,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t",
-                "space": "default",
-                "anon": true
-              }
-            ],
-            "regionID": "bottom",
-            "sets": [],
-            "timeContainer": "par"
-          },
-          {
-            "kind": "p",
-            "begin": 28,
-            "end": 32,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "left"
-            },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 28,
-                "end": 32,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t\t",
-                "space": "default",
-                "anon": true
-              },
-              {
-                "kind": "span",
-                "begin": 28,
-                "end": 32,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "These lines appear step-by-step.",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 28,
-                "end": 32,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t",
-                "space": "default",
-                "anon": true
-              }
-            ],
-            "regionID": "bottom",
-            "sets": [],
-            "timeContainer": "par"
-          },
-          {
-            "kind": "p",
-            "begin": 30,
-            "end": 34,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "left"
-            },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 30,
-                "end": 34,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t\t",
-                "space": "default",
-                "anon": true
-              },
-              {
-                "kind": "span",
-                "begin": 30,
-                "end": 34,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "This is the second line.",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 30,
-                "end": 34,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t",
-                "space": "default",
-                "anon": true
-              }
-            ],
-            "regionID": "bottom",
-            "sets": [],
-            "timeContainer": "par"
-          },
-          {
-            "kind": "p",
-            "begin": 32,
-            "end": 36,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "left"
-            },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 32,
-                "end": 36,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n\t\t\t\t",
-                "space": "default",
-                "anon": true
-              },
-              {
-                "kind": "span",
-                "begin": 32,
-                "end": 36,
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospace"
-                  ]
-                },
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "This is the third and last line.",
-                "space": "default",
-                "anon": false
-              },
-              {
-                "kind": "span",
-                "begin": 32,
-                "end": 36,
+                "begin": 4,
+                "end": 10,
                 "styleAttrs": {},
                 "contents": [],
                 "regionID": "",
