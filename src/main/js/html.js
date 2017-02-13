@@ -665,11 +665,11 @@
 
                     if (attr === "start") {
 
-                        ta = dir === "ltr" ? "left" : "right";
+                        ta = (dir === "rtl") ? "right" : "left";
 
                     } else if (attr === "end") {
 
-                        ta = dir === "ltr" ? "right" : "left";
+                        ta = (dir === "rtl") ? "left" : "right";
 
                     } else {
 
