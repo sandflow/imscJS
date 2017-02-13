@@ -161,7 +161,7 @@ function asyncDisplayTest(div, finfo) {
             r_div.appendChild(r_h2);*/
             odiv.appendChild(r_div);
            
-            var doc = imsc.fromXML(reffile, errorHandler);
+            var doc = imsc.fromXML(reffile.replace(/\r\n/g,'\n'), errorHandler);
 
             var events = doc.getMediaTimeEvents();
 

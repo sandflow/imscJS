@@ -229,7 +229,7 @@ function asyncProcessRefFile(assert, finfo) {
 
     return asyncLoadFile(reffiles_root + getReferenceFilePath(finfo.name))
         .then(function (reffile) {
-            gendoc = imsc.fromXML(reffile, errorHandler);
+            gendoc = imsc.fromXML(reffile.replace(/\r\n/g,'\n'), errorHandler);
 
             return asyncLoadFile(reffiles_root + getReferenceDocPath(finfo.name));
         })
