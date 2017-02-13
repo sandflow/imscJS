@@ -15,15 +15,14 @@
 	<style tts:backgroundColor="black"/>
 	<style tts:color="white"/>
 	<style tts:writingMode="rl"/>
-	<style tts:unicodeBidi="bidiOverride"/>
 	<style tts:direction="rtl"/>
       </tt:region>
     </layout>
   </head>
   <body>
     <div region="r1">
-      <p begin="0s" end="5s">This text is displayed right to left<br/>and top to bottom,</p>
-      <p begin="5s" end="10s">with the words displayed<br/>in the right-to-left direction.</p> 
+      <p begin="0s" end="5s" tts:unicodeBidi="bidiOverride">This text is displayed right to left<br/>and top to bottom,</p>
+      <p begin="5s" end="10s" tts:unicodeBidi="bidiOverride">with the words displayed<br/>in the right-to-left direction.</p> 
     </div>
   </body>
 </tt:tt>
