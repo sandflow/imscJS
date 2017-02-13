@@ -66,7 +66,7 @@
                   "kind": "p",
                   "styleAttrs": {
                     "http://www.w3.org/ns/ttml#styling textAlign": "start",
-                    "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                    "http://www.w3.org/ns/ttml#styling direction": "ltr",
                     "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
                     "http://www.w3.org/ns/ttml#styling visibility": "visible",
                     "urn:ebu:tt:style linePadding": 0,
@@ -91,7 +91,7 @@
                           255,
                           255
                         ],
-                        "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
                         "http://www.w3.org/ns/ttml#styling fontFamily": [
                           "monospaceSerif"
                         ],
@@ -137,7 +137,7 @@
                         "http://www.w3.org/ns/ttml#styling fontFamily": [
                           "monospaceSerif"
                         ],
-                        "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -163,7 +163,7 @@
                           255,
                           255
                         ],
-                        "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
                         "http://www.w3.org/ns/ttml#styling fontFamily": [
                           "monospaceSerif"
                         ],

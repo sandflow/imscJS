@@ -65,7 +65,7 @@
                 {
                   "kind": "p",
                   "styleAttrs": {
-                    "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                    "http://www.w3.org/ns/ttml#styling direction": "ltr",
                     "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
                     "http://www.w3.org/ns/ttml#styling textAlign": "start",
                     "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -91,7 +91,7 @@
                           255,
                           255
                         ],
-                        "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
                         "http://www.w3.org/ns/ttml#styling fontFamily": [
                           "monospaceSerif"
                         ],
@@ -132,7 +132,7 @@
                           255,
                           255
                         ],
-                        "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
                         "http://www.w3.org/ns/ttml#styling fontFamily": [
                           "monospaceSerif"
                         ],

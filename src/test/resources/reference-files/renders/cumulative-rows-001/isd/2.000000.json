@@ -65,7 +65,7 @@
                 {
                   "kind": "p",
                   "styleAttrs": {
-                    "http://www.w3.org/ns/ttml#styling textAlign": "left",
+                    "http://www.w3.org/ns/ttml#styling textAlign": "start",
                     "http://www.w3.org/ns/ttml#styling direction": "ltr",
                     "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
                     "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -195,7 +195,7 @@
                 {
                   "kind": "p",
                   "styleAttrs": {
-                    "http://www.w3.org/ns/ttml#styling textAlign": "left",
+                    "http://www.w3.org/ns/ttml#styling textAlign": "start",
                     "http://www.w3.org/ns/ttml#styling direction": "ltr",
                     "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
                     "http://www.w3.org/ns/ttml#styling visibility": "visible",

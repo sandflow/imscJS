@@ -127,7 +127,7 @@ function asyncProcessRefFile(root, zip, finfo) {
 
     return loadFile(root + "ttml/" + finfo.name + ".ttml")
         .then(function (contents) {
-            var doc = imsc.fromXML(contents, errorHandler);
+            var doc = imsc.fromXML(contents.replace(/\r\n/g,'\n'), errorHandler);
 
             dir.file("doc.json",
                 JSON.stringify(

@@ -65,7 +65,7 @@
                 {
                   "kind": "p",
                   "styleAttrs": {
-                    "http://www.w3.org/ns/ttml#styling textAlign": "left",
+                    "http://www.w3.org/ns/ttml#styling textAlign": "start",
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       128,
