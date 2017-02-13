@@ -585,7 +585,22 @@
                 true,
                 true,
                 function (str) {
-                    return str;
+                    
+                    /* Section 7.16.9 of XSL */
+                    
+                    if (str === "left") {
+                        
+                        return "start";
+                        
+                    } else if (str === "right") {
+                        
+                        return "end";
+                        
+                    } else {
+                        
+                        return str;
+                        
+                    }
                 },
                 null
                 ),

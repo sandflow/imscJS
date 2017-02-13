@@ -122,7 +122,10 @@
 
             spec_attr[qname] = true;
 
-            /* special rule for tts:writingMode */
+            /* special rule for tts:writingMode (section 7.29.1 of XSL)
+             * direction is set consistently with writingMode only
+             * if writingMode sets inline-direction to LTR or RTL  
+             */
 
             if (qname === imscStyles.byName.writingMode.qname &&
                     !(imscStyles.byName.direction.qname in isd_element.styleAttrs)) {
@@ -130,11 +133,11 @@
                 var wm = isd_element.styleAttrs[qname];
                 var dir;
 
-                if (wm === "lrtb" || wm === "lr" || wm === "tblr") {
+                if (wm === "lrtb" || wm === "lr") {
 
                     dir = "ltr";
 
-                } else {
+                } else if (wm === "rltb" || wm === "rl") {
 
                     dir = "rtl";
 
