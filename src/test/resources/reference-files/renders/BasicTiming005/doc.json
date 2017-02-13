@@ -1,0 +1,238 @@
+{
+  "events": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "r1": {
+          "id": "r1",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 0,
+                "unit": "px"
+              },
+              "w": {
+                "value": 0,
+                "unit": "px"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling opacity": 0,
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling textAlign": "start",
+            "http://www.w3.org/ns/ttml#styling fontSize": {
+              "value": 12,
+              "unit": "px"
+            },
+            "http://www.w3.org/ns/ttml#styling zIndex": 1
+          },
+          "sets": [
+            {
+              "begin": 1,
+              "end": 2,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.05
+            },
+            {
+              "begin": 2,
+              "end": 3,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.1
+            },
+            {
+              "begin": 3,
+              "end": 4,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.2
+            },
+            {
+              "begin": 4,
+              "end": 5,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.3
+            },
+            {
+              "begin": 5,
+              "end": 6,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.4
+            },
+            {
+              "begin": 6,
+              "end": 7,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.5
+            },
+            {
+              "begin": 7,
+              "end": 8,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.6
+            },
+            {
+              "begin": 8,
+              "end": 9,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.7
+            },
+            {
+              "begin": 9,
+              "end": 10,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.8
+            },
+            {
+              "begin": 10,
+              "end": 11,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.9
+            },
+            {
+              "begin": 11,
+              "end": 12,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 1
+            },
+            {
+              "begin": 12,
+              "end": 13,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.75
+            },
+            {
+              "begin": 13,
+              "end": 14,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.5
+            },
+            {
+              "begin": 14,
+              "end": 15,
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.25
+            }
+          ]
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 15,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        This text must start to appear at 1 seconds",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "br",
+                "begin": 0,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        and fade in to 10 seconds then fade out to 15 seconds",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r1",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 24,
+  "tickRate": 24,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

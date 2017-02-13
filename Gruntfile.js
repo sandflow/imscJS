@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         properties: grunt.file.readJSON('properties.json'),
         pkg: grunt.file.readJSON('package.json'),
         clean: ['<%= properties.webappBuildDir %>'],
-        copy: [
+        sync: [
             // copy tests
             {expand: true, cwd: '<%= properties.webappTestDir %>', src: '**', dest: '<%= properties.webappBuildDir %>'},
 
@@ -17,7 +17,9 @@ module.exports = function (grunt) {
                     '<%= properties.webappBuildDir %>/libs/': [
                         'sax:main',
                         'qunit-assert-close:main',
-                        'qunitjs:main'
+                        'qunitjs:main',
+                        'filesaver.js-npm:main',
+                        'jszip/dist/jszip.js'
                     ]
                 }
             }
@@ -44,8 +46,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
-
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.loadNpmTasks('grunt-npmcopy');
@@ -53,7 +53,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    
+    grunt.loadNpmTasks('grunt-sync');
 
-    grunt.registerTask('build', ['jshint', 'clean', 'copy', 'npmcopy', 'browserify']);
+    grunt.registerTask('build', ['jshint', 'sync', 'npmcopy', 'browserify']);
+    
+    grunt.registerTask('clean', ['clean']);
 
 };

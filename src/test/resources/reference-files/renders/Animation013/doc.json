@@ -1,0 +1,109 @@
+{
+  "events": [
+    0,
+    2,
+    4,
+    6,
+    10,
+    20
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": 20,
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 10,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textDecoration": [
+                "overline"
+              ]
+            },
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        \n        \n        The line should move progressively down through this sentence every 2 seconds",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [
+              {
+                "begin": 2,
+                "end": 10,
+                "qname": "http://www.w3.org/ns/ttml#styling textDecoration",
+                "value": [
+                  "lineThrough"
+                ]
+              },
+              {
+                "begin": 4,
+                "end": 10,
+                "qname": "http://www.w3.org/ns/ttml#styling textDecoration",
+                "value": [
+                  "underline"
+                ]
+              },
+              {
+                "begin": 6,
+                "end": 10,
+                "qname": "http://www.w3.org/ns/ttml#styling textDecoration",
+                "value": [
+                  "none"
+                ]
+              }
+            ],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

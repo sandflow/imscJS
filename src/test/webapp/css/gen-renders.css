@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: gray;
+}
+
+#main {
+    background-color: white;
+    border-left: black solid 1px;
+    border-right: black solid 1px;
+
+    width: 1280px;
+
+    position: absolute;
+    top:20px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+#file-input {
+    width:512px;    
+}
+
+#upload {
+    background: lightblue;
+    padding: 10px;
+    width: 800px;
+    border: darkblue solid 1px;
+    text-align: left;
+    line-height: 120%;
+    font-size: 14px;
+}
+
+#visual {
+    width: 800px;    
+}
+
+
+#footer {
+    color: gray;
+    font-size: xx-small;
+    margin-bottom: 0;
+}
+
+#render-div {
+    background: #b5bdc8;
+    background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+    background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+    background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 ); 
+    margin : auto;
+    height : 450px;
+    width: 800px;
+    overflow: hidden;
+}

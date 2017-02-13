@@ -1,0 +1,189 @@
+{
+  "events": [
+    0,
+    10
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "bottom": {
+          "id": "bottom",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 10,
+                "unit": "%"
+              },
+              "w": {
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 80,
+                "unit": "%"
+              },
+              "w": {
+                "value": 80,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling displayAlign": "after"
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 10,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "center"
+            },
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n\t\t\t\t",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling fontSize": {
+                    "value": 160,
+                    "unit": "%"
+                  },
+                  "http://www.w3.org/ns/ttml#styling fontFamily": [
+                    "monospaceSerif"
+                  ]
+                },
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "One ",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "br",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling fontSize": {
+                    "value": 160,
+                    "unit": "%"
+                  },
+                  "http://www.w3.org/ns/ttml#styling fontFamily": [
+                    "monospaceSerif"
+                  ]
+                },
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "line Subtitle.",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n\t\t\t",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 50,
+    "h": 30
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

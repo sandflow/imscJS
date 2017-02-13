@@ -1,0 +1,174 @@
+{
+  "events": [
+    0,
+    5,
+    10,
+    15,
+    20
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "div",
+            "begin": 0,
+            "end": 5,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                0,
+                0,
+                255
+              ]
+            },
+            "contents": [
+              {
+                "kind": "p",
+                "begin": 0,
+                "end": 5,
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 5,
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "This text must be red.",
+                    "space": "default",
+                    "anon": true
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "div",
+            "begin": 5,
+            "end": 10,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling color": [
+                0,
+                128,
+                0,
+                255
+              ]
+            },
+            "contents": [
+              {
+                "kind": "p",
+                "begin": 5,
+                "end": 10,
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 5,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "This text must be green.",
+                    "space": "default",
+                    "anon": true
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "div",
+            "begin": 10,
+            "end": 20,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "p",
+                "begin": 10,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 10,
+                    "end": 15,
+                    "styleAttrs": {},
+                    "contents": [],
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "text": "This test is over.",
+                    "space": "default",
+                    "anon": true
+                  }
+                ],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

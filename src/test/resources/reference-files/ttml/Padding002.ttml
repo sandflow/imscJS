@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Modifications Copyright (c) 2017, Pierre-Anthony Lemieux (pal@palemieux.com)-->
+<tt:tt xmlns:tt="http://www.w3.org/ns/ttml" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text" tts:extent="640px 480px" xml:lang="en">
+  <head>
+    <metadata> 
+      <ttm:title>Styling Test - Padding - 002</ttm:title>
+      <ttm:desc>Test tts:padding attribute with two values.</ttm:desc>
+      <ttm:copyright>Copyright (C) 2008 W3C (MIT, ERCIM, Keio).</ttm:copyright>
+    </metadata>
+    
+    <layout>
+      <tt:region tts:extent="100% 100%" xml:id="r1">
+	<style tts:origin="0px 0px"/>
+	<style tts:extent="200px 100px"/>
+    	<style tts:padding="10px 30px"/>
+      </tt:region>
+    </layout>
+  </head>
+  <body>
+    <div region="r1" tts:backgroundColor="green">
+      <p begin="0s" end="5s" tts:textAlign="left">The before and after edges <br/>are padded by 10 pixels.</p>
+
+      <p begin="5s" end="10s" tts:textAlign="right">The start and end edges <br/>are padded by 30 pixels.</p>
+
+    </div>
+  </body>
+</tt:tt>

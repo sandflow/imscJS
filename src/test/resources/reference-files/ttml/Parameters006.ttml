@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Modifications Copyright (c) 2017, Pierre-Anthony Lemieux (pal@palemieux.com)-->
+<tt:tt xmlns:tt="http://www.w3.org/ns/ttml" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text" xml:lang="en">
+  <head xmlns:ttf="http://www.w3.org/ns/ttml#feature" xmlns:ms="http://www.microsoft.com/enable/timedtext">
+    <metadata> 
+      <ttm:title>Parameter Test - Parameters - 006</ttm:title>
+      <ttm:desc>Test profile element</ttm:desc>
+      <ttm:copyright>Copyright (C) 2008 W3C (MIT, ERCIM, Keio).</ttm:copyright>
+    </metadata>
+    
+  </head>
+  <body xmlns:ttf="http://www.w3.org/ns/ttml#feature" xmlns:ms="http://www.microsoft.com/enable/timedtext">
+    <div>
+      <p>This test reserved for the profile/feature test</p>
+    </div>
+  </body>
+</tt:tt>

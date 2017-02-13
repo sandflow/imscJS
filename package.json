@@ -15,12 +15,14 @@
     },
     "devDependencies" : {
         "grunt": "latest",
-        "grunt-contrib-copy" : "latest",
+        "grunt-sync": "latest",
         "grunt-contrib-clean" : "latest",
         "grunt-npmcopy" : "latest",
         "qunit-assert-close" : "latest",
         "qunitjs" : "latest",
         "grunt-browserify" : "latest",
-        "grunt-contrib-jshint" : "latest"
+        "grunt-contrib-jshint" : "latest",
+        "jszip" : "latest",
+        "filesaver.js-npm" : "latest"
     }
 }

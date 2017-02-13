@@ -905,7 +905,7 @@
 
                     } else {
 
-                        reportError(errorHandler, "Cannot parse styling attribute " + qname);
+                        reportError(errorHandler, "Cannot parse styling attribute " + qname + " --> " + node.attributes[i].value);
 
                     }
 
@@ -1210,7 +1210,7 @@
 
             if (b === null) {
 
-                reportWarning(errorHandler, "Malformed begin value (using 0)");
+                reportWarning(errorHandler, "Malformed begin value " + node.attributes.begin.value + " (using 0)");
 
                 b = 0;
 
@@ -1230,7 +1230,7 @@
 
             if (d === null) {
 
-                reportWarning(errorHandler, "Malformed dur value (ignoring)");
+                reportWarning(errorHandler, "Malformed dur value " + node.attributes.dur.value + " (ignoring)");
 
             }
 

@@ -1,0 +1,306 @@
+{
+  "events": [
+    0,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    25
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 6,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 6,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "This test is going to display a message",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "br",
+                "begin": 0,
+                "end": 6,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 6,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "every other second.",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 18,
+            "end": 19,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 18,
+                "end": 19,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "and, from 18s to 19s.",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 10,
+            "end": 11,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 11,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "from 10s to 11s,",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 14,
+            "end": 15,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 14,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "from 14s to 15s,",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 8,
+            "end": 9,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 8,
+                "end": 9,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "from 8s to 9s,",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 6,
+            "end": 7,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 6,
+                "end": 7,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "From 6s to 7s,",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 16,
+            "end": 17,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 16,
+                "end": 17,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "from 16s to 17s,",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 12,
+            "end": 13,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 12,
+                "end": 13,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "from 12s to 13s,",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 20,
+            "end": 25,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 20,
+                "end": 25,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "This test is over.",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

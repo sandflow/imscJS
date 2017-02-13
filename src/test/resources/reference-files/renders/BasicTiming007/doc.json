@@ -1,0 +1,104 @@
+{
+  "events": [
+    0,
+    5,
+    15,
+    20
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 5,
+            "end": 20,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 5,
+                "end": 5,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "This text must not appear.\n        ",
+                "space": "default",
+                "anon": true
+              },
+              {
+                "kind": "span",
+                "begin": 5,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "This text should appear at  5 seconds and stay till 15 seconds",
+                "space": "default",
+                "anon": false
+              },
+              {
+                "kind": "span",
+                "begin": 15,
+                "end": 15,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "\n        This text must not appear.\n      ",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "seq"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 24,
+  "tickRate": 24,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

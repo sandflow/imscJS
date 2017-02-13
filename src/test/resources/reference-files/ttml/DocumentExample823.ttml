@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Modifications Copyright (c) 2017, Pierre-Anthony Lemieux (pal@palemieux.com)-->
+<tt:tt xmlns:tt="http://www.w3.org/ns/ttml" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text" xml:lang="en">
+  <head>
+    <metadata> 
+      <ttm:title>Specification Test - DocumentExample - 823</ttm:title>
+      <ttm:desc>This test contains the document example from the
+      section 8.2.3 of the DFXP 1.0 specification, with the 
+      region replacing with a styling.</ttm:desc>
+      <ttm:copyright>Copyright (C) 2008 W3C (MIT, ERCIM, Keio).</ttm:copyright>
+          </metadata>
+      <styling>
+	<style xml:id="s1" tts:backgroundColor="black" tts:color="white" tts:displayAlign="after" tts:textAlign="center"/>
+      </styling>
+
+  </head>
+  <body>
+    <div>
+      <p begin="0s" end="10s" style="s1">
+	In spring, when woods are <span tts:color="green">getting green</span>,<br/>
+	I'll try and tell you what I mean.
+      </p>
+    </div>    
+  </body>
+</tt:tt>
