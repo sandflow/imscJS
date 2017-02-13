@@ -587,7 +587,24 @@
                 function (str) {
                     return str;
                 },
-                null
+                function (doc, parent, element, attr) {
+                    
+                    /* Section 7.16.9 of XSL */
+                    
+                    if (attr === "left") {
+                        
+                        return "start";
+                        
+                    } else if (attr === "right") {
+                        
+                        return "end";
+                        
+                    } else {
+                        
+                        return attr;
+                        
+                    }
+                }
                 ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
