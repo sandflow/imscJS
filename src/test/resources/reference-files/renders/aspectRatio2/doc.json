@@ -1,0 +1,116 @@
+{
+  "events": [
+    0,
+    1,
+    9
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "area1": {
+          "id": "area1",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 0,
+                "unit": "%"
+              },
+              "w": {
+                "value": 0,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              128,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling displayAlign": "center",
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {
+      "http://www.w3.org/ns/ttml#styling lineHeight": {
+        "value": 100,
+        "unit": "%"
+      }
+    },
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 1,
+            "end": 9,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 1,
+                "end": 9,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "This region should have (a) an aspect ratio of 16:9, (b) be centered within the related video object and (c) be entirely within the related video object frame, and (d) have a height or width equal to that of the related video object frame.\n\t\t\t",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": 1.7777777777777777,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

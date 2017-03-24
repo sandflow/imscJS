@@ -30,7 +30,7 @@
 	<style tts:backgroundColor="black"/>
 	<style tts:color="white"/>
         <style tts:textAlign="start"/>
-        <style tts:fontSize="12px"/>
+        <style tts:fontSize="24px"/>
         <style tts:zIndex="1"/>
       </tt:region>
     </layout>

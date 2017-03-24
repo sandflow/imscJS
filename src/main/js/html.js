@@ -46,9 +46,10 @@
      * with heigh and width equal to the clientHeight and clientWidth of the element,
      * unless explicitly specified otherwise by the caller. Images URIs specified 
      * by <pre>smpte:background</pre> attributes are mapped to image resource URLs
-     * by an <pre>imgResolver</pre> function that takes a single URI as input
-     * and return a URL, which can be a data URL, that will be used as the <code>src</code>
-     * of an <code>img</code> element. <pre>displayForcedOnlyMode</pre> sets the (boolean)
+     * by an <pre>imgResolver</pre> function. The latter takes the value of <code>smpte:background</code>
+     * attribute and an <code>img</code> DOM element as input, and is expected to
+     * set the <code>src</code> attribute of the <code>img</code> to the absolute URI of the image.
+     * <pre>displayForcedOnlyMode</pre> sets the (boolean)
      * value of the IMSC1 displayForcedOnlyMode parameter.
      * 
      * @param {Object} isd ISD to be rendered
@@ -791,8 +792,11 @@
                     if (context.imgResolver !== null && attr !== null) {
 
                         var img = document.createElement("img");
-
-                        img.src = context.imgResolver(attr);
+                                                
+                        var uri = context.imgResolver(attr, img);
+                        
+                        if (uri) img.src = uri;
+                        
                         img.height = context.regionH;
                         img.width = context.regionW;
 

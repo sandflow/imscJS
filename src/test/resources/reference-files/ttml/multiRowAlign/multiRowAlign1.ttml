@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://www.w3.org/ns/ttml" xmlns:ttp="http://www.w3.org/ns/ttml#parameter"
+ xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttm="http://www.w3.org/ns/ttml#metadata"
+ xmlns:ebutts="urn:ebu:tt:style" xml:lang="en" ttp:timeBase="media" xmlns:ebuttm="urn:ebu:tt:metadata" >
+	<head>
+		<metadata>
+			<ebuttm:documentMetadata>
+				<ebuttm:conformsToStandard>urn:ebu:tt:distribution:2014-01</ebuttm:conformsToStandard>
+				<ebuttm:conformsToStandard>http://www.w3.org/ns/ttml/profile/imsc1/text</ebuttm:conformsToStandard>
+			</ebuttm:documentMetadata>
+		</metadata>		
+		<styling>
+            <style xml:id="baseStyle" tts:color="#FFFFFF" tts:lineHeight="100%"/>
+            <style xml:id="blackBackground" tts:backgroundColor="#000000"/>
+            <style xml:id="greenBackground" tts:backgroundColor="#00FF00"/>
+			<style xml:id="startEnd" tts:textAlign="start" ebutts:multiRowAlign="end"/>
+			<style xml:id="centerStart" tts:textAlign="center" ebutts:multiRowAlign="start"/>
+		</styling>
+		<layout>
+			<region xml:id="area1" tts:origin="15% 10%" tts:extent="70% 20%" style="greenBackground" tts:displayAlign="center"/>
+			<region xml:id="area2" tts:origin="15% 70%" tts:extent="70% 20%" style="blackBackground" tts:displayAlign="center"/>
+		</layout>
+	</head>
+	<body>
+		<div style="baseStyle">			
+			<p xml:id="s1" region="area1" style="startEnd" begin="00:00:01" end="00:00:09">
+multiRowAlign="end"<br/>textAlign="start"
+			</p>
+			<p xml:id="s2" region="area2" style="centerStart" begin="00:00:01" end="00:00:09">
+multiRowAlign="start"<br/>textAlign="center"
+			</p>
+		</div>
+	</body>
+</tt>

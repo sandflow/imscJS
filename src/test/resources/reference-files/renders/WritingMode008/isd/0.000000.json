@@ -65,6 +65,7 @@
                 {
                   "kind": "p",
                   "styleAttrs": {
+                    "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride",
                     "http://www.w3.org/ns/ttml#styling direction": "rtl",
                     "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
                     "http://www.w3.org/ns/ttml#styling textAlign": "start",
@@ -78,8 +79,7 @@
                       0,
                       0
                     ],
-                    "http://www.w3.org/ns/ttml#styling display": "auto",
-                    "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                    "http://www.w3.org/ns/ttml#styling display": "auto"
                   },
                   "contents": [
                     {

@@ -1,0 +1,75 @@
+{
+  "events": [
+    0,
+    1,
+    9
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "area1": {
+          "id": "area1",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 60,
+                "unit": "px"
+              },
+              "w": {
+                "value": 80,
+                "unit": "px"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 120,
+                "unit": "px"
+              },
+              "w": {
+                "value": 160,
+                "unit": "px"
+              }
+            }
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 1,
+        "end": 9,
+        "styleAttrs": {
+          "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage": "altText1-img.png"
+        },
+        "contents": [],
+        "regionID": "area1",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 240,
+    "w": 320
+  }
+}
