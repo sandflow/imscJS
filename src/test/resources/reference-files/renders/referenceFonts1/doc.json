@@ -1,0 +1,199 @@
+{
+  "events": [
+    0,
+    9
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "area1": {
+          "id": "area1",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 8.3,
+                "unit": "%"
+              },
+              "w": {
+                "value": 12.5,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 33.3,
+                "unit": "%"
+              },
+              "w": {
+                "value": 75,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling fontSize": {
+              "value": 75,
+              "unit": "%"
+            },
+            "http://www.w3.org/ns/ttml#styling fontFamily": [
+              "proportionalSansSerif"
+            ],
+            "http://www.w3.org/ns/ttml#styling lineHeight": {
+              "value": 100,
+              "unit": "%"
+            },
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              128,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling displayAlign": "center",
+            "http://www.w3.org/ns/ttml#styling textAlign": "center",
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          "sets": []
+        },
+        "area2": {
+          "id": "area2",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 58.3,
+                "unit": "%"
+              },
+              "w": {
+                "value": 12.5,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 33.3,
+                "unit": "%"
+              },
+              "w": {
+                "value": 75,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling fontSize": {
+              "value": 75,
+              "unit": "%"
+            },
+            "http://www.w3.org/ns/ttml#styling fontFamily": [
+              "monospaceSerif"
+            ],
+            "http://www.w3.org/ns/ttml#styling lineHeight": {
+              "value": 100,
+              "unit": "%"
+            },
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling displayAlign": "center",
+            "http://www.w3.org/ns/ttml#styling textAlign": "center",
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 9,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 9,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ante. Vestibulum ac congue massa, in ornare velit.",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 9,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 9,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ant.",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "area2",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": 1.3333333333333333,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

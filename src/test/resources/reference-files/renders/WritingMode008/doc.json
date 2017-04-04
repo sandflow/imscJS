@@ -45,7 +45,6 @@
               255
             ],
             "http://www.w3.org/ns/ttml#styling writingMode": "rl",
-            "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride",
             "http://www.w3.org/ns/ttml#styling direction": "rtl"
           },
           "sets": []
@@ -69,7 +68,9 @@
             "kind": "p",
             "begin": 0,
             "end": 5,
-            "styleAttrs": {},
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride"
+            },
             "contents": [
               {
                 "kind": "span",
@@ -116,7 +117,9 @@
             "kind": "p",
             "begin": 5,
             "end": 10,
-            "styleAttrs": {},
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride"
+            },
             "contents": [
               {
                 "kind": "span",

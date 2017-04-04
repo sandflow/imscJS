@@ -25,10 +25,6 @@
  */
 
 
-$(function () {
-    document.getElementById('start-rendering').addEventListener('click', generateRenders, false);
-});
-
 var errorHandler = {
     info: function (msg) {
         console.log("info: " + msg);
@@ -48,56 +44,19 @@ var errorHandler = {
     }
 };
 
-function loadFile(url) {
-
-    return new Promise(function (resolve, reject) {
-
-        var r = new XMLHttpRequest();
-
-        r.open('GET', url);
-
-        r.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-
-                resolve(this.response);
-
-            } else {
-
-                reject({
-                    status: this.status,
-                    statusText: this.statusText
-                });
-            }
-        };
-
-        r.onerror = function () {
-
-            reject({
-                status: this.status,
-                statusText: this.statusText
-            });
-
-        };
-
-        r.send();
-
-    });
-}
-
-
 function generateRenders() {
 
     var zip = new JSZip();
 
-    return loadFile("reference-files/test-list.json")
+    return asyncLoadFile(getTestListPath())
         .then(function (contents) {
-            refFilesPaths = JSON.parse(contents);
+            finfos = JSON.parse(contents);
 
             var p = [];
 
-            for (var i in refFilesPaths) {
+            for (var i in finfos) {
 
-                p.push(asyncProcessRefFile("reference-files/", zip, refFilesPaths[i]));
+                p.push(asyncProcessRefFile(zip, finfos[i]));
 
             }
 
@@ -121,13 +80,15 @@ function generateRenders() {
 
 }
 
-function asyncProcessRefFile(root, zip, finfo) {
+function asyncProcessRefFile(zip, finfo) {
 
-    var dir = zip.folder(finfo.name);
+    var test_name = getTestName(finfo.path, finfo.params);
 
-    return loadFile(root + "ttml/" + finfo.name + ".ttml")
+    var dir = zip.folder(test_name);
+
+    return asyncLoadFile(getReferenceFilePath(finfo.path))
         .then(function (contents) {
-            var doc = imsc.fromXML(contents.replace(/\r\n/g,'\n'), errorHandler);
+            var doc = imsc.fromXML(contents.replace(/\r\n/g, '\n'), errorHandler);
 
             dir.file("doc.json",
                 JSON.stringify(
@@ -143,15 +104,17 @@ function asyncProcessRefFile(root, zip, finfo) {
 
             for (var i in events) {
 
-                p.push(asyncProcessEvent(events[i].toFixed(6).toString(), doc, dir, events[i], finfo.params.displayForcedOnlyMode));
+                p.push(asyncProcessEvent(doc, dir, events[i], finfo.params, getReferenceFileDirectory(finfo.path)));
 
             }
 
             return Promise.all(p);
         })
         .then(function (events) {
-            return {'name': name,
-                'events': events};
+            return {
+                'name': test_name,
+                'events': events
+            };
         });
 }
 
@@ -161,117 +124,148 @@ function customReplace(k, v) {
 }
 
 
-function asyncProcessEvent(name, doc, zip, offset, displayForcedOnlyMode) {
+function asyncProcessEvent(doc, zip, offset, params, reffile_dir) {
 
-    return new Promise(
-        function (resolve) {
+    var name = filenameFromOffset(offset);
 
-            var exp_width = 480;
-            var exp_height = 270;
+    var exp_width = 480;
+    var exp_height = 270;
 
-            var vdiv = document.getElementById('render-div');
-            
-            vdiv.style.height = exp_height + "px";
-            vdiv.style.width = exp_width + "px";
+    var vdiv = document.getElementById('render-div');
 
-            while (vdiv.firstChild) {
-                vdiv.removeChild(vdiv.firstChild);
-            }
+    vdiv.style.height = exp_height + "px";
+    vdiv.style.width = exp_width + "px";
 
-            /* create svg container */
+    while (vdiv.firstChild) {
+        vdiv.removeChild(vdiv.firstChild);
+    }
 
-            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute('width', exp_width + "px");
-            svg.setAttribute('height', exp_height + "px");
-            svg.setAttribute("xmlns", svg.namespaceURI);
+    /* create svg container */
 
-            fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
-            fo.setAttribute('width', '100%');
-            fo.setAttribute('height', '100%');
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute('width', exp_width + "px");
+    svg.setAttribute('height', exp_height + "px");
+    svg.setAttribute("xmlns", svg.namespaceURI);
 
-            svg.appendChild(fo);
+    fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+    fo.setAttribute('width', '100%');
+    fo.setAttribute('height', '100%');
 
-            /* create container div */
+    svg.appendChild(fo);
 
-            var rdiv = document.createElement("div");
-            rdiv.style.height = "100%";
-            rdiv.style.width = "100%";
-            rdiv.style.position = "relative";
-            rdiv.style.background = "linear-gradient(135deg, #b5bdc8 0%,#828c95 36%,#28343b 100%)";
+    /* create container div */
 
-            if (!rdiv.style.background) {
-                rdiv.style.background = "-moz-linear-gradient(left, #b5bdc8 0%, #828c95 36%, #28343b 100%)";
-            }
+    var rdiv = document.createElement("div");
+    rdiv.style.height = "100%";
+    rdiv.style.width = "100%";
+    rdiv.style.position = "relative";
+    rdiv.style.background = "#A9A9A9";
 
-            if (!rdiv.style.background) {
-                rdiv.style.background = "-webkit-linear-gradient(left, #b5bdc8 0%, #828c95 36%, #28343b 100%)";
-            }
+    fo.appendChild(rdiv);
 
-            if (!rdiv.style.background) {
-                rdiv.style.background = "#b5bdc8";
-            }
+    vdiv.appendChild(svg);
 
-            fo.appendChild(rdiv);
+    var isd = imsc.generateISD(doc, offset);
 
-            vdiv.appendChild(svg);
+    /* write isd */
 
-            var isd = imsc.generateISD(doc, offset);
+    var isd_dir = zip.folder('isd');
 
-            /* write isd */
+    isd_dir.file(name + ".json", JSON.stringify(isd, customReplace, 2));
 
-            var isd_dir = zip.folder('isd');
+    /* write PNG  */
 
-            isd_dir.file(name + ".json", JSON.stringify(isd, customReplace, 2));
+    var imgs = [];
 
-            /* write PNG  */
+    var imgr = function (uri, img) {
+        var p = new Promise(function (resolve) {
 
-            imsc.renderHTML(
-                isd,
-                rdiv,
-                function (uri) {
-                    return uri;
-                },
-                exp_height,
-                exp_width,
-                displayForcedOnlyMode === true,
-                errorHandler
-                );
+            var png = new Image();
 
-            /* save the HTML */
+            png.onload = function () {
+                var canvas = document.createElement('canvas');
+                canvas.width = this.naturalWidth;
+                canvas.height = this.naturalHeight;
 
-            var html_dir = zip.folder('html');
+                var ctx = canvas.getContext('2d');
+               
+                ctx.drawImage(this, 0, 0);
 
-            html_dir.file(name + ".html", rdiv.innerHTML);
+                // Get raw image data
 
-            /* create PNG render */
-
-            var svgser = (new XMLSerializer).serializeToString(svg);
-
-            var canvas = document.createElement("canvas");
-
-            var ctx = canvas.getContext('2d');
-            ctx.canvas.height = exp_height;
-            ctx.canvas.width = exp_width;
-
-            var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgser);
-
-            var img = new Image();
-            img.onload = function () {
-                ctx.drawImage(img, 0, 0);
-
-                var data = canvas.toDataURL("image/png");
-
-                var png_dir = zip.folder('png');
-
-                png_dir.file(name + ".png", data.substr(data.indexOf(',') + 1), {base64: true});
-
-                resolve(name);
+                resolve(canvas.toDataURL('image/png'));
             };
+
+            png.src = reffile_dir + uri;
+
+        }).then(function (url) {
 
             img.src = url;
 
+        });
+
+        imgs.push(p);
+
+        return null;
+    };
+
+    imsc.renderHTML(
+        isd,
+        rdiv,
+        imgr,
+        exp_height,
+        exp_width,
+        params.displayForcedOnlyMode === true,
+        errorHandler
+        );
+
+
+    return Promise.all(imgs).then(
+        function () {
+            return new Promise(
+                function (resolve) {
+
+                    /* save the HTML */
+
+                    var html_dir = zip.folder('html');
+
+                    html_dir.file(name + ".html", rdiv.innerHTML.replace(/></g, ">\n<"));
+
+                    /* create PNG render */
+
+                    var svgser = (new XMLSerializer).serializeToString(svg);
+
+                    var canvas = document.createElement("canvas");
+
+                    var ctx = canvas.getContext('2d');
+                    ctx.canvas.height = exp_height;
+                    ctx.canvas.width = exp_width;
+
+                    var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgser);
+
+                    var img = new Image();
+                    img.onload = function () {
+                        ctx.drawImage(img, 0, 0);
+
+                        var data = canvas.toDataURL("image/png");
+
+                        var png_dir = zip.folder('png');
+
+                        png_dir.file(name + ".png", data.substr(data.indexOf(',') + 1), {base64: true});
+
+                        resolve(name);
+                    };
+
+                    img.src = url;
+
+                }
+            );
         }
     );
+
+
+
+
 }
 
 

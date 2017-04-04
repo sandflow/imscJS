@@ -60,7 +60,7 @@
             ],
             "http://www.w3.org/ns/ttml#styling textAlign": "start",
             "http://www.w3.org/ns/ttml#styling fontSize": {
-              "value": 12,
+              "value": 24,
               "unit": "px"
             },
             "http://www.w3.org/ns/ttml#styling zIndex": 1
