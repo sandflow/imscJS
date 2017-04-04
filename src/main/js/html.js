@@ -692,8 +692,6 @@
                 "http://www.w3.org/ns/ttml#styling textOutline",
                 function (context, dom_element, isd_element, attr) {
 
-                    /* ignores thickness due to CSS limitations */
-
                     if (attr === "none") {
 
                         dom_element.style.textShadow = "";
@@ -705,7 +703,8 @@
                                 attr.color[1].toString() + "," +
                                 attr.color[2].toString() + "," +
                                 (attr.color[3] / 255).toString() +
-                                ")" + " 0px 0px 1px";
+                                ")" + " 0px 0px " +
+                                (attr.thickness * context.h) + "px";
 
                     }
                 }
