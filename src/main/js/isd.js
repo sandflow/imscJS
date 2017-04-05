@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -246,7 +246,7 @@
 
             if (!(cs.qname in spec_attr)) continue;
 
-            if (cs.compute !== null) {
+            if (cs.compute !== undefined && cs.compute !== null) {
 
                 var cstyle = cs.compute(
                         /*doc, parent, element, attr*/
@@ -289,7 +289,6 @@
             if (c !== null) {
 
                 isd_element.contents.push(c.element);
-
             }
 
         }
@@ -309,7 +308,7 @@
         for (var qnameb in isd_element.styleAttrs) {
             var da = imscStyles.byQName[qnameb];
 
-            if (da.applies.indexOf(isd_element.kind) === -1) {
+            if (da !== undefined && da.applies !== undefined && da.applies.indexOf(isd_element.kind) === -1) {
                 delete isd_element.styleAttrs[qnameb];
             }
         }
@@ -395,7 +394,7 @@
 
     /*
      * ERROR HANDLING UTILITY FUNCTIONS
-     * 
+     *
      */
 
     function reportInfo(errorHandler, msg) {

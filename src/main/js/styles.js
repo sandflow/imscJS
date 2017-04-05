@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -180,7 +180,11 @@
                     var ffs = str.split(",");
                     var rslt = [];
 
-                    for (var i in ffs) {
+                    if (!ffs) {
+                      return rslt;
+                    }
+
+                    for (var i = 0; i < ffs.length; i++) {
 
                         if (ffs[i].charAt(0) !== "'" && ffs[i].charAt(0) !== '"') {
 
@@ -468,8 +472,9 @@
                      * [before, end, after, start]
                      * 
                      */
-
-                    if (attr.length === 1) {
+                    if (!attr) {
+                      padding = [0, 0, 0, 0];
+                    } else if (attr.length === 1) {
 
                         padding = [attr[0], attr[0], attr[0], attr[0]];
 

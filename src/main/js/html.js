@@ -151,6 +151,10 @@
 
         }
 
+        if (e === undefined || e === null) {
+          return;
+        }
+
         /* override UA default margin */
 
         e.style.margin = "0";
@@ -394,6 +398,8 @@
                         }
 
                     }
+
+                    addLeftPadding(elist[i].element, elist[i].color, lp);
 
                 }
 
@@ -641,6 +647,10 @@
 
                     /* style: top right bottom left*/
 
+                    if (attr === undefined || attr === null) {
+                      attr = [0, 0, 0, 0];
+                    }
+
                     var rslt = [];
 
                     rslt[0] = (attr[0] * context.h) + "px";
@@ -691,6 +701,8 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling textOutline",
                 function (context, dom_element, isd_element, attr) {
+
+                    /* ignores thickness due to CSS limitations */
 
                     if (attr === "none") {
 
