@@ -784,7 +784,7 @@
 
         this.id = elementGetXMLID(node);
 
-        var t = processTiming(doc, parent, node, errorHandler);
+        var t = processTiming(doc, null, node, errorHandler);
         this.begin = t.begin;
         this.end = t.end;
 
