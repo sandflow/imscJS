@@ -67,7 +67,7 @@
     imscHTML.render = function (isd, element, imgResolver, eheight, ewidth, displayForcedOnlyMode, errorHandler) {
 
         /* maintain aspect ratio if specified */
-
+        
         var height = eheight || element.clientHeight;
         var width = ewidth || element.clientWidth;
 

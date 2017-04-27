@@ -47,6 +47,9 @@ var errorHandler = {
 function generateRenders() {
 
     var zip = new JSZip();
+    
+    var renders_dir = zip.folder('generated');
+    var pngs_dir = zip.folder('png');
 
     return asyncLoadFile(getTestListPath())
         .then(function (contents) {
@@ -56,7 +59,7 @@ function generateRenders() {
 
             for (var i in finfos) {
 
-                p.push(asyncProcessRefFile(zip, finfos[i]));
+                p.push(asyncProcessRefFile(renders_dir, pngs_dir, finfos[i]));
 
             }
 
@@ -69,8 +72,8 @@ function generateRenders() {
             for (var j in output) {
                 manifest[output[j].name] = output[j].events;
             }
-
-            zip.file("manifest.json", JSON.stringify(manifest, customReplace, 2));
+            
+            renders_dir.file("file-list.json", JSON.stringify(manifest, customReplace, 2));
 
             return zip.generateAsync({type: "blob"});
         })
@@ -80,17 +83,18 @@ function generateRenders() {
 
 }
 
-function asyncProcessRefFile(zip, finfo) {
+function asyncProcessRefFile(renders_dir, pngs_dir, finfo) {
 
-    var test_name = getTestName(finfo.path, finfo.params);
+    var test_name = finfo.name || getTestName(finfo.path, finfo.params || {});
 
-    var dir = zip.folder(test_name);
+    var test_renders_dir = renders_dir.folder(test_name);
+    var test_pngs_dir = pngs_dir.folder(test_name);
 
     return asyncLoadFile(getReferenceFilePath(finfo.path))
         .then(function (contents) {
             var doc = imsc.fromXML(contents.replace(/\r\n/g, '\n'), errorHandler);
 
-            dir.file("doc.json",
+            test_renders_dir.file("doc.json",
                 JSON.stringify(
                     doc,
                     customReplace,
@@ -104,7 +108,7 @@ function asyncProcessRefFile(zip, finfo) {
 
             for (var i in events) {
 
-                p.push(asyncProcessEvent(doc, dir, events[i], finfo.params, getReferenceFileDirectory(finfo.path)));
+                p.push(asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, events[i], finfo.params || {}, getReferenceFileDirectory(finfo.path)));
 
             }
 
@@ -124,12 +128,12 @@ function customReplace(k, v) {
 }
 
 
-function asyncProcessEvent(doc, zip, offset, params, reffile_dir) {
+function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params, reffile_dir) {
 
     var name = filenameFromOffset(offset);
 
-    var exp_width = 480;
-    var exp_height = 270;
+    var exp_width = 640;
+    var exp_height = 360;
 
     var vdiv = document.getElementById('render-div');
 
@@ -160,7 +164,7 @@ function asyncProcessEvent(doc, zip, offset, params, reffile_dir) {
     rdiv.style.width = "100%";
     rdiv.style.position = "relative";
     rdiv.style.background = "#A9A9A9";
-
+    
     fo.appendChild(rdiv);
 
     vdiv.appendChild(svg);
@@ -169,7 +173,7 @@ function asyncProcessEvent(doc, zip, offset, params, reffile_dir) {
 
     /* write isd */
 
-    var isd_dir = zip.folder('isd');
+    var isd_dir = test_renders_dir.folder('isd');
 
     isd_dir.file(name + ".json", JSON.stringify(isd, customReplace, 2));
 
@@ -227,7 +231,7 @@ function asyncProcessEvent(doc, zip, offset, params, reffile_dir) {
 
                     /* save the HTML */
 
-                    var html_dir = zip.folder('html');
+                    var html_dir = test_renders_dir.folder('html');
 
                     html_dir.file(name + ".html", rdiv.innerHTML.replace(/></g, ">\n<"));
 
@@ -249,9 +253,7 @@ function asyncProcessEvent(doc, zip, offset, params, reffile_dir) {
 
                         var data = canvas.toDataURL("image/png");
 
-                        var png_dir = zip.folder('png');
-
-                        png_dir.file(name + ".png", data.substr(data.indexOf(',') + 1), {base64: true});
+                        test_pngs_dir.file(name + ".png", data.substr(data.indexOf(',') + 1), {base64: true});
 
                         resolve(name);
                     };

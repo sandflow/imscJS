@@ -1,0 +1,3 @@
+[submodule "src/test/resources/imsc-tests"]
+	path = src/test/resources/imsc-tests
+	url = https://github.com/w3c/imsc-tests.git
