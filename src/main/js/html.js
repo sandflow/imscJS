@@ -286,7 +286,7 @@
                         
                         if (l < 0 || elist[l].element.localName === "br") {
                             
-                            state = "atfer_br";
+                            state = "after_br";
                             l = br_pos + 1;
                             
                             if (l >= elist.length) break;
@@ -299,7 +299,7 @@
                             
                             if (clean_str.length > 0) {
                                 
-                                state = "atfer_br";
+                                state = "after_br";
                                 l = br_pos + 1;
                                 
                                 if (l >= elist.length) break;
@@ -329,32 +329,7 @@
                         }
                         
                     }
-/*
-                    if (elist[l].element.localName === "span" &&
-                            elist[l].element.innerText.trim().length === 0) {
 
-                        if (l === 0 || elist[l - 1].element.localName === "br") {
-
-                            elist[l].element.parentNode.removeChild(elist[l].element);
-                            elist.splice(l, 1);
-                            continue;
-
-                        } else if ( l === elist.length - 1 ||
-                                elist[l + 1].element.localName === "br" ) {
-                            
-                            elist[l].element.parentNode.removeChild(elist[l].element);
-                            elist.splice(l, 1);
-                            
-                            /* search backwards for additional white spaces */
- /*                           if (l > 0) l--;
-                            
-                            continue;
-                        }
-
-                    }
-                    
-                    l++;
- */                   
                 }
                 
                 /* remove empty spans */
