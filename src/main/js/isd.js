@@ -271,12 +271,34 @@
         if (isd_element.styleAttrs[imscStyles.byName.display.qname] === "none")
             return null;
 
-        /* process children */
+        /* process contents of the element */
+        
+        var contents;
+        
+        if (parent === null) {
 
-        /* if we are processing the region, use the body element as the child */
+        /* we are processing the region */
+          
+            if (body === null) {
+                
+                /* if there is no body, still process the region but with empty content */
 
-        var contents = parent === null ? [body] : elem.contents;
+                contents = [];
 
+            } else {
+                
+                /*use the body element as contents */
+
+                contents = [body];
+
+            }
+        
+        } else {
+            
+            contents = elem.contents;
+            
+        }
+        
         for (var x in contents) {
 
             var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x]);

@@ -57,7 +57,8 @@
 
                 for (var sid in estack[0].styles) {
 
-                    mergeChainedStyles(estack[0], estack[0].styles[sid]);
+                    mergeChainedStyles(estack[0], estack[0].styles[sid], errorHandler);
+                    
                 }
 
             } else if (estack[0] instanceof P || estack[0] instanceof Span) {
@@ -458,10 +459,14 @@
 
         p.write(xmlstring).close();
 
-        // all referential styling has been flatten, so delete the styling elements
+        // all referential styling has been flatten, so delete the styling elements if there is a head
+        // otherwise create an empty head
 
-        delete doc.head.styling;
-
+        if (doc.head !== null) {
+            delete doc.head.styling;
+        } else {
+            doc.head = new Head();
+        }
 
         // create default region if no regions specified
 
@@ -472,6 +477,8 @@
         }
 
         var hasRegions = false;
+
+        /* AFAIK the only way to determine whether an object has members */
 
         for (var i in doc.head.layout.regions) {
 
@@ -664,7 +671,9 @@
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
 
-        mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
+        if (doc.head !== null && doc.head.styling !== null) {
+           mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
+        }
 
         this.contents = [];
 
@@ -794,7 +803,9 @@
 
         /* immediately merge referenced styles */
 
-        mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
+        if (doc.head !== null && doc.head.styling !== null) {
+            mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
+        }
 
     };
 
@@ -1308,16 +1319,18 @@
 
 
 
-    function mergeChainedStyles(styling, style) {
+    function mergeChainedStyles(styling, style, errorHandler) {
 
         while (style.styleRefs.length > 0) {
 
             var sref = style.styleRefs.pop();
 
-            if (!(sref in styling.styles))
+            if (!(sref in styling.styles)) {
+                reportError(errorHandler, "Non-existant style id referenced");
                 continue;
+            }
 
-            mergeChainedStyles(styling, styling.styles[sref]);
+            mergeChainedStyles(styling, styling.styles[sref], errorHandler);
 
             mergeStylesIfNotPresent(styling.styles[sref].styleAttrs, style.styleAttrs);
 
@@ -1332,7 +1345,7 @@
             var sref = stylerefs[i];
 
             if (!(sref in styling.styles)) {
-                reportError(errorHandler, "Unexistant style id referenced");
+                reportError(errorHandler, "Non-existant style id referenced");
                 continue;
             }
 
