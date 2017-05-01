@@ -208,8 +208,6 @@
 
             if (context.lp || context.mra) {
 
-
-
                 for (var j = 0; j < isd_element.text.length; j++) {
 
                     var span = document.createElement("span");
@@ -234,49 +232,142 @@
 
         }
 
-
-
         // handle linePadding and multirow Align
 
         if ((context.lp || context.mra) && isd_element.kind === "p") {
 
             var elist = [];
-
+            
             constructElementList(proc_e, elist, "red");
+            
+            /* prune white space before and after BR */
+            /* NOTE: this addresses the issue at https://github.com/sandflow/imscJS/issues/27 */
+            
+            if (isd_element.space !== "preserve") {
+            
+                var l = 0;
+                
+                var state = "after_br";
+                var br_pos = 0;
+                var clean_str;
+            
+                while (true) {
+                    
+                    if (state === "after_br") {
+                        
+                        if (l >= elist.length || elist[l].element.localName === "br") {
+                            
+                            state = "before_br";
+                            br_pos = l;
+                            l--;
+                            
+                        } else {
+                            
+                            clean_str =  elist[l].element.textContent.replace(/^\s+/g, '');
+                            
+                            elist[l].element.textContent = clean_str;
+                            
+                            if (clean_str.length > 0) {
+                                
+                                state = "looking_br";
+                                l++;
+                                
+                            } else if (clean_str.length === 0) {
+                                
+                                elist[l].element.parentNode.removeChild(elist[l].element);
+                                elist.splice(l, 1);
+                                
+                            }
+                            
+                        }
+                        
+                        
+                    } else if (state === "before_br") {
+                        
+                        if (l < 0 || elist[l].element.localName === "br") {
+                            
+                            state = "atfer_br";
+                            l = br_pos + 1;
+                            
+                            if (l >= elist.length) break;
+                            
+                        } else {
+                            
+                            clean_str =  elist[l].element.textContent.replace(/\s+$/g, '');
+                            
+                            elist[l].element.textContent = clean_str;
+                            
+                            if (clean_str.length > 0) {
+                                
+                                state = "atfer_br";
+                                l = br_pos + 1;
+                                
+                                if (l >= elist.length) break;
+                                
+                            } else if (clean_str.length === 0) {
+                                
+                                elist[l].element.parentNode.removeChild(elist[l].element);
+                                elist.splice(l, 1);
+                                l--;
+                                
+                            }
+                            
+                        }
+                        
+                    } else {
+                        
+                        if (l >= elist.length || elist[l].element.localName === "br") {
+                            
+                            state = "before_br";
+                            br_pos = l;
+                            l--;
+                            
+                        } else {
+                            
+                            l++;
+                            
+                        }
+                        
+                    }
+/*
+                    if (elist[l].element.localName === "span" &&
+                            elist[l].element.innerText.trim().length === 0) {
 
+                        if (l === 0 || elist[l - 1].element.localName === "br") {
+
+                            elist[l].element.parentNode.removeChild(elist[l].element);
+                            elist.splice(l, 1);
+                            continue;
+
+                        } else if ( l === elist.length - 1 ||
+                                elist[l + 1].element.localName === "br" ) {
+                            
+                            elist[l].element.parentNode.removeChild(elist[l].element);
+                            elist.splice(l, 1);
+                            
+                            /* search backwards for additional white spaces */
+ /*                           if (l > 0) l--;
+                            
+                            continue;
+                        }
+
+                    }
+                    
+                    l++;
+ */                   
+                }
+                
+                /* remove empty spans */
+                
+                 pruneEmptySpans(proc_e);
+            
+            }
+            
             /* TODO: linePadding only supported for horizontal scripts */
 
             processLinePaddingAndMultiRowAlign(elist, context.lp * context.h);
 
-            /* TODO: clean-up the span */
-
-            // clean-up the span
-
-            /*var child = e.firstChild;
-             
-             var acctext = "";
-             
-             while (child) {
-             
-             var cur_child = child;
-             
-             child = child.nextSibling;
-             
-             if (cur_child.nodeName === "br" || child === null) {
-             
-             e.insertBefore(document.createTextNode(acctext), cur_child);
-             
-             acctext = "";
-             
-             } else {
-             
-             acctext += cur_child.textContent;
-             
-             e.removeChild(cur_child);
-             
-             }
-             
-             }*/
+            /* TODO: clean-up the spans ? */
 
             if (context.lp)
                 delete context.lp;
@@ -286,7 +377,33 @@
         }
 
     }
+    
+    function pruneEmptySpans(element) {
 
+        var child = element.firstChild;
+
+        while (child) {
+
+            var nchild = child.nextSibling;
+
+            if (child.nodeType === Node.ELEMENT_NODE &&
+                    child.localName === 'span') {
+
+                pruneEmptySpans(child);
+
+                if (child.childElementCount === 0 &&
+                        child.textContent.length === 0) {
+
+                    element.removeChild(child);
+
+                }
+            }
+
+            child = nchild;
+        }
+
+    }
+        
     function constructElementList(element, elist, bgcolor) {
 
         if (element.childElementCount === 0) {
