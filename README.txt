@@ -20,10 +20,6 @@ A live sample web app using imscJS is available at [3].
 
 [3] http://sandflow.com/imsc1proc/index.html
 
-Renders of IRT and TTML test vectors are available at [4], respectively.
-
-[4] http://sandflow.com/imsc1proc/samples.html
-
 
 
 KNOWN ISSUES AND LIMITATIONS
