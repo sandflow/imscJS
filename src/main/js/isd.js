@@ -96,7 +96,7 @@
                 (('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
             return null;
 
-        /* create an ISD element */
+        /* create an ISD element, including applying specified styles */
 
         var isd_element = new ISDContentElement(elem);
 
@@ -203,7 +203,7 @@
 
                 } else if (sa.inherit &&
                         (sa.qname in parent.styleAttrs) &&
-                        !(sa.qname in elem.styleAttrs)) {
+                        !(sa.qname in isd_element.styleAttrs)) {
 
                     isd_element.styleAttrs[sa.qname] = parent.styleAttrs[sa.qname];
 
