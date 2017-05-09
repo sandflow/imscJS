@@ -11,8 +11,8 @@ module.exports = function (grunt) {
             // copy tests resources
             {expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1/ttml/**', dest: '<%= properties.webappBuildDir %>'},
             {expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1/tests.json', dest: '<%= properties.webappBuildDir %>'},
-            {expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'samples', dest: '<%= properties.webappBuildDir %>'},
-            {expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'unit-tests', dest: '<%= properties.webappBuildDir %>'}
+            {expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'samples/**', dest: '<%= properties.webappBuildDir %>'},
+            {expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'unit-tests/**', dest: '<%= properties.webappBuildDir %>'}
         ],
         npmcopy: {
             default: {
