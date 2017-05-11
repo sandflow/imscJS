@@ -146,6 +146,7 @@ QUnit.test(
 
         var count = 0;
         var cur_tag = 0;
+        var accumul_txt = "";
 
         mh = {
             onOpenTag: function (ns, name, attrs) {
@@ -164,6 +165,7 @@ QUnit.test(
                     case 4:
                         assert.equal(name, "image");
                         assert.equal(ns, "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt");
+                        assert.equal(attrs["http://www.w3.org/XML/1998/namespace id"].value, "img_1");
                         assert.equal(attrs[" imagetype"].value, "PNG");
                         cur_tag = 3;
                         break;
@@ -174,7 +176,16 @@ QUnit.test(
             },
 
             onCloseTag: function () {
+                
+                switch (cur_tag) {
+                    case 4:
+                        var trimmed_text = accumul_txt.trim();
+                        assert.ok(trimmed_text.startswith("iVBORw0KGgoAAAANS"));
+                        assert.equal(trimmed_text.length, 4146);
+                }
+                
                 cur_tag = 0;
+                accumul_txt = "";
             },
 
             onText: function (contents) {
@@ -185,6 +196,8 @@ QUnit.test(
                     case 2:
                         assert.equal(contents, "http://www.w3.org/ns/ttml/profile/imsc1/text");
                         break;
+                    case 4:
+                        accumul_txt = accumul_txt + contents;
                 }
             }
         };
