@@ -99,7 +99,8 @@ QUnit.test(
                         assert.close(doc.body.contents[0].contents[6].begin, 3723.235, 1e-10);
                         assert.close(doc.body.contents[0].contents[7].begin, 3723.235, 1e-10);
                         assert.close(doc.body.contents[0].contents[8].begin, 3600 + 2 * 60 + 3 + 20 / 24000 * 1001, 1e-10);
-
+                        assert.close(doc.body.contents[0].contents[9].begin, 360000.1, 1e-10);
+                        assert.close(doc.body.contents[0].contents[10].begin, 360000 + 100 / 24000 * 1001, 1e-10);
                     }
             );
 

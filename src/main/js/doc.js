@@ -1141,8 +1141,8 @@
 
     function parseTimeExpression(tickRate, effectiveFrameRate, str) {
 
-        var CLOCK_TIME_FRACTION_RE = /^(\d\d):(\d\d):(\d\d(?:\.\d+)?)$/;
-        var CLOCK_TIME_FRAMES_RE = /^(\d\d):(\d\d):(\d\d)\:(\d{2,})$/;
+        var CLOCK_TIME_FRACTION_RE = /^(\d{2,}):(\d\d):(\d\d(?:\.\d+)?)$/;
+        var CLOCK_TIME_FRAMES_RE = /^(\d{2,}):(\d\d):(\d\d)\:(\d{2,})$/;
         var OFFSET_FRAME_RE = /^(\d+(?:\.\d+)?)f$/;
         var OFFSET_TICK_RE = /^(\d+(?:\.\d+)?)t$/;
         var OFFSET_MS_RE = /^(\d+(?:\.\d+)?)ms$/;
