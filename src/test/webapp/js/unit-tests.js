@@ -39,104 +39,157 @@ var errorHandler = {
     }
 };
 
-function getIMSC1Document(url) {
+function getIMSC1Document(url, metadataHandler) {
     return new asyncLoadFile(url).then(function (contents) {
-        return imsc.fromXML(contents, errorHandler);
+        return imsc.fromXML(contents, errorHandler, metadataHandler);
     });
 }
 
 QUnit.test(
-        "Parse Color Expressions",
-        function (assert) {
+    "Parse Color Expressions",
+    function (assert) {
 
-            return getIMSC1Document("unit-tests/colorExpressions.ttml").then(
-                    function (doc) {
+        return getIMSC1Document("unit-tests/colorExpressions.ttml").then(
+            function (doc) {
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[0].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                                [255, 255, 255, 255]
-                                );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[0].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [255, 255, 255, 255]
+                    );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[1].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                                [255, 255, 255, 127]
-                                );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[1].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [255, 255, 255, 127]
+                    );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[2].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                                [255, 128, 255, 255]
-                                );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[2].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [255, 128, 255, 255]
+                    );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                                [128, 255, 255, 63]
-                                );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [128, 255, 255, 63]
+                    );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[4].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                                [128, 128, 0, 255]
-                                );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[4].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [128, 128, 0, 255]
+                    );
 
-                    }
-            );
+            }
+        );
 
-        }
+    }
 );
 
 QUnit.test(
-        "Parse Time Expressions",
-        function (assert) {
+    "Parse Time Expressions",
+    function (assert) {
 
-            return getIMSC1Document("unit-tests/timeExpressions.ttml").then(
-                    function (doc) {
+        return getIMSC1Document("unit-tests/timeExpressions.ttml").then(
+            function (doc) {
 
-                        assert.close(doc.body.contents[0].contents[0].begin, 1.2, 1e-10);
-                        assert.close(doc.body.contents[0].contents[1].begin, 72, 1e-10);
-                        assert.close(doc.body.contents[0].contents[2].begin, 4320, 1e-10);
-                        assert.close(doc.body.contents[0].contents[3].begin, 24 / 24000 * 1001, 1e-10);
-                        assert.close(doc.body.contents[0].contents[4].begin, 2, 1e-10);
-                        assert.close(doc.body.contents[0].contents[5].begin, 3723, 1e-10);
-                        assert.close(doc.body.contents[0].contents[6].begin, 3723.235, 1e-10);
-                        assert.close(doc.body.contents[0].contents[7].begin, 3723.235, 1e-10);
-                        assert.close(doc.body.contents[0].contents[8].begin, 3600 + 2 * 60 + 3 + 20 / 24000 * 1001, 1e-10);
-                        assert.close(doc.body.contents[0].contents[9].begin, 360000.1, 1e-10);
-                        assert.close(doc.body.contents[0].contents[10].begin, 360000 + 100 / 24000 * 1001, 1e-10);
-                    }
-            );
+                assert.close(doc.body.contents[0].contents[0].begin, 1.2, 1e-10);
+                assert.close(doc.body.contents[0].contents[1].begin, 72, 1e-10);
+                assert.close(doc.body.contents[0].contents[2].begin, 4320, 1e-10);
+                assert.close(doc.body.contents[0].contents[3].begin, 24 / 24000 * 1001, 1e-10);
+                assert.close(doc.body.contents[0].contents[4].begin, 2, 1e-10);
+                assert.close(doc.body.contents[0].contents[5].begin, 3723, 1e-10);
+                assert.close(doc.body.contents[0].contents[6].begin, 3723.235, 1e-10);
+                assert.close(doc.body.contents[0].contents[7].begin, 3723.235, 1e-10);
+                assert.close(doc.body.contents[0].contents[8].begin, 3600 + 2 * 60 + 3 + 20 / 24000 * 1001, 1e-10);
+                assert.close(doc.body.contents[0].contents[9].begin, 360000.1, 1e-10);
+                assert.close(doc.body.contents[0].contents[10].begin, 360000 + 100 / 24000 * 1001, 1e-10);
+            }
+        );
 
-        }
+    }
 );
 
 QUnit.test(
-        "Parse Color Expressions",
-        function (assert) {
+    "Parse Color Expressions",
+    function (assert) {
 
-            return getIMSC1Document("unit-tests/lengthExpressions.ttml").then(
-                    function (doc) {
+        return getIMSC1Document("unit-tests/lengthExpressions.ttml").then(
+            function (doc) {
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[0].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
-                                {"unit": "%", "value": 10.5}
-                        );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[0].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
+                    {"unit": "%", "value": 10.5}
+                );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[1].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
-                                {"unit": "em", "value": 0.105}
-                        );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[1].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
+                    {"unit": "em", "value": 0.105}
+                );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[2].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
-                                {"unit": "px", "value": 10.5}
-                        );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[2].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
+                    {"unit": "px", "value": 10.5}
+                );
 
-                        assert.deepEqual(
-                                doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
-                                {"unit": "c", "value": 0.105}
-                        );
+                assert.deepEqual(
+                    doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling fontSize"],
+                    {"unit": "c", "value": 0.105}
+                );
 
-                    }
-            );
+            }
+        );
 
-        }
+    }
 );
 
+QUnit.test(
+    "Metadata Callbacks",
+    function (assert) {
+
+        var count = 0;
+        var cur_tag = 0;
+
+        mh = {
+            onOpenTag: function (ns, name, attrs) {
+
+                switch (count) {
+                    case 0:
+                        assert.equal(name, "title");
+                        assert.equal(ns, "http://www.w3.org/ns/ttml#metadata");
+                        cur_tag = 1;
+                        break;
+                    case 3:
+                        assert.equal(name, "conformsToStandard");
+                        assert.equal(ns, "urn:ebu:metadata");
+                        cur_tag = 2;
+                        break;
+                    case 4:
+                        assert.equal(name, "image");
+                        assert.equal(ns, "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt");
+                        assert.equal(attrs[" imagetype"].value, "PNG");
+                        cur_tag = 3;
+                        break;
+                }
+
+                count++;
+
+            },
+
+            onCloseTag: function () {
+                cur_tag = 0;
+            },
+
+            onText: function (contents) {
+                switch (cur_tag) {
+                    case 1:
+                        assert.equal(contents, "Metadata Handler Test");
+                        break;
+                    case 2:
+                        assert.equal(contents, "http://www.w3.org/ns/ttml/profile/imsc1/text");
+                        break;
+                }
+            }
+        };
+
+        return getIMSC1Document("unit-tests/metadataHandler.ttml", mh);
+
+    }
+);
