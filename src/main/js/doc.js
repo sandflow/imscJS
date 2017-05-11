@@ -30,23 +30,55 @@
 
 ;
 (function (imscDoc, sax, imscNames, imscStyles, imscUtils) {
-    
+
+
+    /**
+     * Allows a client to provide callbacks to handle children of the <metadata> element
+     * @typedef {Object} MetadataHandler
+     * @property {?OpenTagCallBack} onOpenTag
+     * @property {?CloseTagCallBack} onCloseTag
+     * @property {?TextCallBack} onText
+     */
+
+    /**
+     * Called when the opening tag of an element node is encountered.
+     * @callback OpenTagCallBack
+     * @param {string} ns Namespace URI of the element
+     * @param {string} name Local name of the element
+     * @param {Object[]} attributes List of attributes, each consisting of a
+     *                              `uri`, `name` and `value`
+     */
+
+    /**
+     * Called when the closing tag of an element node is encountered.
+     * @callback CloseTagCallBack
+     */
+
+    /**
+     * Called when a text node is encountered.
+     * @callback TextCallBack
+     * @param {string} contents Contents of the text node
+     */
+
     /**
      * Parses an IMSC1 document into an opaque in-memory representation that exposes
      * a single method <pre>getMediaTimeEvents()</pre> that returns a list of time
      * offsets (in seconds) of the ISD, i.e. the points in time where the visual
-     * representation of the document change.
+     * representation of the document change. `metadataHandler` allows the caller to
+     * be called back when nodes are present in <metadata> elements. 
      * 
      * @param {string} xmlstring XML document
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+     * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
      * @returns {Object} Opaque in-memory representation of an IMSC1 document
      */
 
-    imscDoc.fromXML = function (xmlstring, errorHandler) {
+    imscDoc.fromXML = function (xmlstring, errorHandler, metadataHandler) {
         var p = sax.parser(true, {xmlns: true});
         var estack = [];
         var xmllangstack = [];
         var xmlspacestack = [];
+        var metadata_depth = 0;
         var doc = null;
 
         p.onclosetag = function (node) {
@@ -58,7 +90,7 @@
                 for (var sid in estack[0].styles) {
 
                     mergeChainedStyles(estack[0], estack[0].styles[sid], errorHandler);
-                    
+
                 }
 
             } else if (estack[0] instanceof P || estack[0] instanceof Span) {
@@ -74,7 +106,7 @@
                     for (c = 1; c < estack[0].contents.length; c++) {
 
                         if (estack[0].contents[c] instanceof Span && estack[0].contents[c].anon &&
-                                cs[cs.length - 1] instanceof Span && cs[cs.length - 1].anon) {
+                            cs[cs.length - 1] instanceof Span && cs[cs.length - 1].anon) {
 
                             cs[cs.length - 1].text += estack[0].contents[c].text;
 
@@ -93,13 +125,32 @@
                 // remove redundant nested anonymous spans (9.3.3(1)(c))
 
                 if (estack[0] instanceof Span &&
-                        estack[0].contents.length === 1 &&
-                        estack[0].contents[0] instanceof Span &&
-                        estack[0].contents[0].anon &&
-                        estack[0].text === null) {
+                    estack[0].contents.length === 1 &&
+                    estack[0].contents[0] instanceof Span &&
+                    estack[0].contents[0].anon &&
+                    estack[0].text === null) {
 
                     estack[0].text = estack[0].contents[0].text;
                     estack[0].contents = [];
+
+                }
+
+            } else if (estack[0] instanceof ForeignElement) {
+
+                if (estack[0].node.uri === imscNames.ns_tt &&
+                    estack[0].node.local === 'metadata') {
+
+                    /* leave the metadata element */
+
+                    metadata_depth--;
+
+                } else if (metadata_depth > 0 &&
+                    metadataHandler &&
+                    'onCloseTag' in metadataHandler) {
+
+                    /* end of child of metadata element */
+
+                    metadataHandler.onCloseTag();
 
                 }
 
@@ -122,19 +173,29 @@
 
         p.ontext = function (str) {
 
-            if (estack[0] === undefined ||
-                    !(estack[0] instanceof Span || estack[0] instanceof P)) {
+            if (estack[0] === undefined) {
 
-                reportError("Ignoring text outside of <p> or <span> at (" + this.line + "," + this.column + ")");
+                /* ignoring text outside of elements */
 
-                return;
+            } else if (estack[0] instanceof Span || estack[0] instanceof P) {
+
+                /* create an anonymous span */
+
+                var s = Span.createAnonymousSpan(doc, estack[0], xmlspacestack[0], str, errorHandler);
+
+                estack[0].contents.push(s);
+
+            } else if (estack[0] instanceof ForeignElement &&
+                metadata_depth > 0 &&
+                metadataHandler &&
+                'onText' in metadataHandler) {
+
+                /* text node within a child of metadata element */
+
+                metadataHandler.onText(str);
+
             }
 
-            // create an anonymous span
-
-            var s = Span.createAnonymousSpan(doc, estack[0], xmlspacestack[0], str, errorHandler);
-
-            estack[0].contents.push(s);
         };
 
 
@@ -418,11 +479,11 @@
                 } else if (node.local === 'set') {
 
                     if (!(estack[0] instanceof Span ||
-                            estack[0] instanceof P ||
-                            estack[0] instanceof Div ||
-                            estack[0] instanceof Body ||
-                            estack[0] instanceof Region ||
-                            estack[0] instanceof Br)) {
+                        estack[0] instanceof P ||
+                        estack[0] instanceof Div ||
+                        estack[0] instanceof Body ||
+                        estack[0] instanceof Region ||
+                        estack[0] instanceof Br)) {
 
                         reportFatal(errorHandler, "Parent of <set> element is not a content element or a region at " + this.line + "," + this.column + ")");
 
@@ -440,16 +501,52 @@
 
                 } else {
 
-                    // ignore other elements in the TTML namespace, e.g. metadata
+                    /* element in the TT namespace, but not a content element */
 
-                    estack.unshift(node);
+                    estack.unshift(new ForeignElement(node));
                 }
 
             } else {
 
-                // ignore elements not in the TTML namespace
+                /* ignore elements not in the TTML namespace unless in metadata element */
 
-                estack.unshift(node);
+                estack.unshift(new ForeignElement(node));
+
+            }
+
+            /* handle metadata callbacks */
+
+            if (estack[0] instanceof ForeignElement) {
+
+                if (node.uri === imscNames.ns_tt &&
+                    node.local === 'metadata') {
+
+                    /* enter the metadata element */
+
+                    metadata_depth++;
+
+                } else if (
+                    metadata_depth > 0 &&
+                    metadataHandler &&
+                    'onOpenTag' in metadataHandler
+                    ) {
+
+                    /* start of child of metadata element */
+
+                    var attrs = [];
+
+                    for (var a in node.attributes) {
+                        attrs[node.attributes[a].uri + " " + node.attributes[a].local] =
+                            {
+                                uri: node.attributes[a].uri,
+                                local: node.attributes[a].local,
+                                value: node.attributes[a].value
+                            };
+                    }
+
+                    metadataHandler.onOpenTag(node.uri, node.local, attrs);
+
+                }
 
             }
 
@@ -498,6 +595,10 @@
 
         return doc;
     };
+
+    function ForeignElement(node) {
+        this.node = node;
+    }
 
     function TT() {
         this.events = [];
@@ -672,7 +773,7 @@
         this.styleAttrs = elementGetStyles(node, errorHandler);
 
         if (doc.head !== null && doc.head.styling !== null) {
-           mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
+            mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
         }
 
         this.contents = [];
@@ -798,7 +899,7 @@
         this.end = t.end;
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
-        
+
         this.sets = [];
 
         /* immediately merge referenced styles */
@@ -909,7 +1010,7 @@
                         s[qname] = val;
 
                         /* TODO: consider refactoring errorHandler into parse and compute routines */
-                        
+
                         if (sa === imscStyles.byName.zIndex) {
                             reportWarning(errorHandler, "zIndex attribute present but not used by IMSC1 since regions do not overlap");
                         }
@@ -933,7 +1034,7 @@
         for (var i in node.attributes) {
 
             if (node.attributes[i].uri === ns &&
-                    node.attributes[i].local === name) {
+                node.attributes[i].local === name) {
 
                 return node.attributes[i].value;
             }
@@ -1184,8 +1285,8 @@
         } else if ((m = CLOCK_TIME_FRACTION_RE.exec(str)) !== null) {
 
             r = parseInt(m[1]) * 3600 +
-                    parseInt(m[2]) * 60 +
-                    parseFloat(m[3]);
+                parseInt(m[2]) * 60 +
+                parseFloat(m[3]);
 
         } else if ((m = CLOCK_TIME_FRAMES_RE.exec(str)) !== null) {
 
@@ -1194,9 +1295,9 @@
             if (effectiveFrameRate !== null) {
 
                 r = parseInt(m[1]) * 3600 +
-                        parseInt(m[2]) * 60 +
-                        parseInt(m[3]) +
-                        (m[4] === null ? 0 : parseInt(m[4]) / effectiveFrameRate);
+                    parseInt(m[2]) * 60 +
+                    parseInt(m[3]) +
+                    (m[4] === null ? 0 : parseInt(m[4]) / effectiveFrameRate);
             }
 
         }
@@ -1449,7 +1550,7 @@
 
 
 })(typeof exports === 'undefined' ? this.imscDoc = {} : exports,
-        typeof sax === 'undefined' ? require("sax") : sax,
-        typeof imscNames === 'undefined' ? require("./names") : imscNames,
-        typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
-        typeof imscUtils === 'undefined' ? require("./utils") : imscUtils);
+    typeof sax === 'undefined' ? require("sax") : sax,
+    typeof imscNames === 'undefined' ? require("./names") : imscNames,
+    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
+    typeof imscUtils === 'undefined' ? require("./utils") : imscUtils);
