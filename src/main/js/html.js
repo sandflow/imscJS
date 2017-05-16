@@ -97,6 +97,7 @@
         rootcontainer.style.bottom = 0;
         rootcontainer.style.left = 0;
         rootcontainer.style.right = 0;
+        rootcontainer.style.zIndex = 0;
 
         var context = {
             h: height,
