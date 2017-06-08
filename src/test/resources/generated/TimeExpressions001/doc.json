@@ -1,0 +1,326 @@
+{
+  "events": [
+    0,
+    1.2,
+    73.2,
+    4393.2,
+    4394.201,
+    4396.201,
+    8119.201,
+    11842.436,
+    15565.671,
+    19289.505166666666,
+    379289.6051666666,
+    739293.776
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 1.2,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 1.2,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "1.2s = 1.2s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 1.2,
+            "end": 73.2,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 1.2,
+                "end": 73.2,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "1.2m = 72s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 73.2,
+            "end": 4393.2,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 73.2,
+                "end": 4393.2,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "1.2h = 4320s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 4393.2,
+            "end": 4394.201,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 4393.2,
+                "end": 4394.201,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "24f = 1.001s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 4394.201,
+            "end": 4396.201,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 4394.201,
+                "end": 4396.201,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "120t = 2s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 4396.201,
+            "end": 8119.201,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 4396.201,
+                "end": 8119.201,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "01:02:03 = 3723s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 8119.201,
+            "end": 11842.436,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 8119.201,
+                "end": 11842.436,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "01:02:03.235 = 3723.235s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 11842.436,
+            "end": 15565.671,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 11842.436,
+                "end": 15565.671,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "01:02:03.2350 = 3723.235s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 15565.671,
+            "end": 19289.505166666666,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 15565.671,
+                "end": 19289.505166666666,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "01:02:03:20 = 3723.83416667s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 19289.505166666666,
+            "end": 379289.6051666666,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 19289.505166666666,
+                "end": 379289.6051666666,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "100:00:00.1 = 360000.1s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 379289.6051666666,
+            "end": 739293.776,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 379289.6051666666,
+                "end": 739293.776,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "100:00:00:100 = 360000s",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 23.976023976023978,
+  "tickRate": 60,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

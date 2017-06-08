@@ -1,0 +1,290 @@
+{
+  "events": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "r1": {
+          "id": "r1",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling zIndex": 1000,
+            "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
+          },
+          "sets": []
+        },
+        "r2": {
+          "id": "r2",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              255,
+              0,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling zIndex": 1,
+            "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
+          },
+          "sets": []
+        },
+        "r3": {
+          "id": "r3",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling zIndex": 0,
+            "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
+          },
+          "sets": []
+        },
+        "r4": {
+          "id": "r4",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              128,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling zIndex": "auto",
+            "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
+          },
+          "sets": []
+        },
+        "r5": {
+          "id": "r5",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              255,
+              0,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling zIndex": -1,
+            "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
+          },
+          "sets": []
+        },
+        "r6": {
+          "id": "r6",
+          "begin": 0,
+          "end": "Infinity",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              128,
+              128,
+              128,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling zIndex": -1000,
+            "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
+          },
+          "sets": []
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
+    "styleAttrs": {},
+    "contents": [
+      {
+        "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
+        "styleAttrs": {},
+        "contents": [
+          {
+            "kind": "p",
+            "begin": 0,
+            "end": 1,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 1,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "tts:zIndex=\"1000\"",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r1",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 1,
+            "end": 2,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 1,
+                "end": 2,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "tts:zIndex=\"1\"",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r2",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 2,
+            "end": 3,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 2,
+                "end": 3,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "tts:zIndex=\"0\"",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r3",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 3,
+            "end": 4,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 3,
+                "end": 4,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "tts:zIndex=\"auto\"",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r4",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 4,
+            "end": 5,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 4,
+                "end": 5,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "tts:zIndex=\"-1\"",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r5",
+            "sets": [],
+            "timeContainer": "par"
+          },
+          {
+            "kind": "p",
+            "begin": 5,
+            "end": 6,
+            "styleAttrs": {},
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 5,
+                "end": 6,
+                "styleAttrs": {},
+                "contents": [],
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "text": "tts:zIndex=\"-1000\"",
+                "space": "default",
+                "anon": true
+              }
+            ],
+            "regionID": "r6",
+            "sets": [],
+            "timeContainer": "par"
+          }
+        ],
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq"
+      }
+    ],
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par"
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}
