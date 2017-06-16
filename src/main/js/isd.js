@@ -342,15 +342,7 @@
 
             var trimmedspan = isd_element.text.replace(/\s+/g, ' ');
 
-            if (trimmedspan.length === 0) {
-
-                isd_element.text = null;
-
-            } else {
-
-                isd_element.text = trimmedspan;
-
-            }
+            isd_element.text = trimmedspan;
 
         }
 

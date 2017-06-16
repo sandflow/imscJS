@@ -239,122 +239,7 @@
 
             var elist = [];
             
-            // TODO: move this to isd.js
-
-            constructElementList(proc_e, elist, "red", isd_element.space);
-
-            /* prune white space before and after BR */
-            /* NOTE: this addresses the issue at https://github.com/sandflow/imscJS/issues/27 */
-
-            if (isd_element.space !== "preserve") {
-
-                var l = 0;
-
-                var state = "after_br";
-                var br_pos = 0;
-                var clean_str;
-
-                while (true) {
-
-                    if (state === "after_br") {
-
-                        if (l >= elist.length || elist[l].element.localName === "br") {
-
-                            state = "before_br";
-                            br_pos = l;
-                            l--;
-
-                        } else {
-
-                            if (elist[l].space !== "preserve") {
-
-                                clean_str = elist[l].element.textContent.replace(/^\s+/g, '');
-
-                            } else {
-
-                                clean_str = elist[l].element.textContent;
-                            }
-
-                            elist[l].element.textContent = clean_str;
-
-                            if (clean_str.length > 0) {
-
-                                state = "looking_br";
-                                l++;
-
-                            } else if (clean_str.length === 0) {
-
-                                elist[l].element.parentNode.removeChild(elist[l].element);
-                                elist.splice(l, 1);
-
-                            }
-
-                        }
-
-
-                    } else if (state === "before_br") {
-
-                        if (l < 0 || elist[l].element.localName === "br") {
-
-                            state = "after_br";
-                            l = br_pos + 1;
-
-                            if (l >= elist.length) break;
-
-                        } else {
-
-                            if (elist[l].space !== "preserve") {
-
-                                clean_str = elist[l].element.textContent.replace(/\s+$/g, '');
-
-                            } else {
-
-                                clean_str = elist[l].element.textContent;
-                            }
-
-
-                            elist[l].element.textContent = clean_str;
-
-                            if (clean_str.length > 0) {
-
-                                state = "after_br";
-                                l = br_pos + 1;
-
-                                if (l >= elist.length) break;
-
-                            } else if (clean_str.length === 0) {
-
-                                elist[l].element.parentNode.removeChild(elist[l].element);
-                                elist.splice(l, 1);
-                                l--;
-
-                            }
-
-                        }
-
-                    } else {
-
-                        if (l >= elist.length || elist[l].element.localName === "br") {
-
-                            state = "before_br";
-                            br_pos = l;
-                            l--;
-
-                        } else {
-
-                            l++;
-
-                        }
-
-                    }
-
-                }
-
-                /* remove empty spans */
-
-                pruneEmptySpans(proc_e);
-
-            }
+            constructElementList(proc_e, elist, "red");
 
             /* TODO: linePadding only supported for horizontal scripts */
 
@@ -397,23 +282,18 @@
 
     }
 
-    function constructElementList(element, elist, bgcolor, space) {
+    function constructElementList(element, elist, bgcolor) {
 
         if (element.childElementCount === 0) {
 
             elist.push({
                 "element": element,
-                "bgcolor": bgcolor,
-                
-                /* TODO: can be removed once space normalization moves to isd.js */
-                
-                "space": space}
+                "bgcolor": bgcolor}
                 );
 
         } else {
 
             var newbgcolor = element.style.backgroundColor || bgcolor;
-            var newspace = element.style.whiteSpace.includes("pre") ? "preserve" : "default";
 
             var child = element.firstChild;
 
@@ -421,7 +301,7 @@
 
                 if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    constructElementList(child, elist, newbgcolor, newspace);
+                    constructElementList(child, elist, newbgcolor);
 
                 }
 
