@@ -93,7 +93,7 @@
          */
 
         if (associated_region_id !== region.id &&
-                (('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
+            (('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
             return null;
 
         /* create an ISD element, including applying specified styles */
@@ -128,7 +128,7 @@
              */
 
             if (qname === imscStyles.byName.writingMode.qname &&
-                    !(imscStyles.byName.direction.qname in isd_element.styleAttrs)) {
+                !(imscStyles.byName.direction.qname in isd_element.styleAttrs)) {
 
                 var wm = isd_element.styleAttrs[qname];
 
@@ -170,24 +170,24 @@
                     } else if (es.indexOf("none") === -1) {
 
                         if ((es.indexOf("noUnderline") === -1 &&
-                                ps.indexOf("underline") !== -1) ||
-                                es.indexOf("underline") !== -1) {
+                            ps.indexOf("underline") !== -1) ||
+                            es.indexOf("underline") !== -1) {
 
                             outs.push("underline");
 
                         }
 
                         if ((es.indexOf("noLineThrough") === -1 &&
-                                ps.indexOf("lineThrough") !== -1) ||
-                                es.indexOf("lineThrough") !== -1) {
+                            ps.indexOf("lineThrough") !== -1) ||
+                            es.indexOf("lineThrough") !== -1) {
 
                             outs.push("lineThrough");
 
                         }
 
                         if ((es.indexOf("noOverline") === -1 &&
-                                ps.indexOf("overline") !== -1) ||
-                                es.indexOf("overline") !== -1) {
+                            ps.indexOf("overline") !== -1) ||
+                            es.indexOf("overline") !== -1) {
 
                             outs.push("overline");
 
@@ -202,8 +202,8 @@
                     isd_element.styleAttrs[sa.qname] = outs;
 
                 } else if (sa.inherit &&
-                        (sa.qname in parent.styleAttrs) &&
-                        !(sa.qname in isd_element.styleAttrs)) {
+                    (sa.qname in parent.styleAttrs) &&
+                    !(sa.qname in isd_element.styleAttrs)) {
 
                     isd_element.styleAttrs[sa.qname] = parent.styleAttrs[sa.qname];
 
@@ -249,12 +249,12 @@
             if (cs.compute !== null) {
 
                 var cstyle = cs.compute(
-                        /*doc, parent, element, attr*/
-                        doc,
-                        parent,
-                        isd_element,
-                        isd_element.styleAttrs[cs.qname]
-                        );
+                    /*doc, parent, element, attr*/
+                    doc,
+                    parent,
+                    isd_element,
+                    isd_element.styleAttrs[cs.qname]
+                    );
 
 
                 isd_element.styleAttrs[cs.qname] = cstyle;
@@ -272,33 +272,33 @@
             return null;
 
         /* process contents of the element */
-        
+
         var contents;
-        
+
         if (parent === null) {
 
-        /* we are processing the region */
-          
+            /* we are processing the region */
+
             if (body === null) {
-                
+
                 /* if there is no body, still process the region but with empty content */
 
                 contents = [];
 
             } else {
-                
+
                 /*use the body element as contents */
 
                 contents = [body];
 
             }
-        
+
         } else {
-            
+
             contents = elem.contents;
-            
+
         }
-        
+
         for (var x in contents) {
 
             var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x]);
@@ -338,19 +338,110 @@
 
         /* collapse white space if space is "default" */
 
-        if (isd_element.kind === 'span' && isd_element.text !== null && isd_element.space === "default") {
+        if (isd_element.kind === 'span' && isd_element.text && isd_element.space === "default") {
 
             var trimmedspan = isd_element.text.replace(/\s+/g, ' ');
 
-            if (trimmedspan.length === 0) {
+            isd_element.text = trimmedspan;
 
-                isd_element.text = null;
+        }
 
-            } else {
+        /* trim whitespace around explicit line breaks */
 
-                isd_element.text = trimmedspan;
+        if (isd_element.kind === 'p') {
+
+            var elist = [];
+
+            constructSpanList(isd_element, elist);
+
+            var l = 0;
+
+            var state = "after_br";
+            var br_pos = 0;
+
+            while (true) {
+
+                if (state === "after_br") {
+
+                    if (l >= elist.length || elist[l].kind === "br") {
+
+                        state = "before_br";
+                        br_pos = l;
+                        l--;
+
+                    } else {
+
+                        if (elist[l].space !== "preserve") {
+
+                            elist[l].text = elist[l].text.replace(/^\s+/g, '');
+
+                        }
+
+                        if (elist[l].text.length > 0) {
+
+                            state = "looking_br";
+                            l++;
+
+                        } else {
+
+                            elist.splice(l, 1);
+
+                        }
+
+                    }
+
+                } else if (state === "before_br") {
+
+                    if (l < 0 || elist[l].kind === "br") {
+
+                        state = "after_br";
+                        l = br_pos + 1;
+
+                        if (l >= elist.length) break;
+
+                    } else {
+
+                        if (elist[l].space !== "preserve") {
+
+                            elist[l].text = elist[l].text.replace(/\s+$/g, '');
+
+                        }
+
+                        if (elist[l].text.length > 0) {
+
+                            state = "after_br";
+                            l = br_pos + 1;
+
+                            if (l >= elist.length) break;
+
+                        } else {
+
+                            elist.splice(l, 1);
+                            l--;
+
+                        }
+
+                    }
+
+                } else {
+
+                    if (l >= elist.length || elist[l].kind === "br") {
+
+                        state = "before_br";
+                        br_pos = l;
+                        l--;
+
+                    } else {
+
+                        l++;
+
+                    }
+
+                }
 
             }
+            
+            pruneEmptySpans(isd_element);
 
         }
 
@@ -363,11 +454,11 @@
          */
 
         if ((isd_element.kind === 'div' && imscStyles.byName.backgroundImage.qname in isd_element.styleAttrs) ||
-                isd_element.kind === 'br' ||
-                isd_element.contents.length > 0 ||
-                (isd_element.kind === 'span' && isd_element.text !== null) ||
-                (isd_element.kind === 'region' &&
-                        isd_element.styleAttrs[imscStyles.byName.showBackground.qname] === 'always')) {
+            isd_element.kind === 'br' ||
+            ('contents' in isd_element && isd_element.contents.length > 0) ||
+            (isd_element.kind === 'span' && isd_element.text !== null) ||
+            (isd_element.kind === 'region' &&
+                isd_element.styleAttrs[imscStyles.byName.showBackground.qname] === 'always')) {
 
             return {
                 region_id: associated_region_id,
@@ -376,6 +467,49 @@
         }
 
         return null;
+    }
+
+    function constructSpanList(element, elist) {
+
+        if ('contents' in element) {
+
+            for (var i in element.contents) {
+                constructSpanList(element.contents[i], elist);
+            }
+
+        } else {
+
+            elist.push(element);
+
+        }
+
+    }
+
+    function pruneEmptySpans(element) {
+
+        if (element.kind === 'br') {
+            
+            return false;
+            
+        } else if ('text' in element) {
+            
+            return  element.text.length === 0;
+            
+        } else if ('contents' in element) {
+            
+            var i = element.contents.length;
+
+            while (i--) {
+                
+                if (pruneEmptySpans(element.contents[i])) {
+                    element.contents.splice(i, 1);
+                }
+                
+            }
+            
+            return element.contents.length === 0;
+
+        }
     }
 
     function ISD(tt) {
@@ -395,10 +529,8 @@
         for (var sname in ttelem.styleAttrs) {
 
             this.styleAttrs[sname] =
-                    ttelem.styleAttrs[sname];
+                ttelem.styleAttrs[sname];
         }
-
-        this.contents = [];
 
         /* TODO: clean this! */
 
@@ -406,6 +538,9 @@
 
             this.text = ttelem.text;
 
+        } else {
+            
+            this.contents = [];
         }
 
         if ('space' in ttelem) {
@@ -452,6 +587,6 @@
 
 
 })(typeof exports === 'undefined' ? this.imscISD = {} : exports,
-        typeof imscNames === 'undefined' ? require("./names") : imscNames,
-        typeof imscStyles === 'undefined' ? require("./styles") : imscStyles
-        );
+    typeof imscNames === 'undefined' ? require("./names") : imscNames,
+    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles
+    );

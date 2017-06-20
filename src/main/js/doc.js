@@ -131,7 +131,7 @@
                     estack[0].text === null) {
 
                     estack[0].text = estack[0].contents[0].text;
-                    estack[0].contents = [];
+                    delete estack[0].contents;
 
                 }
 
@@ -828,14 +828,14 @@
 
     function Span() {
         ContentElement.call(this, 'span');
-        this.text = null;
+        //this.text = null;
         this.space = null;
         this.anon = null;
     }
 
     Span.prototype.initFromNode = function (doc, parent, node, xmlspace, errorHandler) {
         ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        this.text = null;
+        //this.text = null;
         this.space = xmlspace;
         this.anon = false;
     };
@@ -848,6 +848,7 @@
         s.text = text;
         s.space = xmlspace;
         s.anon = true;
+        delete  s.content;
 
         return s;
 
