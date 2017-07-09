@@ -538,7 +538,7 @@
 
             this.text = ttelem.text;
 
-        } else {
+        } else if (ttelem.kind !== 'br') {
             
             this.contents = [];
         }

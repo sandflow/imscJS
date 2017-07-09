@@ -105,8 +105,8 @@
 
                     for (c = 1; c < estack[0].contents.length; c++) {
 
-                        if (estack[0].contents[c] instanceof Span && estack[0].contents[c].anon &&
-                            cs[cs.length - 1] instanceof Span && cs[cs.length - 1].anon) {
+                        if (estack[0].contents[c] instanceof AnonymousSpan &&
+                            cs[cs.length - 1] instanceof AnonymousSpan) {
 
                             cs[cs.length - 1].text += estack[0].contents[c].text;
 
@@ -126,8 +126,7 @@
 
                 if (estack[0] instanceof Span &&
                     estack[0].contents.length === 1 &&
-                    estack[0].contents[0] instanceof Span &&
-                    estack[0].contents[0].anon &&
+                    estack[0].contents[0] instanceof AnonymousSpan &&
                     estack[0].text === null) {
 
                     estack[0].text = estack[0].contents[0].text;
@@ -180,8 +179,10 @@
             } else if (estack[0] instanceof Span || estack[0] instanceof P) {
 
                 /* create an anonymous span */
-
-                var s = Span.createAnonymousSpan(doc, estack[0], xmlspacestack[0], str, errorHandler);
+                
+                var s = new AnonymousSpan();
+              
+                s.initFromText(doc, estack[0], str, xmlspacestack[0], errorHandler);
 
                 estack[0].contents.push(s);
 
@@ -758,7 +759,6 @@
         this.begin = null;
         this.end = null;
         this.styleAttrs = null;
-        this.contents = null;
         this.regionID = null;
         this.sets = null;
         this.timeContainer = null;
@@ -775,8 +775,6 @@
         if (doc.head !== null && doc.head.styling !== null) {
             mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
         }
-
-        this.contents = [];
 
         this.regionID = elementGetRegionID(node);
 
@@ -796,6 +794,7 @@
 
     Body.prototype.initFromNode = function (doc, node, errorHandler) {
         ContentElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        this.contents = [];
     };
 
     /*
@@ -808,6 +807,7 @@
 
     Div.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        this.contents = [];
     };
 
     /*
@@ -820,6 +820,7 @@
 
     P.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        this.contents = [];
     };
 
     /*
@@ -828,30 +829,29 @@
 
     function Span() {
         ContentElement.call(this, 'span');
-        //this.text = null;
         this.space = null;
-        this.anon = null;
     }
 
     Span.prototype.initFromNode = function (doc, parent, node, xmlspace, errorHandler) {
         ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        //this.text = null;
         this.space = xmlspace;
-        this.anon = false;
+        this.contents = [];
     };
-
-    Span.createAnonymousSpan = function (doc, parent, xmlspace, text, errorHandler) {
-
-        var s = new Span();
-
-        ContentElement.prototype.initFromNode.call(s, doc, parent, null, errorHandler);
-        s.text = text;
-        s.space = xmlspace;
-        s.anon = true;
-        delete  s.content;
-
-        return s;
-
+    
+    /*
+     * Represents a TTML anonymous span element
+     */
+    
+    function AnonymousSpan() {
+        ContentElement.call(this, 'span');
+        this.space = null;
+        this.text = null;
+    }
+    
+    AnonymousSpan.prototype.initFromText = function (doc, parent, text, xmlspace, errorHandler) {
+        ContentElement.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
+        this.text = text;
+        this.space = xmlspace;
     };
 
     /*
