@@ -91,9 +91,11 @@
          *   region later on)
          * - the element is terminal and the associated region is not the parent region
          */
+        
+        /* TODO: improve detection of terminal elements since <region> has no contents */
 
         if (associated_region_id !== region.id &&
-            (('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
+            ((elem.kind === 'span' && (! ('contents' in elem))) || ('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
             return null;
 
         /* create an ISD element, including applying specified styles */
