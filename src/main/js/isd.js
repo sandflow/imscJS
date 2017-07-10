@@ -94,8 +94,14 @@
         
         /* TODO: improve detection of terminal elements since <region> has no contents */
 
-        if (associated_region_id !== region.id &&
-            ((elem.kind === 'span' && (! ('contents' in elem))) || ('contents' in elem && elem.contents.length === 0) || associated_region_id !== ''))
+        if (parent !== null /* are we in the region element */ &&
+            associated_region_id !== region.id &&
+                (
+                    (! ('contents' in elem)) ||
+                    ('contents' in elem && elem.contents.length === 0) ||
+                    associated_region_id !== ''
+                )
+             )
             return null;
 
         /* create an ISD element, including applying specified styles */
@@ -295,7 +301,7 @@
 
             }
 
-        } else {
+        } else if ('contents' in elem) {
 
             contents = elem.contents;
 

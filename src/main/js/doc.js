@@ -1371,7 +1371,7 @@
 
         if (parent) {
 
-            if (isseq && parent.contents.length > 0) {
+            if (isseq && 'contents' in parent && parent.contents.length > 0) {
 
                 /*
                  * if seq time container, offset from the previous sibling end
