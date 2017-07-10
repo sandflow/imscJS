@@ -25,12 +25,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -62,19 +68,20 @@
               "http://www.w3.org/ns/ttml#styling displayAlign": "before",
               "http://www.w3.org/ns/ttml#styling textAlign": "start"
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 5,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n    [[[\n    ",
                 "space": "default",
-                "anon": true
+                "text": "\n    [[[\n    "
               },
               {
                 "kind": "span",
@@ -83,7 +90,6 @@
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling display": "none"
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [
                   {
@@ -94,22 +100,31 @@
                   }
                 ],
                 "timeContainer": "par",
-                "text": "\n      \n      Beautiful soup,\n    ",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 5,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "\n      \n      Beautiful soup,\n    "
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 5,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n    ",
                 "space": "default",
-                "anon": true
+                "text": "\n    "
               },
               {
                 "kind": "span",
@@ -118,7 +133,6 @@
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling display": "none"
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [
                   {
@@ -129,22 +143,31 @@
                   }
                 ],
                 "timeContainer": "par",
-                "text": "\n      \n      so rich and green,\n    ",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 5,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "\n      \n      so rich and green,\n    "
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 5,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n    ",
                 "space": "default",
-                "anon": true
+                "text": "\n    "
               },
               {
                 "kind": "span",
@@ -153,7 +176,6 @@
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling display": "none"
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [
                   {
@@ -164,37 +186,37 @@
                   }
                 ],
                 "timeContainer": "par",
-                "text": "\n      \n      waiting in a hot tureen!\n    ",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 5,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "\n      \n      waiting in a hot tureen!\n    "
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 5,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n    ]]]\n  ",
                 "space": "default",
-                "anon": true
+                "text": "\n    ]]]\n  "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

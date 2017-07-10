@@ -21,12 +21,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -64,26 +70,26 @@
               "http://www.w3.org/ns/ttml#styling displayAlign": "after",
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n  Little birds are playing",
                 "space": "default",
-                "anon": true
+                "text": "\n  Little birds are playing"
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -93,20 +99,17 @@
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n  Bagpipes on the shore,",
                 "space": "default",
-                "anon": true
+                "text": "\n  Bagpipes on the shore,"
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -116,13 +119,11 @@
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n  ",
                 "space": "default",
-                "anon": true
+                "text": "\n  "
               },
               {
                 "kind": "span",
@@ -132,41 +133,40 @@
                   "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride",
                   "http://www.w3.org/ns/ttml#styling direction": "rtl"
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "where the tourists snore.",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "where the tourists snore."
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n",
                 "space": "default",
-                "anon": true
+                "text": "\n"
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

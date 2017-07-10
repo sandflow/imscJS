@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This test counts from 0 to 10 in 10 seconds.",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,7 +153,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "0",
                       "space": "default"
                     }
@@ -213,14 +210,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This test counts from 0 to 10 in 10 seconds.",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -254,7 +249,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "1",
                       "space": "default"
                     }
@@ -312,14 +306,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This test counts from 0 to 10 in 10 seconds.",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -353,7 +345,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "2",
                       "space": "default"
                     }
@@ -411,14 +402,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This test counts from 0 to 10 in 10 seconds.",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -452,7 +441,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "3",
                       "space": "default"
                     }

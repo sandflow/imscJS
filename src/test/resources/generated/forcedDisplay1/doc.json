@@ -105,70 +105,66 @@
         "unit": "%"
       }
     },
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
             "begin": 1,
             "end": 9,
             "styleAttrs": {},
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "Hidden if displayForcedOnlyMode is true.",
                 "space": "default",
-                "anon": true
+                "text": "Hidden if displayForcedOnlyMode is true."
               }
-            ],
-            "regionID": "area1",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
             "begin": 1,
             "end": 9,
             "styleAttrs": {},
+            "regionID": "area2",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "This text should be displayed in all circumstances.",
                 "space": "default",
-                "anon": true
+                "text": "This text should be displayed in all circumstances."
               }
-            ],
-            "regionID": "area2",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

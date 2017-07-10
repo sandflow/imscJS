@@ -21,18 +21,27 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
             "begin": 0,
             "end": 10,
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
@@ -46,20 +55,29 @@
                     255
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "This is the red color as a reference.",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "This is the red color as a reference."
+                  }
+                ]
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -76,28 +94,29 @@
                     136
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "This text must be semi-transparent red.",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "This text must be semi-transparent red."
+                  }
+                ]
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

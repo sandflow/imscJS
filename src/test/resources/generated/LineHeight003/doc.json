@@ -21,12 +21,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -38,26 +44,26 @@
                 "unit": "px"
               }
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "The line height of this",
                 "space": "default",
-                "anon": true
+                "text": "The line height of this"
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -67,28 +73,17 @@
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "two-row caption is 30 pixels.",
                 "space": "default",
-                "anon": true
+                "text": "two-row caption is 30 pixels."
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

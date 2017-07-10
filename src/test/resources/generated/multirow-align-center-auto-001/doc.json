@@ -43,12 +43,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -58,19 +64,20 @@
               "http://www.w3.org/ns/ttml#styling textAlign": "center",
               "urn:ebu:tt:style multiRowAlign": "auto"
             },
+            "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
@@ -97,20 +104,29 @@
                     "monospaceSerif"
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "textAlign is center",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "textAlign is center"
+                  }
+                ]
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -120,13 +136,11 @@
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
@@ -153,41 +167,40 @@
                     "monospaceSerif"
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "and multirowAlign is auto",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "and multirowAlign is auto"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t"
               }
-            ],
-            "regionID": "bottom",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 50,

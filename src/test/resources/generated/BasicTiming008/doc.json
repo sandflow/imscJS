@@ -33,152 +33,170 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
             "begin": 0,
             "end": 15,
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "seq",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 0,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n        ",
                 "space": "default",
-                "anon": true
+                "text": "\n        "
               },
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 21,
                 "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
                     "begin": 1,
                     "end": 21,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "\n          ",
                     "space": "default",
-                    "anon": true
+                    "text": "\n          "
                   },
                   {
                     "kind": "span",
                     "begin": 2,
                     "end": 22,
                     "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
                     "contents": [
                       {
                         "kind": "span",
                         "begin": 2,
                         "end": 22,
                         "styleAttrs": {},
-                        "contents": [],
                         "regionID": "",
                         "sets": [],
                         "timeContainer": "par",
-                        "text": "\n            ",
                         "space": "default",
-                        "anon": true
+                        "text": "\n            "
                       },
                       {
                         "kind": "span",
                         "begin": 3,
                         "end": 23,
                         "styleAttrs": {},
+                        "regionID": "",
+                        "sets": [],
+                        "timeContainer": "par",
+                        "space": "default",
                         "contents": [
                           {
                             "kind": "span",
                             "begin": 3,
                             "end": 23,
                             "styleAttrs": {},
-                            "contents": [],
                             "regionID": "",
                             "sets": [],
                             "timeContainer": "par",
-                            "text": "\n              ",
                             "space": "default",
-                            "anon": true
+                            "text": "\n              "
                           },
                           {
                             "kind": "span",
                             "begin": 4,
                             "end": 24,
                             "styleAttrs": {},
+                            "regionID": "",
+                            "sets": [],
+                            "timeContainer": "par",
+                            "space": "default",
                             "contents": [
                               {
                                 "kind": "span",
                                 "begin": 4,
                                 "end": 24,
                                 "styleAttrs": {},
-                                "contents": [],
                                 "regionID": "",
                                 "sets": [],
                                 "timeContainer": "par",
-                                "text": "\n                ",
                                 "space": "default",
-                                "anon": true
+                                "text": "\n                "
                               },
                               {
                                 "kind": "span",
                                 "begin": 5,
                                 "end": 25,
                                 "styleAttrs": {},
+                                "regionID": "",
+                                "sets": [],
+                                "timeContainer": "par",
+                                "space": "default",
                                 "contents": [
                                   {
                                     "kind": "span",
                                     "begin": 5,
                                     "end": 25,
                                     "styleAttrs": {},
-                                    "contents": [],
                                     "regionID": "",
                                     "sets": [],
                                     "timeContainer": "par",
-                                    "text": "\n                  ",
                                     "space": "default",
-                                    "anon": true
+                                    "text": "\n                  "
                                   },
                                   {
                                     "kind": "span",
                                     "begin": 6,
                                     "end": 26,
                                     "styleAttrs": {},
+                                    "regionID": "",
+                                    "sets": [],
+                                    "timeContainer": "par",
+                                    "space": "default",
                                     "contents": [
                                       {
                                         "kind": "span",
                                         "begin": 6,
                                         "end": 26,
                                         "styleAttrs": {},
-                                        "contents": [],
                                         "regionID": "",
                                         "sets": [],
                                         "timeContainer": "par",
-                                        "text": "This text must appear at 6 seconds and disappear at 15 seconds",
                                         "space": "default",
-                                        "anon": true
+                                        "text": "This text must appear at 6 seconds and disappear at 15 seconds"
                                       },
                                       {
                                         "kind": "br",
                                         "begin": 6,
                                         "end": 26,
                                         "styleAttrs": {},
-                                        "contents": [],
                                         "regionID": "",
                                         "sets": [],
                                         "timeContainer": "par"
@@ -188,41 +206,30 @@
                                         "begin": 6,
                                         "end": 26,
                                         "styleAttrs": {},
-                                        "contents": [],
                                         "regionID": "",
                                         "sets": [],
                                         "timeContainer": "par",
-                                        "text": "\n                  ",
                                         "space": "default",
-                                        "anon": true
+                                        "text": "\n                  "
                                       }
-                                    ],
-                                    "regionID": "",
-                                    "sets": [],
-                                    "timeContainer": "par",
-                                    "text": null,
-                                    "space": "default",
-                                    "anon": false
+                                    ]
                                   },
                                   {
                                     "kind": "span",
                                     "begin": 5,
                                     "end": 25,
                                     "styleAttrs": {},
-                                    "contents": [],
                                     "regionID": "",
                                     "sets": [],
                                     "timeContainer": "par",
-                                    "text": "This text must appear at 5 seconds and disappear at 15 seconds",
                                     "space": "default",
-                                    "anon": true
+                                    "text": "This text must appear at 5 seconds and disappear at 15 seconds"
                                   },
                                   {
                                     "kind": "br",
                                     "begin": 5,
                                     "end": 25,
                                     "styleAttrs": {},
-                                    "contents": [],
                                     "regionID": "",
                                     "sets": [],
                                     "timeContainer": "par"
@@ -232,41 +239,30 @@
                                     "begin": 5,
                                     "end": 25,
                                     "styleAttrs": {},
-                                    "contents": [],
                                     "regionID": "",
                                     "sets": [],
                                     "timeContainer": "par",
-                                    "text": "\n                ",
                                     "space": "default",
-                                    "anon": true
+                                    "text": "\n                "
                                   }
-                                ],
-                                "regionID": "",
-                                "sets": [],
-                                "timeContainer": "par",
-                                "text": null,
-                                "space": "default",
-                                "anon": false
+                                ]
                               },
                               {
                                 "kind": "span",
                                 "begin": 4,
                                 "end": 24,
                                 "styleAttrs": {},
-                                "contents": [],
                                 "regionID": "",
                                 "sets": [],
                                 "timeContainer": "par",
-                                "text": "This text must appear at 4 seconds and disappear at 15 seconds",
                                 "space": "default",
-                                "anon": true
+                                "text": "This text must appear at 4 seconds and disappear at 15 seconds"
                               },
                               {
                                 "kind": "br",
                                 "begin": 4,
                                 "end": 24,
                                 "styleAttrs": {},
-                                "contents": [],
                                 "regionID": "",
                                 "sets": [],
                                 "timeContainer": "par"
@@ -276,41 +272,30 @@
                                 "begin": 4,
                                 "end": 24,
                                 "styleAttrs": {},
-                                "contents": [],
                                 "regionID": "",
                                 "sets": [],
                                 "timeContainer": "par",
-                                "text": "\n              ",
                                 "space": "default",
-                                "anon": true
+                                "text": "\n              "
                               }
-                            ],
-                            "regionID": "",
-                            "sets": [],
-                            "timeContainer": "par",
-                            "text": null,
-                            "space": "default",
-                            "anon": false
+                            ]
                           },
                           {
                             "kind": "span",
                             "begin": 3,
                             "end": 23,
                             "styleAttrs": {},
-                            "contents": [],
                             "regionID": "",
                             "sets": [],
                             "timeContainer": "par",
-                            "text": "This text must appear at 3 seconds and disappear at 15 seconds",
                             "space": "default",
-                            "anon": true
+                            "text": "This text must appear at 3 seconds and disappear at 15 seconds"
                           },
                           {
                             "kind": "br",
                             "begin": 3,
                             "end": 23,
                             "styleAttrs": {},
-                            "contents": [],
                             "regionID": "",
                             "sets": [],
                             "timeContainer": "par"
@@ -320,41 +305,30 @@
                             "begin": 3,
                             "end": 23,
                             "styleAttrs": {},
-                            "contents": [],
                             "regionID": "",
                             "sets": [],
                             "timeContainer": "par",
-                            "text": "\n            ",
                             "space": "default",
-                            "anon": true
+                            "text": "\n            "
                           }
-                        ],
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "text": null,
-                        "space": "default",
-                        "anon": false
+                        ]
                       },
                       {
                         "kind": "span",
                         "begin": 2,
                         "end": 22,
                         "styleAttrs": {},
-                        "contents": [],
                         "regionID": "",
                         "sets": [],
                         "timeContainer": "par",
-                        "text": "This text must appear at 2 seconds and disappear at 15 seconds",
                         "space": "default",
-                        "anon": true
+                        "text": "This text must appear at 2 seconds and disappear at 15 seconds"
                       },
                       {
                         "kind": "br",
                         "begin": 2,
                         "end": 22,
                         "styleAttrs": {},
-                        "contents": [],
                         "regionID": "",
                         "sets": [],
                         "timeContainer": "par"
@@ -364,41 +338,30 @@
                         "begin": 2,
                         "end": 22,
                         "styleAttrs": {},
-                        "contents": [],
                         "regionID": "",
                         "sets": [],
                         "timeContainer": "par",
-                        "text": "\n          ",
                         "space": "default",
-                        "anon": true
+                        "text": "\n          "
                       }
-                    ],
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "text": null,
-                    "space": "default",
-                    "anon": false
+                    ]
                   },
                   {
                     "kind": "span",
                     "begin": 1,
                     "end": 21,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "This text must appear at 1 seconds and disappear at 15 seconds",
                     "space": "default",
-                    "anon": true
+                    "text": "This text must appear at 1 seconds and disappear at 15 seconds"
                   },
                   {
                     "kind": "br",
                     "begin": 1,
                     "end": 21,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par"
@@ -408,49 +371,30 @@
                     "begin": 1,
                     "end": 21,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "\n        ",
                     "space": "default",
-                    "anon": true
+                    "text": "\n        "
                   }
-                ],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": null,
-                "space": "default",
-                "anon": false
+                ]
               },
               {
                 "kind": "span",
                 "begin": 21,
                 "end": 21,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "This text must not appear\n      ",
                 "space": "default",
-                "anon": true
+                "text": "This text must not appear\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "seq"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "seq"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

@@ -160,38 +160,44 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
             "begin": 0,
             "end": 15,
             "styleAttrs": {},
+            "regionID": "r1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 15,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n        This text must start to appear at 1 seconds",
                 "space": "default",
-                "anon": true
+                "text": "\n        This text must start to appear at 1 seconds"
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 15,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -201,28 +207,17 @@
                 "begin": 0,
                 "end": 15,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n        and fade in to 10 seconds then fade out to 15 seconds",
                 "space": "default",
-                "anon": true
+                "text": "\n        and fade in to 10 seconds then fade out to 15 seconds"
               }
-            ],
-            "regionID": "r1",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "seq"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

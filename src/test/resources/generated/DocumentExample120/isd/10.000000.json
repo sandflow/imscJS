@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " It is puzzling, why is it",
+                      "text": "It is puzzling, why is it",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,8 +153,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " we do not see things upside-down? ",
+                      "text": "we do not see things upside-down?",
                       "space": "default"
                     }
                   ]

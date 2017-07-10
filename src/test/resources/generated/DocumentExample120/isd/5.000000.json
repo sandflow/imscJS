@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " that the image formed on",
+                      "text": "that the image formed on",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,8 +153,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " the Retina should be inverted? ",
+                      "text": "the Retina should be inverted?",
                       "space": "default"
                     }
                   ]

@@ -114,8 +114,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "This region should have (a) an aspect ratio of 4:3, (b) be centered within the related video object and (c) be entirely within the related video object frame, and (d) have a height or width equal to that of the related video object frame. ",
+                      "text": "This region should have (a) an aspect ratio of 4:3, (b) be centered within the related video object and (c) be entirely within the related video object frame, and (d) have a height or width equal to that of the related video object frame.",
                       "space": "default"
                     }
                   ]

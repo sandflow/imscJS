@@ -126,81 +126,87 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
             "begin": 0,
             "end": 1,
             "styleAttrs": {},
+            "regionID": "top",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 1,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n                نشاط التدويل، W3C\n            ",
                 "space": "default",
-                "anon": true
+                "text": "\n                نشاط التدويل، W3C\n            "
               }
-            ],
-            "regionID": "top",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
             "begin": 0,
             "end": 1,
             "styleAttrs": {},
+            "regionID": "right",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 1,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n                hello ",
                 "space": "default",
-                "anon": true
+                "text": "\n                hello "
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 1,
                 "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
                     "begin": 0,
                     "end": 1,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "みなさん、",
                     "space": "default",
-                    "anon": true
+                    "text": "みなさん、"
                   },
                   {
                     "kind": "br",
                     "begin": 0,
                     "end": 1,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par"
@@ -210,49 +216,30 @@
                     "begin": 0,
                     "end": 1,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "こんにちは",
                     "space": "default",
-                    "anon": true
+                    "text": "こんにちは"
                   }
-                ],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": null,
-                "space": "default",
-                "anon": false
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 1,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n            ",
                 "space": "default",
-                "anon": true
+                "text": "\n            "
               }
-            ],
-            "regionID": "right",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 50,

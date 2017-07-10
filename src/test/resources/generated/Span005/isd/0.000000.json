@@ -114,7 +114,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This text must ",
                       "space": "default"
                     },
@@ -183,14 +182,12 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "contents": [],
                           "text": "appear",
                           "space": "default"
                         },
                         {
                           "kind": "br",
-                          "styleAttrs": {},
-                          "contents": []
+                          "styleAttrs": {}
                         },
                         {
                           "kind": "span",
@@ -224,12 +221,10 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "contents": [],
                           "text": "on two lines.",
                           "space": "default"
                         }
                       ],
-                      "text": null,
                       "space": "default"
                     }
                   ]

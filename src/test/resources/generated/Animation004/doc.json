@@ -23,12 +23,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": 20,
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
@@ -39,21 +45,6 @@
                 "serif"
               ]
             },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 10,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n        This text of this sentence should change from a serif to a sans serif font at 5s",
-                "space": "default",
-                "anon": true
-              }
-            ],
             "regionID": "",
             "sets": [
               {
@@ -65,17 +56,24 @@
                 ]
               }
             ],
-            "timeContainer": "par"
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This text of this sentence should change from a serif to a sans serif font at 5s"
+              }
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "seq"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

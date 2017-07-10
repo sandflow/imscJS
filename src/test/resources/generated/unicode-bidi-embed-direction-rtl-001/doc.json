@@ -44,12 +44,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -77,19 +83,20 @@
               ],
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
+            "regionID": "top",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\tThe title of the book is \"",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\tThe title of the book is \""
               },
               {
                 "kind": "span",
@@ -99,41 +106,40 @@
                   "http://www.w3.org/ns/ttml#styling direction": "rtl",
                   "http://www.w3.org/ns/ttml#styling unicodeBidi": "embed"
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "نشاط التدويل، W3C",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "نشاط التدويل، W3C"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\"\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\"\n\t\t\t"
               }
-            ],
-            "regionID": "top",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 50,

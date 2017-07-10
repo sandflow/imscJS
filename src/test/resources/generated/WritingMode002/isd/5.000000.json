@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "with the words displayed",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,7 +153,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "in the left-to-right direction.",
                       "space": "default"
                     }

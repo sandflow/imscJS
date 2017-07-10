@@ -114,7 +114,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This region originates at the same X and Y coordinates as the root container.",
                       "space": "default"
                     }

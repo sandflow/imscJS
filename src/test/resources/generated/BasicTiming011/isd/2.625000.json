@@ -114,8 +114,43 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " ",
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "This ",
+                          "space": "default"
+                        }
+                      ],
                       "space": "default"
                     },
                     {
@@ -150,187 +185,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "This ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": "text ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": "should ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
                       "text": " ",
                       "space": "default"
                     },
@@ -368,9 +222,185 @@
                       },
                       "contents": [
                         {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "text ",
+                          "space": "default"
+                        }
+                      ],
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "text": " ",
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "should",
+                          "space": "default"
+                        }
+                      ],
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "contents": [
+                        {
                           "kind": "br",
-                          "styleAttrs": {},
-                          "contents": []
+                          "styleAttrs": {}
                         },
                         {
                           "kind": "span",
@@ -404,12 +434,10 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "contents": [],
                           "text": "appear ",
                           "space": "default"
                         }
                       ],
-                      "text": null,
                       "space": "default"
                     },
                     {
@@ -444,8 +472,43 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " ",
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "one ",
+                          "space": "default"
+                        }
+                      ],
                       "space": "default"
                     },
                     {
@@ -480,115 +543,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "one ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": "word ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
                       "text": " ",
                       "space": "default"
                     },
@@ -626,9 +580,79 @@
                       },
                       "contents": [
                         {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "word",
+                          "space": "default"
+                        }
+                      ],
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "contents": [
+                        {
                           "kind": "br",
-                          "styleAttrs": {},
-                          "contents": []
+                          "styleAttrs": {}
                         },
                         {
                           "kind": "span",
@@ -662,12 +686,10 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "contents": [],
                           "text": "At ",
                           "space": "default"
                         }
                       ],
-                      "text": null,
                       "space": "default"
                     },
                     {
@@ -702,7 +724,77 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "a ",
+                          "space": "default"
+                        }
+                      ],
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
                       "text": " ",
                       "space": "default"
                     },
@@ -738,116 +830,43 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "a ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": "time ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "time",
+                          "space": "default"
+                        }
+                      ],
                       "space": "default"
                     },
                     {
@@ -885,8 +904,7 @@
                       "contents": [
                         {
                           "kind": "br",
-                          "styleAttrs": {},
-                          "contents": []
+                          "styleAttrs": {}
                         },
                         {
                           "kind": "span",
@@ -920,12 +938,10 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "contents": [],
                           "text": "spread ",
                           "space": "default"
                         }
                       ],
-                      "text": null,
                       "space": "default"
                     },
                     {
@@ -960,8 +976,43 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " ",
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
+                          "text": "over ",
+                          "space": "default"
+                        }
+                      ],
                       "space": "default"
                     },
                     {
@@ -996,115 +1047,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "over ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": "three ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
                       "text": " ",
                       "space": "default"
                     },
@@ -1173,53 +1115,120 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "contents": [],
+                          "text": "three ",
+                          "space": "default"
+                        }
+                      ],
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "text": " ",
+                      "space": "default"
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "contents": [
+                        {
+                          "kind": "span",
+                          "styleAttrs": {
+                            "http://www.w3.org/ns/ttml#styling color": [
+                              255,
+                              255,
+                              255,
+                              255
+                            ],
+                            "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                            "http://www.w3.org/ns/ttml#styling fontFamily": [
+                              "monospaceSerif"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
+                            "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                            "http://www.w3.org/ns/ttml#styling textDecoration": [
+                              "none"
+                            ],
+                            "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                            "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                              0,
+                              0,
+                              0,
+                              0
+                            ],
+                            "http://www.w3.org/ns/ttml#styling display": "auto",
+                            "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                          },
                           "text": "lines",
                           "space": "default"
                         },
                         {
                           "kind": "br",
-                          "styleAttrs": {},
-                          "contents": []
+                          "styleAttrs": {}
                         }
                       ],
-                      "text": null,
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
                       "space": "default"
                     },
                     {
@@ -1257,119 +1266,9 @@
                       "contents": [
                         {
                           "kind": "br",
-                          "styleAttrs": {},
-                          "contents": []
+                          "styleAttrs": {}
                         }
                       ],
-                      "text": null,
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
-                      "space": "default"
-                    },
-                    {
-                      "kind": "span",
-                      "styleAttrs": {
-                        "http://www.w3.org/ns/ttml#styling color": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
-                        "http://www.w3.org/ns/ttml#styling fontFamily": [
-                          "monospaceSerif"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.06666666666666667,
-                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
-                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
-                        "http://www.w3.org/ns/ttml#styling textDecoration": [
-                          "none"
-                        ],
-                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
-                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
-                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
-                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                          0,
-                          0,
-                          0,
-                          0
-                        ],
-                        "http://www.w3.org/ns/ttml#styling display": "auto",
-                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
-                      },
-                      "contents": [],
-                      "text": " ",
                       "space": "default"
                     }
                   ]

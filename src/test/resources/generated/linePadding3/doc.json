@@ -43,12 +43,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -60,19 +66,20 @@
                 "unit": "c"
               }
             },
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n",
                 "space": "default",
-                "anon": true
+                "text": "\n"
               },
               {
                 "kind": "span",
@@ -86,33 +93,40 @@
                     255
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": " No spaces\n",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": " No spaces\n"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n",
                 "space": "default",
-                "anon": true
+                "text": "\n"
               },
               {
                 "kind": "br",
                 "begin": 0,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -122,13 +136,11 @@
                 "begin": 0,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n",
                 "space": "default",
-                "anon": true
+                "text": "\n"
               },
               {
                 "kind": "span",
@@ -142,94 +154,97 @@
                     255
                   ]
                 },
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "preserve",
                 "contents": [
                   {
                     "kind": "span",
                     "begin": 0,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "\n",
                     "space": "preserve",
-                    "anon": true
+                    "text": "\n"
                   },
                   {
                     "kind": "span",
                     "begin": 0,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "Two lines with   spaces ",
                     "space": "preserve",
-                    "anon": false
+                    "contents": [
+                      {
+                        "kind": "span",
+                        "begin": 0,
+                        "end": 9,
+                        "styleAttrs": {},
+                        "regionID": "",
+                        "sets": [],
+                        "timeContainer": "par",
+                        "space": "preserve",
+                        "text": "Two lines with   spaces "
+                      }
+                    ]
                   },
                   {
                     "kind": "span",
                     "begin": 0,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "\n",
                     "space": "preserve",
-                    "anon": true
+                    "text": "\n"
                   },
                   {
                     "kind": "span",
                     "begin": 0,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "  ",
                     "space": "preserve",
-                    "anon": false
+                    "contents": [
+                      {
+                        "kind": "span",
+                        "begin": 0,
+                        "end": 9,
+                        "styleAttrs": {},
+                        "regionID": "",
+                        "sets": [],
+                        "timeContainer": "par",
+                        "space": "preserve",
+                        "text": "  "
+                      }
+                    ]
                   }
-                ],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": null,
-                "space": "preserve",
-                "anon": false
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n ",
                 "space": "default",
-                "anon": true
+                "text": "\n "
               }
-            ],
-            "regionID": "area1",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

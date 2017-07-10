@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "All the edges are padded",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,7 +153,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "by 2em.",
                       "space": "default"
                     }

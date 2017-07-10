@@ -73,6 +73,9 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
@@ -91,25 +94,29 @@
             "unit": "%"
           }
         },
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
             "begin": 1,
             "end": 9,
             "styleAttrs": {},
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n                ",
                 "space": "default",
-                "anon": true
+                "text": "\n                "
               },
               {
                 "kind": "span",
@@ -123,26 +130,27 @@
                     255
                   ]
                 },
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
                     "begin": 1,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "Centered text on two lines",
                     "space": "default",
-                    "anon": true
+                    "text": "Centered text on two lines"
                   },
                   {
                     "kind": "br",
                     "begin": 1,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par"
@@ -152,39 +160,26 @@
                     "begin": 1,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "without padding.",
                     "space": "default",
-                    "anon": true
+                    "text": "without padding."
                   }
-                ],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": null,
-                "space": "default",
-                "anon": false
+                ]
               },
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n            ",
                 "space": "default",
-                "anon": true
+                "text": "\n            "
               }
-            ],
-            "regionID": "area1",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -196,19 +191,20 @@
                 "unit": "c"
               }
             },
+            "regionID": "area2",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n                ",
                 "space": "default",
-                "anon": true
+                "text": "\n                "
               },
               {
                 "kind": "span",
@@ -222,26 +218,27 @@
                     255
                   ]
                 },
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
                     "begin": 1,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "Centered text on two lines",
                     "space": "default",
-                    "anon": true
+                    "text": "Centered text on two lines"
                   },
                   {
                     "kind": "br",
                     "begin": 1,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par"
@@ -251,49 +248,30 @@
                     "begin": 1,
                     "end": 9,
                     "styleAttrs": {},
-                    "contents": [],
                     "regionID": "",
                     "sets": [],
                     "timeContainer": "par",
-                    "text": "with padding.",
                     "space": "default",
-                    "anon": true
+                    "text": "with padding."
                   }
-                ],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": null,
-                "space": "default",
-                "anon": false
+                ]
               },
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n            ",
                 "space": "default",
-                "anon": true
+                "text": "\n            "
               }
-            ],
-            "regionID": "area2",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

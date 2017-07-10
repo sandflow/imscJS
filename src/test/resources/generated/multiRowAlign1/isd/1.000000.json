@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " multiRowAlign=\"end\"",
+                      "text": "multiRowAlign=\"end\"",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,8 +153,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "textAlign=\"start\" ",
+                      "text": "textAlign=\"start\"",
                       "space": "default"
                     }
                   ]
@@ -281,14 +278,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " multiRowAlign=\"start\"",
+                      "text": "multiRowAlign=\"start\"",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -322,8 +317,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "textAlign=\"center\" ",
+                      "text": "textAlign=\"center\"",
                       "space": "default"
                     }
                   ]

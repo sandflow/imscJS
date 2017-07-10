@@ -118,12 +118,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": 10,
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -132,24 +138,22 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling overflow": "visible"
             },
+            "regionID": "r1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "This text should appear from 0 to 5s",
                 "space": "default",
-                "anon": true
+                "text": "This text should appear from 0 to 5s"
               }
-            ],
-            "regionID": "r1",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -158,34 +162,26 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling overflow": "visible"
             },
+            "regionID": "r2",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "This text should appear from 5s to 10s",
                 "space": "default",
-                "anon": true
+                "text": "This text should appear from 5s to 10s"
               }
-            ],
-            "regionID": "r2",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

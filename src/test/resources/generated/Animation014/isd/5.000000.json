@@ -122,8 +122,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " This text should be outlined in blurred red from 5s to 10s",
+                      "text": "This text should be outlined in blurred red from 5s to 10s",
                       "space": "default"
                     }
                   ]

@@ -24,12 +24,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": 20,
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
@@ -38,21 +44,6 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 10,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n        This sentence should move right at 5s for 5 seconds\n      ",
-                "space": "default",
-                "anon": true
-              }
-            ],
             "regionID": "",
             "sets": [
               {
@@ -62,7 +53,20 @@
                 "value": "right"
               }
             ],
-            "timeContainer": "par"
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This sentence should move right at 5s for 5 seconds\n      "
+              }
+            ]
           },
           {
             "kind": "p",
@@ -71,21 +75,6 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "right"
             },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": 20,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n        This sentence should move left at 6s for 4 seconds\n      ",
-                "space": "default",
-                "anon": true
-              }
-            ],
             "regionID": "",
             "sets": [
               {
@@ -95,17 +84,24 @@
                 "value": "left"
               }
             ],
-            "timeContainer": "par"
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 20,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This sentence should move left at 6s for 4 seconds\n      "
+              }
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "seq"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

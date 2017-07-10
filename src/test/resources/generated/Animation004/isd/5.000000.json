@@ -114,8 +114,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " This text of this sentence should change from a serif to a sans serif font at 5s",
+                      "text": "This text of this sentence should change from a serif to a sans serif font at 5s",
                       "space": "default"
                     }
                   ]

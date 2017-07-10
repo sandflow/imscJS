@@ -114,8 +114,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " This sentence should move right at 5s for 5 seconds ",
+                      "text": "This sentence should move right at 5s for 5 seconds",
                       "space": "default"
                     }
                   ]
