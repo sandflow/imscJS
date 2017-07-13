@@ -23,12 +23,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": 20,
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
@@ -37,21 +43,6 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textOutline": "none"
             },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 10,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n        This text should be outlined in blurred red from 5s to 10s",
-                "space": "default",
-                "anon": true
-              }
-            ],
             "regionID": "",
             "sets": [
               {
@@ -72,17 +63,24 @@
                 }
               }
             ],
-            "timeContainer": "par"
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This text should be outlined in blurred red from 5s to 10s"
+              }
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "seq"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

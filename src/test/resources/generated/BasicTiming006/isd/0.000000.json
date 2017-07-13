@@ -114,14 +114,12 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "This text must appear at 0 seconds and disappear at 15 seconds ",
+                      "text": "This text must appear at 0 seconds and disappear at 15 seconds",
                       "space": "default"
                     },
                     {
                       "kind": "br",
-                      "styleAttrs": {},
-                      "contents": []
+                      "styleAttrs": {}
                     },
                     {
                       "kind": "span",
@@ -155,8 +153,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": "This text must also appear at 0 seconds and disappear at 15 seconds ",
+                      "text": "This text must also appear at 0 seconds and disappear at 15 seconds",
                       "space": "default"
                     }
                   ]

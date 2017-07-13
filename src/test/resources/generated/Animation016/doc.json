@@ -23,12 +23,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": 10,
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
@@ -37,21 +43,6 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling wrapOption": "noWrap"
             },
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 10,
-                "styleAttrs": {},
-                "contents": [],
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "text": "\n        This text should start to wrap from 3s to 8s it is a very long piece of text in order to ensure that it does in fact hit the region edges and thus require some wrapping action. Wrapping is not required to support hyphenation, so this text should wrap at whole word boundaries.",
-                "space": "default",
-                "anon": true
-              }
-            ],
             "regionID": "",
             "sets": [
               {
@@ -61,17 +52,24 @@
                 "value": "wrap"
               }
             ],
-            "timeContainer": "par"
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This text should start to wrap from 3s to 8s it is a very long piece of text in order to ensure that it does in fact hit the region edges and thus require some wrapping action. Wrapping is not required to support hyphenation, so this text should wrap at whole word boundaries."
+              }
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "seq"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

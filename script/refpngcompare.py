@@ -29,7 +29,7 @@ for dir, dirs, files in os.walk(args.ref_dir):
             except subprocess.CalledProcessError as err:
                 m = re.search('([^\(]+)\(([^\)]+)', err.output)
                 r = float(m.group(2))
-                if (r > 0.001) :
+                if (r > 0.0001) :
                     print(reffile + ": " + str(r))
 
 #        elif not fnmatch.fnmatch(file, 'manifest.json'):

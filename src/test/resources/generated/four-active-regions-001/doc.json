@@ -130,12 +130,18 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -144,19 +150,20 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "start"
             },
+            "regionID": "startBefore",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
@@ -183,31 +190,36 @@
                     "monospaceSerif"
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "start/before",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "start/before"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\t\t\t\t\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\t\t\t\t\n\t\t\t"
               }
-            ],
-            "regionID": "startBefore",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -216,19 +228,20 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "end"
             },
+            "regionID": "endBefore",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
@@ -255,31 +268,36 @@
                     "monospaceSerif"
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "end/before",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "end/before"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\t\t\t\t\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\t\t\t\t\n\t\t\t"
               }
-            ],
-            "regionID": "endBefore",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -288,19 +306,20 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "start"
             },
+            "regionID": "startAfter",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
@@ -327,31 +346,36 @@
                     "monospaceSerif"
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "start/after",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "start/after"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\t\t\t\t\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\t\t\t\t\n\t\t\t"
               }
-            ],
-            "regionID": "startAfter",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -360,19 +384,20 @@
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "end"
             },
+            "regionID": "endAfter",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
@@ -399,41 +424,40 @@
                     "monospaceSerif"
                   ]
                 },
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "end/after",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "end/after"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\t\t\t\t\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "\t\t\t\t\n\t\t\t"
               }
-            ],
-            "regionID": "endAfter",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 50,

@@ -85,6 +85,9 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
@@ -102,6 +105,9 @@
             "unit": "%"
           }
         },
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
@@ -111,26 +117,26 @@
               "http://www.w3.org/ns/ttml#styling textAlign": "start",
               "urn:ebu:tt:style multiRowAlign": "end"
             },
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\nmultiRowAlign=\"end\"",
                 "space": "default",
-                "anon": true
+                "text": "\nmultiRowAlign=\"end\""
               },
               {
                 "kind": "br",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -140,18 +146,13 @@
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "textAlign=\"start\"\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "textAlign=\"start\"\n\t\t\t"
               }
-            ],
-            "regionID": "area1",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -161,26 +162,26 @@
               "http://www.w3.org/ns/ttml#styling textAlign": "center",
               "urn:ebu:tt:style multiRowAlign": "start"
             },
+            "regionID": "area2",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\nmultiRowAlign=\"start\"",
                 "space": "default",
-                "anon": true
+                "text": "\nmultiRowAlign=\"start\""
               },
               {
                 "kind": "br",
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -190,28 +191,17 @@
                 "begin": 1,
                 "end": 9,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "textAlign=\"center\"\n\t\t\t",
                 "space": "default",
-                "anon": true
+                "text": "textAlign=\"center\"\n\t\t\t"
               }
-            ],
-            "regionID": "area2",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

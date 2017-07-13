@@ -114,7 +114,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This text should appear from 0 to 5s",
                       "space": "default"
                     }
@@ -240,7 +239,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This text should appear from 5s to 10s",
                       "space": "default"
                     }

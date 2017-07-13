@@ -114,7 +114,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ante. Vestibulum ac congue massa, in ornare velit.",
                       "space": "default"
                     }
@@ -240,7 +239,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ant.",
                       "space": "default"
                     }

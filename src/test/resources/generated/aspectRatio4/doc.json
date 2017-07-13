@@ -33,6 +33,9 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
@@ -41,15 +44,12 @@
         "styleAttrs": {
           "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage": "aspectRatio4-img.png"
         },
-        "contents": [],
         "regionID": "area1",
         "sets": [],
-        "timeContainer": "par"
+        "timeContainer": "par",
+        "contents": []
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

@@ -95,98 +95,112 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
             "begin": 0,
             "end": "Infinity",
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "Some text\n       ",
                 "space": "default",
-                "anon": true
+                "text": "Some text\n       "
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "r1",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "in r1",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "in r1"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n       ",
                 "space": "default",
-                "anon": true
+                "text": "\n       "
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "r2",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "in r2",
                 "space": "default",
-                "anon": false
+                "contents": [
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": "Infinity",
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "in r2"
+                  }
+                ]
               },
               {
                 "kind": "span",
                 "begin": 0,
                 "end": "Infinity",
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n     ",
                 "space": "default",
-                "anon": true
+                "text": "\n     "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 60,

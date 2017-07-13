@@ -34,62 +34,66 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
+    "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
+        "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
             "begin": 0.76,
             "end": 3.45,
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 0.76,
                 "end": 3.45,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tIt seems a paradox, does it not,\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tIt seems a paradox, does it not,\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
             "begin": 5,
             "end": 10,
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 5,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tthat the image formed on",
                 "space": "default",
-                "anon": true
+                "text": "\n\tthat the image formed on"
               },
               {
                 "kind": "br",
                 "begin": 5,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -99,18 +103,13 @@
                 "begin": 5,
                 "end": 10,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n      the Retina should be inverted?\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n      the Retina should be inverted?\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -132,26 +131,26 @@
               },
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 10,
                 "end": 16,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tIt is puzzling, why is it",
                 "space": "default",
-                "anon": true
+                "text": "\n\tIt is puzzling, why is it"
               },
               {
                 "kind": "br",
                 "begin": 10,
                 "end": 16,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -161,44 +160,39 @@
                 "begin": 10,
                 "end": 16,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\twe do not see things upside-down?\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\twe do not see things upside-down?\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
             "begin": 17.2,
             "end": 23,
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 17.2,
                 "end": 23,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tYou have never heard the Theory,",
                 "space": "default",
-                "anon": true
+                "text": "\n\tYou have never heard the Theory,"
               },
               {
                 "kind": "br",
                 "begin": 17.2,
                 "end": 23,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -208,18 +202,13 @@
                 "begin": 17.2,
                 "end": 23,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tthen, that the Brain also is inverted?\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tthen, that the Brain also is inverted?\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -241,24 +230,22 @@
               },
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 23,
                 "end": 27,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tNo indeed! What a beautiful fact!\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tNo indeed! What a beautiful fact!\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -280,24 +267,22 @@
                 "unit": "px"
               }
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 28,
                 "end": 34.6,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tBut how is it proved?\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tBut how is it proved?\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -319,24 +304,22 @@
                 "unit": "px"
               }
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 28,
                 "end": 34.6,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tThus: what we call\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tThus: what we call\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -358,26 +341,26 @@
                 "unit": "px"
               }
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 34.6,
                 "end": 45,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tthe vertex of the Brain",
                 "space": "default",
-                "anon": true
+                "text": "\n\tthe vertex of the Brain"
               },
               {
                 "kind": "br",
                 "begin": 34.6,
                 "end": 45,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -387,18 +370,13 @@
                 "begin": 34.6,
                 "end": 45,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tis really its base\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tis really its base\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -420,26 +398,26 @@
                 "unit": "px"
               }
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 45,
                 "end": 52,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tand what we call its base",
                 "space": "default",
-                "anon": true
+                "text": "\n\tand what we call its base"
               },
               {
                 "kind": "br",
                 "begin": 45,
                 "end": 52,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par"
@@ -449,42 +427,35 @@
                 "begin": 45,
                 "end": 52,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tis really its vertex,\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tis really its vertex,\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
             "begin": 53.5,
             "end": 58.7,
             "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 53.5,
                 "end": 58.7,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tit is simply a question of nomenclature.\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tit is simply a question of nomenclature.\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           },
           {
             "kind": "p",
@@ -506,34 +477,26 @@
               },
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
                 "begin": 53.5,
                 "end": 58.7,
                 "styleAttrs": {},
-                "contents": [],
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
-                "text": "\n\tHow truly delightful!\n      ",
                 "space": "default",
-                "anon": true
+                "text": "\n\tHow truly delightful!\n      "
               }
-            ],
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par"
+            ]
           }
-        ],
-        "regionID": "",
-        "sets": [],
-        "timeContainer": "par"
+        ]
       }
-    ],
-    "regionID": "",
-    "sets": [],
-    "timeContainer": "par"
+    ]
   },
   "cellResolution": {
     "w": 32,

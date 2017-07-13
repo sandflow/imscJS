@@ -122,7 +122,6 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
                       "text": "This text has a red, two-pixel outline.",
                       "space": "default"
                     }

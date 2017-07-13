@@ -114,8 +114,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " it is simply a question of nomenclature. ",
+                      "text": "it is simply a question of nomenclature.",
                       "space": "default"
                     }
                   ]
@@ -172,8 +171,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "contents": [],
-                      "text": " How truly delightful! ",
+                      "text": "How truly delightful!",
                       "space": "default"
                     }
                   ]
