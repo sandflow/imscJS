@@ -17,11 +17,13 @@
   "head": {
     "layout": {
       "regions": {
-        "": {
-          "id": "",
+        "r1": {
+          "id": "r1",
           "begin": 0,
           "end": "Infinity",
-          "styleAttrs": {},
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling displayAlign": "after"
+          },
           "sets": []
         }
       }
@@ -32,7 +34,7 @@
     "begin": 0,
     "end": "Infinity",
     "styleAttrs": {},
-    "regionID": "",
+    "regionID": "r1",
     "sets": [],
     "timeContainer": "par",
     "contents": [

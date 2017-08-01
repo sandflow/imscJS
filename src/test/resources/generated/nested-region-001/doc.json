@@ -126,7 +126,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "text": "Some text\n       "
+                "text": "This text should not appear\n       "
               },
               {
                 "kind": "span",
@@ -147,7 +147,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "text": "in r1"
+                    "text": "Bottom Region"
                   }
                 ]
               },
@@ -181,7 +181,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "text": "in r2"
+                    "text": "Top Region"
                   }
                 ]
               },

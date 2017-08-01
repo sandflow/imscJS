@@ -101,20 +101,9 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "text": "but the second row does not"
+                    "text": "but the second row does not."
                   }
                 ]
-              },
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 10,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "."
               }
             ]
           }

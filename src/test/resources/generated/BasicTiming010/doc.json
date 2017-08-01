@@ -4,7 +4,7 @@
     10,
     24.4,
     25,
-    37.5,
+    35,
     40
   ],
   "head": {
@@ -115,7 +115,7 @@
               {
                 "kind": "span",
                 "begin": 25,
-                "end": 37.5,
+                "end": 35,
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -125,7 +125,7 @@
                   {
                     "kind": "span",
                     "begin": 25,
-                    "end": 37.5,
+                    "end": 35,
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -156,8 +156,8 @@
     "w": 32,
     "h": 15
   },
-  "effectiveFrameRate": 24,
-  "tickRate": 24,
+  "effectiveFrameRate": 30,
+  "tickRate": 30,
   "aspectRatio": null,
   "pxDimensions": {
     "h": 480,

@@ -31,7 +31,7 @@ for dir, dirs, files in os.walk(args.ref_dir):
             except subprocess.CalledProcessError as err:
                 m = re.search('([^\(]+)\(([^\)]+)', err.output)
                 r = float(m.group(2))
-                if (r > 0.0001) :
+                if (r > 0.00001) :
                     print(reffile + ": " + str(r))
                     if args.d is not None:
                       diffdir = args.d

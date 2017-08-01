@@ -21,20 +21,10 @@
                 "unit": "%"
               }
             },
-            "http://www.w3.org/ns/ttml#styling origin": {
-              "h": {
-                "value": 0,
-                "unit": "px"
-              },
-              "w": {
-                "value": 0,
-                "unit": "px"
-              }
-            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
-              255,
-              255,
-              255,
+              0,
+              0,
+              0,
               255
             ],
             "http://www.w3.org/ns/ttml#styling displayAlign": "before"

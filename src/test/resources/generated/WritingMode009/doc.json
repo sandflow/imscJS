@@ -21,16 +21,6 @@
                 "unit": "%"
               }
             },
-            "http://www.w3.org/ns/ttml#styling origin": {
-              "h": {
-                "value": 0,
-                "unit": "px"
-              },
-              "w": {
-                "value": 0,
-                "unit": "px"
-              }
-            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               0,
               0,
@@ -86,7 +76,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "text": "This text is displayed top to bottom"
+                "text": "This text is displayed top to bottom in the inline progression direction"
               },
               {
                 "kind": "br",
@@ -106,7 +96,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "text": "and right to left."
+                "text": "\n      and right to left in the block progression direction."
               }
             ]
           }

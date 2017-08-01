@@ -97,7 +97,7 @@
                           0,
                           255
                         ],
-                        "http://www.w3.org/ns/ttml#styling fontSize": 0.026666666666666665,
+                        "http://www.w3.org/ns/ttml#styling fontSize": 0.08,
                         "http://www.w3.org/ns/ttml#styling fontFamily": [
                           "monospaceSerif"
                         ],
@@ -128,7 +128,7 @@
                             "http://www.w3.org/ns/ttml#styling fontFamily": [
                               "monospaceSerif"
                             ],
-                            "http://www.w3.org/ns/ttml#styling fontSize": 0.026666666666666665,
+                            "http://www.w3.org/ns/ttml#styling fontSize": 0.08,
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [

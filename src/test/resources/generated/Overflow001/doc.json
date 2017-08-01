@@ -13,21 +13,11 @@
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
-                "value": 100,
-                "unit": "%"
-              },
-              "w": {
-                "value": 100,
-                "unit": "%"
-              }
-            },
-            "http://www.w3.org/ns/ttml#styling origin": {
-              "h": {
-                "value": 0,
+                "value": 40,
                 "unit": "px"
               },
               "w": {
-                "value": 0,
+                "value": 150,
                 "unit": "px"
               }
             },
@@ -108,7 +98,7 @@
   "tickRate": 1,
   "aspectRatio": null,
   "pxDimensions": {
-    "h": 480,
-    "w": 640
+    "h": 240,
+    "w": 320
   }
 }

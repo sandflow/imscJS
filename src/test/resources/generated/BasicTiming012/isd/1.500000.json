@@ -3,9 +3,13 @@
     {
       "kind": "region",
       "styleAttrs": {
+        "http://www.w3.org/ns/ttml#styling origin": {
+          "h": 0.04,
+          "w": 0.1
+        },
         "http://www.w3.org/ns/ttml#styling extent": {
-          "h": 1,
-          "w": 1
+          "h": 0.2,
+          "w": 0.8
         },
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           0,
@@ -13,10 +17,6 @@
           0,
           255
         ],
-        "http://www.w3.org/ns/ttml#styling origin": {
-          "h": 0.04,
-          "w": 0.1
-        },
         "http://www.w3.org/ns/ttml#styling overflow": "hidden",
         "http://www.w3.org/ns/ttml#styling display": "auto",
         "http://www.w3.org/ns/ttml#styling displayAlign": "before",

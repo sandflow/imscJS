@@ -7,10 +7,6 @@
           "h": 1,
           "w": 1
         },
-        "http://www.w3.org/ns/ttml#styling origin": {
-          "h": 0,
-          "w": 0
-        },
         "http://www.w3.org/ns/ttml#styling opacity": 0.2,
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           0,
@@ -21,6 +17,10 @@
         "http://www.w3.org/ns/ttml#styling zIndex": 1,
         "http://www.w3.org/ns/ttml#styling display": "auto",
         "http://www.w3.org/ns/ttml#styling displayAlign": "before",
+        "http://www.w3.org/ns/ttml#styling origin": {
+          "h": 0,
+          "w": 0
+        },
         "http://www.w3.org/ns/ttml#styling overflow": "hidden",
         "http://www.w3.org/ns/ttml#styling padding": [
           0,

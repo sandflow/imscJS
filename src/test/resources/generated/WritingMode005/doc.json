@@ -21,16 +21,6 @@
                 "unit": "%"
               }
             },
-            "http://www.w3.org/ns/ttml#styling origin": {
-              "h": {
-                "value": 0,
-                "unit": "px"
-              },
-              "w": {
-                "value": 0,
-                "unit": "px"
-              }
-            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               0,
               0,

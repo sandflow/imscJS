@@ -11,24 +11,24 @@
           "begin": 0,
           "end": "Infinity",
           "styleAttrs": {
-            "http://www.w3.org/ns/ttml#styling extent": {
+            "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
-                "value": 100,
+                "value": 10,
                 "unit": "%"
               },
               "w": {
-                "value": 100,
+                "value": 10,
                 "unit": "%"
               }
             },
-            "http://www.w3.org/ns/ttml#styling origin": {
+            "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
-                "value": 0,
-                "unit": "px"
+                "value": 80,
+                "unit": "%"
               },
               "w": {
-                "value": 0,
-                "unit": "px"
+                "value": 80,
+                "unit": "%"
               }
             },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -52,24 +52,24 @@
           "begin": 0,
           "end": "Infinity",
           "styleAttrs": {
-            "http://www.w3.org/ns/ttml#styling extent": {
-              "h": {
-                "value": 100,
-                "unit": "%"
-              },
-              "w": {
-                "value": 100,
-                "unit": "%"
-              }
-            },
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
                 "value": 10,
-                "unit": "px"
+                "unit": "%"
               },
               "w": {
-                "value": 20,
-                "unit": "px"
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 80,
+                "unit": "%"
+              },
+              "w": {
+                "value": 80,
+                "unit": "%"
               }
             },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -105,7 +105,7 @@
         "begin": 0,
         "end": "Infinity",
         "styleAttrs": {},
-        "regionID": "r1",
+        "regionID": "",
         "sets": [],
         "timeContainer": "par",
         "contents": [

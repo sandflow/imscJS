@@ -140,7 +140,7 @@
   },
   "cellResolution": {
     "w": 50,
-    "h": 30
+    "h": 10
   },
   "effectiveFrameRate": 30,
   "tickRate": 1,

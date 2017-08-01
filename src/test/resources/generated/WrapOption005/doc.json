@@ -36,7 +36,7 @@
             ],
             "http://www.w3.org/ns/ttml#styling textAlign": "start",
             "http://www.w3.org/ns/ttml#styling fontSize": {
-              "value": 14,
+              "value": 48,
               "unit": "px"
             },
             "http://www.w3.org/ns/ttml#styling wrapOption": "wrap"

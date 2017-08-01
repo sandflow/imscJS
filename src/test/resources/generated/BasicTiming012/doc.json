@@ -28,13 +28,23 @@
           "begin": 0,
           "end": "Infinity",
           "styleAttrs": {
-            "http://www.w3.org/ns/ttml#styling extent": {
+            "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
-                "value": 100,
+                "value": 4,
                 "unit": "%"
               },
               "w": {
-                "value": 100,
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 20,
+                "unit": "%"
+              },
+              "w": {
+                "value": 80,
                 "unit": "%"
               }
             },
@@ -51,16 +61,6 @@
               255,
               255
             ],
-            "http://www.w3.org/ns/ttml#styling origin": {
-              "h": {
-                "value": 4,
-                "unit": "%"
-              },
-              "w": {
-                "value": 10,
-                "unit": "%"
-              }
-            },
             "http://www.w3.org/ns/ttml#styling wrapOption": "noWrap",
             "http://www.w3.org/ns/ttml#styling overflow": "hidden"
           },

@@ -26,13 +26,23 @@
           "begin": 0,
           "end": "Infinity",
           "styleAttrs": {
-            "http://www.w3.org/ns/ttml#styling extent": {
+            "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
-                "value": 100,
+                "value": 0,
                 "unit": "%"
               },
               "w": {
-                "value": 100,
+                "value": 0,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 40,
+                "unit": "%"
+              },
+              "w": {
+                "value": 90,
                 "unit": "%"
               }
             },
@@ -48,17 +58,7 @@
               255,
               255,
               255
-            ],
-            "http://www.w3.org/ns/ttml#styling origin": {
-              "h": {
-                "value": 0,
-                "unit": "%"
-              },
-              "w": {
-                "value": 0,
-                "unit": "%"
-              }
-            }
+            ]
           },
           "sets": []
         }
@@ -523,7 +523,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "text": "three "
+                    "text": "four "
                   }
                 ]
               },
