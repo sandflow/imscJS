@@ -264,12 +264,11 @@
                     isd_element.styleAttrs[cs.qname]
                     );
 
-
-                isd_element.styleAttrs[cs.qname] = cstyle;
-
-
-                // reportError(errorHandler, "Style '" + sa.qname + "' on element '" + isd_element.kind + "' cannot be computed");
-
+                if (cstyle !== null) {
+                    isd_element.styleAttrs[cs.qname] = cstyle;
+                } else {
+                    reportError(errorHandler, "Style '" + cs.qname + "' on element '" + isd_element.kind + "' cannot be computed");
+                }
             }
 
         }

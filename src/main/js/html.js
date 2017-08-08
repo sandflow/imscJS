@@ -106,7 +106,8 @@
             regionW: null,
             imgResolver: imgResolver,
             displayForcedOnlyMode: displayForcedOnlyMode || false,
-            isd: isd
+            isd: isd,
+            errorHandler: errorHandler
         };
 
         element.appendChild(rootcontainer);
@@ -150,6 +151,14 @@
 
             e = document.createElement("br");
 
+        }
+        
+        if (! e) {
+            
+            reportError(context.errorHandler, "Error processing ISD element kind: " + isd_element.kind);
+            
+            return;
+            
         }
 
         /* override UA default margin */
@@ -818,6 +827,13 @@
     for (var i in STYLING_MAP_DEFS) {
 
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
+    }
+    
+    function reportError(errorHandler, msg) {
+
+        if (errorHandler && errorHandler.error && errorHandler.error(msg))
+            throw msg;
+
     }
 
 })(typeof exports === 'undefined' ? this.imscHTML = {} : exports,
