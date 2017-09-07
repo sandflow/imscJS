@@ -14,7 +14,7 @@ documents [1] to HTML5. IMSC1 is a profile of TTML [2] designed for subtitle and
 caption delivery worldwide.
 
 [1] https://www.w3.org/TR/ttml-imsc1/
-[2] https://www.w3.org/TR/ttaf1-dfxp
+[2] http://www.w3.org/TR/ttml1/
 
 A live sample web app using imscJS is available at [3].
 
