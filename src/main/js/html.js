@@ -50,7 +50,10 @@
      * attribute and an <code>img</code> DOM element as input, and is expected to
      * set the <code>src</code> attribute of the <code>img</code> to the absolute URI of the image.
      * <pre>displayForcedOnlyMode</pre> sets the (boolean)
-     * value of the IMSC1 displayForcedOnlyMode parameter.
+     * value of the IMSC1 displayForcedOnlyMode parameter. The function returns
+     * an opaque object that should passed in <code>previousISDState</code> when this function
+     * is called for the next ISD, otherwise <code>previousISDState</code> should be set to 
+     * <code>null</code>.
      * 
      * @param {Object} isd ISD to be rendered
      * @param {Object} element Element into which the ISD is rendered
@@ -62,9 +65,21 @@
      * @param {?boolean} displayForcedOnlyMode Value of the IMSC1 displayForcedOnlyMode parameter,
      *                   or false if null         
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+     * @param {Object} previousISDState State saved during processing of the previous ISD, or null if initial call
+     * @param {?boolean} enableRollUp Enables roll-up animations (see CEA 708)
+     * @return {Object} ISD state to be provided when this funtion is called for the next ISD
      */
 
-    imscHTML.render = function (isd, element, imgResolver, eheight, ewidth, displayForcedOnlyMode, errorHandler) {
+    imscHTML.render = function (    isd,
+                                    element,
+                                    imgResolver,
+                                    eheight,
+                                    ewidth,
+                                    displayForcedOnlyMode,
+                                    errorHandler,
+                                    previousISDState,
+                                    enableRollUp
+                                ) {
 
         /* maintain aspect ratio if specified */
 
@@ -107,7 +122,10 @@
             imgResolver: imgResolver,
             displayForcedOnlyMode: displayForcedOnlyMode || false,
             isd: isd,
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            previousISDState: previousISDState,
+            enableRollUp : enableRollUp || false,
+            currentISDState: {}
         };
 
         element.appendChild(rootcontainer);
@@ -117,6 +135,8 @@
             processElement(context, rootcontainer, isd.contents[i]);
 
         }
+
+        return context.currentISDState;
 
     };
 
@@ -152,13 +172,13 @@
             e = document.createElement("br");
 
         }
-        
-        if (! e) {
-            
+
+        if (!e) {
+
             reportError(context.errorHandler, "Error processing ISD element kind: " + isd_element.kind);
-            
+
             return;
-            
+
         }
 
         /* override UA default margin */
@@ -247,7 +267,7 @@
         if ((context.lp || context.mra) && isd_element.kind === "p") {
 
             var elist = [];
-            
+
             constructElementList(proc_e, elist, "red");
 
             /* TODO: linePadding only supported for horizontal scripts */
@@ -262,6 +282,61 @@
                 delete context.mra;
 
         }
+
+        /* region processing */
+
+        if (isd_element.kind === "region") {
+
+            /* build line list */
+
+            var linelist = [];
+
+            constructLineList(proc_e, linelist);
+
+            /* perform roll up if needed */
+            
+            var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
+
+            if ((wdir === "lrtb" || wdir === "lr" || wdir === "rltb" || wdir === "rl") &&
+                context.enableRollUp && 
+                isd_element.contents.length > 0 &&
+                isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
+
+                /* horrible hack, perhaps default region id should be underscore everywhere? */
+
+                var rid = isd_element.id === '' ? '_' : isd_element.id;
+
+                var rb = new RegionPBuffer(rid, linelist);
+
+                context.currentISDState[rb.id] = rb;
+
+                if (context.previousISDState &&
+                    rb.id in context.previousISDState &&
+                    context.previousISDState[rb.id].plist.length > 0 &&
+                    rb.plist.length > 1 &&
+                    rb.plist[rb.plist.length - 2].text ===
+                    context.previousISDState[rb.id].plist[context.previousISDState[rb.id].plist.length - 1].text) {
+
+                    var body_elem = e.firstElementChild;
+
+                    body_elem.style.bottom = "-" + rb.plist[rb.plist.length - 1].height + "px";
+                    body_elem.style.transition = "transform 0.4s";
+                    body_elem.style.position = "relative";
+                    body_elem.style.transform = "translateY(-" + rb.plist[rb.plist.length - 1].height + "px)";
+
+                }
+
+            }
+
+        }
+    }
+
+
+    function RegionPBuffer(id, lineList) {
+
+        this.id = id;
+
+        this.plist = lineList;
 
     }
 
@@ -298,7 +373,7 @@
             elist.push({
                 "element": element,
                 "bgcolor": bgcolor}
-                );
+            );
 
         } else {
 
@@ -318,6 +393,61 @@
             }
         }
 
+    }
+
+
+    function constructLineList(element, llist) {
+
+        if (element.childElementCount === 0 && element.localName === 'span') {
+
+            var r = element.getBoundingClientRect();
+
+            if (llist.length === 0 ||
+                (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
+                ) {
+
+                llist.push({
+                    top: r.top,
+                    height: r.height,
+                    text: element.textContent
+                });
+
+            } else {
+
+                if (r.top < llist[llist.length - 1].top) {
+                    llist[llist.length - 1].top = r.top;
+                }
+
+                if (r.height > llist[llist.length - 1].height) {
+                    llist[llist.length - 1].height = r.height;
+                }
+
+                llist[llist.length - 1].text += element.textContent;
+
+            }
+
+        } else {
+
+
+            var child = element.firstChild;
+
+            while (child) {
+
+                if (child.nodeType === Node.ELEMENT_NODE) {
+
+                    constructLineList(child, llist);
+
+                }
+
+                child = child.nextSibling;
+            }
+        }
+
+    }
+    
+    function isSameLine(top1, height1, top2, height2) {
+
+        return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
     }
 
     function processLinePaddingAndMultiRowAlign(elist, lp) {
@@ -343,7 +473,11 @@
 
             if (line_head === null ||
                 i === elist.length ||
-                elist[i].element.getBoundingClientRect().top !== elist[line_head].element.getBoundingClientRect().top) {
+                (!isSameLine(elist[i].element.getBoundingClientRect().top,
+                    elist[i].element.getBoundingClientRect().height,
+                    elist[line_head].element.getBoundingClientRect().top,
+                    elist[line_head].element.getBoundingClientRect().height))
+                ) {
 
                 /* apply right padding to previous line (if applicable and unless this is the first line) */
 
@@ -356,7 +490,10 @@
                             addRightPadding(elist[i].element, elist[i].color, lp);
 
                             if (elist[i].element.getBoundingClientRect().width !== 0 &&
-                                elist[i].element.getBoundingClientRect().top === elist[line_head].element.getBoundingClientRect().top)
+                                isSameLine(elist[i].element.getBoundingClientRect().top,
+                                    elist[i].element.getBoundingClientRect().height,
+                                    elist[line_head].element.getBoundingClientRect().top,
+                                    elist[line_head].element.getBoundingClientRect().height))
                                 break;
 
                             removeRightPadding(elist[i].element);
@@ -828,7 +965,7 @@
 
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
     }
-    
+
     function reportError(errorHandler, msg) {
 
         if (errorHandler && errorHandler.error && errorHandler.error(msg))

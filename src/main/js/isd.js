@@ -529,6 +529,12 @@
         /* assume the element is a region if it does not have a kind */
 
         this.kind = ttelem.kind || 'region';
+        
+        /* copy id */
+        
+        if (ttelem.id) {
+            this.id = ttelem.id;
+        }
 
         /* deep copy of style attributes */
         this.styleAttrs = {};

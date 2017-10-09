@@ -101,13 +101,15 @@ at a point in time (`offset` parameter). This point in time does not have to be 
 example, given an ISOBMFF sample covering the interval `[a, b[`, `generateISD(tt, offset, errorHandler)` would be called first with `offset = a`,
 then in turn with offset set to each value of `getMediaTimeEvents()` that fall in the interval `]a, b[`.
 
-* `renderHTML(isd, element, imgResolver, eheight, ewidth, displayForcedOnlyMode, errorHandler)` renders an `isd` object returned by `generateISD()`
+* `renderHTML(isd, element, imgResolver, eheight, ewidth, displayForcedOnlyMode, errorHandler, previousISDState, enableRollUp)` 
+renders an `isd` object returned by `generateISD()`
 into a newly-created `div` element that is appended to the `element`. The `element` must be attached to the DOM.
 The height and width of the child `div` element are equal to `eheight` and `ewidth` if not null, or `clientWidth` and `clientHeight` of the
 parent `element` otherwise. Images URIs specified in `smpte:background` attributes are mapped to image resource URLs by the `imgResolver`
 function. The latter takes the value of the `smpte:background` attribute URI and an `img` DOM element as input and is expected to
 set the `src` attribute of the `img` DOM element to the absolute URI of the image. `displayForcedOnlyMode` sets the (boolean) value
- of the IMSC1 displayForcedOnlyMode parameter.
+ of the IMSC1 displayForcedOnlyMode parameter. `enableRollUp` enables roll-up as specified in CEA 708. `previousISDState` maintains states across
+ calls, e.g. for roll-up processing.
 
 In each step, the caller can provide an `errorHandler` to be notified of events during processing. The `errorHandler` may define four methods:
 `info`, `warn`, `error` and `fatal`. Each is called with a string argument describing the event, and will cause processing to terminate if it
