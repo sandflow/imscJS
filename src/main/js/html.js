@@ -152,13 +152,13 @@
             e = document.createElement("br");
 
         }
-        
-        if (! e) {
-            
+
+        if (!e) {
+
             reportError(context.errorHandler, "Error processing ISD element kind: " + isd_element.kind);
-            
+
             return;
-            
+
         }
 
         /* override UA default margin */
@@ -247,7 +247,7 @@
         if ((context.lp || context.mra) && isd_element.kind === "p") {
 
             var elist = [];
-            
+
             constructElementList(proc_e, elist, "red");
 
             /* TODO: linePadding only supported for horizontal scripts */
@@ -298,7 +298,7 @@
             elist.push({
                 "element": element,
                 "bgcolor": bgcolor}
-                );
+            );
 
         } else {
 
@@ -317,6 +317,12 @@
                 child = child.nextSibling;
             }
         }
+
+    }
+
+    function isSameLine(top1, height1, top2, height2) {
+
+        return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
 
     }
 
@@ -343,7 +349,11 @@
 
             if (line_head === null ||
                 i === elist.length ||
-                elist[i].element.getBoundingClientRect().top !== elist[line_head].element.getBoundingClientRect().top) {
+                (!isSameLine(elist[i].element.getBoundingClientRect().top,
+                    elist[i].element.getBoundingClientRect().height,
+                    elist[line_head].element.getBoundingClientRect().top,
+                    elist[line_head].element.getBoundingClientRect().height))
+                ) {
 
                 /* apply right padding to previous line (if applicable and unless this is the first line) */
 
@@ -356,7 +366,10 @@
                             addRightPadding(elist[i].element, elist[i].color, lp);
 
                             if (elist[i].element.getBoundingClientRect().width !== 0 &&
-                                elist[i].element.getBoundingClientRect().top === elist[line_head].element.getBoundingClientRect().top)
+                                isSameLine(elist[i].element.getBoundingClientRect().top,
+                                    elist[i].element.getBoundingClientRect().height,
+                                    elist[line_head].element.getBoundingClientRect().top,
+                                    elist[line_head].element.getBoundingClientRect().height))
                                 break;
 
                             removeRightPadding(elist[i].element);
@@ -828,7 +841,7 @@
 
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
     }
-    
+
     function reportError(errorHandler, msg) {
 
         if (errorHandler && errorHandler.error && errorHandler.error(msg))
