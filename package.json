@@ -1,7 +1,7 @@
 {
     "name" : "imsc",
     "description" : "Renders IMSC1 documents to HTML5 fragments",
-    "version" : "1.0.1-rc.1",
+    "version" : "1.0.1-rc.2",
     "license" : "BSD-2-Clause",
     "homepage" : "https://github.com/sandflow/imscJS",
     "bugs" : "https://github.com/sandflow/imscJS/issues",
