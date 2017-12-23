@@ -2,6 +2,7 @@
   "contents": [
     {
       "kind": "region",
+      "id": "area1",
       "styleAttrs": {
         "http://www.w3.org/ns/ttml#styling origin": {
           "h": 0.1,
@@ -202,6 +203,7 @@
     },
     {
       "kind": "region",
+      "id": "area2",
       "styleAttrs": {
         "http://www.w3.org/ns/ttml#styling origin": {
           "h": 0.7,
