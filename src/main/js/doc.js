@@ -1401,20 +1401,21 @@
         }
         
         /* determine desired end */
-        
+        /* it is never made really clear in SMIL that the explicit end is offset by the implicit begin */
+
         var desired_end = null;
         
         if (explicit_end !== null && explicit_dur !== null) {
             
-            desired_end = Math.min(desired_begin + explicit_dur, explicit_end);
+            desired_end = Math.min(desired_begin + explicit_dur, implicit_begin + explicit_end);
             
         } else if (explicit_end === null && explicit_dur !== null) {
             
             desired_end = desired_begin + explicit_dur;
             
         } else if (explicit_end !== null && explicit_dur === null) {
-            
-            desired_end = explicit_end;
+                        
+            desired_end = implicit_begin + explicit_end;
             
         } else {
             
