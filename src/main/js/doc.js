@@ -596,7 +596,7 @@
 
         return doc;
     };
-
+    
     function ForeignElement(node) {
         this.node = node;
     }
@@ -1307,115 +1307,133 @@
     }
 
     function processTiming(doc, parent, node, errorHandler) {
+        
+        /* determine explicit begin */
 
-        /* Q: what does this do <div b=1 e=3><p b=1 e=5> ?*/
-        /* Q: are children clipped by parent time interval? */
-
-        var isseq = parent && parent.timeContainer === "seq";
-
-        /* retrieve begin value */
-
-        var b = 0;
+        var explicit_begin = null;
 
         if (node && 'begin' in node.attributes) {
 
-            b = parseTimeExpression(doc.tickRate, doc.effectiveFrameRate, node.attributes.begin.value);
+            explicit_begin = parseTimeExpression(doc.tickRate, doc.effectiveFrameRate, node.attributes.begin.value);
 
-            if (b === null) {
+            if (explicit_begin === null) {
 
                 reportWarning(errorHandler, "Malformed begin value " + node.attributes.begin.value + " (using 0)");
-
-                b = 0;
-
+                
             }
 
         }
-
-        /* retrieve dur value */
-
-        /* NOTE: end is not meaningful on seq container children and dur is equal to 0 if not specified */
-
-        var d = isseq ? 0 : null;
+        
+        /* determine explicit duration */
+        
+        var explicit_dur = null;
 
         if (node && 'dur' in node.attributes) {
 
-            d = parseTimeExpression(doc.tickRate, doc.effectiveFrameRate, node.attributes.dur.value);
+            explicit_dur = parseTimeExpression(doc.tickRate, doc.effectiveFrameRate, node.attributes.dur.value);
 
-            if (d === null) {
+            if (explicit_dur === null) {
 
                 reportWarning(errorHandler, "Malformed dur value " + node.attributes.dur.value + " (ignoring)");
-
+                
             }
 
         }
+        
+        /* determine explicit end */
 
-        /* retrieve end value */
-
-        var e = null;
+        var explicit_end = null;
 
         if (node && 'end' in node.attributes) {
 
-            e = parseTimeExpression(doc.tickRate, doc.effectiveFrameRate, node.attributes.end.value);
+            explicit_end = parseTimeExpression(doc.tickRate, doc.effectiveFrameRate, node.attributes.end.value);
 
-            if (e === null) {
+            if (explicit_end === null) {
 
                 reportWarning(errorHandler, "Malformed end value (ignoring)");
 
             }
 
         }
-
-        /* compute starting offset */
-
-        var start_off = 0;
-
+        
+        /* are we in a seq container? */
+        
+        var isinseq = parent && parent.timeContainer === "seq";
+        
+        /* determine implicit begin */
+        
+        var implicit_begin = 0; /* default */
+        
         if (parent) {
 
-            if (isseq && 'contents' in parent && parent.contents.length > 0) {
+            if (isinseq && parent.contents.length > 0) {
 
                 /*
                  * if seq time container, offset from the previous sibling end
                  */
 
-                start_off = parent.contents[parent.contents.length - 1].end;
+                implicit_begin = parent.contents[parent.contents.length - 1].end;
 
 
             } else {
 
-                /* 
-                 * retrieve parent begin. Assume 0 if no parent.
-                 * 
-                 */
-
-                start_off = parent.begin || 0;
+                implicit_begin = parent.begin;
 
             }
 
         }
-
-        /* offset begin per time container semantics */
-
-        b += start_off;
-
-        /* set end */
-
-        if (d !== null) {
-
-            // use dur if specified
-
-            e = b + d;
-
+        
+        /* compute desired begin */
+        
+        var desired_begin = explicit_begin !== null ? explicit_begin + implicit_begin : implicit_begin;
+        
+        
+        /* determine implicit end */
+        
+        var implicit_end = Number.POSITIVE_INFINITY; /* indefinite end by default */
+        
+        if (isinseq && node === null) {
+            
+            /* if in seq container and anonymous span, implicit duration is zero */
+            
+            implicit_end = desired_begin;
+            
+        }
+        
+        /* determine desired end */
+        
+        var desired_end = null;
+        
+        if (explicit_end !== null && explicit_dur !== null) {
+            
+            desired_end = Math.min(desired_begin + explicit_dur, explicit_end);
+            
+        } else if (explicit_end === null && explicit_dur !== null) {
+            
+            desired_end = desired_begin + explicit_dur;
+            
+        } else if (explicit_end !== null && explicit_dur === null) {
+            
+            desired_end = explicit_end;
+            
         } else {
-
-            /* retrieve parent end, or +infinity if none */
-
-            var parent_e = (parent && 'end' in parent) ? parent.end : Number.POSITIVE_INFINITY;
-
-            e = (e !== null) ? e + start_off : parent_e;
-
+            
+            desired_end = implicit_end;
+        }
+        
+        /* effective end */
+        
+        var effective_end = desired_end;
+                
+        if (parent) {
+            
+            /* clip if parent as a definite end */
+            
+            effective_end = Math.min(parent.end, effective_end);
+            
         }
 
-        return {begin: b, end: e};
+        return {begin: desired_begin, end: effective_end};
 
     }
 
