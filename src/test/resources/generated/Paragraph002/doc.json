@@ -27,7 +27,7 @@
       {
         "kind": "div",
         "begin": 0,
-        "end": 0,
+        "end": "Infinity",
         "styleAttrs": {},
         "regionID": "",
         "sets": [],
@@ -36,7 +36,7 @@
           {
             "kind": "p",
             "begin": 0,
-            "end": 0,
+            "end": "Infinity",
             "styleAttrs": {},
             "regionID": "",
             "sets": [],
@@ -45,13 +45,13 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 0,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "text": "This text must not be visible."
+                "text": "This text must be visible."
               }
             ]
           }

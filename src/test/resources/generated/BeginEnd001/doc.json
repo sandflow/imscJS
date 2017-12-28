@@ -34,7 +34,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 25,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -43,7 +43,7 @@
       {
         "kind": "div",
         "begin": 0,
-        "end": "Infinity",
+        "end": 25,
         "styleAttrs": {},
         "regionID": "",
         "sets": [],
@@ -61,7 +61,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 6,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -72,7 +72,7 @@
               {
                 "kind": "br",
                 "begin": 0,
-                "end": 6,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -81,7 +81,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 6,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -103,7 +103,7 @@
               {
                 "kind": "span",
                 "begin": 6,
-                "end": 7,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -125,7 +125,7 @@
               {
                 "kind": "span",
                 "begin": 8,
-                "end": 9,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -147,7 +147,7 @@
               {
                 "kind": "span",
                 "begin": 10,
-                "end": 11,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -169,7 +169,7 @@
               {
                 "kind": "span",
                 "begin": 12,
-                "end": 13,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -191,7 +191,7 @@
               {
                 "kind": "span",
                 "begin": 14,
-                "end": 15,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -213,7 +213,7 @@
               {
                 "kind": "span",
                 "begin": 16,
-                "end": 17,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -235,7 +235,7 @@
               {
                 "kind": "span",
                 "begin": 18,
-                "end": 19,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -257,7 +257,7 @@
               {
                 "kind": "span",
                 "begin": 20,
-                "end": 25,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

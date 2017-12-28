@@ -24,7 +24,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 10,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -60,7 +60,7 @@
                   {
                     "kind": "span",
                     "begin": 5,
-                    "end": 15,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -71,7 +71,7 @@
                   {
                     "kind": "br",
                     "begin": 5,
-                    "end": 15,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -80,7 +80,7 @@
                   {
                     "kind": "span",
                     "begin": 5,
-                    "end": 15,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -102,7 +102,7 @@
                   {
                     "kind": "span",
                     "begin": 20,
-                    "end": 25,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -144,7 +144,7 @@
                   {
                     "kind": "span",
                     "begin": 0,
-                    "end": 20,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -155,7 +155,7 @@
                   {
                     "kind": "br",
                     "begin": 0,
-                    "end": 20,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -164,7 +164,7 @@
                   {
                     "kind": "span",
                     "begin": 0,
-                    "end": 20,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -186,7 +186,7 @@
                   {
                     "kind": "span",
                     "begin": 25,
-                    "end": 30,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],

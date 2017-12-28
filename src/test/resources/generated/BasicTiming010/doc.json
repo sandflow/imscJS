@@ -23,7 +23,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 40,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -32,7 +32,7 @@
       {
         "kind": "div",
         "begin": 0,
-        "end": "Infinity",
+        "end": 40,
         "styleAttrs": {},
         "regionID": "",
         "sets": [],
@@ -50,7 +50,7 @@
               {
                 "kind": "span",
                 "begin": 10,
-                "end": 40,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -71,7 +71,7 @@
                   {
                     "kind": "span",
                     "begin": 10,
-                    "end": 24.4,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -84,7 +84,7 @@
               {
                 "kind": "span",
                 "begin": 10,
-                "end": 40,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -95,7 +95,7 @@
               {
                 "kind": "br",
                 "begin": 10,
-                "end": 40,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -104,7 +104,7 @@
               {
                 "kind": "span",
                 "begin": 10,
-                "end": 40,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -125,7 +125,7 @@
                   {
                     "kind": "span",
                     "begin": 25,
-                    "end": 35,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -138,7 +138,7 @@
               {
                 "kind": "span",
                 "begin": 10,
-                "end": 40,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

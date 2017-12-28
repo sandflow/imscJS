@@ -21,7 +21,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 20,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -47,7 +47,7 @@
             "sets": [
               {
                 "begin": 5,
-                "end": 10,
+                "end": "Infinity",
                 "qname": "http://www.w3.org/ns/ttml#styling lineHeight",
                 "value": {
                   "value": 0,
@@ -60,7 +60,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -71,7 +71,7 @@
               {
                 "kind": "br",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -80,7 +80,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

@@ -19,7 +19,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 10,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -28,7 +28,7 @@
       {
         "kind": "div",
         "begin": 0,
-        "end": "Infinity",
+        "end": 10,
         "styleAttrs": {},
         "regionID": "",
         "sets": [],
@@ -77,7 +77,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -88,7 +88,7 @@
               {
                 "kind": "br",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -97,7 +97,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -108,7 +108,7 @@
               {
                 "kind": "br",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -117,7 +117,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -128,7 +128,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling unicodeBidi": "bidiOverride",
                   "http://www.w3.org/ns/ttml#styling direction": "rtl"
@@ -141,7 +141,7 @@
                   {
                     "kind": "span",
                     "begin": 0,
-                    "end": 10,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -154,7 +154,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

@@ -21,7 +21,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 20,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -30,7 +30,7 @@
       {
         "kind": "div",
         "begin": 0,
-        "end": "Infinity",
+        "end": 20,
         "styleAttrs": {},
         "regionID": "",
         "sets": [],
@@ -69,7 +69,7 @@
                   {
                     "kind": "span",
                     "begin": 5,
-                    "end": 15,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],

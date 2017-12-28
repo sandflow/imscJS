@@ -128,7 +128,7 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "text": "This text must appear at 25 seconds",
+                          "text": "This text must appear at 35 seconds",
                           "space": "default"
                         },
                         {
@@ -167,7 +167,7 @@
                             "http://www.w3.org/ns/ttml#styling display": "auto",
                             "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                           },
-                          "text": "and be remain visible to 30 seconds.",
+                          "text": "and be remain visible to 40 seconds.",
                           "space": "default"
                         }
                       ]

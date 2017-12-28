@@ -20,7 +20,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 10,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -38,7 +38,7 @@
           {
             "kind": "p",
             "begin": 0,
-            "end": 10,
+            "end": "Infinity",
             "styleAttrs": {},
             "regionID": "",
             "sets": [],
@@ -47,7 +47,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -68,7 +68,7 @@
                   {
                     "kind": "span",
                     "begin": 0,
-                    "end": 5,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -81,7 +81,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -102,7 +102,7 @@
                   {
                     "kind": "span",
                     "begin": 0,
-                    "end": 10,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -115,7 +115,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

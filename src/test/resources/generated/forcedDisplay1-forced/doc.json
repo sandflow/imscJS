@@ -98,7 +98,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 9,
     "styleAttrs": {
       "http://www.w3.org/ns/ttml#styling lineHeight": {
         "value": 100,
@@ -112,7 +112,7 @@
       {
         "kind": "div",
         "begin": 0,
-        "end": "Infinity",
+        "end": 9,
         "styleAttrs": {},
         "regionID": "",
         "sets": [],
@@ -130,7 +130,7 @@
               {
                 "kind": "span",
                 "begin": 1,
-                "end": 9,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -152,7 +152,7 @@
               {
                 "kind": "span",
                 "begin": 1,
-                "end": 9,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

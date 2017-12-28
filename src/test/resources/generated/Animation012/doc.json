@@ -22,7 +22,7 @@
   "body": {
     "kind": "body",
     "begin": 0,
-    "end": "Infinity",
+    "end": 20,
     "styleAttrs": {},
     "regionID": "",
     "sets": [],
@@ -48,7 +48,7 @@
             "sets": [
               {
                 "begin": 5,
-                "end": 10,
+                "end": "Infinity",
                 "qname": "http://www.w3.org/ns/ttml#styling textAlign",
                 "value": "right"
               }
@@ -58,7 +58,7 @@
               {
                 "kind": "span",
                 "begin": 0,
-                "end": 10,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],
@@ -79,7 +79,7 @@
             "sets": [
               {
                 "begin": 16,
-                "end": 20,
+                "end": "Infinity",
                 "qname": "http://www.w3.org/ns/ttml#styling textAlign",
                 "value": "left"
               }
@@ -89,7 +89,7 @@
               {
                 "kind": "span",
                 "begin": 10,
-                "end": 20,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

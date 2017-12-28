@@ -521,7 +521,7 @@
               {
                 "kind": "span",
                 "begin": 11,
-                "end": 20,
+                "end": "Infinity",
                 "styleAttrs": {},
                 "regionID": "",
                 "sets": [],

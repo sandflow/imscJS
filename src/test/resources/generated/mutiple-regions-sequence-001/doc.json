@@ -204,7 +204,7 @@
                   {
                     "kind": "span",
                     "begin": 0,
-                    "end": 10,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -282,7 +282,7 @@
                   {
                     "kind": "span",
                     "begin": 2,
-                    "end": 12,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -360,7 +360,7 @@
                   {
                     "kind": "span",
                     "begin": 4,
-                    "end": 14,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
@@ -438,7 +438,7 @@
                   {
                     "kind": "span",
                     "begin": 6,
-                    "end": 16,
+                    "end": "Infinity",
                     "styleAttrs": {},
                     "regionID": "",
                     "sets": [],
