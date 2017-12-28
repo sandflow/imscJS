@@ -179,9 +179,9 @@
             } else if (estack[0] instanceof Span || estack[0] instanceof P) {
 
                 /* create an anonymous span */
-                
+
                 var s = new AnonymousSpan();
-              
+
                 s.initFromText(doc, estack[0], str, xmlspacestack[0], errorHandler);
 
                 estack[0].contents.push(s);
@@ -375,8 +375,6 @@
 
                         doc.head.layout.regions[r.id] = r;
 
-                        doc._registerEvent(r);
-
                     }
 
                     estack.unshift(r);
@@ -399,8 +397,6 @@
 
                     b.initFromNode(doc, node, errorHandler);
 
-                    doc._registerEvent(b);
-
                     doc.body = b;
 
                     estack.unshift(b);
@@ -416,8 +412,6 @@
                     var d = new Div();
 
                     d.initFromNode(doc, estack[0], node, errorHandler);
-
-                    doc._registerEvent(d);
 
                     estack[0].contents.push(d);
 
@@ -435,8 +429,6 @@
 
                     p.initFromNode(doc, estack[0], node, errorHandler);
 
-                    doc._registerEvent(p);
-
                     estack[0].contents.push(p);
 
                     estack.unshift(p);
@@ -452,8 +444,6 @@
                     var ns = new Span();
 
                     ns.initFromNode(doc, estack[0], node, xmlspacestack[0], errorHandler);
-
-                    doc._registerEvent(ns);
 
                     estack[0].contents.push(ns);
 
@@ -471,7 +461,6 @@
 
                     nb.initFromNode(doc, estack[0], node, errorHandler);
 
-                    doc._registerEvent(nb);
 
                     estack[0].contents.push(nb);
 
@@ -493,8 +482,6 @@
                     var st = new Set();
 
                     st.initFromNode(doc, estack[0], node, errorHandler);
-
-                    doc._registerEvent(st);
 
                     estack[0].sets.push(st);
 
@@ -586,7 +573,19 @@
 
         }
 
-        if (!hasRegions) {
+        if (hasRegions) {
+
+            /* resolve desired timing for regions */
+
+            for (var region_i in doc.head.layout.regions) {
+
+                resolveTiming(doc, doc.head.layout.regions[region_i], null, null);
+
+            }
+
+        } else {
+
+            /* create default region */
 
             var dr = Region.createDefaultRegion();
 
@@ -594,9 +593,139 @@
 
         }
 
+        /* resolve desired timing for content elements */
+
+        if (doc.body) {
+            resolveTiming(doc, doc.body, null, null);
+        }
+
         return doc;
     };
-    
+
+    function resolveTiming(doc, element, prev_sibling, parent) {
+
+        /* are we in a seq container? */
+
+        var isinseq = parent && parent.timeContainer === "seq";
+
+        /* determine implicit begin */
+
+        var implicit_begin = 0; /* default */
+
+        if (parent) {
+
+            if (isinseq && prev_sibling) {
+
+                /*
+                 * if seq time container, offset from the previous sibling end
+                 */
+
+                implicit_begin = prev_sibling.end;
+
+
+            } else {
+
+                implicit_begin = parent.begin;
+
+            }
+
+        }
+
+        /* compute desired begin */
+
+        element.begin = element.explicit_begin ? element.explicit_begin + implicit_begin : implicit_begin;
+
+
+        /* determine implicit end */
+
+        var implicit_end;
+
+        var s = null;
+
+        for (var set_i in element.sets) {
+
+            resolveTiming(doc, element.sets[set_i], s, element);
+
+            if (element.timeContainer === "seq") {
+
+                implicit_end = element.sets[set_i].end;
+
+            } else {
+
+                implicit_end = Math.max(implicit_end, element.sets[set_i].end);
+
+            }
+
+            s = element.sets[set_i];
+
+        }
+
+        for (var content_i in element.contents) {
+
+            resolveTiming(doc, element.contents[content_i], s, element);
+
+            if (element.timeContainer === "seq") {
+
+                implicit_end = element.contents[content_i].end;
+
+            } else {
+
+                implicit_end = Math.max(implicit_end, element.contents[content_i].end);
+
+            }
+
+            s = element.contents[content_i];
+
+        }
+
+        if (!('contents' in element)) {
+
+            /* anonymous spans and regions and <set> and <br> */
+
+            if (isinseq) {
+
+                /* in seq container, implicit duration is zero */
+
+                implicit_end = element.begin;
+
+            } else {
+
+                /* in par container, implicit duration is indefinite */
+
+                implicit_end = Number.POSITIVE_INFINITY;
+
+            }
+
+        }
+
+        /* determine desired end */
+        /* it is never made really clear in SMIL that the explicit end is offset by the implicit begin */
+
+        if (element.explicit_end !== null && element.explicit_dur !== null) {
+
+            element.end = Math.min(element.begin + element.explicit_dur, implicit_begin + element.explicit_end);
+
+        } else if (element.explicit_end === null && element.explicit_dur !== null) {
+
+            element.end = element.begin + element.explicit_dur;
+
+        } else if (element.explicit_end !== null && element.explicit_dur === null) {
+
+            element.end = implicit_begin + element.explicit_end;
+
+        } else {
+
+            element.end = implicit_end;
+        }
+
+        delete element.explicit_begin;
+        delete element.explicit_dur;
+        delete element.explicit_end;
+
+        doc._registerEvent(element);
+
+    }
+
     function ForeignElement(node) {
         this.node = node;
     }
@@ -767,8 +896,10 @@
     ContentElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
 
         var t = processTiming(doc, parent, node, errorHandler);
-        this.begin = t.begin;
-        this.end = t.end;
+
+        this.explicit_begin = t.explicit_begin;
+        this.explicit_end = t.explicit_end;
+        this.explicit_dur = t.explicit_dur;
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
 
@@ -837,17 +968,17 @@
         this.space = xmlspace;
         this.contents = [];
     };
-    
+
     /*
      * Represents a TTML anonymous span element
      */
-    
+
     function AnonymousSpan() {
         ContentElement.call(this, 'span');
         this.space = null;
         this.text = null;
     }
-    
+
     AnonymousSpan.prototype.initFromText = function (doc, parent, text, xmlspace, errorHandler) {
         ContentElement.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
         this.text = text;
@@ -896,8 +1027,9 @@
         this.id = elementGetXMLID(node);
 
         var t = processTiming(doc, null, node, errorHandler);
-        this.begin = t.begin;
-        this.end = t.end;
+        this.explicit_begin = t.explicit_begin;
+        this.explicit_end = t.explicit_end;
+        this.explicit_dur = t.explicit_dur;
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
 
@@ -927,8 +1059,9 @@
 
         var t = processTiming(doc, parent, node, errorHandler);
 
-        this.begin = t.begin;
-        this.end = t.end;
+        this.explicit_begin = t.explicit_begin;
+        this.explicit_end = t.explicit_end;
+        this.explicit_dur = t.explicit_dur;
 
         var styles = elementGetStyles(node, errorHandler);
 
@@ -1307,7 +1440,7 @@
     }
 
     function processTiming(doc, parent, node, errorHandler) {
-        
+
         /* determine explicit begin */
 
         var explicit_begin = null;
@@ -1319,13 +1452,13 @@
             if (explicit_begin === null) {
 
                 reportWarning(errorHandler, "Malformed begin value " + node.attributes.begin.value + " (using 0)");
-                
+
             }
 
         }
-        
+
         /* determine explicit duration */
-        
+
         var explicit_dur = null;
 
         if (node && 'dur' in node.attributes) {
@@ -1335,11 +1468,11 @@
             if (explicit_dur === null) {
 
                 reportWarning(errorHandler, "Malformed dur value " + node.attributes.dur.value + " (ignoring)");
-                
+
             }
 
         }
-        
+
         /* determine explicit end */
 
         var explicit_end = null;
@@ -1355,86 +1488,10 @@
             }
 
         }
-        
-        /* are we in a seq container? */
-        
-        var isinseq = parent && parent.timeContainer === "seq";
-        
-        /* determine implicit begin */
-        
-        var implicit_begin = 0; /* default */
-        
-        if (parent) {
 
-            if (isinseq && parent.contents.length > 0) {
-
-                /*
-                 * if seq time container, offset from the previous sibling end
-                 */
-
-                implicit_begin = parent.contents[parent.contents.length - 1].end;
-
-
-            } else {
-
-                implicit_begin = parent.begin;
-
-            }
-
-        }
-        
-        /* compute desired begin */
-        
-        var desired_begin = explicit_begin !== null ? explicit_begin + implicit_begin : implicit_begin;
-        
-        
-        /* determine implicit end */
-        
-        var implicit_end = Number.POSITIVE_INFINITY; /* indefinite end by default */
-        
-        if (isinseq && node === null) {
-            
-            /* if in seq container and anonymous span, implicit duration is zero */
-            
-            implicit_end = desired_begin;
-            
-        }
-        
-        /* determine desired end */
-        /* it is never made really clear in SMIL that the explicit end is offset by the implicit begin */
-
-        var desired_end = null;
-        
-        if (explicit_end !== null && explicit_dur !== null) {
-            
-            desired_end = Math.min(desired_begin + explicit_dur, implicit_begin + explicit_end);
-            
-        } else if (explicit_end === null && explicit_dur !== null) {
-            
-            desired_end = desired_begin + explicit_dur;
-            
-        } else if (explicit_end !== null && explicit_dur === null) {
-                        
-            desired_end = implicit_begin + explicit_end;
-            
-        } else {
-            
-            desired_end = implicit_end;
-        }
-        
-        /* effective end */
-        
-        var effective_end = desired_end;
-                
-        if (parent) {
-            
-            /* clip if parent as a definite end */
-            
-            effective_end = Math.min(parent.end, effective_end);
-            
-        }
-
-        return {begin: desired_begin, end: effective_end};
+        return {explicit_begin: explicit_begin,
+            explicit_end: explicit_end,
+            explicit_dur: explicit_dur};
 
     }
 
