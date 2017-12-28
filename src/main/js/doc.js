@@ -638,7 +638,7 @@
 
         /* determine implicit end */
 
-        var implicit_end;
+        var implicit_end = element.begin;
 
         var s = null;
 
