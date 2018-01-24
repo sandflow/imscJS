@@ -66,19 +66,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 5,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This first sentence begins at 5 seconds and persists for 5 seconds."
-                  }
-                ]
+                "text": "This first sentence begins at 5 seconds and persists for 5 seconds."
               },
               {
                 "kind": "span",
@@ -100,19 +88,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 10,
-                    "end": 15,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This second sentence should not appear"
-                  }
-                ]
+                "text": "This second sentence should not appear"
               },
               {
                 "kind": "span",

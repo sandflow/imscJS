@@ -107,19 +107,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "The initial cell grid has 15 rows."
-                  }
-                ]
+                "text": "The initial cell grid has 15 rows."
               },
               {
                 "kind": "span",

@@ -126,8 +126,7 @@
 
                 if (estack[0] instanceof Span &&
                     estack[0].contents.length === 1 &&
-                    estack[0].contents[0] instanceof AnonymousSpan &&
-                    estack[0].text === null) {
+                    estack[0].contents[0] instanceof AnonymousSpan) {
 
                     estack[0].text = estack[0].contents[0].text;
                     delete estack[0].contents;

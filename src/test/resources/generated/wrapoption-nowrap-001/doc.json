@@ -109,19 +109,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "If a line overflows the extent of the region automated line wrapping shall not apply."
-                  }
-                ]
+                "text": "If a line overflows the extent of the region automated line wrapping shall not apply."
               },
               {
                 "kind": "span",

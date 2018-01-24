@@ -107,19 +107,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "Two- \nline Subtitle."
-                  }
-                ]
+                "text": "Two- \nline Subtitle."
               },
               {
                 "kind": "span",

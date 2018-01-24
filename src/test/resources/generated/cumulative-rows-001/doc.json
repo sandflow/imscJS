@@ -110,19 +110,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 4,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "These lines appear step-by-step."
-                  }
-                ]
+                "text": "These lines appear step-by-step."
               },
               {
                 "kind": "span",
@@ -188,19 +176,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2,
-                    "end": 6,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This is the second line."
-                  }
-                ]
+                "text": "This is the second line."
               },
               {
                 "kind": "span",
@@ -266,19 +242,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 4,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This is the third and last line."
-                  }
-                ]
+                "text": "This is the third and last line."
               },
               {
                 "kind": "span",

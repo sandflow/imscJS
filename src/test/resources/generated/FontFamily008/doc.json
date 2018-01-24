@@ -67,19 +67,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "using a Times New Roman font"
-                  }
-                ]
+                "text": "using a Times New Roman font"
               },
               {
                 "kind": "span",

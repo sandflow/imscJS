@@ -98,19 +98,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "contents": [
-                      {
-                        "kind": "span",
-                        "begin": 0,
-                        "end": 10,
-                        "styleAttrs": {},
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "space": "default",
-                        "text": "and"
-                      }
-                    ]
+                    "text": "and"
                   },
                   {
                     "kind": "span",
@@ -139,19 +127,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "contents": [
-                      {
-                        "kind": "span",
-                        "begin": 0,
-                        "end": 10,
-                        "styleAttrs": {},
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "space": "default",
-                        "text": "green"
-                      }
-                    ]
+                    "text": "green"
                   }
                 ]
               },
