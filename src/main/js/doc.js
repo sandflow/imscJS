@@ -106,7 +106,7 @@
                     for (c = 1; c < estack[0].contents.length; c++) {
 
                         if (estack[0].contents[c] instanceof AnonymousSpan &&
-                            cs[cs.length - 1] instanceof AnonymousSpan) {
+                                cs[cs.length - 1] instanceof AnonymousSpan) {
 
                             cs[cs.length - 1].text += estack[0].contents[c].text;
 
@@ -125,9 +125,8 @@
                 // remove redundant nested anonymous spans (9.3.3(1)(c))
 
                 if (estack[0] instanceof Span &&
-                    estack[0].contents.length === 1 &&
-                    estack[0].contents[0] instanceof AnonymousSpan &&
-                    estack[0].text === null) {
+                        estack[0].contents.length === 1 &&
+                        estack[0].contents[0] instanceof AnonymousSpan) {
 
                     estack[0].text = estack[0].contents[0].text;
                     delete estack[0].contents;
@@ -137,15 +136,15 @@
             } else if (estack[0] instanceof ForeignElement) {
 
                 if (estack[0].node.uri === imscNames.ns_tt &&
-                    estack[0].node.local === 'metadata') {
+                        estack[0].node.local === 'metadata') {
 
                     /* leave the metadata element */
 
                     metadata_depth--;
 
                 } else if (metadata_depth > 0 &&
-                    metadataHandler &&
-                    'onCloseTag' in metadataHandler) {
+                        metadataHandler &&
+                        'onCloseTag' in metadataHandler) {
 
                     /* end of child of metadata element */
 
@@ -187,9 +186,9 @@
                 estack[0].contents.push(s);
 
             } else if (estack[0] instanceof ForeignElement &&
-                metadata_depth > 0 &&
-                metadataHandler &&
-                'onText' in metadataHandler) {
+                    metadata_depth > 0 &&
+                    metadataHandler &&
+                    'onText' in metadataHandler) {
 
                 /* text node within a child of metadata element */
 
@@ -461,7 +460,6 @@
 
                     nb.initFromNode(doc, estack[0], node, errorHandler);
 
-
                     estack[0].contents.push(nb);
 
                     estack.unshift(nb);
@@ -469,11 +467,11 @@
                 } else if (node.local === 'set') {
 
                     if (!(estack[0] instanceof Span ||
-                        estack[0] instanceof P ||
-                        estack[0] instanceof Div ||
-                        estack[0] instanceof Body ||
-                        estack[0] instanceof Region ||
-                        estack[0] instanceof Br)) {
+                            estack[0] instanceof P ||
+                            estack[0] instanceof Div ||
+                            estack[0] instanceof Body ||
+                            estack[0] instanceof Region ||
+                            estack[0] instanceof Br)) {
 
                         reportFatal(errorHandler, "Parent of <set> element is not a content element or a region at " + this.line + "," + this.column + ")");
 
@@ -507,17 +505,17 @@
             if (estack[0] instanceof ForeignElement) {
 
                 if (node.uri === imscNames.ns_tt &&
-                    node.local === 'metadata') {
+                        node.local === 'metadata') {
 
                     /* enter the metadata element */
 
                     metadata_depth++;
 
                 } else if (
-                    metadata_depth > 0 &&
-                    metadataHandler &&
-                    'onOpenTag' in metadataHandler
-                    ) {
+                        metadata_depth > 0 &&
+                        metadataHandler &&
+                        'onOpenTag' in metadataHandler
+                        ) {
 
                     /* start of child of metadata element */
 
@@ -525,11 +523,11 @@
 
                     for (var a in node.attributes) {
                         attrs[node.attributes[a].uri + " " + node.attributes[a].local] =
-                            {
-                                uri: node.attributes[a].uri,
-                                local: node.attributes[a].local,
-                                value: node.attributes[a].value
-                            };
+                                {
+                                    uri: node.attributes[a].uri,
+                                    local: node.attributes[a].local,
+                                    value: node.attributes[a].value
+                                };
                     }
 
                     metadataHandler.onOpenTag(node.uri, node.local, attrs);
@@ -587,7 +585,7 @@
 
             /* create default region */
 
-            var dr = Region.createDefaultRegion();
+            var dr = Region.prototype.createDefaultRegion();
 
             doc.head.layout.regions[dr.id] = dr;
 
@@ -660,27 +658,9 @@
 
         }
 
-        for (var content_i in element.contents) {
-
-            resolveTiming(doc, element.contents[content_i], s, element);
-
-            if (element.timeContainer === "seq") {
-
-                implicit_end = element.contents[content_i].end;
-
-            } else {
-
-                implicit_end = Math.max(implicit_end, element.contents[content_i].end);
-
-            }
-
-            s = element.contents[content_i];
-
-        }
-
         if (!('contents' in element)) {
 
-            /* anonymous spans and regions and <set> and <br> */
+            /* anonymous spans and regions and <set> and spans with only children text nodes */
 
             if (isinseq) {
 
@@ -693,6 +673,32 @@
                 /* in par container, implicit duration is indefinite */
 
                 implicit_end = Number.POSITIVE_INFINITY;
+
+            }
+
+        } else {
+
+            for (var content_i in element.contents) {
+
+                /* no timing semantics on <br>, so skip */
+
+                if (element.contents[content_i].kind === 'br') {
+                    continue;
+                }
+
+                resolveTiming(doc, element.contents[content_i], s, element);
+
+                if (element.timeContainer === "seq") {
+
+                    implicit_end = element.contents[content_i].end;
+
+                } else {
+
+                    implicit_end = Math.max(implicit_end, element.contents[content_i].end);
+
+                }
+
+                s = element.contents[content_i];
 
             }
 
@@ -790,7 +796,8 @@
 
         /* skip if begin is not < then end */
 
-        if (elem.end <= elem.begin) return;
+        if (elem.end <= elem.begin)
+            return;
 
         /* index the begin time of the event */
 
@@ -879,27 +886,35 @@
     }
 
     /*
-     * Represents a TTML Content element
+     * TTML element utility functions
      * 
      */
 
     function ContentElement(kind) {
         this.kind = kind;
-        this.begin = null;
-        this.end = null;
-        this.styleAttrs = null;
-        this.regionID = null;
-        this.sets = null;
-        this.timeContainer = null;
     }
 
-    ContentElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
+    function IdentifiedElement(id) {
+        this.id = id;
+    }
 
-        var t = processTiming(doc, parent, node, errorHandler);
+    IdentifiedElement.prototype.initFromNode = function(doc, parent, node, errorHandler) {
+        this.id = elementGetXMLID(node);
+    };
 
-        this.explicit_begin = t.explicit_begin;
-        this.explicit_end = t.explicit_end;
-        this.explicit_dur = t.explicit_dur;
+    function LayoutElement(id) {
+        this.regionID = id;
+    }
+
+    LayoutElement.prototype.initFromNode = function(doc, parent, node, errorHandler) {
+        this.regionID = elementGetRegionID(node);
+    };
+
+    function StyledElement(styleAttrs) {
+        this.styleAttrs = styleAttrs;
+    }
+
+    StyledElement.prototype.initFromNode = function(doc, parent, node, errorHandler) {
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
 
@@ -907,25 +922,57 @@
             mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
         }
 
-        this.regionID = elementGetRegionID(node);
+    };
 
+    function AnimatedElement(sets) {
+        this.sets = sets;
+    }
+
+    AnimatedElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         this.sets = [];
+    };
+    
+    function ContainerElement(contents) {
+        this.contents = contents;
+    }
+
+    ContainerElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
+        this.contents = [];
+    };
+
+    function TimedElement(explicit_begin, explicit_end, explicit_dur) {
+        this.explicit_begin = explicit_begin;
+        this.explicit_end = explicit_end;
+        this.explicit_dur = explicit_dur;
+    }
+
+    TimedElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
+        var t = processTiming(doc, parent, node, errorHandler);
+        this.explicit_begin = t.explicit_begin;
+        this.explicit_end = t.explicit_end;
+        this.explicit_dur = t.explicit_dur;
 
         this.timeContainer = elementGetTimeContainer(node, errorHandler);
-
     };
+
 
     /*
      * Represents a TTML body element
      */
 
+
+
     function Body() {
         ContentElement.call(this, 'body');
     }
 
+
     Body.prototype.initFromNode = function (doc, node, errorHandler) {
-        ContentElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        this.contents = [];
+        StyledElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        AnimatedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        LayoutElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        ContainerElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
     };
 
     /*
@@ -937,8 +984,11 @@
     }
 
     Div.prototype.initFromNode = function (doc, parent, node, errorHandler) {
-        ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        this.contents = [];
+        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        ContainerElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
     };
 
     /*
@@ -950,8 +1000,11 @@
     }
 
     P.prototype.initFromNode = function (doc, parent, node, errorHandler) {
-        ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        this.contents = [];
+        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        ContainerElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
     };
 
     /*
@@ -960,13 +1013,16 @@
 
     function Span() {
         ContentElement.call(this, 'span');
-        this.space = null;
     }
 
     Span.prototype.initFromNode = function (doc, parent, node, xmlspace, errorHandler) {
-        ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        ContainerElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+
         this.space = xmlspace;
-        this.contents = [];
     };
 
     /*
@@ -975,12 +1031,11 @@
 
     function AnonymousSpan() {
         ContentElement.call(this, 'span');
-        this.space = null;
-        this.text = null;
     }
 
     AnonymousSpan.prototype.initFromText = function (doc, parent, text, xmlspace, errorHandler) {
-        ContentElement.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
+
         this.text = text;
         this.space = xmlspace;
     };
@@ -994,7 +1049,7 @@
     }
 
     Br.prototype.initFromNode = function (doc, parent, node, errorHandler) {
-        ContentElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
     };
 
     /*
@@ -1003,37 +1058,25 @@
      */
 
     function Region() {
-        this.id = null;
-        this.begin = null;
-        this.end = null;
-        this.styleAttrs = null;
-        this.sets = null;
+        ContentElement.call(this, 'region');
     }
 
-    Region.createDefaultRegion = function () {
+    Region.prototype.createDefaultRegion = function () {
         var r = new Region();
-
-        r.id = '';
-        r.begin = 0;
-        r.end = Number.POSITIVE_INFINITY;
-        r.styleAttrs = {};
-        r.sets = [];
-
+        
+        IdentifiedElement.call(r, '');
+        StyledElement.call(r, {});
+        AnimatedElement.call(r, []);
+        TimedElement.call(r, 0, Number.POSITIVE_INFINITY, null);
+        
         return r;
     };
 
     Region.prototype.initFromNode = function (doc, node, errorHandler) {
-
-        this.id = elementGetXMLID(node);
-
-        var t = processTiming(doc, null, node, errorHandler);
-        this.explicit_begin = t.explicit_begin;
-        this.explicit_end = t.explicit_end;
-        this.explicit_dur = t.explicit_dur;
-
-        this.styleAttrs = elementGetStyles(node, errorHandler);
-
-        this.sets = [];
+        IdentifiedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        StyledElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        AnimatedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
 
         /* immediately merge referenced styles */
 
@@ -1049,21 +1092,17 @@
      */
 
     function Set() {
-        this.begin = null;
-        this.end = null;
-        this.qname = null;
-        this.value = null;
     }
 
     Set.prototype.initFromNode = function (doc, parent, node, errorHandler) {
 
-        var t = processTiming(doc, parent, node, errorHandler);
-
-        this.explicit_begin = t.explicit_begin;
-        this.explicit_end = t.explicit_end;
-        this.explicit_dur = t.explicit_dur;
+        IdentifiedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         var styles = elementGetStyles(node, errorHandler);
+
+        this.qname = null;
+        this.value = null;
 
         for (var qname in styles) {
 
@@ -1168,7 +1207,7 @@
         for (var i in node.attributes) {
 
             if (node.attributes[i].uri === ns &&
-                node.attributes[i].local === name) {
+                    node.attributes[i].local === name) {
 
                 return node.attributes[i].value;
             }
@@ -1321,7 +1360,8 @@
 
         if (trattr === null) {
 
-            if (fps_attr !== null) tr = efps;
+            if (fps_attr !== null)
+                tr = efps;
 
         } else {
 
@@ -1348,7 +1388,8 @@
 
         var attr = findAttribute(node, imscNames.ns_tts, "extent");
 
-        if (attr === null) return null;
+        if (attr === null)
+            return null;
 
         var s = attr.split(" ");
 
@@ -1419,8 +1460,8 @@
         } else if ((m = CLOCK_TIME_FRACTION_RE.exec(str)) !== null) {
 
             r = parseInt(m[1]) * 3600 +
-                parseInt(m[2]) * 60 +
-                parseFloat(m[3]);
+                    parseInt(m[2]) * 60 +
+                    parseFloat(m[3]);
 
         } else if ((m = CLOCK_TIME_FRAMES_RE.exec(str)) !== null) {
 
@@ -1429,9 +1470,9 @@
             if (effectiveFrameRate !== null) {
 
                 r = parseInt(m[1]) * 3600 +
-                    parseInt(m[2]) * 60 +
-                    parseInt(m[3]) +
-                    (m[4] === null ? 0 : parseInt(m[4]) / effectiveFrameRate);
+                        parseInt(m[2]) * 60 +
+                        parseInt(m[3]) +
+                        (m[4] === null ? 0 : parseInt(m[4]) / effectiveFrameRate);
             }
 
         }
@@ -1627,7 +1668,7 @@
 
 
 })(typeof exports === 'undefined' ? this.imscDoc = {} : exports,
-    typeof sax === 'undefined' ? require("sax") : sax,
-    typeof imscNames === 'undefined' ? require("./names") : imscNames,
-    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
-    typeof imscUtils === 'undefined' ? require("./utils") : imscUtils);
+        typeof sax === 'undefined' ? require("sax") : sax,
+        typeof imscNames === 'undefined' ? require("./names") : imscNames,
+        typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
+        typeof imscUtils === 'undefined' ? require("./utils") : imscUtils);
