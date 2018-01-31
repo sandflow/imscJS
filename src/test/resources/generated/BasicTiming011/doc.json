@@ -13,7 +13,10 @@
     1.875,
     2.0625,
     2.25,
-    2.4375
+    2.4375,
+    2.625,
+    2.8125,
+    3
   ],
   "head": {
     "layout": {
@@ -159,7 +162,9 @@
                 "contents": [
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 0.75,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -172,7 +177,7 @@
                 ],
                 "space": "default",
                 "begin": 0.75,
-                "end": "Infinity"
+                "end": null
               },
               {
                 "kind": "span",
@@ -229,7 +234,9 @@
                 "contents": [
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 1.3125,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -242,7 +249,7 @@
                 ],
                 "space": "default",
                 "begin": 1.3125,
-                "end": "Infinity"
+                "end": null
               },
               {
                 "kind": "span",
@@ -299,7 +306,9 @@
                 "contents": [
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 1.875,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -312,7 +321,7 @@
                 ],
                 "space": "default",
                 "begin": 1.875,
-                "end": "Infinity"
+                "end": null
               },
               {
                 "kind": "span",
@@ -377,12 +386,14 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 2.4375,
+                    "end": null
                   }
                 ],
                 "space": "default",
                 "begin": 2.4375,
-                "end": "Infinity"
+                "end": null
               },
               {
                 "kind": "span",
@@ -401,12 +412,14 @@
                 "contents": [
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 2.625,
+                    "end": null
                   }
                 ],
                 "space": "default",
                 "begin": 2.625,
-                "end": 2.625
+                "end": null
               },
               {
                 "kind": "span",
@@ -425,12 +438,14 @@
                 "contents": [
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 2.8125,
+                    "end": null
                   }
                 ],
                 "space": "default",
                 "begin": 2.8125,
-                "end": 2.8125
+                "end": null
               },
               {
                 "kind": "span",
@@ -449,12 +464,14 @@
                 "contents": [
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 3,
+                    "end": null
                   }
                 ],
                 "space": "default",
                 "begin": 3,
-                "end": 3
+                "end": null
               },
               {
                 "kind": "span",
@@ -466,15 +483,15 @@
               }
             ],
             "begin": 0,
-            "end": "Infinity"
+            "end": null
           }
         ],
         "begin": 0,
-        "end": "Infinity"
+        "end": null
       }
     ],
     "begin": 0,
-    "end": "Infinity"
+    "end": null
   },
   "cellResolution": {
     "w": 32,

@@ -660,7 +660,7 @@
 
         if (!('contents' in element)) {
 
-            /* anonymous spans and regions and <set> and spans with only children text nodes */
+            /* anonymous spans and regions and <set> and <br>s and spans with only children text nodes */
 
             if (isinseq) {
 
@@ -679,12 +679,6 @@
         } else {
 
             for (var content_i in element.contents) {
-
-                /* no timing semantics on <br>, so skip */
-
-                if (element.contents[content_i].kind === 'br') {
-                    continue;
-                }
 
                 resolveTiming(doc, element.contents[content_i], s, element);
 

@@ -137,7 +137,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 1,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -150,7 +152,7 @@
                 ],
                 "space": "default",
                 "begin": 1,
-                "end": "Infinity"
+                "end": null
               },
               {
                 "kind": "span",
@@ -208,7 +210,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 1,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -221,7 +225,7 @@
                 ],
                 "space": "default",
                 "begin": 1,
-                "end": "Infinity"
+                "end": null
               },
               {
                 "kind": "span",

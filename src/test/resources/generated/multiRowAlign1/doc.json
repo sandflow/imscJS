@@ -129,7 +129,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 1,
+                "end": null
               },
               {
                 "kind": "span",
@@ -163,7 +165,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 1,
+                "end": null
               },
               {
                 "kind": "span",

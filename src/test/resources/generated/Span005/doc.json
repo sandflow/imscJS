@@ -71,7 +71,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 0,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -84,7 +86,7 @@
                 ],
                 "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": null
               }
             ],
             "begin": 0,

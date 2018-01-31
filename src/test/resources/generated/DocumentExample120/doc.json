@@ -81,7 +81,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 5,
+                "end": null
               },
               {
                 "kind": "span",
@@ -127,7 +129,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 10,
+                "end": null
               },
               {
                 "kind": "span",
@@ -158,7 +162,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 17.2,
+                "end": null
               },
               {
                 "kind": "span",
@@ -306,7 +312,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 34.6,
+                "end": null
               },
               {
                 "kind": "span",
@@ -352,7 +360,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 45,
+                "end": null
               },
               {
                 "kind": "span",

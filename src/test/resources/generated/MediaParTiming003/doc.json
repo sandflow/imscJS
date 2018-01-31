@@ -60,7 +60,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 0,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -91,7 +93,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 5,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -103,7 +107,7 @@
                   }
                 ],
                 "begin": 5,
-                "end": "Infinity"
+                "end": null
               }
             ],
             "begin": 0,
@@ -133,7 +137,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 15,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -164,7 +170,9 @@
                   },
                   {
                     "kind": "br",
-                    "regionID": ""
+                    "regionID": "",
+                    "begin": 10,
+                    "end": null
                   },
                   {
                     "kind": "span",
@@ -176,7 +184,7 @@
                   }
                 ],
                 "begin": 10,
-                "end": "Infinity"
+                "end": null
               }
             ],
             "begin": 10,

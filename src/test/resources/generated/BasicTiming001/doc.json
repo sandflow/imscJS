@@ -50,7 +50,9 @@
               },
               {
                 "kind": "br",
-                "regionID": ""
+                "regionID": "",
+                "begin": 10,
+                "end": null
               },
               {
                 "kind": "span",
