@@ -101,19 +101,7 @@
                 ],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 5,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "\n      \n      Beautiful soup,\n    "
-                  }
-                ]
+                "text": "\n      \n      Beautiful soup,\n    "
               },
               {
                 "kind": "span",
@@ -144,19 +132,7 @@
                 ],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 5,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "\n      \n      so rich and green,\n    "
-                  }
-                ]
+                "text": "\n      \n      so rich and green,\n    "
               },
               {
                 "kind": "span",
@@ -187,19 +163,7 @@
                 ],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 5,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "\n      \n      waiting in a hot tureen!\n    "
-                  }
-                ]
+                "text": "\n      \n      waiting in a hot tureen!\n    "
               },
               {
                 "kind": "span",

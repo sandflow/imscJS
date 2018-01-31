@@ -108,19 +108,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This subtitle's multiRowAlign is"
-                  }
-                ]
+                "text": "This subtitle's multiRowAlign is"
               },
               {
                 "kind": "br",
@@ -171,19 +159,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "Center Start"
-                  }
-                ]
+                "text": "Center Start"
               },
               {
                 "kind": "span",

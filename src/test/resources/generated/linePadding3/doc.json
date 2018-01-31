@@ -97,19 +97,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 9,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": " No spaces\n"
-                  }
-                ]
+                "text": " No spaces\n"
               },
               {
                 "kind": "span",
@@ -179,19 +167,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "preserve",
-                    "contents": [
-                      {
-                        "kind": "span",
-                        "begin": 0,
-                        "end": 9,
-                        "styleAttrs": {},
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "space": "preserve",
-                        "text": "Two lines with   spaces "
-                      }
-                    ]
+                    "text": "Two lines with   spaces "
                   },
                   {
                     "kind": "span",
@@ -213,19 +189,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "preserve",
-                    "contents": [
-                      {
-                        "kind": "span",
-                        "begin": 0,
-                        "end": 9,
-                        "styleAttrs": {},
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "space": "preserve",
-                        "text": "  "
-                      }
-                    ]
+                    "text": "  "
                   }
                 ]
               },

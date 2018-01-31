@@ -60,19 +60,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This text has a three-pixel outline that is the same color as the text."
-                  }
-                ]
+                "text": "This text has a three-pixel outline that is the same color as the text."
               }
             ]
           }

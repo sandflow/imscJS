@@ -67,19 +67,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 10,
-                    "end": 24.4,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This text must appear at 10 seconds and disappear at 24.4 seconds"
-                  }
-                ]
+                "text": "This text must appear at 10 seconds and disappear at 24.4 seconds"
               },
               {
                 "kind": "span",
@@ -121,19 +109,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 25,
-                    "end": 35,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This text must appear at 25 seconds and disappear at 35 seconds"
-                  }
-                ]
+                "text": "This text must appear at 25 seconds and disappear at 35 seconds"
               },
               {
                 "kind": "span",

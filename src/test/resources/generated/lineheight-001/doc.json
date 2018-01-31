@@ -112,19 +112,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "A subtitles with a lineheight of 125%."
-                  }
-                ]
+                "text": "A subtitles with a lineheight of 125%."
               },
               {
                 "kind": "br",
@@ -179,19 +167,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "The subtitle has two lines."
-                  }
-                ]
+                "text": "The subtitle has two lines."
               },
               {
                 "kind": "span",

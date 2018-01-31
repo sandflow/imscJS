@@ -65,19 +65,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 5,
-                    "end": 15,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This text should appear at  5 seconds and stay till 15 seconds"
-                  }
-                ]
+                "text": "This text should appear at  5 seconds and stay till 15 seconds"
               },
               {
                 "kind": "span",

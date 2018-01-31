@@ -116,19 +116,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0.1875,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "This "
-                  }
-                ]
+                "text": "This "
               },
               {
                 "kind": "span",
@@ -150,19 +138,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0.375,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "text "
-                  }
-                ]
+                "text": "text "
               },
               {
                 "kind": "span",
@@ -184,19 +160,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0.5625,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "should "
-                  }
-                ]
+                "text": "should "
               },
               {
                 "kind": "span",
@@ -218,19 +182,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0.75,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "appear "
-                  }
-                ]
+                "text": "appear "
               },
               {
                 "kind": "span",
@@ -252,19 +204,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0.9375,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "on "
-                  }
-                ]
+                "text": "on "
               },
               {
                 "kind": "span",
@@ -286,19 +226,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 1.125,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "one "
-                  }
-                ]
+                "text": "one "
               },
               {
                 "kind": "span",
@@ -320,19 +248,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 1.3125,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "line "
-                  }
-                ]
+                "text": "line "
               },
               {
                 "kind": "span",
@@ -354,19 +270,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 1.5,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "scrolling  "
-                  }
-                ]
+                "text": "scrolling  "
               },
               {
                 "kind": "span",
@@ -388,19 +292,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 1.6875,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "from "
-                  }
-                ]
+                "text": "from "
               },
               {
                 "kind": "span",
@@ -422,19 +314,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 1.875,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "right "
-                  }
-                ]
+                "text": "right "
               },
               {
                 "kind": "span",
@@ -456,19 +336,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2.0625,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "to "
-                  }
-                ]
+                "text": "to "
               },
               {
                 "kind": "span",
@@ -490,19 +358,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2.25,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "left "
-                  }
-                ]
+                "text": "left "
               },
               {
                 "kind": "span",
@@ -524,19 +380,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2.4375,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "        "
-                  }
-                ]
+                "text": "        "
               },
               {
                 "kind": "span",
@@ -558,19 +402,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2.625,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "         "
-                  }
-                ]
+                "text": "         "
               },
               {
                 "kind": "span",
@@ -592,19 +424,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2.8125,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "        "
-                  }
-                ]
+                "text": "        "
               },
               {
                 "kind": "span",
@@ -626,19 +446,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 3,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "        "
-                  }
-                ]
+                "text": "        "
               },
               {
                 "kind": "span",
@@ -660,19 +468,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 3.1875,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "        "
-                  }
-                ]
+                "text": "        "
               },
               {
                 "kind": "span",
@@ -694,19 +490,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "preserve",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 3.375,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "preserve",
-                    "text": "        "
-                  }
-                ]
+                "text": "        "
               },
               {
                 "kind": "span",

@@ -110,19 +110,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "Should be: background black, text: bold, italic, yellow color"
-                  }
-                ]
+                "text": "Should be: background black, text: bold, italic, yellow color"
               },
               {
                 "kind": "span",

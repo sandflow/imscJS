@@ -109,19 +109,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "Overflow is hidden. One long long long long long long Subtitle."
-                  }
-                ]
+                "text": "Overflow is hidden. One long long long long long long Subtitle."
               },
               {
                 "kind": "span",

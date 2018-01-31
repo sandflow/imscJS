@@ -125,19 +125,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "contents": [
-                      {
-                        "kind": "span",
-                        "begin": 0,
-                        "end": 9,
-                        "styleAttrs": {},
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "space": "default",
-                        "text": " should be"
-                      }
-                    ]
+                    "text": " should be"
                   },
                   {
                     "kind": "span",
@@ -159,19 +147,7 @@
                     "sets": [],
                     "timeContainer": "par",
                     "space": "default",
-                    "contents": [
-                      {
-                        "kind": "span",
-                        "begin": 0,
-                        "end": 9,
-                        "styleAttrs": {},
-                        "regionID": "",
-                        "sets": [],
-                        "timeContainer": "par",
-                        "space": "default",
-                        "text": " "
-                      }
-                    ]
+                    "text": " "
                   },
                   {
                     "kind": "span",
@@ -248,19 +224,7 @@
                         "sets": [],
                         "timeContainer": "par",
                         "space": "default",
-                        "contents": [
-                          {
-                            "kind": "span",
-                            "begin": 0,
-                            "end": 9,
-                            "styleAttrs": {},
-                            "regionID": "",
-                            "sets": [],
-                            "timeContainer": "par",
-                            "space": "default",
-                            "text": "line break\n\n"
-                          }
-                        ]
+                        "text": "line break\n\n"
                       },
                       {
                         "kind": "span",

@@ -111,19 +111,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 2,
-                    "end": 3,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "These"
-                  }
-                ]
+                "text": "These"
               },
               {
                 "kind": "span",
@@ -189,19 +177,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 3,
-                    "end": 4,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "These words"
-                  }
-                ]
+                "text": "These words"
               },
               {
                 "kind": "span",
@@ -267,19 +243,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 4,
-                    "end": 5,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "These words appear"
-                  }
-                ]
+                "text": "These words appear"
               },
               {
                 "kind": "span",
@@ -345,19 +309,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 5,
-                    "end": 6,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "These words appear step-by-step."
-                  }
-                ]
+                "text": "These words appear step-by-step."
               },
               {
                 "kind": "span",

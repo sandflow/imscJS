@@ -106,19 +106,7 @@
                 "sets": [],
                 "timeContainer": "par",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 5,
-                    "end": 10,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "The text in this row wraps, staying within the text region."
-                  }
-                ]
+                "text": "The text in this row wraps, staying within the text region."
               }
             ]
           }
