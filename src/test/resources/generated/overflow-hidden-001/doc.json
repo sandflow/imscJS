@@ -7,9 +7,8 @@
     "layout": {
       "regions": {
         "bottom": {
+          "kind": "region",
           "id": "bottom",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -34,56 +33,48 @@
             "http://www.w3.org/ns/ttml#styling displayAlign": "after",
             "http://www.w3.org/ns/ttml#styling overflow": "hidden"
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left",
               "http://www.w3.org/ns/ttml#styling wrapOption": "noWrap"
             },
-            "regionID": "bottom",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "bottom",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\t\t\t\t",
                 "space": "default",
-                "text": "\n\t\t\t\t"
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -105,40 +96,33 @@
                     "monospaceSerif"
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "Overflow is hidden. One long long long long long long Subtitle."
-                  }
-                ]
+                "text": "Overflow is hidden. One long long long long long long Subtitle.",
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\t\t\t",
                 "space": "default",
-                "text": "\n\t\t\t"
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 50,

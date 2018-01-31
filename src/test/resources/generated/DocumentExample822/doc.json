@@ -7,37 +7,33 @@
     "layout": {
       "regions": {
         "": {
+          "kind": "region",
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "explicit_begin": 0,
+          "explicit_end": null,
+          "explicit_dur": null
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling backgroundColor": [
                 128,
@@ -47,45 +43,32 @@
               ],
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tTwinkle, twinkle, little bat!",
                 "space": "default",
-                "text": "\n\tTwinkle, twinkle, little bat!"
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tHow ",
                 "space": "default",
-                "text": "\n\tHow "
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling backgroundColor": [
                     0,
@@ -94,40 +77,33 @@
                     255
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "I wonder"
-                  }
-                ]
+                "text": "I wonder",
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": " where you're at!\n      ",
                 "space": "default",
-                "text": " where you're at!\n      "
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 32,

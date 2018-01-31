@@ -7,78 +7,69 @@
     "layout": {
       "regions": {
         "": {
+          "kind": "region",
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "explicit_begin": 0,
+          "explicit_end": null,
+          "explicit_dur": null
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 15,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 15,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "seq",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 15,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This text must appear at 0 seconds and disappear at 15 seconds\n        ",
                 "space": "default",
-                "text": "This text must appear at 0 seconds and disappear at 15 seconds\n        "
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This text must also appear at 0 seconds and disappear at 15 seconds\n      ",
                 "space": "default",
-                "text": "This text must also appear at 0 seconds and disappear at 15 seconds\n      "
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 15
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 15
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 15
   },
   "cellResolution": {
     "w": 32,

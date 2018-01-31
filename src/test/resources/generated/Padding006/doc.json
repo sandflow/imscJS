@@ -7,9 +7,8 @@
     "layout": {
       "regions": {
         "r1": {
+          "kind": "region",
           "id": "r1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
@@ -35,24 +34,23 @@
               255
             ]
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling backgroundColor": [
             0,
@@ -61,55 +59,48 @@
             255
           ]
         },
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {},
-            "regionID": "r1",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "r1",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "All the edges are padded",
                 "space": "default",
-                "text": "All the edges are padded"
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "by 2em.",
                 "space": "default",
-                "text": "by 2em."
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 32,

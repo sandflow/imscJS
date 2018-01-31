@@ -7,9 +7,8 @@
     "layout": {
       "regions": {
         "r1": {
+          "kind": "region",
           "id": "r1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -45,12 +44,14 @@
             ],
             "http://www.w3.org/ns/ttml#styling opacity": 1
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         },
         "r2": {
+          "kind": "region",
           "id": "r2",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -86,54 +87,54 @@
             ],
             "http://www.w3.org/ns/ttml#styling opacity": 0.6
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {},
-            "regionID": "r2",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "r2",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "The red region and text have an opacity of 0.60 (60% opaque).",
                 "space": "default",
-                "text": "The red region and text have an opacity of 0.60 (60% opaque)."
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 32,

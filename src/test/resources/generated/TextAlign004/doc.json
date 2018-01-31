@@ -8,80 +8,71 @@
     "layout": {
       "regions": {
         "": {
+          "kind": "region",
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "explicit_begin": 0,
+          "explicit_end": null,
+          "explicit_dur": null
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 1,
-            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 1,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This caption is placed",
                 "space": "default",
-                "text": "This caption is placed"
+                "begin": 1,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 1,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 1,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "in the center.",
                 "space": "default",
-                "text": "in the center."
+                "begin": 1,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 1,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 32,

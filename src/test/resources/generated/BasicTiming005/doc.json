@@ -21,9 +21,8 @@
     "layout": {
       "regions": {
         "r1": {
+          "kind": "region",
           "id": "r1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
@@ -55,159 +54,179 @@
             },
             "http://www.w3.org/ns/ttml#styling zIndex": 1
           },
+          "timeContainer": "par",
           "sets": [
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.05,
               "begin": 1,
-              "end": 2,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.05
+              "end": 2
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.1,
               "begin": 2,
-              "end": 3,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.1
+              "end": 3
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.2,
               "begin": 3,
-              "end": 4,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.2
+              "end": 4
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.3,
               "begin": 4,
-              "end": 5,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.3
+              "end": 5
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.4,
               "begin": 5,
-              "end": 6,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.4
+              "end": 6
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.5,
               "begin": 6,
-              "end": 7,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.5
+              "end": 7
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.6,
               "begin": 7,
-              "end": 8,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.6
+              "end": 8
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.7,
               "begin": 8,
-              "end": 9,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.7
+              "end": 9
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.8,
               "begin": 9,
-              "end": 10,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.8
+              "end": 10
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.9,
               "begin": 10,
-              "end": 11,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.9
+              "end": 11
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 1,
               "begin": 11,
-              "end": 12,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 1
+              "end": 12
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.75,
               "begin": 12,
-              "end": 13,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.75
+              "end": 13
             },
             {
+              "id": null,
+              "timeContainer": "par",
+              "qname": "http://www.w3.org/ns/ttml#styling opacity",
+              "value": 0.5,
               "begin": 13,
-              "end": 14,
-              "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.5
+              "end": 14
             },
             {
-              "begin": 14,
-              "end": 15,
+              "id": null,
+              "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
-              "value": 0.25
+              "value": 0.25,
+              "begin": 14,
+              "end": 15
             }
-          ]
+          ],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 15,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 15,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "seq",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 15,
             "styleAttrs": {},
-            "regionID": "r1",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "r1",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n        This text must start to appear at 1 seconds",
                 "space": "default",
-                "text": "\n        This text must start to appear at 1 seconds"
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n        and fade in to 10 seconds then fade out to 15 seconds",
                 "space": "default",
-                "text": "\n        and fade in to 10 seconds then fade out to 15 seconds"
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 15
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 15
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 15
   },
   "cellResolution": {
     "w": 32,

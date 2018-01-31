@@ -7,9 +7,8 @@
     "layout": {
       "regions": {
         "bottom": {
+          "kind": "region",
           "id": "bottom",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -33,55 +32,47 @@
             },
             "http://www.w3.org/ns/ttml#styling displayAlign": "after"
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
-            "regionID": "bottom",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "bottom",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\t\t\t\t",
                 "space": "default",
-                "text": "\n\t\t\t\t"
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -106,28 +97,16 @@
                     "underline"
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "One "
-                  }
-                ]
+                "text": "One ",
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -152,28 +131,16 @@
                     "none"
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "line "
-                  }
-                ]
+                "text": "line ",
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -198,40 +165,33 @@
                     "underline"
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "Subtitle."
-                  }
-                ]
+                "text": "Subtitle.",
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\t\t\t",
                 "space": "default",
-                "text": "\n\t\t\t"
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 50,

@@ -7,109 +7,88 @@
     "layout": {
       "regions": {
         "": {
+          "kind": "region",
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "explicit_begin": 0,
+          "explicit_end": null,
+          "explicit_dur": null
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 10,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 10,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textDecoration": [
                 "overline"
               ]
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "The first row contains an overline, ",
                 "space": "default",
-                "text": "The first row contains an overline, "
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": " ",
                 "space": "default",
-                "text": " "
+                "begin": 0,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling textDecoration": [
                     "noOverline"
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "contents": [
-                  {
-                    "kind": "span",
-                    "begin": 0,
-                    "end": "Infinity",
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par",
-                    "space": "default",
-                    "text": "but the second row does not."
-                  }
-                ]
+                "text": "but the second row does not.",
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 10
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 10
   },
   "cellResolution": {
     "w": 32,

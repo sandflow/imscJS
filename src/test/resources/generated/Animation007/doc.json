@@ -9,67 +9,68 @@
     "layout": {
       "regions": {
         "": {
+          "kind": "region",
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "explicit_begin": 0,
+          "explicit_end": null,
+          "explicit_dur": null
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 20,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 20,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "seq",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling fontWeight": "normal"
             },
-            "regionID": "",
+            "timeContainer": "par",
             "sets": [
               {
-                "begin": 5,
-                "end": "Infinity",
+                "id": null,
+                "timeContainer": "par",
                 "qname": "http://www.w3.org/ns/ttml#styling fontWeight",
-                "value": "bold"
+                "value": "bold",
+                "begin": 5,
+                "end": "Infinity"
               }
             ],
-            "timeContainer": "par",
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n        This font of this sentence should go from normal to bold at 5s",
                 "space": "default",
-                "text": "\n        This font of this sentence should go from normal to bold at 5s"
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 20
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 20
   },
   "cellResolution": {
     "w": 32,

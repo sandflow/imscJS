@@ -20,200 +20,160 @@
     "layout": {
       "regions": {
         "": {
+          "kind": "region",
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "explicit_begin": 0,
+          "explicit_end": null,
+          "explicit_dur": null
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 58.7,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 58.7,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0.76,
-            "end": 3.45,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\tIt seems a paradox, does it not,\n      ",
+                "space": "default",
                 "begin": 0.76,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\tIt seems a paradox, does it not,\n      "
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0.76,
+            "end": 3.45
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\tthat the image formed on",
+                "space": "default",
+                "begin": 5,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": ""
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n      the Retina should be inverted?\n      ",
+                "space": "default",
+                "begin": 5,
+                "end": "Infinity"
+              }
+            ],
             "begin": 5,
-            "end": 10,
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\tthat the image formed on"
-              },
-              {
-                "kind": "br",
-                "begin": 5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n      the Retina should be inverted?\n      "
-              }
-            ]
+            "end": 10
           },
           {
             "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                255,
+                0,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling fontFamily": [
+                "proportionalSansSerif"
+              ],
+              "http://www.w3.org/ns/ttml#styling fontSize": {
+                "value": 22,
+                "unit": "px"
+              },
+              "http://www.w3.org/ns/ttml#styling textAlign": "center"
+            },
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\tIt is puzzling, why is it",
+                "space": "default",
+                "begin": 10,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": ""
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\twe do not see things upside-down?\n      ",
+                "space": "default",
+                "begin": 10,
+                "end": "Infinity"
+              }
+            ],
             "begin": 10,
-            "end": 16,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling color": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "http://www.w3.org/ns/ttml#styling fontFamily": [
-                "proportionalSansSerif"
-              ],
-              "http://www.w3.org/ns/ttml#styling fontSize": {
-                "value": 22,
-                "unit": "px"
-              },
-              "http://www.w3.org/ns/ttml#styling textAlign": "center"
-            },
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\tIt is puzzling, why is it"
-              },
-              {
-                "kind": "br",
-                "begin": 10,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\twe do not see things upside-down?\n      "
-              }
-            ]
+            "end": 16
           },
           {
             "kind": "p",
-            "begin": 17.2,
-            "end": 23,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 17.2,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tYou have never heard the Theory,",
                 "space": "default",
-                "text": "\n\tYou have never heard the Theory,"
+                "begin": 17.2,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 17.2,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 17.2,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tthen, that the Brain also is inverted?\n      ",
                 "space": "default",
-                "text": "\n\tthen, that the Brain also is inverted?\n      "
+                "begin": 17.2,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 17.2,
+            "end": 23
           },
           {
             "kind": "p",
-            "begin": 23,
-            "end": 27,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling color": [
                 255,
@@ -230,27 +190,24 @@
               },
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 23,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tNo indeed! What a beautiful fact!\n      ",
                 "space": "default",
-                "text": "\n\tNo indeed! What a beautiful fact!\n      "
+                "begin": 23,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 23,
+            "end": 27
           },
           {
             "kind": "p",
-            "begin": 28,
-            "end": 34.6,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "start",
               "http://www.w3.org/ns/ttml#styling color": [
@@ -267,27 +224,24 @@
                 "unit": "px"
               }
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 28,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tBut how is it proved?\n      ",
                 "space": "default",
-                "text": "\n\tBut how is it proved?\n      "
+                "begin": 28,
+                "end": "Infinity"
               }
-            ]
-          },
-          {
-            "kind": "p",
+            ],
             "begin": 28,
-            "end": 34.6,
+            "end": 34.6
+          },
+          {
+            "kind": "p",
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "end",
               "http://www.w3.org/ns/ttml#styling color": [
@@ -304,27 +258,70 @@
                 "unit": "px"
               }
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\tThus: what we call\n      ",
+                "space": "default",
                 "begin": 28,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\tThus: what we call\n      "
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 28,
+            "end": 34.6
           },
           {
             "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "end",
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                255,
+                255,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling fontFamily": [
+                "proportionalSansSerif"
+              ],
+              "http://www.w3.org/ns/ttml#styling fontSize": {
+                "value": 22,
+                "unit": "px"
+              }
+            },
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\tthe vertex of the Brain",
+                "space": "default",
+                "begin": 34.6,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": ""
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\tis really its base\n      ",
+                "space": "default",
+                "begin": 34.6,
+                "end": "Infinity"
+              }
+            ],
             "begin": 34.6,
-            "end": 45,
+            "end": 45
+          },
+          {
+            "kind": "p",
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "end",
               "http://www.w3.org/ns/ttml#styling color": [
@@ -341,126 +338,55 @@
                 "unit": "px"
               }
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 34.6,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tand what we call its base",
                 "space": "default",
-                "text": "\n\tthe vertex of the Brain"
+                "begin": 45,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 34.6,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "regionID": ""
               },
               {
                 "kind": "span",
-                "begin": 34.6,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tis really its vertex,\n      ",
                 "space": "default",
-                "text": "\n\tis really its base\n      "
+                "begin": 45,
+                "end": "Infinity"
               }
-            ]
-          },
-          {
-            "kind": "p",
+            ],
             "begin": 45,
-            "end": 52,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "end",
-              "http://www.w3.org/ns/ttml#styling color": [
-                255,
-                255,
-                255,
-                255
-              ],
-              "http://www.w3.org/ns/ttml#styling fontFamily": [
-                "proportionalSansSerif"
-              ],
-              "http://www.w3.org/ns/ttml#styling fontSize": {
-                "value": 22,
-                "unit": "px"
-              }
-            },
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 45,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\tand what we call its base"
-              },
-              {
-                "kind": "br",
-                "begin": 45,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 45,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n\tis really its vertex,\n      "
-              }
-            ]
+            "end": 52
           },
           {
             "kind": "p",
-            "begin": 53.5,
-            "end": 58.7,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 53.5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tit is simply a question of nomenclature.\n      ",
                 "space": "default",
-                "text": "\n\tit is simply a question of nomenclature.\n      "
+                "begin": 53.5,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 53.5,
+            "end": 58.7
           },
           {
             "kind": "p",
-            "begin": 53.5,
-            "end": 58.7,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling color": [
                 255,
@@ -477,26 +403,29 @@
               },
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 53.5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n\tHow truly delightful!\n      ",
                 "space": "default",
-                "text": "\n\tHow truly delightful!\n      "
+                "begin": 53.5,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 53.5,
+            "end": 58.7
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 58.7
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 58.7
   },
   "cellResolution": {
     "w": 32,

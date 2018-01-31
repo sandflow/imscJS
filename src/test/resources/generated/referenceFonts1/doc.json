@@ -7,9 +7,8 @@
     "layout": {
       "regions": {
         "area1": {
+          "kind": "region",
           "id": "area1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -57,12 +56,14 @@
               255
             ]
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         },
         "area2": {
+          "kind": "region",
           "id": "area2",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -110,76 +111,73 @@
               255
             ]
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": 9,
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 9,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 9,
             "styleAttrs": {},
-            "regionID": "area1",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "area1",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ante. Vestibulum ac congue massa, in ornare velit.",
                 "space": "default",
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ante. Vestibulum ac congue massa, in ornare velit."
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 9
           },
           {
             "kind": "p",
-            "begin": 0,
-            "end": 9,
             "styleAttrs": {},
-            "regionID": "area2",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "area2",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ant.",
                 "space": "default",
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae tincidunt lacus. Pellentesque quis lorem est. Curabitur a lectus ut diam aliquam volutpat ut id ant."
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 9
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 9
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 9
   },
   "cellResolution": {
     "w": 32,
