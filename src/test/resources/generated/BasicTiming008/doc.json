@@ -19,7 +19,6 @@
     "layout": {
       "regions": {
         "": {
-          "kind": "region",
           "id": "",
           "styleAttrs": {},
           "sets": [],

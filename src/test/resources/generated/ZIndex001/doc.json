@@ -12,7 +12,6 @@
     "layout": {
       "regions": {
         "r1": {
-          "kind": "region",
           "id": "r1",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -30,7 +29,6 @@
           "end": "Infinity"
         },
         "r2": {
-          "kind": "region",
           "id": "r2",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -48,7 +46,6 @@
           "end": "Infinity"
         },
         "r3": {
-          "kind": "region",
           "id": "r3",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -66,7 +63,6 @@
           "end": "Infinity"
         },
         "r4": {
-          "kind": "region",
           "id": "r4",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -84,7 +80,6 @@
           "end": "Infinity"
         },
         "r5": {
-          "kind": "region",
           "id": "r5",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
@@ -102,7 +97,6 @@
           "end": "Infinity"
         },
         "r6": {
-          "kind": "region",
           "id": "r6",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling backgroundColor": [

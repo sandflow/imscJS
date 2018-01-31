@@ -8,7 +8,6 @@
     "layout": {
       "regions": {
         "area1": {
-          "kind": "region",
           "id": "area1",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
@@ -52,7 +51,6 @@
           "end": "Infinity"
         },
         "area2": {
-          "kind": "region",
           "id": "area2",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {

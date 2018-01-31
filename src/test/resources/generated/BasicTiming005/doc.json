@@ -21,7 +21,6 @@
     "layout": {
       "regions": {
         "r1": {
-          "kind": "region",
           "id": "r1",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
@@ -57,7 +56,6 @@
           "timeContainer": "par",
           "sets": [
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.05,
@@ -65,7 +63,6 @@
               "end": 2
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.1,
@@ -73,7 +70,6 @@
               "end": 3
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.2,
@@ -81,7 +77,6 @@
               "end": 4
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.3,
@@ -89,7 +84,6 @@
               "end": 5
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.4,
@@ -97,7 +91,6 @@
               "end": 6
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.5,
@@ -105,7 +98,6 @@
               "end": 7
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.6,
@@ -113,7 +105,6 @@
               "end": 8
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.7,
@@ -121,7 +112,6 @@
               "end": 9
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.8,
@@ -129,7 +119,6 @@
               "end": 10
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.9,
@@ -137,7 +126,6 @@
               "end": 11
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 1,
@@ -145,7 +133,6 @@
               "end": 12
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.75,
@@ -153,7 +140,6 @@
               "end": 13
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.5,
@@ -161,7 +147,6 @@
               "end": 14
             },
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling opacity",
               "value": 0.25,

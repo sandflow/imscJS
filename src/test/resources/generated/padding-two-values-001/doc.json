@@ -7,7 +7,6 @@
     "layout": {
       "regions": {
         "center": {
-          "kind": "region",
           "id": "center",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {

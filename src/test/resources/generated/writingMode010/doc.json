@@ -7,7 +7,6 @@
     "layout": {
       "regions": {
         "top": {
-          "kind": "region",
           "id": "top",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
@@ -65,7 +64,6 @@
           "end": "Infinity"
         },
         "right": {
-          "kind": "region",
           "id": "right",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {

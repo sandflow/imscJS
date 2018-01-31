@@ -18,7 +18,6 @@
     "layout": {
       "regions": {
         "r1": {
-          "kind": "region",
           "id": "r1",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling displayAlign": "after"

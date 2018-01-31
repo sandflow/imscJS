@@ -7,7 +7,6 @@
     "layout": {
       "regions": {
         "startBefore": {
-          "kind": "region",
           "id": "startBefore",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
@@ -38,7 +37,6 @@
           "end": "Infinity"
         },
         "endBefore": {
-          "kind": "region",
           "id": "endBefore",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
@@ -69,7 +67,6 @@
           "end": "Infinity"
         },
         "startAfter": {
-          "kind": "region",
           "id": "startAfter",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
@@ -100,7 +97,6 @@
           "end": "Infinity"
         },
         "endAfter": {
-          "kind": "region",
           "id": "endAfter",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {

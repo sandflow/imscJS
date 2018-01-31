@@ -8,7 +8,6 @@
     "layout": {
       "regions": {
         "r1": {
-          "kind": "region",
           "id": "r1",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
@@ -58,7 +57,6 @@
           "end": 10
         },
         "r2": {
-          "kind": "region",
           "id": "r2",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
@@ -105,7 +103,6 @@
           "timeContainer": "par",
           "sets": [
             {
-              "id": null,
               "timeContainer": "par",
               "qname": "http://www.w3.org/ns/ttml#styling zIndex",
               "value": 2,

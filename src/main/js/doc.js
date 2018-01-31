@@ -1052,7 +1052,6 @@
      */
 
     function Region() {
-        ContentElement.call(this, 'region');
     }
 
     Region.prototype.createDefaultRegion = function () {
@@ -1090,7 +1089,6 @@
 
     Set.prototype.initFromNode = function (doc, parent, node, errorHandler) {
 
-        IdentifiedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         var styles = elementGetStyles(node, errorHandler);

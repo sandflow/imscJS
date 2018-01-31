@@ -9,7 +9,6 @@
     "layout": {
       "regions": {
         "": {
-          "kind": "region",
           "id": "",
           "styleAttrs": {},
           "sets": [],
@@ -42,7 +41,6 @@
             "timeContainer": "par",
             "sets": [
               {
-                "id": null,
                 "timeContainer": "par",
                 "qname": "http://www.w3.org/ns/ttml#styling display",
                 "value": "auto",

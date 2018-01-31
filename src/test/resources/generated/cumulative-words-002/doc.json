@@ -11,7 +11,6 @@
     "layout": {
       "regions": {
         "bottom": {
-          "kind": "region",
           "id": "bottom",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
