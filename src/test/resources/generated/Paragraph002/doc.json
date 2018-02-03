@@ -9,9 +9,8 @@
           "id": "",
           "styleAttrs": {},
           "sets": [],
-          "explicit_begin": 0,
-          "explicit_end": null,
-          "explicit_dur": null
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }

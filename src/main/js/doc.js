@@ -571,23 +571,21 @@
 
         }
 
-        if (hasRegions) {
-
-            /* resolve desired timing for regions */
-
-            for (var region_i in doc.head.layout.regions) {
-
-                resolveTiming(doc, doc.head.layout.regions[region_i], null, null);
-
-            }
-
-        } else {
+        if (!hasRegions) {
 
             /* create default region */
 
             var dr = Region.prototype.createDefaultRegion();
 
             doc.head.layout.regions[dr.id] = dr;
+
+        }
+
+        /* resolve desired timing for regions */
+
+        for (var region_i in doc.head.layout.regions) {
+
+            resolveTiming(doc, doc.head.layout.regions[region_i], null, null);
 
         }
 
@@ -892,7 +890,7 @@
         this.id = id;
     }
 
-    IdentifiedElement.prototype.initFromNode = function(doc, parent, node, errorHandler) {
+    IdentifiedElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         this.id = elementGetXMLID(node);
     };
 
@@ -900,7 +898,7 @@
         this.regionID = id;
     }
 
-    LayoutElement.prototype.initFromNode = function(doc, parent, node, errorHandler) {
+    LayoutElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         this.regionID = elementGetRegionID(node);
     };
 
@@ -908,7 +906,7 @@
         this.styleAttrs = styleAttrs;
     }
 
-    StyledElement.prototype.initFromNode = function(doc, parent, node, errorHandler) {
+    StyledElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
 
@@ -925,7 +923,7 @@
     AnimatedElement.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         this.sets = [];
     };
-    
+
     function ContainerElement(contents) {
         this.contents = contents;
     }
@@ -1056,12 +1054,12 @@
 
     Region.prototype.createDefaultRegion = function () {
         var r = new Region();
-        
+
         IdentifiedElement.call(r, '');
         StyledElement.call(r, {});
         AnimatedElement.call(r, []);
         TimedElement.call(r, 0, Number.POSITIVE_INFINITY, null);
-        
+
         return r;
     };
 
