@@ -8,45 +8,56 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "Some of this text must ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "Some of this text must "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -55,20 +66,26 @@
                     255
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "red ",
-                    "space": "default",
                     "begin": 0,
-                    "end": "Infinity"
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "red "
                   },
                   {
                     "kind": "span",
+                    "begin": 0,
+                    "end": 10,
                     "styleAttrs": {
                       "http://www.w3.org/ns/ttml#styling color": [
                         255,
@@ -77,24 +94,27 @@
                         255
                       ]
                     },
-                    "timeContainer": "par",
-                    "sets": [],
                     "regionID": "",
-                    "space": "default",
-                    "text": "and",
-                    "begin": 0,
-                    "end": "Infinity"
-                  },
-                  {
-                    "kind": "span",
+                    "sets": [],
                     "timeContainer": "par",
-                    "text": " ",
                     "space": "default",
-                    "begin": 0,
-                    "end": "Infinity"
+                    "text": "and"
                   },
                   {
                     "kind": "span",
+                    "begin": 0,
+                    "end": 10,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": " "
+                  },
+                  {
+                    "kind": "span",
+                    "begin": 0,
+                    "end": 10,
                     "styleAttrs": {
                       "http://www.w3.org/ns/ttml#styling color": [
                         0,
@@ -103,38 +123,30 @@
                         255
                       ]
                     },
-                    "timeContainer": "par",
-                    "sets": [],
                     "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
                     "space": "default",
-                    "text": "green",
-                    "begin": 0,
-                    "end": "Infinity"
+                    "text": "green"
                   }
-                ],
-                "space": "default",
-                "begin": 0,
-                "end": "Infinity"
+                ]
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": ".",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "."
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 10
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 10
+    ]
   },
   "cellResolution": {
     "w": 32,

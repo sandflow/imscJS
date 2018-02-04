@@ -10,6 +10,8 @@
       "regions": {
         "r1": {
           "id": "r1",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
@@ -40,73 +42,76 @@
             },
             "http://www.w3.org/ns/ttml#styling showBackground": "whenActive"
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "r1",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 5,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "The magenta background is only visible",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "The magenta background is only visible"
               }
-            ],
-            "begin": 0,
-            "end": 5
+            ]
           },
           {
             "kind": "p",
+            "begin": 7,
+            "end": 12,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "when you see this text.",
-                "space": "default",
                 "begin": 7,
-                "end": "Infinity"
+                "end": 12,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "when you see this text."
               }
-            ],
-            "begin": 7,
-            "end": 12
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 12
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 12
+    ]
   },
   "cellResolution": {
     "w": 32,

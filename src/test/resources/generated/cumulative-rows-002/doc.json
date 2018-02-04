@@ -13,6 +13,8 @@
       "regions": {
         "bottom": {
           "id": "bottom",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -36,107 +38,55 @@
             },
             "http://www.w3.org/ns/ttml#styling displayAlign": "after"
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "left"
-            },
-            "timeContainer": "par",
-            "sets": [],
-            "regionID": "bottom",
-            "contents": [
-              {
-                "kind": "span",
-                "timeContainer": "par",
-                "text": "\n\t\t\t\t",
-                "space": "default",
-                "begin": 0,
-                "end": "Infinity"
-              },
-              {
-                "kind": "span",
-                "styleAttrs": {
-                  "http://www.w3.org/ns/ttml#styling color": [
-                    255,
-                    255,
-                    255,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
-                    0,
-                    0,
-                    0,
-                    255
-                  ],
-                  "http://www.w3.org/ns/ttml#styling fontSize": {
-                    "value": 160,
-                    "unit": "%"
-                  },
-                  "http://www.w3.org/ns/ttml#styling fontFamily": [
-                    "monospaceSerif"
-                  ]
-                },
-                "timeContainer": "par",
-                "sets": [],
-                "regionID": "",
-                "space": "default",
-                "text": "These lines appear step-by-step.",
-                "begin": 0,
-                "end": "Infinity"
-              },
-              {
-                "kind": "span",
-                "timeContainer": "par",
-                "text": "\n\t\t\t",
-                "space": "default",
-                "begin": 0,
-                "end": "Infinity"
-              }
-            ],
             "begin": 0,
-            "end": 2
-          },
-          {
-            "kind": "p",
+            "end": 2,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 2,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "begin": 2,
-                "end": "Infinity"
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 2,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -158,45 +108,51 @@
                     "monospaceSerif"
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "These lines appear step-by-step.",
-                "begin": 2,
-                "end": "Infinity"
+                "text": "These lines appear step-by-step."
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 2,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t",
                 "space": "default",
-                "begin": 2,
-                "end": "Infinity"
+                "text": "\n\t\t\t"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 2,
-            "end": 4
-          },
-          {
-            "kind": "p",
+            "end": 4,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 2,
+                "end": 4,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "begin": 4,
-                "end": "Infinity"
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
+                "begin": 2,
+                "end": 4,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -218,45 +174,51 @@
                     "monospaceSerif"
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "This is the second line.",
-                "begin": 4,
-                "end": "Infinity"
+                "text": "These lines appear step-by-step."
               },
               {
                 "kind": "span",
+                "begin": 2,
+                "end": 4,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t",
                 "space": "default",
-                "begin": 4,
-                "end": "Infinity"
+                "text": "\n\t\t\t"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 4,
-            "end": 6
-          },
-          {
-            "kind": "p",
+            "end": 6,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 4,
+                "end": 6,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "begin": 6,
-                "end": "Infinity"
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
+                "begin": 4,
+                "end": 6,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -278,45 +240,51 @@
                     "monospaceSerif"
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "This is the second line.",
-                "begin": 6,
-                "end": "Infinity"
+                "text": "This is the second line."
               },
               {
                 "kind": "span",
+                "begin": 4,
+                "end": 6,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t",
                 "space": "default",
-                "begin": 6,
-                "end": "Infinity"
+                "text": "\n\t\t\t"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 6,
-            "end": 8
-          },
-          {
-            "kind": "p",
+            "end": 8,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 6,
+                "end": 8,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "begin": 8,
-                "end": "Infinity"
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
+                "begin": 6,
+                "end": 8,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -338,45 +306,51 @@
                     "monospaceSerif"
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "This is the third and last line.",
-                "begin": 8,
-                "end": "Infinity"
+                "text": "This is the second line."
               },
               {
                 "kind": "span",
+                "begin": 6,
+                "end": 8,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t",
                 "space": "default",
-                "begin": 8,
-                "end": "Infinity"
+                "text": "\n\t\t\t"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 8,
-            "end": 10
-          },
-          {
-            "kind": "p",
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 8,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t\t",
                 "space": "default",
-                "begin": 10,
-                "end": "Infinity"
+                "text": "\n\t\t\t\t"
               },
               {
                 "kind": "span",
+                "begin": 8,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -398,33 +372,94 @@
                     "monospaceSerif"
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "This is the third and last line.",
-                "begin": 10,
-                "end": "Infinity"
+                "text": "This is the third and last line."
               },
               {
                 "kind": "span",
+                "begin": 8,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n\t\t\t",
                 "space": "default",
-                "begin": 10,
-                "end": "Infinity"
+                "text": "\n\t\t\t"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 10,
-            "end": 12
+            "end": 12,
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "left"
+            },
+            "regionID": "bottom",
+            "sets": [],
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 12,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n\t\t\t\t"
+              },
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 12,
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ],
+                  "http://www.w3.org/ns/ttml#styling fontSize": {
+                    "value": 160,
+                    "unit": "%"
+                  },
+                  "http://www.w3.org/ns/ttml#styling fontFamily": [
+                    "monospaceSerif"
+                  ]
+                },
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "This is the third and last line."
+              },
+              {
+                "kind": "span",
+                "begin": 10,
+                "end": 12,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n\t\t\t"
+              }
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 12
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 12
+    ]
   },
   "cellResolution": {
     "w": 50,

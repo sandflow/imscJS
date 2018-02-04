@@ -8,37 +8,45 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     255,
@@ -47,12 +55,15 @@
                     255
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
+                    "begin": 0,
+                    "end": 10,
                     "styleAttrs": {
                       "http://www.w3.org/ns/ttml#styling color": [
                         0,
@@ -61,30 +72,19 @@
                         255
                       ]
                     },
-                    "timeContainer": "par",
-                    "sets": [],
                     "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
                     "space": "default",
-                    "text": "This text must be green.",
-                    "begin": 0,
-                    "end": "Infinity"
+                    "text": "This text must be green."
                   }
-                ],
-                "space": "default",
-                "begin": 0,
-                "end": "Infinity"
+                ]
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 10
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 10
+    ]
   },
   "cellResolution": {
     "w": 32,

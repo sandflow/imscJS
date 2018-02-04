@@ -9,6 +9,8 @@
       "regions": {
         "area1": {
           "id": "area1",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -32,13 +34,12 @@
             },
             "http://www.w3.org/ns/ttml#styling displayAlign": "center"
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         },
         "area2": {
           "id": "area2",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -62,23 +63,24 @@
             },
             "http://www.w3.org/ns/ttml#styling displayAlign": "center"
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling color": [
             255,
@@ -92,27 +94,34 @@
             "unit": "%"
           }
         },
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 1,
+            "end": 9,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n                ",
-                "space": "default",
                 "begin": 1,
-                "end": "Infinity"
+                "end": 9,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n                "
               },
               {
                 "kind": "span",
+                "begin": 1,
+                "end": 9,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling backgroundColor": [
                     0,
@@ -121,71 +130,86 @@
                     255
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "Centered text on two lines",
-                    "space": "default",
                     "begin": 1,
-                    "end": "Infinity"
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "Centered text on two lines"
                   },
                   {
                     "kind": "br",
-                    "regionID": "",
                     "begin": 1,
-                    "end": null
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
                   },
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "without padding.",
-                    "space": "default",
                     "begin": 1,
-                    "end": "Infinity"
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "without padding."
                   }
-                ],
-                "space": "default",
-                "begin": 1,
-                "end": null
+                ]
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n            ",
-                "space": "default",
                 "begin": 1,
-                "end": "Infinity"
+                "end": 9,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n            "
               }
-            ],
-            "begin": 1,
-            "end": 9
+            ]
           },
           {
             "kind": "p",
+            "begin": 1,
+            "end": 9,
             "styleAttrs": {
               "urn:ebu:tt:style linePadding": {
                 "value": 0.5,
                 "unit": "c"
               }
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "area2",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n                ",
-                "space": "default",
                 "begin": 1,
-                "end": "Infinity"
+                "end": 9,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n                "
               },
               {
                 "kind": "span",
+                "begin": 1,
+                "end": 9,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling backgroundColor": [
                     0,
@@ -194,56 +218,60 @@
                     255
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "Centered text on two lines",
-                    "space": "default",
                     "begin": 1,
-                    "end": "Infinity"
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "Centered text on two lines"
                   },
                   {
                     "kind": "br",
-                    "regionID": "",
                     "begin": 1,
-                    "end": null
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
                   },
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "with padding.",
-                    "space": "default",
                     "begin": 1,
-                    "end": "Infinity"
+                    "end": 9,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "with padding."
                   }
-                ],
-                "space": "default",
-                "begin": 1,
-                "end": null
+                ]
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n            ",
-                "space": "default",
                 "begin": 1,
-                "end": "Infinity"
+                "end": 9,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n            "
               }
-            ],
-            "begin": 1,
-            "end": 9
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 9
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 9
+    ]
   },
   "cellResolution": {
     "w": 32,

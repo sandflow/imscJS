@@ -8,30 +8,36 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling backgroundColor": [
                 0,
@@ -48,20 +54,25 @@
               "http://www.w3.org/ns/ttml#styling displayAlign": "after",
               "http://www.w3.org/ns/ttml#styling textAlign": "center"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n\tIn spring, when woods are ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n\tIn spring, when woods are "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 10,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling color": [
                     0,
@@ -70,47 +81,48 @@
                     255
                   ]
                 },
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "getting green",
-                "begin": 0,
-                "end": "Infinity"
+                "text": "getting green"
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": ",",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": ","
               },
               {
                 "kind": "br",
-                "regionID": "",
                 "begin": 0,
-                "end": null
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n\tI'll try and tell you what I mean.\n      ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n\tI'll try and tell you what I mean.\n      "
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 10
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 10
+    ]
   },
   "cellResolution": {
     "w": 32,

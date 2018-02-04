@@ -9,6 +9,8 @@
       "regions": {
         "r1": {
           "id": "r1",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
@@ -37,23 +39,24 @@
               255
             ]
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling backgroundColor": [
             0,
@@ -62,87 +65,101 @@
             255
           ]
         },
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "r1",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 5,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "The before and after edges ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "The before and after edges "
               },
               {
                 "kind": "br",
-                "regionID": "",
                 "begin": 0,
-                "end": null
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "are padded by 10 pixels.",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "are padded by 10 pixels."
               }
-            ],
-            "begin": 0,
-            "end": 5
+            ]
           },
           {
             "kind": "p",
+            "begin": 5,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "right"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "The start and end edges ",
-                "space": "default",
                 "begin": 5,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "The start and end edges "
               },
               {
                 "kind": "br",
-                "regionID": "",
                 "begin": 5,
-                "end": null
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "are padded by 30 pixels.",
-                "space": "default",
                 "begin": 5,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "are padded by 30 pixels."
               }
-            ],
-            "begin": 5,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 10
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 10
+    ]
   },
   "cellResolution": {
     "w": 32,

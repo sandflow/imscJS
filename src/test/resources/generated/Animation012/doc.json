@@ -11,93 +11,97 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": 20,
         "styleAttrs": {},
-        "timeContainer": "seq",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "timeContainer": "par",
+            "regionID": "",
             "sets": [
               {
-                "timeContainer": "par",
-                "qname": "http://www.w3.org/ns/ttml#styling textAlign",
-                "value": "right",
                 "begin": 5,
-                "end": "Infinity"
+                "end": 10,
+                "qname": "http://www.w3.org/ns/ttml#styling textAlign",
+                "value": "right"
               }
             ],
-            "regionID": "",
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n        This sentence should move right at 5s for 5 seconds\n      ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This sentence should move right at 5s for 5 seconds\n      "
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           },
           {
             "kind": "p",
+            "begin": 10,
+            "end": 20,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "right"
             },
-            "timeContainer": "par",
+            "regionID": "",
             "sets": [
               {
-                "timeContainer": "par",
-                "qname": "http://www.w3.org/ns/ttml#styling textAlign",
-                "value": "left",
                 "begin": 16,
-                "end": "Infinity"
+                "end": 20,
+                "qname": "http://www.w3.org/ns/ttml#styling textAlign",
+                "value": "left"
               }
             ],
-            "regionID": "",
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n        This sentence should move left at 6s for 4 seconds\n      ",
-                "space": "default",
                 "begin": 10,
-                "end": "Infinity"
+                "end": 20,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This sentence should move left at 6s for 4 seconds\n      "
               }
-            ],
-            "begin": 10,
-            "end": 20
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 20
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 20
+    ]
   },
   "cellResolution": {
     "w": 32,

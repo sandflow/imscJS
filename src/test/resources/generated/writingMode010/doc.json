@@ -8,6 +8,8 @@
       "regions": {
         "top": {
           "id": "top",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -58,13 +60,12 @@
             ],
             "http://www.w3.org/ns/ttml#styling textAlign": "start"
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         },
         "right": {
           "id": "right",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -115,115 +116,130 @@
             ],
             "http://www.w3.org/ns/ttml#styling textAlign": "start"
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 1,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "top",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n                نشاط التدويل، W3C\n            ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 1,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n                نشاط التدويل، W3C\n            "
               }
-            ],
-            "begin": 0,
-            "end": 1
+            ]
           },
           {
             "kind": "p",
+            "begin": 0,
+            "end": 1,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "right",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n                hello ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 1,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n                hello "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 1,
                 "styleAttrs": {},
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
                 "contents": [
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "みなさん、",
-                    "space": "default",
                     "begin": 0,
-                    "end": "Infinity"
+                    "end": 1,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "みなさん、"
                   },
                   {
                     "kind": "br",
-                    "regionID": "",
                     "begin": 0,
-                    "end": null
+                    "end": 1,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par"
                   },
                   {
                     "kind": "span",
-                    "timeContainer": "par",
-                    "text": "こんにちは",
-                    "space": "default",
                     "begin": 0,
-                    "end": "Infinity"
+                    "end": 1,
+                    "styleAttrs": {},
+                    "regionID": "",
+                    "sets": [],
+                    "timeContainer": "par",
+                    "space": "default",
+                    "text": "こんにちは"
                   }
-                ],
-                "space": "default",
-                "begin": 0,
-                "end": null
+                ]
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n            ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 1,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n            "
               }
-            ],
-            "begin": 0,
-            "end": 1
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 1
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 1
+    ]
   },
   "cellResolution": {
     "w": 50,

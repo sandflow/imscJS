@@ -9,68 +9,70 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {
       "http://www.w3.org/ns/ttml#styling fontFamily": [
         "monospaceSerif"
       ]
     },
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {},
-            "timeContainer": "par",
+            "regionID": "",
             "sets": [
               {
-                "timeContainer": "par",
+                "begin": 5,
+                "end": 10,
                 "qname": "http://www.w3.org/ns/ttml#styling fontFamily",
                 "value": [
                   "proportionalSansSerif"
-                ],
-                "begin": 5,
-                "end": "Infinity"
+                ]
               }
             ],
-            "regionID": "",
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n        \n        The font family should become \"proportionalSansSerif\" at 5s\n      ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        \n        The font family should become \"proportionalSansSerif\" at 5s\n      "
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 10
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 10
+    ]
   },
   "cellResolution": {
     "w": 32,

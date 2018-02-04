@@ -12,30 +12,36 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 5,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling extent": {
                 "h": {
@@ -62,116 +68,119 @@
               "http://www.w3.org/ns/ttml#styling displayAlign": "before",
               "http://www.w3.org/ns/ttml#styling textAlign": "start"
             },
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n    [[[\n    ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n    [[[\n    "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 5,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling display": "none"
                 },
-                "timeContainer": "par",
+                "regionID": "",
                 "sets": [
                   {
-                    "timeContainer": "par",
-                    "qname": "http://www.w3.org/ns/ttml#styling display",
-                    "value": "auto",
                     "begin": 1,
-                    "end": 2
+                    "end": 2,
+                    "qname": "http://www.w3.org/ns/ttml#styling display",
+                    "value": "auto"
                   }
                 ],
-                "regionID": "",
-                "space": "default",
-                "text": "\n      \n      Beautiful soup,\n    ",
-                "begin": 0,
-                "end": "Infinity"
-              },
-              {
-                "kind": "span",
                 "timeContainer": "par",
-                "text": "\n    ",
                 "space": "default",
-                "begin": 0,
-                "end": "Infinity"
+                "text": "\n      \n      Beautiful soup,\n    "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n    "
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 5,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling display": "none"
                 },
-                "timeContainer": "par",
+                "regionID": "",
                 "sets": [
                   {
-                    "timeContainer": "par",
-                    "qname": "http://www.w3.org/ns/ttml#styling display",
-                    "value": "auto",
                     "begin": 2,
-                    "end": 3
+                    "end": 3,
+                    "qname": "http://www.w3.org/ns/ttml#styling display",
+                    "value": "auto"
                   }
                 ],
-                "regionID": "",
-                "space": "default",
-                "text": "\n      \n      so rich and green,\n    ",
-                "begin": 0,
-                "end": "Infinity"
-              },
-              {
-                "kind": "span",
                 "timeContainer": "par",
-                "text": "\n    ",
                 "space": "default",
-                "begin": 0,
-                "end": "Infinity"
+                "text": "\n      \n      so rich and green,\n    "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n    "
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 5,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling display": "none"
                 },
-                "timeContainer": "par",
+                "regionID": "",
                 "sets": [
                   {
-                    "timeContainer": "par",
-                    "qname": "http://www.w3.org/ns/ttml#styling display",
-                    "value": "auto",
                     "begin": 3,
-                    "end": 4
+                    "end": 4,
+                    "qname": "http://www.w3.org/ns/ttml#styling display",
+                    "value": "auto"
                   }
                 ],
-                "regionID": "",
+                "timeContainer": "par",
                 "space": "default",
-                "text": "\n      \n      waiting in a hot tureen!\n    ",
-                "begin": 0,
-                "end": "Infinity"
+                "text": "\n      \n      waiting in a hot tureen!\n    "
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n    ]]]\n  ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n    ]]]\n  "
               }
-            ],
-            "begin": 0,
-            "end": 5
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 5
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 5
+    ]
   },
   "cellResolution": {
     "w": 32,

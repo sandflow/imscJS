@@ -10,64 +10,66 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": 10,
         "styleAttrs": {},
-        "timeContainer": "seq",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling wrapOption": "noWrap"
             },
-            "timeContainer": "par",
+            "regionID": "",
             "sets": [
               {
-                "timeContainer": "par",
-                "qname": "http://www.w3.org/ns/ttml#styling wrapOption",
-                "value": "wrap",
                 "begin": 3,
-                "end": 8
+                "end": 8,
+                "qname": "http://www.w3.org/ns/ttml#styling wrapOption",
+                "value": "wrap"
               }
             ],
-            "regionID": "",
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n        This text should start to wrap from 3s to 8s it is a very long piece of text in order to ensure that it does in fact hit the region edges and thus require some wrapping action. Wrapping is not required to support hyphenation, so this text should wrap at whole word boundaries.",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This text should start to wrap from 3s to 8s it is a very long piece of text in order to ensure that it does in fact hit the region edges and thus require some wrapping action. Wrapping is not required to support hyphenation, so this text should wrap at whole word boundaries."
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 10
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 10
+    ]
   },
   "cellResolution": {
     "w": 32,

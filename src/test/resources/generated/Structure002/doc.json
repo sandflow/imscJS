@@ -1,16 +1,14 @@
 {
-  "events": [
-    0
-  ],
+  "events": [],
   "head": {
     "layout": {
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }

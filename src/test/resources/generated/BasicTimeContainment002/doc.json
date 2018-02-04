@@ -10,111 +10,123 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": 20,
         "styleAttrs": {},
-        "timeContainer": "seq",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n        ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
-              },
-              {
-                "kind": "span",
+                "end": 10,
                 "styleAttrs": {},
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
-                "space": "default",
-                "text": "This first sentence persists for 5 seconds.",
-                "begin": 0,
-                "end": 5
-              },
-              {
-                "kind": "span",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "\n        ",
                 "space": "default",
-                "begin": 0,
-                "end": "Infinity"
+                "text": "\n        "
               },
               {
                 "kind": "span",
+                "begin": 0,
+                "end": 5,
                 "styleAttrs": {},
-                "timeContainer": "par",
-                "sets": [],
                 "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
                 "space": "default",
-                "text": "This second sentence persists for 10 seconds",
-                "begin": 0,
-                "end": 10
+                "text": "This first sentence persists for 5 seconds."
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n      ",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        "
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "This second sentence persists for 10 seconds"
+              },
+              {
+                "kind": "span",
+                "begin": 0,
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n      "
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           },
           {
             "kind": "p",
+            "begin": 10,
+            "end": 20,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "This sentence appears at 10 seconds and persists for 10 seconds",
-                "space": "default",
                 "begin": 10,
-                "end": "Infinity"
+                "end": 20,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "This sentence appears at 10 seconds and persists for 10 seconds"
               }
-            ],
-            "begin": 10,
-            "end": 20
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 20
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 20
+    ]
   },
   "cellResolution": {
     "w": 32,

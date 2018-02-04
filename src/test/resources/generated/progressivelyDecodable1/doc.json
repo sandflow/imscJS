@@ -12,6 +12,8 @@
       "regions": {
         "area1": {
           "id": "area1",
+          "begin": 0,
+          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -48,116 +50,125 @@
               255
             ]
           },
-          "timeContainer": "par",
-          "sets": [],
-          "begin": 0,
-          "end": "Infinity"
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {
       "http://www.w3.org/ns/ttml#styling lineHeight": {
         "value": 100,
         "unit": "%"
       }
     },
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
-            "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
-            "regionID": "area1",
-            "contents": [
-              {
-                "kind": "span",
-                "timeContainer": "par",
-                "text": "One.",
-                "space": "default",
-                "begin": 1,
-                "end": "Infinity"
-              }
-            ],
             "begin": 1,
-            "end": 2
-          },
-          {
-            "kind": "p",
+            "end": 2,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 1,
+                "end": 2,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "Two.",
                 "space": "default",
-                "begin": 2,
-                "end": "Infinity"
+                "text": "One."
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 2,
-            "end": 3
-          },
-          {
-            "kind": "p",
+            "end": 3,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 2,
+                "end": 3,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "Three.",
                 "space": "default",
-                "begin": 3,
-                "end": "Infinity"
+                "text": "Two."
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 3,
-            "end": 4
-          },
-          {
-            "kind": "p",
+            "end": 4,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 3,
+                "end": 4,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "Over.",
                 "space": "default",
-                "begin": 4,
-                "end": "Infinity"
+                "text": "Three."
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 4,
-            "end": 5
+            "end": 5,
+            "styleAttrs": {},
+            "regionID": "area1",
+            "sets": [],
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 4,
+                "end": 5,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "Over."
+              }
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 5
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 5
+    ]
   },
   "cellResolution": {
     "w": 32,

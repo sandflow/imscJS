@@ -7,54 +7,57 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "seq",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "seq",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": 0,
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 0,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "This text must be visible.",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 0,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "This text must not be visible."
               }
-            ],
-            "begin": 0,
-            "end": "Infinity"
+            ]
           }
-        ],
-        "begin": 0,
-        "end": "Infinity"
+        ]
       }
-    ],
-    "begin": 0,
-    "end": "Infinity"
+    ]
   },
   "cellResolution": {
     "w": 32,

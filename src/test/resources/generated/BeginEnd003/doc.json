@@ -23,220 +23,253 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": "Infinity",
         "styleAttrs": {},
-        "timeContainer": "par",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "par",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 6,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "This test is going to display a message",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 6,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "This test is going to display a message"
               },
               {
                 "kind": "br",
-                "regionID": "",
                 "begin": 0,
-                "end": null
+                "end": 6,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par"
               },
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "every other second.",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 6,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "every other second."
               }
-            ],
-            "begin": 0,
-            "end": 6
+            ]
           },
           {
             "kind": "p",
-            "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
-            "regionID": "",
-            "contents": [
-              {
-                "kind": "span",
-                "timeContainer": "par",
-                "text": "and, from 18s to 19s.",
-                "space": "default",
-                "begin": 18,
-                "end": "Infinity"
-              }
-            ],
             "begin": 18,
-            "end": 19
-          },
-          {
-            "kind": "p",
+            "end": 19,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 18,
+                "end": 19,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "from 10s to 11s,",
                 "space": "default",
-                "begin": 10,
-                "end": "Infinity"
+                "text": "and, from 18s to 19s."
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 10,
-            "end": 11
-          },
-          {
-            "kind": "p",
+            "end": 11,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 10,
+                "end": 11,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "from 14s to 15s,",
                 "space": "default",
-                "begin": 14,
-                "end": "Infinity"
+                "text": "from 10s to 11s,"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 14,
-            "end": 15
-          },
-          {
-            "kind": "p",
+            "end": 15,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 14,
+                "end": 15,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "from 8s to 9s,",
                 "space": "default",
-                "begin": 8,
-                "end": "Infinity"
+                "text": "from 14s to 15s,"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 8,
-            "end": 9
-          },
-          {
-            "kind": "p",
+            "end": 9,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 8,
+                "end": 9,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "From 6s to 7s,",
                 "space": "default",
-                "begin": 6,
-                "end": "Infinity"
+                "text": "from 8s to 9s,"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 6,
-            "end": 7
-          },
-          {
-            "kind": "p",
+            "end": 7,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 6,
+                "end": 7,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "from 16s to 17s,",
                 "space": "default",
-                "begin": 16,
-                "end": "Infinity"
+                "text": "From 6s to 7s,"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 16,
-            "end": 17
-          },
-          {
-            "kind": "p",
+            "end": 17,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 16,
+                "end": 17,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "from 12s to 13s,",
                 "space": "default",
-                "begin": 12,
-                "end": "Infinity"
+                "text": "from 16s to 17s,"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 12,
-            "end": 13
-          },
-          {
-            "kind": "p",
+            "end": 13,
             "styleAttrs": {},
-            "timeContainer": "par",
-            "sets": [],
             "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
+                "begin": 12,
+                "end": 13,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
                 "timeContainer": "par",
-                "text": "This test is over.",
                 "space": "default",
-                "begin": 20,
-                "end": "Infinity"
+                "text": "from 12s to 13s,"
               }
-            ],
+            ]
+          },
+          {
+            "kind": "p",
             "begin": 20,
-            "end": 25
+            "end": 25,
+            "styleAttrs": {},
+            "regionID": "",
+            "sets": [],
+            "timeContainer": "par",
+            "contents": [
+              {
+                "kind": "span",
+                "begin": 20,
+                "end": 25,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "This test is over."
+              }
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 25
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 25
+    ]
   },
   "cellResolution": {
     "w": 32,

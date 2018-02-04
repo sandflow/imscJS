@@ -10,37 +10,44 @@
       "regions": {
         "": {
           "id": "",
-          "styleAttrs": {},
-          "sets": [],
           "begin": 0,
-          "end": "Infinity"
+          "end": "Infinity",
+          "styleAttrs": {},
+          "sets": []
         }
       }
     }
   },
   "body": {
     "kind": "body",
+    "begin": 0,
+    "end": "Infinity",
     "styleAttrs": {},
-    "timeContainer": "par",
-    "sets": [],
     "regionID": "",
+    "sets": [],
+    "timeContainer": "par",
     "contents": [
       {
         "kind": "div",
+        "begin": 0,
+        "end": 20,
         "styleAttrs": {},
-        "timeContainer": "seq",
-        "sets": [],
         "regionID": "",
+        "sets": [],
+        "timeContainer": "seq",
         "contents": [
           {
             "kind": "p",
+            "begin": 0,
+            "end": 10,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textOutline": "none"
             },
-            "timeContainer": "par",
+            "regionID": "",
             "sets": [
               {
-                "timeContainer": "par",
+                "begin": 5,
+                "end": 10,
                 "qname": "http://www.w3.org/ns/ttml#styling textOutline",
                 "value": {
                   "color": [
@@ -53,32 +60,27 @@
                     "value": 1,
                     "unit": "px"
                   }
-                },
-                "begin": 5,
-                "end": "Infinity"
+                }
               }
             ],
-            "regionID": "",
+            "timeContainer": "par",
             "contents": [
               {
                 "kind": "span",
-                "timeContainer": "par",
-                "text": "\n        This text should be outlined in blurred red from 5s to 10s",
-                "space": "default",
                 "begin": 0,
-                "end": "Infinity"
+                "end": 10,
+                "styleAttrs": {},
+                "regionID": "",
+                "sets": [],
+                "timeContainer": "par",
+                "space": "default",
+                "text": "\n        This text should be outlined in blurred red from 5s to 10s"
               }
-            ],
-            "begin": 0,
-            "end": 10
+            ]
           }
-        ],
-        "begin": 0,
-        "end": 20
+        ]
       }
-    ],
-    "begin": 0,
-    "end": 20
+    ]
   },
   "cellResolution": {
     "w": 32,
