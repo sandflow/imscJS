@@ -19,521 +19,420 @@
       "regions": {
         "r1": {
           "id": "r1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling displayAlign": "after"
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": "Infinity",
     "styleAttrs": {},
-    "regionID": "r1",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "r1",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": "Infinity",
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 0,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "0",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
             "begin": 0,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "0"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 1,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 1,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "1",
+                "space": "default",
+                "begin": 1,
+                "end": "Infinity"
+              }
+            ],
             "begin": 1,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 1,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 1,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 1,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "1"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 2,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 2,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "2",
+                "space": "default",
+                "begin": 2,
+                "end": "Infinity"
+              }
+            ],
             "begin": 2,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 2,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 2,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 2,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "2"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 3,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 3,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "3",
+                "space": "default",
+                "begin": 3,
+                "end": "Infinity"
+              }
+            ],
             "begin": 3,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 3,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 3,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 3,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "3"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 4,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 4,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "4",
+                "space": "default",
+                "begin": 4,
+                "end": "Infinity"
+              }
+            ],
             "begin": 4,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 4,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 4,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 4,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "4"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 5,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 5,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "5",
+                "space": "default",
+                "begin": 5,
+                "end": "Infinity"
+              }
+            ],
             "begin": 5,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 5,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "5"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 6,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 6,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "6",
+                "space": "default",
+                "begin": 6,
+                "end": "Infinity"
+              }
+            ],
             "begin": 6,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 6,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 6,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 6,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "6"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 7,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 7,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "7",
+                "space": "default",
+                "begin": 7,
+                "end": "Infinity"
+              }
+            ],
             "begin": 7,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 7,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 7,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 7,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "7"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 8,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 8,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "8",
+                "space": "default",
+                "begin": 8,
+                "end": "Infinity"
+              }
+            ],
             "begin": 8,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 8,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 8,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 8,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "8"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 9,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 9,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "9",
+                "space": "default",
+                "begin": 9,
+                "end": "Infinity"
+              }
+            ],
             "begin": 9,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 9,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 9,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 9,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "9"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This test counts from 0 to 10 in 10 seconds.",
+                "space": "default",
+                "begin": 10,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 10,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "10",
+                "space": "default",
+                "begin": 10,
+                "end": "Infinity"
+              }
+            ],
             "begin": 10,
-            "end": "Infinity",
-            "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "This test counts from 0 to 10 in 10 seconds."
-              },
-              {
-                "kind": "br",
-                "begin": 10,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": "Infinity",
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "10"
-              }
-            ]
+            "end": null
           },
           {
             "kind": "p",
-            "begin": 11,
-            "end": 20,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 11,
-                "end": 20,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This test is over.",
                 "space": "default",
-                "text": "This test is over."
+                "begin": 11,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 11,
+            "end": 20
           }
-        ]
+        ],
+        "begin": 0,
+        "end": null
       }
-    ]
+    ],
+    "begin": 0,
+    "end": null
   },
   "cellResolution": {
     "w": 32,

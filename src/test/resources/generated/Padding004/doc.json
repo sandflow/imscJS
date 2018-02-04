@@ -11,8 +11,6 @@
       "regions": {
         "r1": {
           "id": "r1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
@@ -49,24 +47,23 @@
               255
             ]
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": "Infinity",
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": "Infinity",
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling backgroundColor": [
             0,
@@ -75,189 +72,157 @@
             255
           ]
         },
-        "regionID": "r1",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "r1",
         "contents": [
           {
             "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "left"
+            },
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "The before edge ",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 0,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "is padded by 10 pixels.",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
             "begin": 0,
-            "end": 5,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "left"
-            },
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 5,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "The before edge "
-              },
-              {
-                "kind": "br",
-                "begin": 0,
-                "end": 5,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 0,
-                "end": 5,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "is padded by 10 pixels."
-              }
-            ]
+            "end": 5
           },
           {
             "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "right"
+            },
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "The end edge ",
+                "space": "default",
+                "begin": 5,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 5,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "is padded by 20 pixels.",
+                "space": "default",
+                "begin": 5,
+                "end": "Infinity"
+              }
+            ],
             "begin": 5,
-            "end": 10,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "right"
-            },
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 5,
-                "end": 10,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "The end edge "
-              },
-              {
-                "kind": "br",
-                "begin": 5,
-                "end": 10,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 5,
-                "end": 10,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "is padded by 20 pixels."
-              }
-            ]
+            "end": 10
           },
           {
             "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling textAlign": "right"
+            },
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "The after edge ",
+                "space": "default",
+                "begin": 10,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 10,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "is padded by 30 pixels.",
+                "space": "default",
+                "begin": 10,
+                "end": "Infinity"
+              }
+            ],
             "begin": 10,
-            "end": 15,
-            "styleAttrs": {
-              "http://www.w3.org/ns/ttml#styling textAlign": "right"
-            },
-            "regionID": "",
-            "sets": [],
-            "timeContainer": "par",
-            "contents": [
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": 15,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "The after edge "
-              },
-              {
-                "kind": "br",
-                "begin": 10,
-                "end": 15,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
-              },
-              {
-                "kind": "span",
-                "begin": 10,
-                "end": 15,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "is padded by 30 pixels."
-              }
-            ]
+            "end": 15
           },
           {
             "kind": "p",
-            "begin": 15,
-            "end": 20,
             "styleAttrs": {
               "http://www.w3.org/ns/ttml#styling textAlign": "left"
             },
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 15,
-                "end": 20,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "The start edge ",
                 "space": "default",
-                "text": "The start edge "
+                "begin": 15,
+                "end": "Infinity"
               },
               {
                 "kind": "br",
-                "begin": 15,
-                "end": 20,
-                "styleAttrs": {},
                 "regionID": "",
-                "sets": [],
-                "timeContainer": "par"
+                "begin": 15,
+                "end": null
               },
               {
                 "kind": "span",
-                "begin": 15,
-                "end": 20,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "is padded by 40 pixels.",
                 "space": "default",
-                "text": "is padded by 40 pixels."
+                "begin": 15,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 15,
+            "end": 20
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 20
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 20
   },
   "cellResolution": {
     "w": 32,

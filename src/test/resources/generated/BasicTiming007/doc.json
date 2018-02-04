@@ -10,79 +10,73 @@
       "regions": {
         "": {
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": "Infinity",
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": "Infinity",
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 5,
-            "end": 20,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "seq",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 5,
-                "end": 5,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This text must not appear.\n        ",
                 "space": "default",
-                "text": "This text must not appear.\n        "
+                "begin": 5,
+                "end": 5
               },
               {
                 "kind": "span",
-                "begin": 5,
-                "end": 15,
                 "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
                 "space": "default",
-                "text": "This text should appear at  5 seconds and stay till 15 seconds"
+                "text": "This text should appear at  5 seconds and stay till 15 seconds",
+                "begin": 5,
+                "end": 15
               },
               {
                 "kind": "span",
+                "timeContainer": "par",
+                "text": "\n        This text must not appear.\n      ",
+                "space": "default",
                 "begin": 15,
-                "end": 15,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
-                "timeContainer": "par",
-                "space": "default",
-                "text": "\n        This text must not appear.\n      "
+                "end": 15
               }
-            ]
+            ],
+            "begin": 5,
+            "end": 20
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 20
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 20
   },
   "cellResolution": {
     "w": 32,

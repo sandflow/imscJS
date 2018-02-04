@@ -9,8 +9,6 @@
       "regions": {
         "area1": {
           "id": "area1",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -34,12 +32,13 @@
             },
             "http://www.w3.org/ns/ttml#styling displayAlign": "center"
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         },
         "area2": {
           "id": "area2",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
@@ -63,24 +62,23 @@
             },
             "http://www.w3.org/ns/ttml#styling displayAlign": "center"
           },
-          "sets": []
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": "Infinity",
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": "Infinity",
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling color": [
             255,
@@ -94,34 +92,27 @@
             "unit": "%"
           }
         },
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 1,
-            "end": 9,
             "styleAttrs": {},
-            "regionID": "area1",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "area1",
             "contents": [
               {
                 "kind": "span",
-                "begin": 1,
-                "end": 9,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n                ",
                 "space": "default",
-                "text": "\n                "
+                "begin": 1,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 1,
-                "end": 9,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling backgroundColor": [
                     0,
@@ -130,86 +121,71 @@
                     255
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
-                "space": "default",
+                "sets": [],
+                "regionID": "",
                 "contents": [
                   {
                     "kind": "span",
-                    "begin": 1,
-                    "end": 9,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
                     "timeContainer": "par",
+                    "text": "Centered text on two lines",
                     "space": "default",
-                    "text": "Centered text on two lines"
+                    "begin": 1,
+                    "end": "Infinity"
                   },
                   {
                     "kind": "br",
-                    "begin": 1,
-                    "end": 9,
-                    "styleAttrs": {},
                     "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par"
+                    "begin": 1,
+                    "end": null
                   },
                   {
                     "kind": "span",
-                    "begin": 1,
-                    "end": 9,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
                     "timeContainer": "par",
+                    "text": "without padding.",
                     "space": "default",
-                    "text": "without padding."
+                    "begin": 1,
+                    "end": "Infinity"
                   }
-                ]
+                ],
+                "space": "default",
+                "begin": 1,
+                "end": null
               },
               {
                 "kind": "span",
-                "begin": 1,
-                "end": 9,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n            ",
                 "space": "default",
-                "text": "\n            "
+                "begin": 1,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 1,
+            "end": 9
           },
           {
             "kind": "p",
-            "begin": 1,
-            "end": 9,
             "styleAttrs": {
               "urn:ebu:tt:style linePadding": {
                 "value": 0.5,
                 "unit": "c"
               }
             },
-            "regionID": "area2",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "area2",
             "contents": [
               {
                 "kind": "span",
-                "begin": 1,
-                "end": 9,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n                ",
                 "space": "default",
-                "text": "\n                "
+                "begin": 1,
+                "end": "Infinity"
               },
               {
                 "kind": "span",
-                "begin": 1,
-                "end": 9,
                 "styleAttrs": {
                   "http://www.w3.org/ns/ttml#styling backgroundColor": [
                     0,
@@ -218,60 +194,56 @@
                     255
                   ]
                 },
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
-                "space": "default",
+                "sets": [],
+                "regionID": "",
                 "contents": [
                   {
                     "kind": "span",
-                    "begin": 1,
-                    "end": 9,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
                     "timeContainer": "par",
+                    "text": "Centered text on two lines",
                     "space": "default",
-                    "text": "Centered text on two lines"
+                    "begin": 1,
+                    "end": "Infinity"
                   },
                   {
                     "kind": "br",
-                    "begin": 1,
-                    "end": 9,
-                    "styleAttrs": {},
                     "regionID": "",
-                    "sets": [],
-                    "timeContainer": "par"
+                    "begin": 1,
+                    "end": null
                   },
                   {
                     "kind": "span",
-                    "begin": 1,
-                    "end": 9,
-                    "styleAttrs": {},
-                    "regionID": "",
-                    "sets": [],
                     "timeContainer": "par",
+                    "text": "with padding.",
                     "space": "default",
-                    "text": "with padding."
+                    "begin": 1,
+                    "end": "Infinity"
                   }
-                ]
+                ],
+                "space": "default",
+                "begin": 1,
+                "end": null
               },
               {
                 "kind": "span",
-                "begin": 1,
-                "end": 9,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "\n            ",
                 "space": "default",
-                "text": "\n            "
+                "begin": 1,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 1,
+            "end": 9
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 9
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 9
   },
   "cellResolution": {
     "w": 32,

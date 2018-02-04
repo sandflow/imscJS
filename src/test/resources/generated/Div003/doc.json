@@ -12,27 +12,23 @@
       "regions": {
         "": {
           "id": "",
-          "begin": 0,
-          "end": "Infinity",
           "styleAttrs": {},
-          "sets": []
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
         }
       }
     }
   },
   "body": {
     "kind": "body",
-    "begin": 0,
-    "end": "Infinity",
     "styleAttrs": {},
-    "regionID": "",
-    "sets": [],
     "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
     "contents": [
       {
         "kind": "div",
-        "begin": 0,
-        "end": 5,
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling color": [
             255,
@@ -41,38 +37,35 @@
             255
           ]
         },
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 0,
-            "end": 5,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 0,
-                "end": 5,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This text must be red.",
                 "space": "default",
-                "text": "This text must be red."
+                "begin": 0,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 0,
+            "end": 5
           }
-        ]
+        ],
+        "begin": 0,
+        "end": 5
       },
       {
         "kind": "div",
-        "begin": 5,
-        "end": 10,
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling color": [
             0,
@@ -81,38 +74,35 @@
             255
           ]
         },
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 5,
-            "end": 10,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 5,
-                "end": 10,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "Ce texte doit être vert.",
                 "space": "default",
-                "text": "Ce texte doit être vert."
+                "begin": 5,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 5,
+            "end": 10
           }
-        ]
+        ],
+        "begin": 5,
+        "end": 10
       },
       {
         "kind": "div",
-        "begin": 10,
-        "end": 15,
         "styleAttrs": {
           "http://www.w3.org/ns/ttml#styling color": [
             255,
@@ -121,68 +111,66 @@
             255
           ]
         },
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 10,
-            "end": 15,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 10,
-                "end": 15,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "このテキストは赤くなければならない。",
                 "space": "default",
-                "text": "このテキストは赤くなければならない。"
+                "begin": 10,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 10,
+            "end": 15
           }
-        ]
+        ],
+        "begin": 10,
+        "end": 15
       },
       {
         "kind": "div",
-        "begin": 15,
-        "end": 25,
         "styleAttrs": {},
-        "regionID": "",
-        "sets": [],
         "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
         "contents": [
           {
             "kind": "p",
-            "begin": 15,
-            "end": 20,
             "styleAttrs": {},
-            "regionID": "",
-            "sets": [],
             "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
             "contents": [
               {
                 "kind": "span",
-                "begin": 15,
-                "end": 20,
-                "styleAttrs": {},
-                "regionID": "",
-                "sets": [],
                 "timeContainer": "par",
+                "text": "This test is over.",
                 "space": "default",
-                "text": "This test is over."
+                "begin": 15,
+                "end": "Infinity"
               }
-            ]
+            ],
+            "begin": 15,
+            "end": 20
           }
-        ]
+        ],
+        "begin": 15,
+        "end": 25
       }
-    ]
+    ],
+    "begin": 0,
+    "end": 25
   },
   "cellResolution": {
     "w": 32,
