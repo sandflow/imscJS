@@ -13,6 +13,8 @@ parser.add_argument("render_dir", help = "Path of the Generated directory")
 
 parser.add_argument("-d", help = "Specifies whether a diff of images is output")
 
+parser.add_argument("-t", type=float, help = "Specifies the difference threshold", default=0.00001)
+
 args = parser.parse_args()
 
 for dir, dirs, files in os.walk(args.ref_dir):
@@ -31,7 +33,7 @@ for dir, dirs, files in os.walk(args.ref_dir):
             except subprocess.CalledProcessError as err:
                 m = re.search('([^\(]+)\(([^\)]+)', err.output)
                 r = float(m.group(2))
-                if (r > 0.00001) :
+                if (r > args.t) :
                     print(reffile + ": " + str(r))
                     if args.d is not None:
                       diffdir = args.d
