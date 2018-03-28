@@ -4,6 +4,10 @@
       "kind": "region",
       "id": "r5",
       "styleAttrs": {
+        "http://www.w3.org/ns/ttml#styling extent": {
+          "h": 1,
+          "w": 1
+        },
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           255,
           0,
@@ -14,10 +18,6 @@
         "http://www.w3.org/ns/ttml#styling showBackground": "whenActive",
         "http://www.w3.org/ns/ttml#styling display": "auto",
         "http://www.w3.org/ns/ttml#styling displayAlign": "before",
-        "http://www.w3.org/ns/ttml#styling extent": {
-          "h": 1,
-          "w": 1
-        },
         "http://www.w3.org/ns/ttml#styling opacity": 1,
         "http://www.w3.org/ns/ttml#styling origin": {
           "h": 0,

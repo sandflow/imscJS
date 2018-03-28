@@ -114,7 +114,7 @@
                         "http://www.w3.org/ns/ttml#styling display": "auto",
                         "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                       },
-                      "text": "100:00:00:100 = 360000s",
+                      "text": "100:00:00:00 = 360000s",
                       "space": "default"
                     }
                   ]

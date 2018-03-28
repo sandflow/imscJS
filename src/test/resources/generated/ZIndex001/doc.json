@@ -14,6 +14,16 @@
         "r1": {
           "id": "r1",
           "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               0,
               0,
@@ -31,6 +41,16 @@
         "r2": {
           "id": "r2",
           "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               255,
               0,
@@ -48,6 +68,16 @@
         "r3": {
           "id": "r3",
           "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               0,
               0,
@@ -65,6 +95,16 @@
         "r4": {
           "id": "r4",
           "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               0,
               128,
@@ -82,6 +122,16 @@
         "r5": {
           "id": "r5",
           "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               255,
               0,
@@ -99,6 +149,16 @@
         "r6": {
           "id": "r6",
           "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            },
             "http://www.w3.org/ns/ttml#styling backgroundColor": [
               128,
               128,

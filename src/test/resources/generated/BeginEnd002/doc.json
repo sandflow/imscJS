@@ -20,7 +20,17 @@
         "r1": {
           "id": "r1",
           "styleAttrs": {
-            "http://www.w3.org/ns/ttml#styling displayAlign": "after"
+            "http://www.w3.org/ns/ttml#styling displayAlign": "after",
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            }
           },
           "timeContainer": "par",
           "sets": [],
