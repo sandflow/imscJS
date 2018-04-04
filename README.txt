@@ -157,30 +157,6 @@ Unit tests are located at [1] and run as a webapp [2] using QUnit [3].
 [2] src/test/webapp/unit_tests.html
 [3] https://qunitjs.com/
 
-
-IRT and W3C samples
-*******************
-
-Also included is the 'samples' webapp [1] that renders the samples listed at [2].
-
-[1] src/test/webapp/samples.html
-[2] src/test/resources/samples/samples.json
-
-The samples.json provided with the distribution expects the following two directories to be added to [3]
-
-* "irt" directory that contains the "ttml" and "png" directories at [4]. These are test vectors provided by the 
-Institut für Rundfunktechnik (IRT) [5].
-* "ttml" directory that contains the directories at [6]. These are the formal TTML1 test vectors provided by the W3C. 
-Only tests that are compatible with IMSC1 are referenced.
-
-
-[3] src/test/resources/samples/
-[4] https://github.com/IRT-Open-Source/irt-ebu-tt-d-application-samples
-[5] https://www.irt.de/en
-[6] https://github.com/w3c/ttml1/tree/gh-pages/testsuite
-
-
-
 NPM PACKAGE
 ===========
 
