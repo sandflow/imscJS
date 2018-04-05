@@ -117,10 +117,12 @@
                     } else {
 
                         var s = str.split(" ");
-                        if (s.length !== 2) return null;
+                        if (s.length !== 2)
+                            return null;
                         var w = imscUtils.parseLength(s[0]);
                         var h = imscUtils.parseLength(s[1]);
-                        if (!h || !w) return null;
+                        if (!h || !w)
+                            return null;
                         return {'h': h, 'w': w};
                     }
 
@@ -372,10 +374,12 @@
                     } else {
 
                         var s = str.split(" ");
-                        if (s.length !== 2) return null;
+                        if (s.length !== 2)
+                            return null;
                         var w = imscUtils.parseLength(s[0]);
                         var h = imscUtils.parseLength(s[1]);
-                        if (!h || !w) return null;
+                        if (!h || !w)
+                            return null;
                         return {'h': h, 'w': w};
                     }
 
@@ -446,12 +450,14 @@
                 function (str) {
 
                     var s = str.split(" ");
-                    if (s.length > 4) return null;
+                    if (s.length > 4)
+                        return null;
                     var r = [];
                     for (var i in s) {
 
                         var l = imscUtils.parseLength(s[i]);
-                        if (!l) return null;
+                        if (!l)
+                            return null;
                         r.push(l);
                     }
 
@@ -567,6 +573,90 @@
         ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+                "position",
+                "top left",
+                ['region'],
+                false,
+                true,
+                function (str) {
+
+                    return imscUtils.parsePosition(str);
+
+                },
+                function (doc, parent, element, attr) {
+                    var h;
+                    var w;
+
+                    if (attr.v.offset.unit === "%") {
+
+                        if (attr.v.edge === "bottom") {
+
+                            h = (1 - element.styleAttrs[imscStyles.byName.extent.qname].h) * (1 - attr.v.offset.value / 100);
+
+
+                        } else {
+
+                            h = (1 - element.styleAttrs[imscStyles.byName.extent.qname].h) * attr.v.offset.value / 100;
+
+                        }
+
+                    } else if (attr.v.offset.unit === "px") {
+
+                        if (attr.v.edge === "bottom") {
+
+                            h = 1 - attr.v.offset.value / doc.pxDimensions.h - element.styleAttrs[imscStyles.byName.extent.qname].h;
+
+                        } else {
+
+                            h = attr.v.offset.value / doc.pxDimensions.h;
+
+                        }
+
+
+                    } else {
+
+                        return null;
+
+                    }
+
+
+                    if (attr.h.offset.unit === "%") {
+
+                        if (attr.h.edge === "right") {
+
+                            w = (1 - element.styleAttrs[imscStyles.byName.extent.qname].w) * (1 - attr.h.offset.value / 100);
+
+
+                        } else {
+
+                            w = (1 - element.styleAttrs[imscStyles.byName.extent.qname].w) * attr.h.offset.value / 100;
+
+                        }
+
+                    } else if (attr.h.offset.unit === "px") {
+
+                        if (attr.h.edge === "right") {
+
+                            w = 1 - attr.h.offset.value / doc.pxDimensions.w - element.styleAttrs[imscStyles.byName.extent.qname].w;
+
+                        } else {
+
+                            w = attr.h.offset.value / doc.pxDimensions.w;
+
+                        }
+
+                    } else {
+
+                        return null;
+
+                    }
+
+
+                    return {'h': h, 'w': w};
+                }
+        ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
                 "showBackground",
                 "always",
                 ['region'],
@@ -588,24 +678,24 @@
                     return str;
                 },
                 function (doc, parent, element, attr) {
-                    
+
                     /* Section 7.16.9 of XSL */
-                    
+
                     if (attr === "left") {
-                        
+
                         return "start";
-                        
+
                     } else if (attr === "right") {
-                        
+
                         return "end";
-                        
+
                     } else {
-                        
+
                         return attr;
-                        
+
                     }
                 }
-                ),
+        ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
                 "textDecoration",
@@ -640,18 +730,22 @@
 
                         var r = {};
                         var s = str.split(" ");
-                        if (s.length === 0 || s.length > 2) return null;
+                        if (s.length === 0 || s.length > 2)
+                            return null;
                         var c = imscUtils.parseColor(s[0]);
-                       
-                        r.color = c;
-                        
-                        if (c !== null) s.shift();
 
-                        if (s.length !== 1) return null;
+                        r.color = c;
+
+                        if (c !== null)
+                            s.shift();
+
+                        if (s.length !== 1)
+                            return null;
 
                         var l = imscUtils.parseLength(s[0]);
 
-                        if (!l) return null;
+                        if (!l)
+                            return null;
 
                         r.thickness = l;
 
@@ -666,16 +760,17 @@
                      * 
                      */
 
-                    if (attr === "none") return attr;
+                    if (attr === "none")
+                        return attr;
 
                     var rslt = {};
 
                     if (attr.color === null) {
-                        
+
                         rslt.color = element.styleAttrs[imscStyles.byName.color.qname];
-                        
+
                     } else {
-                        
+
                         rslt.color = attr.color;
 
                     }
@@ -762,23 +857,23 @@
                 false,
                 true,
                 function (str) {
-                    
+
                     var rslt;
-                    
+
                     if (str === 'auto') {
-                        
+
                         rslt = str;
-                        
+
                     } else {
-                        
+
                         rslt = parseInt(str);
-                        
+
                         if (isNaN(rslt)) {
                             rslt = null;
                         }
-                        
+
                     }
-                    
+
                     return rslt;
                 },
                 null

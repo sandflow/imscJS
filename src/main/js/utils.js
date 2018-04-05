@@ -30,9 +30,9 @@
 
 ;
 (function (imscUtils) { // wrapper for non-node envs
-    
+
     /* Documents the error handler interface */
-    
+
     /**
      * @classdesc Generic interface for handling events. The interface exposes four
      * methods:
@@ -124,6 +124,133 @@
         }
 
         return r;
+    };
+
+    imscUtils.parsePosition = function (str) {
+
+        /* see https://www.w3.org/TR/ttml2/#style-value-position */
+
+        var s = str.split(" ");
+
+        var isKeyword = function (str) {
+
+            return str === "center" ||
+                str === "left" ||
+                str === "top" ||
+                str === "bottom" ||
+                str === "right";
+
+        };
+
+        if (s.length > 4) {
+
+            return null;
+
+        }
+
+        /* initial clean-up pass */
+
+        for (var j in s) {
+
+            if (!isKeyword(s[j])) {
+
+                var l = imscUtils.parseLength(s[j]);
+
+                if (l === null) return null;
+
+                s[j] = l;
+            }
+
+        }
+
+        /* position default */
+
+        var pos = {
+            h: {edge: "left", offset: {value: 50, unit: "%"}},
+            v: {edge: "top", offset: {value: 50, unit: "%"}}
+        };
+
+        /* update position */
+
+        for (var i = 0; i < s.length; ) {
+
+            /* extract the current component */
+
+            var comp = s[i++];
+
+            if (isKeyword(comp)) {
+
+                /* we have a keyword */
+
+                var offset = {value: 0, unit: "%"};
+
+                /* peek at the next component */
+
+                if (s.length !== 2 && i < s.length && (!isKeyword(s[i]))) {
+
+                    /* followed by an offset */
+
+                    offset = s[i++];
+
+                }
+
+                /* skip if center */
+
+                if (comp === "right") {
+
+                    pos.h.edge = comp;
+
+                    pos.h.offset = offset;
+
+                } else if (comp === "bottom") {
+
+                    pos.v.edge = comp;
+
+
+                    pos.v.offset = offset;
+
+
+                } else if (comp === "left") {
+
+                    pos.h.offset = offset;
+
+
+                } else if (comp === "top") {
+
+                    pos.v.offset = offset;
+
+
+                }
+
+            } else if (s.length === 1 || s.length === 2) {
+
+                /* we have a bare value */
+
+                if (i === 1) {
+
+                    /* assign it to left edge if first bare value */
+
+                    pos.h.offset = comp;
+
+                } else {
+
+                    /* assign it to top edge if second bare value */
+
+                    pos.v.offset = comp;
+
+                }
+
+            } else {
+
+                /* error condition */
+
+                return null;
+
+            }
+
+        }
+
+        return pos;
     };
 
 })(typeof exports === 'undefined' ? this.imscUtils = {} : exports);

@@ -797,6 +797,13 @@
             }
         ),
         new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling position",
+            function (context, dom_element, isd_element, attr) {
+                dom_element.style.top = (attr.h * context.h) + "px";
+                dom_element.style.left = (attr.w * context.w) + "px";
+            }
+        ),
+        new HTMLStylingMapDefintion(
             "http://www.w3.org/ns/ttml#styling showBackground",
             null
             ),

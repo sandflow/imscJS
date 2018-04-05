@@ -24,7 +24,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-var reffiles_root = "imsc-tests/imsc1";
 var genfiles_root = "generated";
 
 function asyncLoadFile(url) {
@@ -63,15 +62,15 @@ function asyncLoadFile(url) {
     });
 }
 
-function getTestListPath() {
+function getTestListPath(reffiles_root) {
     return reffiles_root + "/tests.json";
 }
 
-function getReferenceFilePath(reffile_path) {
+function getReferenceFilePath(reffiles_root, reffile_path) {
     return reffiles_root + "/ttml/" + reffile_path;
 }
 
-function getReferenceFileDirectory(reffile_path) {
+function getReferenceFileDirectory(reffiles_root, reffile_path) {
     return reffiles_root + "/ttml/" + reffile_path.substring(0, Math.max(reffile_path.lastIndexOf("/"), reffile_path.lastIndexOf("\\")) + 1);
 }
 
@@ -87,7 +86,7 @@ function filenameFromOffset(offset) {
     return offset.toFixed(6).toString();
 }
 
-function getReferencePNGPath(test_name, offset) {
+function getReferencePNGPath(reffiles_root, test_name, offset) {
     return reffiles_root + "/png/" + test_name + "/" + filenameFromOffset(offset) + ".png";
 }
 
