@@ -232,11 +232,17 @@
 
         }
 
+        /* remember we are filling line gaps */
+
+        if (isd_element.styleAttrs[imscStyles.byName.fillLineGap.qname]) {
+            context.flg = true;
+        }
+
         // wrap characters in spans to find the line wrap locations
 
         if (isd_element.kind === "span" && isd_element.text) {
 
-            if (context.lp || context.mra) {
+            if (context.lp || context.mra || context.flg) {
 
                 for (var j = 0; j < isd_element.text.length; j++) {
 
@@ -290,13 +296,15 @@
         /* fillLineGap processing */
 
         if (isd_element.kind === "p" &&
-            isd_element.styleAttrs[imscStyles.byName.fillLineGap.qname]) {
+            context.flg) {
 
             constructLineList(proc_e, linelist);
 
             var par_rect = proc_e.getBoundingClientRect();
 
             applyFillLineGap(linelist, par_rect.top, par_rect.top + par_rect.height);
+
+            delete context.flg;
         }
 
         /* region processing */
@@ -349,11 +357,6 @@
 
         for (var i = 0; i <= lineList.length; i++) {
 
-            /* skip if lines overlap */
-
-            if (i > 0 && i < lineList.length && lineList[i].top < lineList[i - 1].bottom)
-                continue;
-
             /* compute frontier between lines */
 
             var frontier;
@@ -381,11 +384,14 @@
             if (i > 0) {
 
                 for (var j = 0; j < lineList[i - 1].elements.length; j++) {
+                    
+                    if (lineList[i - 1].elements[j].bgcolor === null) continue;
 
-                    r = lineList[i - 1].elements[j].getBoundingClientRect();
+                    r = lineList[i - 1].elements[j].node.getBoundingClientRect();
 
                     if (r.bottom < frontier) {
-                        lineList[i - 1].elements[j].style.paddingBottom = (frontier - r.bottom) + "px";
+                        lineList[i - 1].elements[j].node.style.backgroundColor = lineList[i - 1].elements[j].bgcolor;
+                        lineList[i - 1].elements[j].node.style.paddingBottom = Math.ceil(frontier - r.bottom) + "px";
                     }
 
                 }
@@ -397,11 +403,14 @@
             if (i < lineList.length) {
 
                 for (var k = 0; k < lineList[i].elements.length; k++) {
+                    
+                    if (lineList[i].elements[k].bgcolor === null) continue;
 
-                    r = lineList[i].elements[k].getBoundingClientRect();
+                    r = lineList[i].elements[k].node.getBoundingClientRect();
 
                     if (r.top > frontier) {
-                        lineList[i].elements[k].style.paddingTop = (r.top - frontier) + "px";
+                        lineList[i].elements[k].node.style.backgroundColor = lineList[i].elements[k].bgcolor;
+                        lineList[i].elements[k].node.style.paddingTop = Math.ceil(r.top - frontier) + "px";
                     }
 
                 }
@@ -476,11 +485,15 @@
     }
 
 
-    function constructLineList(element, llist) {
+    function constructLineList(element, llist, bgcolor) {
+
+        var curbgcolor = element.style.backgroundColor || bgcolor;
 
         if (element.childElementCount === 0 && element.localName === 'span') {
 
             var r = element.getBoundingClientRect();
+
+            if (r.height === 0 || r.width === 0) return;
 
             if (llist.length === 0 ||
                 (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
@@ -490,8 +503,8 @@
                     top: r.top,
                     height: r.height,
                     bottom: r.top + r.height,
-                    elements: [element],
-                    text: element.textContent
+                    elements: [],
+                    text: ""
                 });
 
             } else {
@@ -504,13 +517,18 @@
                     llist[llist.length - 1].height = r.height;
                 }
 
-                llist[llist.length - 1].text += element.textContent;
-
-                llist[llist.length - 1].elements.push(element);
             }
 
-        } else {
+            llist[llist.length - 1].text += element.textContent;
 
+            llist[llist.length - 1].elements.push(
+                {
+                    node: element,
+                    bgcolor: curbgcolor
+                }
+            );
+
+        } else {
 
             var child = element.firstChild;
 
@@ -518,7 +536,7 @@
 
                 if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    constructLineList(child, llist);
+                    constructLineList(child, llist, curbgcolor);
 
                 }
 
@@ -663,6 +681,10 @@
         new HTMLStylingMapDefintion(
             "http://www.w3.org/ns/ttml#styling backgroundColor",
             function (context, dom_element, isd_element, attr) {
+
+                /* skip if transparent */
+                if (attr[3] === 0) return;
+
                 dom_element.style.backgroundColor = "rgba(" +
                     attr[0].toString() + "," +
                     attr[1].toString() + "," +
