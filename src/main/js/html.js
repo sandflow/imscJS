@@ -70,16 +70,16 @@
      * @return {Object} ISD state to be provided when this funtion is called for the next ISD
      */
 
-    imscHTML.render = function (    isd,
-                                    element,
-                                    imgResolver,
-                                    eheight,
-                                    ewidth,
-                                    displayForcedOnlyMode,
-                                    errorHandler,
-                                    previousISDState,
-                                    enableRollUp
-                                ) {
+    imscHTML.render = function (isd,
+        element,
+        imgResolver,
+        eheight,
+        ewidth,
+        displayForcedOnlyMode,
+        errorHandler,
+        previousISDState,
+        enableRollUp
+        ) {
 
         /* maintain aspect ratio if specified */
 
@@ -124,7 +124,7 @@
             isd: isd,
             errorHandler: errorHandler,
             previousISDState: previousISDState,
-            enableRollUp : enableRollUp || false,
+            enableRollUp: enableRollUp || false,
             currentISDState: {}
         };
 
@@ -294,11 +294,11 @@
             constructLineList(proc_e, linelist);
 
             /* perform roll up if needed */
-            
+
             var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
 
             if ((wdir === "lrtb" || wdir === "lr" || wdir === "rltb" || wdir === "rl") &&
-                context.enableRollUp && 
+                context.enableRollUp &&
                 isd_element.contents.length > 0 &&
                 isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
 
@@ -444,7 +444,7 @@
         }
 
     }
-    
+
     function isSameLine(top1, height1, top2, height2) {
 
         return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
@@ -724,6 +724,31 @@
                 }
 
                 dom_element.style.fontFamily = rslt.join(",");
+            }
+        ),
+
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling fontShear",
+            function (context, dom_element, isd_element, attr) {
+
+                /* return immediately if tts:fontShear is 0% since CSS transforms are not inherited*/
+
+                if (attr === 0) return;
+
+                var wm = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
+
+                var angle = Math.asin(attr/100);
+
+                if (typeof wm !== 'undefined' || wm === "lrtb" || wm === "lr" || wm === "rltb" || wm === "rl") {
+
+                    dom_element.style.transform = "skewX(" + angle + "rad)";
+
+                } else {
+
+                    dom_element.style.transform = "skewY(" + angle + "rad)";
+
+                }
+
             }
         ),
 

@@ -212,6 +212,31 @@
                 ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+                "fontShear",
+                "0%",
+                ['p','span'],
+                true,
+                true,
+                imscUtils.parseLength,
+                function (doc, parent, element, attr) {
+
+                    var fs;
+
+                    if (attr.unit === "%") {
+
+                        fs = Math.abs(attr.value) > Math.sign(attr.value) * 100 ? 100 : attr.value;
+
+                    } else {
+                        
+                        return null;
+
+                    }
+
+                    return fs;
+                }
+        ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
                 "fontSize",
                 "1c",
                 ['span'],
