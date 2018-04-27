@@ -214,7 +214,7 @@
                 imscNames.ns_tts,
                 "fontShear",
                 "0%",
-                ['p','span'],
+                ['p'],
                 true,
                 true,
                 imscUtils.parseLength,
@@ -224,7 +224,7 @@
 
                     if (attr.unit === "%") {
 
-                        fs = Math.abs(attr.value) > Math.sign(attr.value) * 100 ? 100 : attr.value;
+                        fs = Math.abs(attr.value) > 100 ? Math.sign(attr.value) * 100 : attr.value;
 
                     } else {
                         

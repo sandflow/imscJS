@@ -735,11 +735,11 @@
 
                 if (attr === 0) return;
 
-                var wm = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
+                var angle = -Math.asin(attr/100);
+                
+                /* context.writingMode is needed since writing mode is not inherited and sets the inline progression */
 
-                var angle = Math.asin(attr/100);
-
-                if (typeof wm !== 'undefined' || wm === "lrtb" || wm === "lr" || wm === "rltb" || wm === "rl") {
+                if (context.writingMode.startsWith("horizontal")) {
 
                     dom_element.style.transform = "skewX(" + angle + "rad)";
 
@@ -938,21 +938,23 @@
             function (context, dom_element, isd_element, attr) {
                 if (attr === "lrtb" || attr === "lr") {
 
-                    dom_element.style.writingMode = "horizontal-tb";
+                    context.writingMode = "horizontal-tb";
 
                 } else if (attr === "rltb" || attr === "rl") {
 
-                    dom_element.style.writingMode = "horizontal-tb";
+                    context.writingMode = "horizontal-tb";
 
                 } else if (attr === "tblr") {
 
-                    dom_element.style.writingMode = "vertical-lr";
+                    context.writingMode = "vertical-lr";
 
                 } else if (attr === "tbrl" || attr === "tb") {
 
-                    dom_element.style.writingMode = "vertical-rl";
+                    context.writingMode = "vertical-rl";
 
                 }
+                
+                dom_element.style.writingMode = context.writingMode;
             }
         ),
         new HTMLStylingMapDefintion(
