@@ -232,6 +232,16 @@
             /* skip if value is already specified */
 
             if (ivs.qname in isd_element.styleAttrs) continue;
+            
+            /* skip tts:position if tts:origin is specified */
+            
+            if (ivs.qname === imscStyles.byName.position.qname &&
+                imscStyles.byName.origin.qname in isd_element.styleAttrs) continue;
+            
+            /* skip tts:origin if tts:position is specified */
+            
+            if (ivs.qname === imscStyles.byName.origin.qname &&
+                imscStyles.byName.position.qname in isd_element.styleAttrs) continue;
 
             /* apply initial value to elements other than region only if non-inherited */
 

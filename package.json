@@ -1,28 +1,36 @@
 {
-    "name" : "imsc",
-    "description" : "Renders IMSC1 documents to HTML5 fragments",
-    "version" : "1.0.1-rc.2",
-    "license" : "BSD-2-Clause",
-    "homepage" : "https://github.com/sandflow/imscJS",
-    "bugs" : "https://github.com/sandflow/imscJS/issues",
-    "repository" : "github:sandflow/imscJS",
-    "files" : ["src/main/js", "README.txt"],
-    "keywords" : ["imsc1", "ttml", "imsc"],
-    "author" : "Pierre-Anthony Lemieux <pal@sandflow.com>", 
-    "main" : "src/main/js/main.js",
+    "name": "imsc",
+    "description": "Renders IMSC1 documents to HTML5 fragments",
+    "version": "1.0.1-rc.2",
+    "license": "BSD-2-Clause",
+    "homepage": "https://github.com/sandflow/imscJS",
+    "bugs": "https://github.com/sandflow/imscJS/issues",
+    "repository": "github:sandflow/imscJS",
+    "files": [
+        "src/main/js",
+        "README.txt"
+    ],
+    "keywords": [
+        "imsc1",
+        "ttml",
+        "imsc"
+    ],
+    "author": "Pierre-Anthony Lemieux <pal@sandflow.com>",
+    "main": "src/main/js/main.js",
     "dependencies": {
-        "sax" : "1.2.1"
+        "node-qunit": "^1.0.0",
+        "sax": "1.2.1"
     },
-    "devDependencies" : {
+    "devDependencies": {
         "grunt": "latest",
         "grunt-sync": "latest",
-        "grunt-contrib-clean" : "latest",
-        "grunt-npmcopy" : "latest",
-        "qunit-assert-close" : "latest",
-        "qunitjs" : "latest",
-        "grunt-browserify" : "latest",
-        "grunt-contrib-jshint" : "latest",
-        "jszip" : "latest",
-        "filesaver.js-npm" : "latest"
+        "grunt-contrib-clean": "latest",
+        "grunt-npmcopy": "latest",
+        "qunit-assert-close": "latest",
+        "qunitjs": "latest",
+        "grunt-browserify": "latest",
+        "grunt-contrib-jshint": "latest",
+        "jszip": "latest",
+        "filesaver.js-npm": "latest"
     }
 }
