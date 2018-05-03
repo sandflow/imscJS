@@ -70,16 +70,16 @@
      * @return {Object} ISD state to be provided when this funtion is called for the next ISD
      */
 
-    imscHTML.render = function (    isd,
-                                    element,
-                                    imgResolver,
-                                    eheight,
-                                    ewidth,
-                                    displayForcedOnlyMode,
-                                    errorHandler,
-                                    previousISDState,
-                                    enableRollUp
-                                ) {
+    imscHTML.render = function (isd,
+        element,
+        imgResolver,
+        eheight,
+        ewidth,
+        displayForcedOnlyMode,
+        errorHandler,
+        previousISDState,
+        enableRollUp
+        ) {
 
         /* maintain aspect ratio if specified */
 
@@ -124,7 +124,7 @@
             isd: isd,
             errorHandler: errorHandler,
             previousISDState: previousISDState,
-            enableRollUp : enableRollUp || false,
+            enableRollUp: enableRollUp || false,
             currentISDState: {}
         };
 
@@ -294,11 +294,11 @@
             constructLineList(proc_e, linelist);
 
             /* perform roll up if needed */
-            
+
             var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
 
             if ((wdir === "lrtb" || wdir === "lr" || wdir === "rltb" || wdir === "rl") &&
-                context.enableRollUp && 
+                context.enableRollUp &&
                 isd_element.contents.length > 0 &&
                 isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
 
@@ -444,7 +444,7 @@
         }
 
     }
-    
+
     function isSameLine(top1, height1, top2, height2) {
 
         return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
@@ -844,19 +844,58 @@
             "http://www.w3.org/ns/ttml#styling textOutline",
             function (context, dom_element, isd_element, attr) {
 
-                if (attr === "none") {
+                /* defer to tts:textShadow */
+            }
+        ),
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textShadow",
+            function (context, dom_element, isd_element, attr) {
+
+                var txto = isd_element.styleAttrs[imscStyles.byName.textOutline.qname];
+
+                if (attr === "none" && txto === "none") {
 
                     dom_element.style.textShadow = "";
 
                 } else {
 
-                    dom_element.style.textShadow = "rgba(" +
-                        attr.color[0].toString() + "," +
-                        attr.color[1].toString() + "," +
-                        attr.color[2].toString() + "," +
-                        (attr.color[3] / 255).toString() +
-                        ")" + " 0px 0px " +
-                        (attr.thickness * context.h) + "px";
+                    var s = [];
+
+                    if (txto !== "none") {
+
+                        /* emulate text outline */
+
+                        s.push(
+                            "rgba(" +
+                            txto.color[0].toString() + "," +
+                            txto.color[1].toString() + "," +
+                            txto.color[2].toString() + "," +
+                            (txto.color[3] / 255).toString() +
+                            ")" + " 0px 0px " +
+                            (txto.thickness * context.h) + "px"
+                            );
+
+                    }
+
+                    /* add text shadow */
+
+                    for (var i in attr) {
+
+
+                        s.push((attr[i].x_off * context.w) + "px " +
+                            (attr[i].y_off * context.h) + "px " +
+                            (attr[i].b_radius * context.h) + "px " +
+                            "rgba(" +
+                            attr[i].color[0].toString() + "," +
+                            attr[i].color[1].toString() + "," +
+                            attr[i].color[2].toString() + "," +
+                            (attr[i].color[3] / 255).toString() +
+                            ")"
+                            );
+
+                    }
+
+                    dom_element.style.textShadow = s.join(",");
 
                 }
             }
