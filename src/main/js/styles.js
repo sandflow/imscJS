@@ -840,6 +840,19 @@
                     return str === 'true' ? true : false;
                 },
                 null
+                ),
+
+        new StylingAttributeDefinition(
+                imscNames.ns_itts,
+                "fillLineGap",
+                "false",
+                ['p'],
+                true,
+                true,
+                function (str) {
+                    return str === 'true' ? true : false;
+                },
+                null
                 )
     ];
 
