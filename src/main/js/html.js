@@ -163,8 +163,39 @@
 
         } else if (isd_element.kind === 'span') {
 
-            e = document.createElement("span");
+            if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "container") {
 
+                e = document.createElement("ruby");
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "base") {
+
+                e = document.createElement("rb");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
+
+                e = document.createElement("rt");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "baseContainer") {
+
+                e = document.createElement("rbc");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
+
+                e = document.createElement("rtc");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "delimiter") {
+
+                e = document.createElement("rp");
+
+            } else {
+
+                e = document.createElement("span");
+
+            }
             //e.textContent = isd_element.text;
 
         } else if (isd_element.kind === 'br') {
@@ -384,7 +415,7 @@
             if (i > 0) {
 
                 for (var j = 0; j < lineList[i - 1].elements.length; j++) {
-                    
+
                     if (lineList[i - 1].elements[j].bgcolor === null) continue;
 
                     r = lineList[i - 1].elements[j].node.getBoundingClientRect();
@@ -403,7 +434,7 @@
             if (i < lineList.length) {
 
                 for (var k = 0; k < lineList[i].elements.length; k++) {
-                    
+
                     if (lineList[i].elements[k].bgcolor === null) continue;
 
                     r = lineList[i].elements[k].node.getBoundingClientRect();
