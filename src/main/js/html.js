@@ -192,7 +192,9 @@
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "delimiter") {
 
-                e = document.createElement("rp");
+                /* ignore rp */
+
+                return;
 
             } else {
 
