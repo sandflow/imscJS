@@ -125,7 +125,10 @@
             errorHandler: errorHandler,
             previousISDState: previousISDState,
             enableRollUp: enableRollUp || false,
-            currentISDState: {}
+            currentISDState: {},
+            flg : null,  /* current fillLineGap value if active, null otherwise */
+            lp : null, /* current linePadding value if active, null otherwise */
+            mra : null /* current multiRowAlign value if active, null otherwise */
         };
 
         element.appendChild(rootcontainer);
@@ -297,7 +300,7 @@
 
                 applyMultiRowAlign(linelist);
 
-                delete context.mra;
+                context.mra = null;
 
             }
 
@@ -307,7 +310,7 @@
 
                 applyLinePadding(linelist, context.lp * context.h);
 
-                delete context.lp;
+                context.lp = null;
 
             }
 
@@ -319,7 +322,7 @@
 
                 applyFillLineGap(linelist, par_rect.top, par_rect.top + par_rect.height);
 
-                delete context.flg;
+                context.flg = null;
 
             }
 
