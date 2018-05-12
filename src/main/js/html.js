@@ -125,7 +125,10 @@
             errorHandler: errorHandler,
             previousISDState: previousISDState,
             enableRollUp: enableRollUp || false,
-            currentISDState: {}
+            currentISDState: {},
+            flg : null,  /* current fillLineGap value if active, null otherwise */
+            lp : null, /* current linePadding value if active, null otherwise */
+            mra : null /* current multiRowAlign value if active, null otherwise */
         };
 
         element.appendChild(rootcontainer);
@@ -234,12 +237,27 @@
 
         var proc_e = e;
 
+        /* do we have linePadding ? */
 
-        // handle multiRowAlign and linePadding
+        var lp = isd_element.styleAttrs[imscStyles.byName.linePadding.qname];
+
+        if (lp && lp > 0) {
+
+            /* apply padding to the <p> so that line padding does not cause line wraps */
+
+            proc_e.style.paddingLeft = lp * context.h + "px";
+            proc_e.style.paddingRight = lp * context.h + "px";
+
+            context.lp = lp;
+        }
+
+        // do we have multiRowAlign?
 
         var mra = isd_element.styleAttrs[imscStyles.byName.multiRowAlign.qname];
 
         if (mra && mra !== "auto") {
+
+            /* create inline block to handle multirowAlign */
 
             var s = document.createElement("span");
 
@@ -255,25 +273,18 @@
 
         }
 
-        var lp = isd_element.styleAttrs[imscStyles.byName.linePadding.qname];
-
-        if (lp && lp > 0) {
-
-            context.lp = lp;
-
-        }
-
         /* remember we are filling line gaps */
 
         if (isd_element.styleAttrs[imscStyles.byName.fillLineGap.qname]) {
             context.flg = true;
         }
 
-        // wrap characters in spans to find the line wrap locations
 
         if (isd_element.kind === "span" && isd_element.text) {
 
             if (context.lp || context.mra || context.flg) {
+
+                // wrap characters in spans to find the line wrap locations
 
                 for (var j = 0; j < isd_element.text.length; j++) {
 
@@ -286,12 +297,15 @@
                 }
 
             } else {
+
                 e.textContent = isd_element.text;
+
             }
         }
 
-
         dom_parent.appendChild(e);
+
+        /* process the children of the ISD element */
 
         for (var k in isd_element.contents) {
 
@@ -299,44 +313,52 @@
 
         }
 
-        // handle linePadding and multiRowAlign
-
-        if ((context.lp || context.mra) && isd_element.kind === "p") {
-
-            var elist = [];
-
-            constructElementList(proc_e, elist, "red");
-
-            /* TODO: linePadding only supported for horizontal scripts */
-
-            processLinePaddingAndMultiRowAlign(elist, context.lp * context.h);
-
-            /* TODO: clean-up the spans ? */
-
-            if (context.lp)
-                delete context.lp;
-            if (context.mra)
-                delete context.mra;
-
-        }
-
         /* list of lines */
 
         var linelist = [];
 
-        /* fillLineGap processing */
 
-        if (isd_element.kind === "p" &&
-            context.flg) {
+        /* paragraph processing */
+        /* TODO: linePadding only supported for horizontal scripts */
 
-            constructLineList(proc_e, linelist);
+        if ((context.lp || context.mra || context.flg) && isd_element.kind === "p") {
 
-            var par_rect = proc_e.getBoundingClientRect();
+            constructLineList(proc_e, linelist, "red");
 
-            applyFillLineGap(linelist, par_rect.top, par_rect.top + par_rect.height);
+            /* insert line breaks for multirowalign */
 
-            delete context.flg;
+            if (context.mra) {
+
+                applyMultiRowAlign(linelist);
+
+                context.mra = null;
+
+            }
+
+            /* add linepadding */
+
+            if (context.lp) {
+
+                applyLinePadding(linelist, context.lp * context.h);
+
+                context.lp = null;
+
+            }
+
+            /* fill line gaps linepadding */
+
+            if (context.flg) {
+
+                var par_rect = proc_e.getBoundingClientRect();
+
+                applyFillLineGap(linelist, par_rect.top, par_rect.top + par_rect.height);
+
+                context.flg = null;
+
+            }
+
         }
+
 
         /* region processing */
 
@@ -380,8 +402,52 @@
                 }
 
             }
+            
+            /* TODO: clean-up the spans ? */
 
         }
+    }
+
+    function applyLinePadding(lineList, lp) {
+
+        for (var i in lineList) {
+
+            var l = lineList[i].elements.length;
+
+            if (l !== 0) {
+
+                lineList[i].elements[0].node.style.paddingLeft = lp + "px";
+                lineList[i].elements[0].node.style.marginLeft = "-" + lp + "px";
+                lineList[i].elements[0].node.style.backgroundColor = lineList[i].elements[0].bgcolor;
+
+                lineList[i].elements[l - 1].node.style.paddingRight = lp + "px";
+                lineList[i].elements[l - 1].node.style.marginRight = "-" + lp + "px";
+                lineList[i].elements[l - 1].node.style.backgroundColor = lineList[i].elements[l - 1].bgcolor;
+
+            }
+
+        }
+
+    }
+
+    function applyMultiRowAlign(lineList) {
+        
+        /* apply an explicit br to all but the last line */
+
+        for (var i = 0; i < lineList.length - 1; i++) {
+
+            var l = lineList[i].elements.length;
+
+            if (l !== 0 && lineList[i].br === false) {
+                var br = document.createElement("br");
+                
+                var lastnode = lineList[i].elements[l - 1].node;
+                
+                lastnode.parentElement.insertBefore(br, lastnode.nextSibling);
+            }
+
+        }
+
     }
 
     function applyFillLineGap(lineList, par_top, par_bottom) {
@@ -486,78 +552,59 @@
 
     }
 
-    function constructElementList(element, elist, bgcolor) {
-
-        if (element.childElementCount === 0) {
-
-            elist.push({
-                "element": element,
-                "bgcolor": bgcolor}
-            );
-
-        } else {
-
-            var newbgcolor = element.style.backgroundColor || bgcolor;
-
-            var child = element.firstChild;
-
-            while (child) {
-
-                if (child.nodeType === Node.ELEMENT_NODE) {
-
-                    constructElementList(child, elist, newbgcolor);
-
-                }
-
-                child = child.nextSibling;
-            }
-        }
-
-    }
 
 
     function constructLineList(element, llist, bgcolor) {
 
         var curbgcolor = element.style.backgroundColor || bgcolor;
 
-        if (element.childElementCount === 0 && element.localName === 'span') {
+        if (element.childElementCount === 0) {
 
-            var r = element.getBoundingClientRect();
+            if (element.localName === 'span') {
 
-            if (r.height === 0 || r.width === 0) return;
+                var r = element.getBoundingClientRect();
 
-            if (llist.length === 0 ||
-                (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
-                ) {
+                if (r.height === 0 || r.width === 0) return;
 
-                llist.push({
-                    top: r.top,
-                    height: r.height,
-                    bottom: r.top + r.height,
-                    elements: [],
-                    text: ""
-                });
+                if (llist.length === 0 ||
+                    (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
+                    ) {
 
-            } else {
+                    llist.push({
+                        top: r.top,
+                        height: r.height,
+                        bottom: r.top + r.height,
+                        elements: [],
+                        text: "",
+                        br: false
+                    });
 
-                if (r.top < llist[llist.length - 1].top) {
-                    llist[llist.length - 1].top = r.top;
+                } else {
+
+                    if (r.top < llist[llist.length - 1].top) {
+                        llist[llist.length - 1].top = r.top;
+                    }
+
+                    if (r.height > llist[llist.length - 1].height) {
+                        llist[llist.length - 1].height = r.height;
+                    }
+
                 }
 
-                if (r.height > llist[llist.length - 1].height) {
-                    llist[llist.length - 1].height = r.height;
-                }
+                llist[llist.length - 1].text += element.textContent;
+
+                llist[llist.length - 1].elements.push(
+                    {
+                        node: element,
+                        bgcolor: curbgcolor
+                    }
+                );
+
+            } else if (element.localName === 'br' && llist.length !== 0) {
+
+                llist[llist.length - 1].br = true;
 
             }
-
-            llist[llist.length - 1].text += element.textContent;
-
-            llist[llist.length - 1].elements.push(
-                {
-                    node: element,
-                    bgcolor: curbgcolor
-                }
-            );
 
         } else {
 
@@ -582,125 +629,6 @@
         return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
 
     }
-
-    function processLinePaddingAndMultiRowAlign(elist, lp) {
-
-        var line_head = null;
-
-        var lookingForHead = true;
-
-        var foundBR = false;
-
-        for (var i = 0; i <= elist.length; i++) {
-
-            /* skip <br> since they apparently have a different box top than
-             * the rest of the line 
-             */
-
-            if (i !== elist.length && elist[i].element.localName === "br") {
-                foundBR = true;
-                continue;
-            }
-
-            /* detect new line */
-
-            if (line_head === null ||
-                i === elist.length ||
-                (!isSameLine(elist[i].element.getBoundingClientRect().top,
-                    elist[i].element.getBoundingClientRect().height,
-                    elist[line_head].element.getBoundingClientRect().top,
-                    elist[line_head].element.getBoundingClientRect().height))
-                ) {
-
-                /* apply right padding to previous line (if applicable and unless this is the first line) */
-
-                if (lp && (!lookingForHead)) {
-
-                    for (; --i >= 0; ) {
-
-                        if (elist[i].element.getBoundingClientRect().width !== 0) {
-
-                            addRightPadding(elist[i].element, elist[i].color, lp);
-
-                            if (elist[i].element.getBoundingClientRect().width !== 0 &&
-                                isSameLine(elist[i].element.getBoundingClientRect().top,
-                                    elist[i].element.getBoundingClientRect().height,
-                                    elist[line_head].element.getBoundingClientRect().top,
-                                    elist[line_head].element.getBoundingClientRect().height))
-                                break;
-
-                            removeRightPadding(elist[i].element);
-
-                        }
-
-                    }
-
-                    lookingForHead = true;
-
-                    continue;
-
-                }
-
-                /* explicit <br> unless already present */
-
-                if (i !== elist.length && line_head !== null && (!foundBR)) {
-
-                    var br = document.createElement("br");
-
-                    elist[i].element.parentElement.insertBefore(br, elist[i].element);
-
-                    elist.splice(i, 0, {"element": br});
-
-                    foundBR = true;
-
-                    continue;
-
-                }
-
-                /* apply left padding to current line (if applicable) */
-
-                if (i !== elist.length && lp) {
-
-                    /* find first non-zero */
-
-                    for (; i < elist.length; i++) {
-
-                        if (elist[i].element.getBoundingClientRect().width !== 0) {
-                            addLeftPadding(elist[i].element, elist[i].color, lp);
-                            break;
-                        }
-
-                    }
-
-                }
-
-                lookingForHead = false;
-
-                foundBR = false;
-
-                line_head = i;
-
-            }
-
-        }
-
-    }
-
-    function addLeftPadding(e, c, lp) {
-        e.style.paddingLeft = lp + "px";
-        e.style.backgroundColor = c;
-    }
-
-    function addRightPadding(e, c, lp) {
-        e.style.paddingRight = lp + "px";
-        e.style.backgroundColor = c;
-
-    }
-
-    function removeRightPadding(e) {
-        e.style.paddingRight = null;
-    }
-
 
     function HTMLStylingMapDefintion(qName, mapFunc) {
         this.qname = qName;
