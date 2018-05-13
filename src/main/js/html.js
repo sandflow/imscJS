@@ -247,8 +247,17 @@
 
             /* apply padding to the <p> so that line padding does not cause line wraps */
 
-            proc_e.style.paddingLeft = lp * context.h + "px";
-            proc_e.style.paddingRight = lp * context.h + "px";
+            if (context.bpd === "tb") {
+
+                proc_e.style.paddingLeft = lp * context.h + "px";
+                proc_e.style.paddingRight = lp * context.h + "px";
+
+            } else {
+
+                proc_e.style.paddingTop = lp * context.h + "px";
+                proc_e.style.paddingBottom = lp * context.h + "px";
+
+            }
 
             context.lp = lp;
         }
@@ -413,9 +422,9 @@
         for (var i in lineList) {
 
             var l = lineList[i].elements.length;
-            
+
             var se = lineList[i].elements[lineList[i].start_elem];
-            
+
             var ee = lineList[i].elements[lineList[i].end_elem];
 
             if (l !== 0) {
@@ -706,7 +715,7 @@
 
                     /* positive for BPD = lr and tb, negative for BPD = rl */
                     var bpd_dir = Math.sign(edges.after - edges.before);
-                    
+
                     /* positive for IPD = lr and tb, negative for IPD = rl */
                     var ipd_dir = Math.sign(edges.end - edges.start);
 
@@ -719,7 +728,7 @@
                     if (bpd_dir * (edges.after - llist[llist.length - 1].after) > 0) {
                         llist[llist.length - 1].after = edges.after;
                     }
-                    
+
                     if (ipd_dir * (edges.start - llist[llist.length - 1].start) < 0) {
                         llist[llist.length - 1].start = edges.start;
                         llist[llist.length - 1].start_elem = llist[llist.length - 1].elements.length;
@@ -727,7 +736,7 @@
 
                     if (ipd_dir * (edges.end - llist[llist.length - 1].end) > 0) {
                         llist[llist.length - 1].end = edges.end;
-                        llist[llist.length - 1].end_elem =  llist[llist.length - 1].elements.length;
+                        llist[llist.length - 1].end_elem = llist[llist.length - 1].elements.length;
                     }
 
                 }
