@@ -1,0 +1,99 @@
+{
+  "events": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "styleAttrs": {},
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "seq",
+        "sets": [],
+        "regionID": "",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                255,
+                255,
+                255
+              ]
+            },
+            "timeContainer": "par",
+            "sets": [
+              {
+                "timeContainer": "par",
+                "qname": "http://www.w3.org/ns/ttml#styling color",
+                "value": [
+                  255,
+                  255,
+                  0,
+                  255
+                ],
+                "begin": 5,
+                "end": "Infinity"
+              }
+            ],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n        This text of this sentence should change from white to yellow at 5s",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
+            "begin": 0,
+            "end": 10
+          }
+        ],
+        "begin": 0,
+        "end": 20
+      }
+    ],
+    "begin": 0,
+    "end": 20
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

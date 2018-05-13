@@ -1,0 +1,105 @@
+{
+  "events": [
+    0,
+    10
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "styleAttrs": {},
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    0,
+                    0,
+                    255
+                  ]
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "space": "default",
+                "text": "This is the red color as a reference.",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "begin": 0,
+                "end": null
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    0,
+                    0,
+                    136
+                  ]
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "space": "default",
+                "text": "This text must be semi-transparent red.",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
+            "begin": 0,
+            "end": 10
+          }
+        ],
+        "begin": 0,
+        "end": 10
+      }
+    ],
+    "begin": 0,
+    "end": 10
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

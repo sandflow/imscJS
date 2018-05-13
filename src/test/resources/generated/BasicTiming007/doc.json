@@ -1,0 +1,92 @@
+{
+  "events": [
+    0,
+    5,
+    15,
+    20
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "styleAttrs": {},
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "seq",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This text must not appear.\n        ",
+                "space": "default",
+                "begin": 5,
+                "end": 5
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {},
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "space": "default",
+                "text": "This text should appear at  5 seconds and stay till 15 seconds",
+                "begin": 5,
+                "end": 15
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n        This text must not appear.\n      ",
+                "space": "default",
+                "begin": 15,
+                "end": 15
+              }
+            ],
+            "begin": 5,
+            "end": 20
+          }
+        ],
+        "begin": 0,
+        "end": 20
+      }
+    ],
+    "begin": 0,
+    "end": 20
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 24,
+  "tickRate": 24,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

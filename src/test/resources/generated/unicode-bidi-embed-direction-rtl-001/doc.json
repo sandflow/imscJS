@@ -1,0 +1,138 @@
+{
+  "events": [
+    0,
+    10
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "top": {
+          "id": "top",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 10,
+                "unit": "%"
+              },
+              "w": {
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 80,
+                "unit": "%"
+              },
+              "w": {
+                "value": 80,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling displayAlign": "before",
+            "http://www.w3.org/ns/ttml#styling writingMode": "lrtb"
+          },
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {
+              "http://www.w3.org/ns/ttml#styling color": [
+                255,
+                255,
+                255,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "http://www.w3.org/ns/ttml#styling fontSize": {
+                "value": 160,
+                "unit": "%"
+              },
+              "http://www.w3.org/ns/ttml#styling fontFamily": [
+                "monospaceSerif"
+              ],
+              "http://www.w3.org/ns/ttml#styling textAlign": "left"
+            },
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "top",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n\t\t\t\tThe title of the book is \"",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling direction": "rtl",
+                  "http://www.w3.org/ns/ttml#styling unicodeBidi": "embed"
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "space": "default",
+                "text": "نشاط التدويل، W3C",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\"\n\t\t\t",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
+            "begin": 0,
+            "end": 10
+          }
+        ],
+        "begin": 0,
+        "end": 10
+      }
+    ],
+    "begin": 0,
+    "end": 10
+  },
+  "cellResolution": {
+    "w": 50,
+    "h": 30
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}

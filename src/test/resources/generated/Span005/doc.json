@@ -1,0 +1,112 @@
+{
+  "events": [
+    0,
+    10
+  ],
+  "head": {
+    "layout": {
+      "regions": {
+        "": {
+          "id": "",
+          "styleAttrs": {},
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "This text must ",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling color": [
+                    255,
+                    255,
+                    255,
+                    255
+                  ]
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "contents": [
+                  {
+                    "kind": "span",
+                    "timeContainer": "par",
+                    "text": "appear",
+                    "space": "default",
+                    "begin": 0,
+                    "end": "Infinity"
+                  },
+                  {
+                    "kind": "br",
+                    "regionID": "",
+                    "begin": 0,
+                    "end": null
+                  },
+                  {
+                    "kind": "span",
+                    "timeContainer": "par",
+                    "text": "on two lines.",
+                    "space": "default",
+                    "begin": 0,
+                    "end": "Infinity"
+                  }
+                ],
+                "space": "default",
+                "begin": 0,
+                "end": null
+              }
+            ],
+            "begin": 0,
+            "end": 10
+          }
+        ],
+        "begin": 0,
+        "end": 10
+      }
+    ],
+    "begin": 0,
+    "end": 10
+  },
+  "cellResolution": {
+    "w": 32,
+    "h": 15
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxDimensions": {
+    "h": 480,
+    "w": 640
+  }
+}
