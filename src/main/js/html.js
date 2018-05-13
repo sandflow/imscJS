@@ -126,9 +126,11 @@
             previousISDState: previousISDState,
             enableRollUp: enableRollUp || false,
             currentISDState: {},
-            flg : null,  /* current fillLineGap value if active, null otherwise */
-            lp : null, /* current linePadding value if active, null otherwise */
-            mra : null /* current multiRowAlign value if active, null otherwise */
+            flg: null, /* current fillLineGap value if active, null otherwise */
+            lp: null, /* current linePadding value if active, null otherwise */
+            mra: null, /* current multiRowAlign value if active, null otherwise */
+            ipd: null, /* inline progression direction (lr, rl, tb) */
+            bpd: null /* block progression direction (lr, rl, tb) */
         };
 
         element.appendChild(rootcontainer);
@@ -185,6 +187,7 @@
         }
 
         /* override UA default margin */
+        /* TODO: should apply to <p> only */
 
         e.style.margin = "0";
 
@@ -205,6 +208,36 @@
         }
 
         var proc_e = e;
+
+        /* remember writing direction */
+
+        if (isd_element.kind === "region") {
+
+            var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
+
+            if (wdir === "lrtb" || wdir === "lr") {
+
+                context.ipd = "lr";
+                context.bpd = "tb";
+
+            } else if (wdir === "rltb" || wdir === "rl") {
+
+                context.ipd = "rl";
+                context.bpd = "tb";
+
+            } else if (wdir === "tblr") {
+
+                context.ipd = "tb";
+                context.bpd = "lr";
+
+            } else if (wdir === "tbrl" || wdir === "tb") {
+
+                context.ipd = "tb";
+                context.bpd = "rl";
+
+            }
+
+        }
 
         /* do we have linePadding ? */
 
@@ -292,7 +325,7 @@
 
         if ((context.lp || context.mra || context.flg) && isd_element.kind === "p") {
 
-            constructLineList(proc_e, linelist, "red");
+            constructLineList(context, proc_e, linelist, null);
 
             /* insert line breaks for multirowalign */
 
@@ -308,7 +341,7 @@
 
             if (context.lp) {
 
-                applyLinePadding(linelist, context.lp * context.h);
+                applyLinePadding(linelist, context.lp * context.h, context);
 
                 context.lp = null;
 
@@ -318,9 +351,9 @@
 
             if (context.flg) {
 
-                var par_rect = proc_e.getBoundingClientRect();
+                var par_edges = rect2edges(proc_e.getBoundingClientRect(), context);
 
-                applyFillLineGap(linelist, par_rect.top, par_rect.top + par_rect.height);
+                applyFillLineGap(linelist, par_edges.before, par_edges.after, context);
 
                 context.flg = null;
 
@@ -335,13 +368,11 @@
 
             /* build line list */
 
-            constructLineList(proc_e, linelist);
+            constructLineList(context, proc_e, linelist);
 
             /* perform roll up if needed */
 
-            var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
-
-            if ((wdir === "lrtb" || wdir === "lr" || wdir === "rltb" || wdir === "rl") &&
+            if ((context.bpd === "tb") &&
                 context.enableRollUp &&
                 isd_element.contents.length > 0 &&
                 isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
@@ -371,27 +402,61 @@
                 }
 
             }
-            
+
             /* TODO: clean-up the spans ? */
 
         }
     }
 
-    function applyLinePadding(lineList, lp) {
+    function applyLinePadding(lineList, lp, context) {
 
         for (var i in lineList) {
 
             var l = lineList[i].elements.length;
+            
+            var se = lineList[i].elements[lineList[i].start_elem];
+            
+            var ee = lineList[i].elements[lineList[i].end_elem];
 
             if (l !== 0) {
 
-                lineList[i].elements[0].node.style.paddingLeft = lp + "px";
-                lineList[i].elements[0].node.style.marginLeft = "-" + lp + "px";
-                lineList[i].elements[0].node.style.backgroundColor = lineList[i].elements[0].bgcolor;
+                if (context.ipd === "lr") {
 
-                lineList[i].elements[l - 1].node.style.paddingRight = lp + "px";
-                lineList[i].elements[l - 1].node.style.marginRight = "-" + lp + "px";
-                lineList[i].elements[l - 1].node.style.backgroundColor = lineList[i].elements[l - 1].bgcolor;
+                    se.node.style.paddingLeft = lp + "px";
+                    se.node.style.marginLeft = "-" + lp + "px";
+
+                } else if (context.ipd === "rl") {
+
+                    se.node.style.paddingRight = lp + "px";
+                    se.node.style.marginRight = "-" + lp + "px";
+
+                } else if (context.ipd === "tb") {
+
+                    se.node.style.paddingTop = lp + "px";
+                    se.node.style.marginTop = "-" + lp + "px";
+
+                }
+
+                se.node.style.backgroundColor = se.bgcolor;
+
+                if (context.ipd === "lr") {
+
+                    ee.node.style.paddingRight = lp + "px";
+                    ee.node.style.marginRight = "-" + lp + "px";
+
+                } else if (context.ipd === "rl") {
+
+                    ee.node.style.paddingLeft = lp + "px";
+                    ee.node.style.marginLeft = "-" + lp + "px";
+
+                } else if (context.ipd === "tb") {
+
+                    ee.node.style.paddingBottom = lp + "px";
+                    ee.node.style.marginBottom = "-" + lp + "px";
+
+                }
+
+                ee.node.style.backgroundColor = ee.bgcolor;
 
             }
 
@@ -400,7 +465,7 @@
     }
 
     function applyMultiRowAlign(lineList) {
-        
+
         /* apply an explicit br to all but the last line */
 
         for (var i = 0; i < lineList.length - 1; i++) {
@@ -409,9 +474,9 @@
 
             if (l !== 0 && lineList[i].br === false) {
                 var br = document.createElement("br");
-                
+
                 var lastnode = lineList[i].elements[l - 1].node;
-                
+
                 lastnode.parentElement.insertBefore(br, lastnode.nextSibling);
             }
 
@@ -419,7 +484,10 @@
 
     }
 
-    function applyFillLineGap(lineList, par_top, par_bottom) {
+    function applyFillLineGap(lineList, par_before, par_after, context) {
+
+        /* positive for BPD = lr and tb, negative for BPD = rl */
+        var s = Math.sign(par_after - par_before);
 
         for (var i = 0; i <= lineList.length; i++) {
 
@@ -429,21 +497,25 @@
 
             if (i === 0) {
 
-                frontier = par_top;
+                frontier = par_before;
 
             } else if (i === lineList.length) {
 
-                frontier = par_bottom;
+                frontier = par_after;
 
             } else {
 
-                frontier = (lineList[i].top + lineList[i - 1].bottom) / 2;
+                frontier = (lineList[i].before + lineList[i - 1].after) / 2;
 
             }
 
-            /* bounding rect */
+            /* padding amount */
 
-            var r;
+            var pad;
+
+            /* current element */
+
+            var e;
 
             /* before line */
 
@@ -453,11 +525,29 @@
 
                     if (lineList[i - 1].elements[j].bgcolor === null) continue;
 
-                    r = lineList[i - 1].elements[j].node.getBoundingClientRect();
+                    e = lineList[i - 1].elements[j];
 
-                    if (r.bottom < frontier) {
-                        lineList[i - 1].elements[j].node.style.backgroundColor = lineList[i - 1].elements[j].bgcolor;
-                        lineList[i - 1].elements[j].node.style.paddingBottom = Math.ceil(frontier - r.bottom) + "px";
+                    if (s * (e.after - frontier) < 0) {
+
+                        pad = Math.ceil(Math.abs(frontier - e.after)) + "px";
+
+                        e.node.style.backgroundColor = e.bgcolor;
+
+                        if (context.bpd === "lr") {
+
+                            e.node.style.paddingRight = pad;
+
+
+                        } else if (context.bpd === "rl") {
+
+                            e.node.style.paddingLeft = pad;
+
+                        } else if (context.bpd === "tb") {
+
+                            e.node.style.paddingBottom = pad;
+
+                        }
+
                     }
 
                 }
@@ -470,13 +560,32 @@
 
                 for (var k = 0; k < lineList[i].elements.length; k++) {
 
-                    if (lineList[i].elements[k].bgcolor === null) continue;
+                    e = lineList[i].elements[k];
 
-                    r = lineList[i].elements[k].node.getBoundingClientRect();
+                    if (e.bgcolor === null) continue;
 
-                    if (r.top > frontier) {
-                        lineList[i].elements[k].node.style.backgroundColor = lineList[i].elements[k].bgcolor;
-                        lineList[i].elements[k].node.style.paddingTop = Math.ceil(r.top - frontier) + "px";
+                    if (s * (e.before - frontier) > 0) {
+
+                        pad = Math.ceil(Math.abs(e.before - frontier)) + "px";
+
+                        e.node.style.backgroundColor = e.bgcolor;
+
+                        if (context.bpd === "lr") {
+
+                            e.node.style.paddingLeft = pad;
+
+
+                        } else if (context.bpd === "rl") {
+
+                            e.node.style.paddingRight = pad;
+
+
+                        } else if (context.bpd === "tb") {
+
+                            e.node.style.paddingTop = pad;
+
+                        }
+
                     }
 
                 }
@@ -521,9 +630,47 @@
 
     }
 
+    function rect2edges(rect, context) {
 
+        var edges = {before: null, after: null, start: null, end: null};
 
-    function constructLineList(element, llist, bgcolor) {
+        if (context.bpd === "tb") {
+
+            edges.before = rect.top;
+            edges.after = rect.bottom;
+
+            if (context.ipd === "lr") {
+
+                edges.start = rect.left;
+                edges.end = rect.right;
+
+            } else {
+
+                edges.start = rect.right;
+                edges.end = rect.left;
+            }
+
+        } else if (context.bpd === "lr") {
+
+            edges.before = rect.left;
+            edges.after = rect.right;
+            edges.start = rect.top;
+            edges.end = rect.bottom;
+
+        } else if (context.bpd === "rl") {
+
+            edges.before = rect.right;
+            edges.after = rect.left;
+            edges.start = rect.top;
+            edges.end = rect.bottom;
+
+        }
+
+        return edges;
+
+    }
+
+    function constructLineList(context, element, llist, bgcolor) {
 
         var curbgcolor = element.style.backgroundColor || bgcolor;
 
@@ -533,16 +680,23 @@
 
                 var r = element.getBoundingClientRect();
 
+                /* skip if span is not displayed */
+
                 if (r.height === 0 || r.width === 0) return;
 
+                var edges = rect2edges(r, context);
+
                 if (llist.length === 0 ||
-                    (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
+                    (!isSameLine(edges.before, edges.after, llist[llist.length - 1].before, llist[llist.length - 1].after))
                     ) {
 
                     llist.push({
-                        top: r.top,
-                        height: r.height,
-                        bottom: r.top + r.height,
+                        before: edges.before,
+                        after: edges.after,
+                        start: edges.start,
+                        end: edges.end,
+                        start_elem: 0,
+                        end_elem: 0,
                         elements: [],
                         text: "",
                         br: false
@@ -550,12 +704,30 @@
 
                 } else {
 
-                    if (r.top < llist[llist.length - 1].top) {
-                        llist[llist.length - 1].top = r.top;
+                    /* positive for BPD = lr and tb, negative for BPD = rl */
+                    var bpd_dir = Math.sign(edges.after - edges.before);
+                    
+                    /* positive for IPD = lr and tb, negative for IPD = rl */
+                    var ipd_dir = Math.sign(edges.end - edges.start);
+
+                    /* check if the line height has increased */
+
+                    if (bpd_dir * (edges.before - llist[llist.length - 1].before) < 0) {
+                        llist[llist.length - 1].before = edges.before;
                     }
 
-                    if (r.height > llist[llist.length - 1].height) {
-                        llist[llist.length - 1].height = r.height;
+                    if (bpd_dir * (edges.after - llist[llist.length - 1].after) > 0) {
+                        llist[llist.length - 1].after = edges.after;
+                    }
+                    
+                    if (ipd_dir * (edges.start - llist[llist.length - 1].start) < 0) {
+                        llist[llist.length - 1].start = edges.start;
+                        llist[llist.length - 1].start_elem = llist[llist.length - 1].elements.length;
+                    }
+
+                    if (ipd_dir * (edges.end - llist[llist.length - 1].end) > 0) {
+                        llist[llist.length - 1].end = edges.end;
+                        llist[llist.length - 1].end_elem =  llist[llist.length - 1].elements.length;
                     }
 
                 }
@@ -565,7 +737,9 @@
                 llist[llist.length - 1].elements.push(
                     {
                         node: element,
-                        bgcolor: curbgcolor
+                        bgcolor: curbgcolor,
+                        before: edges.before,
+                        after: edges.after
                     }
                 );
 
@@ -583,7 +757,7 @@
 
                 if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    constructLineList(child, llist, curbgcolor);
+                    constructLineList(context, child, llist, curbgcolor);
 
                 }
 
@@ -593,9 +767,9 @@
 
     }
 
-    function isSameLine(top1, height1, top2, height2) {
+    function isSameLine(before1, after1, before2, after2) {
 
-        return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
+        return ((after1 < after2) && (before1 > before2)) || ((after2 <= after1) && (before2 >= before1));
 
     }
 
