@@ -176,7 +176,6 @@
 
                 e = document.createElement("rb");
 
-
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
 
                 e = document.createElement("rt");
@@ -713,6 +712,14 @@
     }
 
     function constructLineList(context, element, llist, bgcolor) {
+        
+        if (element.localName === "rt" || element.localName === "rtc") {
+         
+            /* skip ruby annotations */
+            
+            return;
+            
+        }
 
         var curbgcolor = element.style.backgroundColor || bgcolor;
 

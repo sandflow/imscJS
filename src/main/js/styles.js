@@ -657,6 +657,18 @@
         ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+                "ruby",
+                "none",
+                ['span'],
+                false,
+                true,
+                function (str) {
+                    return str;
+                },
+                null
+                ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
                 "showBackground",
                 "always",
                 ['region'],
