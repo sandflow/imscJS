@@ -55,7 +55,7 @@
         
         var context = {
           
-            /* empty for now */
+            rubyfs : [] /* font size of the nearest textContainer or container */
             
         };
 
@@ -219,6 +219,13 @@
 
                     isd_element.styleAttrs[sa.qname] = outs;
 
+                } else if (sa.qname === imscStyles.byName.fontSize.qname &&
+                    isd_element.kind === 'span' &&
+                    (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer" ||
+                    isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text")) {
+                    
+                    isd_element.styleAttrs[sa.qname] = 0.5 * context.rubyfs[0];
+                    
                 } else if (sa.inherit &&
                     (sa.qname in parent.styleAttrs) &&
                     !(sa.qname in isd_element.styleAttrs)) {
@@ -293,6 +300,24 @@
             }
 
         }
+        
+        /* tts:fontSize special ineritance for ruby */
+        
+        var isrubycontainer = false;
+        
+        if (isd_element.kind === "span") {
+            
+            var rtemp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
+            
+            if (rtemp === "container" || rtemp === "textContainer") {
+                
+                isrubycontainer = true;
+                
+                context.rubyfs.unshift(isd_element.styleAttrs[imscStyles.byName.fontSize.qname]);
+                
+            }
+            
+        }
 
         /* prune if tts:display is none */
 
@@ -353,6 +378,14 @@
          
          }
          */
+        
+        /* tts:fontSize special ineritance for ruby */
+        
+        if (isrubycontainer) {
+                
+                context.rubyfs.shift();
+                
+        }
 
         /* remove styles that are not applicable */
 
