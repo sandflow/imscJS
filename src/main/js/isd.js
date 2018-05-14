@@ -50,6 +50,14 @@
         /* create the ISD object from the IMSC1 doc */
 
         var isd = new ISD(tt);
+        
+        /* context */
+        
+        var context = {
+          
+            /* empty for now */
+            
+        };
 
         /* process regions */
 
@@ -57,7 +65,7 @@
 
             /* post-order traversal of the body tree per [construct intermediate document] */
 
-            var c = isdProcessContentElement(tt, offset, tt.head.layout.regions[r], tt.body, null, '', tt.head.layout.regions[r], errorHandler);
+            var c = isdProcessContentElement(tt, offset, tt.head.layout.regions[r], tt.body, null, '', tt.head.layout.regions[r], errorHandler, context);
 
             if (c !== null) {
 
@@ -72,7 +80,7 @@
         return isd;
     };
 
-    function isdProcessContentElement(doc, offset, region, body, parent, inherited_region_id, elem, errorHandler) {
+    function isdProcessContentElement(doc, offset, region, body, parent, inherited_region_id, elem, errorHandler, context) {
 
         /* prune if temporally inactive (<br> are not included in timing) */
 
@@ -269,11 +277,12 @@
             if (cs.compute !== null) {
 
                 var cstyle = cs.compute(
-                    /*doc, parent, element, attr*/
+                    /*doc, parent, element, attr, context*/
                     doc,
                     parent,
                     isd_element,
-                    isd_element.styleAttrs[cs.qname]
+                    isd_element.styleAttrs[cs.qname],
+                    context
                     );
 
                 if (cstyle !== null) {
@@ -320,7 +329,7 @@
 
         for (var x in contents) {
 
-            var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x]);
+            var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x], errorHandler, context);
 
             /* 
              * keep child element only if they are non-null and their region match 

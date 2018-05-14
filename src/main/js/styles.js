@@ -127,7 +127,7 @@
                     }
 
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var h;
                     var w;
@@ -218,7 +218,7 @@
                 true,
                 true,
                 imscUtils.parseLength,
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var fs;
 
@@ -309,7 +309,7 @@
                         return imscUtils.parseLength(str);
                     }
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var lh;
 
@@ -384,7 +384,7 @@
                     }
 
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var h;
                     var w;
@@ -463,7 +463,7 @@
 
                     return r;
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var padding;
 
@@ -689,8 +689,7 @@
                 function (str) {
                     return str;
                 },
-                function (doc, parent, element, attr) {
-
+                function (doc, parent, element, attr, context) {
                     /* Section 7.16.9 of XSL */
 
                     if (attr === "left") {
@@ -765,7 +764,7 @@
                     }
 
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     /*
                      * returns {color: <color>, thickness: <norm length>}
@@ -898,7 +897,7 @@
                 true,
                 false,
                 imscUtils.parseLength,
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
                     if (attr.unit === "c") {
 
                         return attr.value / doc.cellResolution.h;
