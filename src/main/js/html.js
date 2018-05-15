@@ -519,13 +519,13 @@
 
             }
 
-            llist[llist.length - 1].text += element.textContent;
+                llist[llist.length - 1].text += element.textContent;
 
             llist[llist.length - 1].elements.push(
                 {
                     node: element,
                     bgcolor: curbgcolor
-                }
+            }
             );
 
         } else {
@@ -949,19 +949,58 @@
             "http://www.w3.org/ns/ttml#styling textOutline",
             function (context, dom_element, isd_element, attr) {
 
-                if (attr === "none") {
+                /* defer to tts:textShadow */
+            }
+        ),
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textShadow",
+            function (context, dom_element, isd_element, attr) {
+
+                var txto = isd_element.styleAttrs[imscStyles.byName.textOutline.qname];
+
+                if (attr === "none" && txto === "none") {
 
                     dom_element.style.textShadow = "";
 
                 } else {
 
-                    dom_element.style.textShadow = "rgba(" +
-                        attr.color[0].toString() + "," +
-                        attr.color[1].toString() + "," +
-                        attr.color[2].toString() + "," +
-                        (attr.color[3] / 255).toString() +
-                        ")" + " 0px 0px " +
-                        (attr.thickness * context.h) + "px";
+                    var s = [];
+
+                    if (txto !== "none") {
+
+                        /* emulate text outline */
+
+                        s.push(
+                            "rgba(" +
+                            txto.color[0].toString() + "," +
+                            txto.color[1].toString() + "," +
+                            txto.color[2].toString() + "," +
+                            (txto.color[3] / 255).toString() +
+                            ")" + " 0px 0px " +
+                            (txto.thickness * context.h) + "px"
+                            );
+
+                    }
+
+                    /* add text shadow */
+
+                    for (var i in attr) {
+
+
+                        s.push((attr[i].x_off * context.w) + "px " +
+                            (attr[i].y_off * context.h) + "px " +
+                            (attr[i].b_radius * context.h) + "px " +
+                            "rgba(" +
+                            attr[i].color[0].toString() + "," +
+                            attr[i].color[1].toString() + "," +
+                            attr[i].color[2].toString() + "," +
+                            (attr[i].color[3] / 255).toString() +
+                            ")"
+                            );
+
+                    }
+
+                    dom_element.style.textShadow = s.join(",");
 
                 }
             }

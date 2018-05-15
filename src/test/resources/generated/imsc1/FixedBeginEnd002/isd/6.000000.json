@@ -72,7 +72,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
@@ -169,7 +168,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
@@ -266,7 +264,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
@@ -363,7 +360,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
@@ -460,7 +456,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
@@ -557,7 +552,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
@@ -654,7 +648,6 @@
                     "urn:ebu:tt:style linePadding": 0,
                     "urn:ebu:tt:style multiRowAlign": "auto",
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
-                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
