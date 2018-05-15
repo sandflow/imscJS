@@ -724,7 +724,7 @@
 
                         var num = parseInt(s[1], 10);
 
-                        if (! isNaN(num)) {
+                        if (!isNaN(num)) {
 
                             return [s[0], num];
 
@@ -951,7 +951,6 @@
             },
             null
             ),
-
         new StylingAttributeDefinition(
             imscNames.ns_smpte,
             "backgroundImage",
@@ -964,12 +963,23 @@
             },
             null
             ),
-
         new StylingAttributeDefinition(
             imscNames.ns_itts,
             "forcedDisplay",
             "false",
             ['body', 'div', 'p', 'region', 'span'],
+            true,
+            true,
+            function (str) {
+                return str === 'true' ? true : false;
+            },
+            null
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_itts,
+            "fillLineGap",
+            "false",
+            ['p'],
             true,
             true,
             function (str) {

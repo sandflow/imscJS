@@ -70,16 +70,16 @@
      * @return {Object} ISD state to be provided when this funtion is called for the next ISD
      */
 
-    imscHTML.render = function (    isd,
-                                    element,
-                                    imgResolver,
-                                    eheight,
-                                    ewidth,
-                                    displayForcedOnlyMode,
-                                    errorHandler,
-                                    previousISDState,
-                                    enableRollUp
-                                ) {
+    imscHTML.render = function (isd,
+        element,
+        imgResolver,
+        eheight,
+        ewidth,
+        displayForcedOnlyMode,
+        errorHandler,
+        previousISDState,
+        enableRollUp
+        ) {
 
         /* maintain aspect ratio if specified */
 
@@ -124,7 +124,7 @@
             isd: isd,
             errorHandler: errorHandler,
             previousISDState: previousISDState,
-            enableRollUp : enableRollUp || false,
+            enableRollUp: enableRollUp || false,
             currentISDState: {}
         };
 
@@ -232,11 +232,17 @@
 
         }
 
+        /* remember we are filling line gaps */
+
+        if (isd_element.styleAttrs[imscStyles.byName.fillLineGap.qname]) {
+            context.flg = true;
+        }
+
         // wrap characters in spans to find the line wrap locations
 
         if (isd_element.kind === "span" && isd_element.text) {
 
-            if (context.lp || context.mra) {
+            if (context.lp || context.mra || context.flg) {
 
                 for (var j = 0; j < isd_element.text.length; j++) {
 
@@ -283,22 +289,38 @@
 
         }
 
+        /* list of lines */
+
+        var linelist = [];
+
+        /* fillLineGap processing */
+
+        if (isd_element.kind === "p" &&
+            context.flg) {
+
+            constructLineList(proc_e, linelist);
+
+            var par_rect = proc_e.getBoundingClientRect();
+
+            applyFillLineGap(linelist, par_rect.top, par_rect.top + par_rect.height);
+
+            delete context.flg;
+        }
+
         /* region processing */
 
         if (isd_element.kind === "region") {
 
             /* build line list */
 
-            var linelist = [];
-
             constructLineList(proc_e, linelist);
 
             /* perform roll up if needed */
-            
+
             var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
 
             if ((wdir === "lrtb" || wdir === "lr" || wdir === "rltb" || wdir === "rl") &&
-                context.enableRollUp && 
+                context.enableRollUp &&
                 isd_element.contents.length > 0 &&
                 isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
 
@@ -331,6 +353,73 @@
         }
     }
 
+    function applyFillLineGap(lineList, par_top, par_bottom) {
+
+        for (var i = 0; i <= lineList.length; i++) {
+
+            /* compute frontier between lines */
+
+            var frontier;
+
+            if (i === 0) {
+
+                frontier = par_top;
+
+            } else if (i === lineList.length) {
+
+                frontier = par_bottom;
+
+            } else {
+
+                frontier = (lineList[i].top + lineList[i - 1].bottom) / 2;
+
+            }
+
+            /* bounding rect */
+
+            var r;
+
+            /* before line */
+
+            if (i > 0) {
+
+                for (var j = 0; j < lineList[i - 1].elements.length; j++) {
+                    
+                    if (lineList[i - 1].elements[j].bgcolor === null) continue;
+
+                    r = lineList[i - 1].elements[j].node.getBoundingClientRect();
+
+                    if (r.bottom < frontier) {
+                        lineList[i - 1].elements[j].node.style.backgroundColor = lineList[i - 1].elements[j].bgcolor;
+                        lineList[i - 1].elements[j].node.style.paddingBottom = Math.ceil(frontier - r.bottom) + "px";
+                    }
+
+                }
+
+            }
+
+            /* after line */
+
+            if (i < lineList.length) {
+
+                for (var k = 0; k < lineList[i].elements.length; k++) {
+                    
+                    if (lineList[i].elements[k].bgcolor === null) continue;
+
+                    r = lineList[i].elements[k].node.getBoundingClientRect();
+
+                    if (r.top > frontier) {
+                        lineList[i].elements[k].node.style.backgroundColor = lineList[i].elements[k].bgcolor;
+                        lineList[i].elements[k].node.style.paddingTop = Math.ceil(r.top - frontier) + "px";
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
 
     function RegionPBuffer(id, lineList) {
 
@@ -396,11 +485,15 @@
     }
 
 
-    function constructLineList(element, llist) {
+    function constructLineList(element, llist, bgcolor) {
+
+        var curbgcolor = element.style.backgroundColor || bgcolor;
 
         if (element.childElementCount === 0 && element.localName === 'span') {
 
             var r = element.getBoundingClientRect();
+
+            if (r.height === 0 || r.width === 0) return;
 
             if (llist.length === 0 ||
                 (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
@@ -409,7 +502,9 @@
                 llist.push({
                     top: r.top,
                     height: r.height,
-                    text: element.textContent
+                    bottom: r.top + r.height,
+                    elements: [],
+                    text: ""
                 });
 
             } else {
@@ -422,12 +517,18 @@
                     llist[llist.length - 1].height = r.height;
                 }
 
-                llist[llist.length - 1].text += element.textContent;
-
             }
 
-        } else {
+            llist[llist.length - 1].text += element.textContent;
 
+            llist[llist.length - 1].elements.push(
+                {
+                    node: element,
+                    bgcolor: curbgcolor
+                }
+            );
+
+        } else {
 
             var child = element.firstChild;
 
@@ -435,7 +536,7 @@
 
                 if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    constructLineList(child, llist);
+                    constructLineList(child, llist, curbgcolor);
 
                 }
 
@@ -444,7 +545,7 @@
         }
 
     }
-    
+
     function isSameLine(top1, height1, top2, height2) {
 
         return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
@@ -580,6 +681,10 @@
         new HTMLStylingMapDefintion(
             "http://www.w3.org/ns/ttml#styling backgroundColor",
             function (context, dom_element, isd_element, attr) {
+
+                /* skip if transparent */
+                if (attr[3] === 0) return;
+
                 dom_element.style.backgroundColor = "rgba(" +
                     attr[0].toString() + "," +
                     attr[1].toString() + "," +
@@ -954,7 +1059,8 @@
 
                     var uri = context.imgResolver(attr, img);
 
-                    if (uri) img.src = uri;
+                    if (uri)
+                        img.src = uri;
 
                     img.height = context.regionH;
                     img.width = context.regionW;
