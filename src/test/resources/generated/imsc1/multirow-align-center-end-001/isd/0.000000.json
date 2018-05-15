@@ -73,6 +73,7 @@
                     "http://www.w3.org/ns/ttml#styling visibility": "visible",
                     "urn:ebu:tt:style linePadding": 0,
                     "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
                     "http://www.w3.org/ns/ttml#styling backgroundColor": [
                       0,
                       0,
