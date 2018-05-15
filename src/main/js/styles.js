@@ -723,6 +723,47 @@
         ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+            "textCombine",
+            "none",
+            ['span'],
+            true,
+            true,
+            function (str) {
+                var s = str.split(" ");
+
+                if (s.length === 1) {
+
+                    if (s[0] === "none" || s[0] === "all") {
+
+                        return [s[0]];
+
+                    } else if (s[0] === "digits") {
+
+                        return [s[0], 2];
+
+                    }
+
+                } else if (s.length === 2) {
+
+                    if (s[0] === "digits") {
+
+                        var num = parseInt(s[1], 10);
+
+                        if (!isNaN(num)) {
+
+                            return [s[0], num];
+
+                        }
+
+                    }
+                }
+
+                return null;
+            },
+            null
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
                 "textDecoration",
                 "none",
                 ['span'],
@@ -935,7 +976,6 @@
                 },
                 null
                 ),
-
         new StylingAttributeDefinition(
                 imscNames.ns_smpte,
                 "backgroundImage",
@@ -948,7 +988,6 @@
                 },
                 null
                 ),
-
         new StylingAttributeDefinition(
                 imscNames.ns_itts,
                 "forcedDisplay",
@@ -960,6 +999,18 @@
                     return str === 'true' ? true : false;
                 },
                 null
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_itts,
+            "fillLineGap",
+            "false",
+            ['p'],
+            true,
+            true,
+            function (str) {
+                return str === 'true' ? true : false;
+            },
+            null
                 )
     ];
 
