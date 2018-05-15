@@ -126,6 +126,77 @@
         return r;
     };
 
+    imscUtils.parseTextShadow = function (str) {
+
+        var shadows = str.split(",");
+
+        var r = [];
+
+        for (var i in shadows) {
+
+            var shadow = shadows[i].split(" ");
+
+            if (shadow.length === 1 && shadow[0] === "none") {
+
+                return "none";
+
+            } else if (shadow.length > 1 && shadow.length < 5) {
+
+                var out_shadow = [null, null, null, null];
+
+                /* x offset */
+
+                var l = imscUtils.parseLength(shadow.shift());
+
+                if (l === null) return null;
+
+                out_shadow[0] = l;
+
+                /* y offset */
+
+                l = imscUtils.parseLength(shadow.shift());
+
+                if (l === null) return null;
+
+                out_shadow[1] = l;
+
+                /* is there a third component */
+
+                if (shadow.length === 0) {
+                    r.push(out_shadow);
+                    continue;
+                }
+
+                l = imscUtils.parseLength(shadow[0]);
+
+                if (l !== null) {
+
+                    out_shadow[2] = l;
+
+                    shadow.shift();
+
+                }
+
+                if (shadow.length === 0) {
+                    r.push(out_shadow);
+                    continue;
+                }
+
+                var c = imscUtils.parseColor(shadow[0]);
+
+                if (c === null) return null;
+
+                out_shadow[3] = c;
+
+                r.push(out_shadow);
+            }
+
+        }
+
+        return r;
+    };
+
+
     imscUtils.parsePosition = function (str) {
 
         /* see https://www.w3.org/TR/ttml2/#style-value-position */
