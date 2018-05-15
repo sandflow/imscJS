@@ -967,6 +967,14 @@
             }
         ),
         new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textCombine",
+            function (context, dom_element, isd_element, attr) {
+
+                dom_element.style.textCombineUpright = attr.join(" ");
+
+            }
+        ),
+        new HTMLStylingMapDefintion(
             "http://www.w3.org/ns/ttml#styling unicodeBidi",
             function (context, dom_element, isd_element, attr) {
 
