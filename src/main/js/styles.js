@@ -669,6 +669,18 @@
                 ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+                "rubyAlign",
+                "center",
+                ['span'],
+                false,
+                true,
+                function (str) {
+                    return str;
+                },
+                null
+                ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
                 "showBackground",
                 "always",
                 ['region'],

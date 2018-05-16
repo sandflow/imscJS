@@ -50,13 +50,13 @@
         /* create the ISD object from the IMSC1 doc */
 
         var isd = new ISD(tt);
-        
+
         /* context */
-        
+
         var context = {
-          
-            rubyfs : [] /* font size of the nearest textContainer or container */
-            
+
+            rubyfs: [] /* font size of the nearest textContainer or container */
+
         };
 
         /* process regions */
@@ -101,17 +101,17 @@
          *   region later on)
          * - the element is terminal and the associated region is not the parent region
          */
-        
+
         /* TODO: improve detection of terminal elements since <region> has no contents */
 
         if (parent !== null /* are we in the region element */ &&
             associated_region_id !== region.id &&
-                (
-                    (! ('contents' in elem)) ||
-                    ('contents' in elem && elem.contents.length === 0) ||
-                    associated_region_id !== ''
+            (
+                (!('contents' in elem)) ||
+                ('contents' in elem && elem.contents.length === 0) ||
+                associated_region_id !== ''
                 )
-             )
+            )
             return null;
 
         /* create an ISD element, including applying specified styles */
@@ -222,10 +222,10 @@
                 } else if (sa.qname === imscStyles.byName.fontSize.qname &&
                     isd_element.kind === 'span' &&
                     (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer" ||
-                    isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text")) {
-                    
+                        isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text")) {
+
                     isd_element.styleAttrs[sa.qname] = 0.5 * context.rubyfs[0];
-                    
+
                 } else if (sa.inherit &&
                     (sa.qname in parent.styleAttrs) &&
                     !(sa.qname in isd_element.styleAttrs)) {
@@ -247,16 +247,18 @@
             /* skip if value is already specified */
 
             if (ivs.qname in isd_element.styleAttrs) continue;
-            
+
             /* skip tts:position if tts:origin is specified */
-            
+
             if (ivs.qname === imscStyles.byName.position.qname &&
-                imscStyles.byName.origin.qname in isd_element.styleAttrs) continue;
-            
+                imscStyles.byName.origin.qname in isd_element.styleAttrs)
+                continue;
+
             /* skip tts:origin if tts:position is specified */
-            
+
             if (ivs.qname === imscStyles.byName.origin.qname &&
-                imscStyles.byName.position.qname in isd_element.styleAttrs) continue;
+                imscStyles.byName.position.qname in isd_element.styleAttrs)
+                continue;
 
             /* apply initial value to elements other than region only if non-inherited */
 
@@ -300,23 +302,23 @@
             }
 
         }
-        
+
         /* tts:fontSize special ineritance for ruby */
-        
+
         var isrubycontainer = false;
-        
+
         if (isd_element.kind === "span") {
-            
+
             var rtemp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
-            
+
             if (rtemp === "container" || rtemp === "textContainer") {
-                
+
                 isrubycontainer = true;
-                
+
                 context.rubyfs.unshift(isd_element.styleAttrs[imscStyles.byName.fontSize.qname]);
-                
+
             }
-            
+
         }
 
         /* prune if tts:display is none */
@@ -378,23 +380,40 @@
          
          }
          */
-        
+
         /* tts:fontSize special ineritance for ruby */
-        
+
         if (isrubycontainer) {
-                
-                context.rubyfs.shift();
-                
+
+            context.rubyfs.shift();
+
         }
 
         /* remove styles that are not applicable */
 
         for (var qnameb in isd_element.styleAttrs) {
-            var da = imscStyles.byQName[qnameb];
 
-            if (da.applies.indexOf(isd_element.kind) === -1) {
+            var na = false;
+
+            if (qnameb === imscStyles.byName.rubyAlign.qname) {
+                
+                /* special applicability rule */
+                
+                na = (isd_element.kind !== 'span') ||
+                    (isd_element.styleAttrs[imscStyles.byName.ruby.qname] !== 'container');
+
+            } else {
+
+                var da = imscStyles.byQName[qnameb];
+                na = da.applies.indexOf(isd_element.kind) === -1;
+
+            }
+
+
+            if (na) {
                 delete isd_element.styleAttrs[qnameb];
             }
+
         }
 
         /* collapse white space if space is "default" */
@@ -501,7 +520,7 @@
                 }
 
             }
-            
+
             pruneEmptySpans(isd_element);
 
         }
@@ -549,25 +568,25 @@
     function pruneEmptySpans(element) {
 
         if (element.kind === 'br') {
-            
+
             return false;
-            
+
         } else if ('text' in element) {
-            
+
             return  element.text.length === 0;
-            
+
         } else if ('contents' in element) {
-            
+
             var i = element.contents.length;
 
             while (i--) {
-                
+
                 if (pruneEmptySpans(element.contents[i])) {
                     element.contents.splice(i, 1);
                 }
-                
+
             }
-            
+
             return element.contents.length === 0;
 
         }
@@ -583,9 +602,9 @@
         /* assume the element is a region if it does not have a kind */
 
         this.kind = ttelem.kind || 'region';
-        
+
         /* copy id */
-        
+
         if (ttelem.id) {
             this.id = ttelem.id;
         }
@@ -606,7 +625,7 @@
             this.text = ttelem.text;
 
         } else if (ttelem.kind !== 'br') {
-            
+
             this.contents = [];
         }
 
