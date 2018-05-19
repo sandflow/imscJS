@@ -1037,6 +1037,31 @@
         ),
 
         new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling fontShear",
+            function (context, dom_element, isd_element, attr) {
+
+                /* return immediately if tts:fontShear is 0% since CSS transforms are not inherited*/
+
+                if (attr === 0) return;
+
+                var angle = -Math.asin(attr/100);
+                
+                /* context.writingMode is needed since writing mode is not inherited and sets the inline progression */
+
+                if (context.writingMode.startsWith("horizontal")) {
+
+                    dom_element.style.transform = "skewX(" + angle + "rad)";
+
+                } else {
+
+                    dom_element.style.transform = "skewY(" + angle + "rad)";
+
+                }
+
+            }
+        ),
+
+        new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling fontSize",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.fontSize = (attr * context.h) + "px";
@@ -1159,22 +1184,69 @@
                 "http://www.w3.org/ns/ttml#styling textOutline",
                 function (context, dom_element, isd_element, attr) {
 
-                    if (attr === "none") {
+                /* defer to tts:textShadow */
+            }
+        ),
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textShadow",
+            function (context, dom_element, isd_element, attr) {
+
+                var txto = isd_element.styleAttrs[imscStyles.byName.textOutline.qname];
+
+                if (attr === "none" && txto === "none") {
 
                         dom_element.style.textShadow = "";
 
                     } else {
 
-                        dom_element.style.textShadow = "rgba(" +
-                                attr.color[0].toString() + "," +
-                                attr.color[1].toString() + "," +
-                                attr.color[2].toString() + "," +
-                                (attr.color[3] / 255).toString() +
+                    var s = [];
+
+                    if (txto !== "none") {
+
+                        /* emulate text outline */
+
+                        s.push(
+                            "rgba(" +
+                            txto.color[0].toString() + "," +
+                            txto.color[1].toString() + "," +
+                            txto.color[2].toString() + "," +
+                            (txto.color[3] / 255).toString() +
                                 ")" + " 0px 0px " +
-                                (attr.thickness * context.h) + "px";
+                            (txto.thickness * context.h) + "px"
+                            );
+
+                    }
+
+                    /* add text shadow */
+
+                    for (var i in attr) {
+
+
+                        s.push((attr[i].x_off * context.w) + "px " +
+                            (attr[i].y_off * context.h) + "px " +
+                            (attr[i].b_radius * context.h) + "px " +
+                            "rgba(" +
+                            attr[i].color[0].toString() + "," +
+                            attr[i].color[1].toString() + "," +
+                            attr[i].color[2].toString() + "," +
+                            (attr[i].color[3] / 255).toString() +
+                            ")"
+                            );
+
+                    }
+
+                    dom_element.style.textShadow = s.join(",");
 
                     }
                 }
+        ),
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textCombine",
+            function (context, dom_element, isd_element, attr) {
+
+                dom_element.style.textCombineUpright = attr.join(" ");
+
+            }
         ),
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling unicodeBidi",
@@ -1228,21 +1300,23 @@
                 function (context, dom_element, isd_element, attr) {
                     if (attr === "lrtb" || attr === "lr") {
 
-                        dom_element.style.writingMode = "horizontal-tb";
+                    context.writingMode = "horizontal-tb";
 
                     } else if (attr === "rltb" || attr === "rl") {
 
-                        dom_element.style.writingMode = "horizontal-tb";
+                    context.writingMode = "horizontal-tb";
 
                     } else if (attr === "tblr") {
 
-                        dom_element.style.writingMode = "vertical-lr";
+                    context.writingMode = "vertical-lr";
 
                     } else if (attr === "tbrl" || attr === "tb") {
 
-                        dom_element.style.writingMode = "vertical-rl";
+                    context.writingMode = "vertical-rl";
 
                     }
+                
+                dom_element.style.writingMode = context.writingMode;
                 }
         ),
         new HTMLStylingMapDefintion(

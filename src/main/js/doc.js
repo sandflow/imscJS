@@ -1242,11 +1242,17 @@
 
         var ar = findAttribute(node, imscNames.ns_ittp, "aspectRatio");
 
+        if (ar === null) {
+            
+            ar = findAttribute(node, imscNames.ns_ttp, "displayAspectRatio");
+            
+        }
+
         var rslt = null;
 
         if (ar !== null) {
 
-            var ASPECT_RATIO_RE = /(\d+) (\d+)/;
+            var ASPECT_RATIO_RE = /(\d+)\s+(\d+)/;
 
             var m = ASPECT_RATIO_RE.exec(ar);
 

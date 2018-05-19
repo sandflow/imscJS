@@ -212,6 +212,31 @@
                 ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+                "fontShear",
+                "0%",
+                ['p'],
+                true,
+                true,
+                imscUtils.parseLength,
+                function (doc, parent, element, attr) {
+
+                    var fs;
+
+                    if (attr.unit === "%") {
+
+                        fs = Math.abs(attr.value) > 100 ? Math.sign(attr.value) * 100 : attr.value;
+
+                    } else {
+                        
+                        return null;
+
+                    }
+
+                    return fs;
+                }
+        ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
                 "fontSize",
                 "1c",
                 ['span'],
@@ -721,6 +746,47 @@
         ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+            "textCombine",
+            "none",
+            ['span'],
+            true,
+            true,
+            function (str) {
+                var s = str.split(" ");
+
+                if (s.length === 1) {
+
+                    if (s[0] === "none" || s[0] === "all") {
+
+                        return [s[0]];
+
+                    } else if (s[0] === "digits") {
+
+                        return [s[0], 2];
+
+                    }
+
+                } else if (s.length === 2) {
+
+                    if (s[0] === "digits") {
+
+                        var num = parseInt(s[1], 10);
+
+                        if (!isNaN(num)) {
+
+                            return [s[0], num];
+
+                        }
+
+                    }
+                }
+
+                return null;
+            },
+            null
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
                 "textDecoration",
                 "none",
                 ['span'],
@@ -826,6 +892,95 @@
         ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+            "textShadow",
+            "none",
+            ['span'],
+            true,
+            true,
+            imscUtils.parseTextShadow,
+            function (doc, parent, element, attr) {
+
+                /*
+                 * returns [{x_off: <length>, y_off: <length>, b_radius: <length>, color: <color>}*] or "none"
+                 * 
+                 */
+
+                if (attr === "none") return attr;
+
+                var r = [];
+
+                for (var i in attr) {
+
+                    var shadow = {};
+
+                    if (attr[i][0].unit === "%") {
+
+                        shadow.x_off = element.styleAttrs[imscStyles.byName.fontSize.qname] *
+                            attr[i][0].value / 100;
+
+                    } else if (attr[i][0].unit === "px") {
+
+                        shadow.x_off = attr[i][0].value / doc.pxDimensions.w;
+
+                    } else {
+
+                        return null;
+
+                    }
+
+                    if (attr[i][1].unit === "%") {
+
+                        shadow.y_off = element.styleAttrs[imscStyles.byName.fontSize.qname] *
+                            attr[i][1].value / 100;
+
+                    } else if (attr[i][1].unit === "px") {
+
+                        shadow.y_off = attr[i][1].value / doc.pxDimensions.h;
+
+                    } else {
+
+                        return null;
+
+                    }
+
+                    if (attr[i][2] === null) {
+
+                        shadow.b_radius = 0;
+
+                    } else if (attr[i][2].unit === "%") {
+
+                        shadow.b_radius = element.styleAttrs[imscStyles.byName.fontSize.qname] *
+                            attr[i][2].value / 100;
+
+                    } else if (attr[i][2].unit === "px") {
+
+                        shadow.b_radius = attr[i][2].value / doc.pxDimensions.h;
+
+                    } else {
+
+                        return null;
+
+                    }
+
+                    if (attr[i][3] === null) {
+
+                        shadow.color = element.styleAttrs[imscStyles.byName.color.qname];
+
+                    } else {
+
+                        shadow.color = attr[i][3];
+
+                    }
+                    
+                    r.push(shadow);
+
+                }
+
+                return r;
+            }
+        ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
                 "unicodeBidi",
                 "normal",
                 ['span', 'p'],
@@ -933,7 +1088,6 @@
                 },
                 null
                 ),
-
         new StylingAttributeDefinition(
                 imscNames.ns_smpte,
                 "backgroundImage",
@@ -946,7 +1100,6 @@
                 },
                 null
                 ),
-
         new StylingAttributeDefinition(
                 imscNames.ns_itts,
                 "forcedDisplay",
@@ -959,7 +1112,6 @@
                 },
                 null
                 ),
-
         new StylingAttributeDefinition(
                 imscNames.ns_itts,
                 "fillLineGap",
