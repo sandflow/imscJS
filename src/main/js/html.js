@@ -402,11 +402,13 @@
                     context.previousISDState[rb.id].plist[context.previousISDState[rb.id].plist.length - 1].text) {
 
                     var body_elem = e.firstElementChild;
+                    
+                    var h = rb.plist[rb.plist.length - 1].after - rb.plist[rb.plist.length - 1].before;
 
-                    body_elem.style.bottom = "-" + rb.plist[rb.plist.length - 1].height + "px";
+                    body_elem.style.bottom = "-" + h + "px";
                     body_elem.style.transition = "transform 0.4s";
                     body_elem.style.position = "relative";
-                    body_elem.style.transform = "translateY(-" + rb.plist[rb.plist.length - 1].height + "px)";
+                    body_elem.style.transform = "translateY(-" + h + "px)";
 
                 }
 
