@@ -70,16 +70,16 @@
      * @return {Object} ISD state to be provided when this funtion is called for the next ISD
      */
 
-    imscHTML.render = function (    isd,
-                                    element,
-                                    imgResolver,
-                                    eheight,
-                                    ewidth,
-                                    displayForcedOnlyMode,
-                                    errorHandler,
-                                    previousISDState,
-                                    enableRollUp
-                                ) {
+    imscHTML.render = function (isd,
+            element,
+            imgResolver,
+            eheight,
+            ewidth,
+            displayForcedOnlyMode,
+            errorHandler,
+            previousISDState,
+            enableRollUp
+            ) {
 
         /* maintain aspect ratio if specified */
 
@@ -124,8 +124,14 @@
             isd: isd,
             errorHandler: errorHandler,
             previousISDState: previousISDState,
-            enableRollUp : enableRollUp || false,
-            currentISDState: {}
+            enableRollUp: enableRollUp || false,
+            currentISDState: {},
+            flg: null, /* current fillLineGap value if active, null otherwise */
+            lp: null, /* current linePadding value if active, null otherwise */
+            mra: null, /* current multiRowAlign value if active, null otherwise */
+            ipd: null, /* inline progression direction (lr, rl, tb) */
+            bpd: null, /* block progression direction (lr, rl, tb) */
+            ruby: null /* is ruby present in a <p> */
         };
 
         element.appendChild(rootcontainer);
@@ -163,8 +169,42 @@
 
         } else if (isd_element.kind === 'span') {
 
-            e = document.createElement("span");
+            if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "container") {
 
+                e = document.createElement("ruby");
+
+                context.ruby = true;
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "base") {
+
+                e = document.createElement("rb");
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
+
+                e = document.createElement("rt");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "baseContainer") {
+
+                e = document.createElement("rbc");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
+
+                e = document.createElement("rtc");
+
+
+            } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "delimiter") {
+
+                /* ignore rp */
+
+                return;
+
+            } else {
+
+                e = document.createElement("span");
+
+            }
             //e.textContent = isd_element.text;
 
         } else if (isd_element.kind === 'br') {
@@ -182,6 +222,7 @@
         }
 
         /* override UA default margin */
+        /* TODO: should apply to <p> only */
 
         e.style.margin = "0";
 
@@ -203,12 +244,66 @@
 
         var proc_e = e;
 
+        /* remember writing direction */
 
-        // handle multiRowAlign and linePadding
+        if (isd_element.kind === "region") {
+
+            var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
+
+            if (wdir === "lrtb" || wdir === "lr") {
+
+                context.ipd = "lr";
+                context.bpd = "tb";
+
+            } else if (wdir === "rltb" || wdir === "rl") {
+
+                context.ipd = "rl";
+                context.bpd = "tb";
+
+            } else if (wdir === "tblr") {
+
+                context.ipd = "tb";
+                context.bpd = "lr";
+
+            } else if (wdir === "tbrl" || wdir === "tb") {
+
+                context.ipd = "tb";
+                context.bpd = "rl";
+
+            }
+
+        }
+
+        /* do we have linePadding ? */
+
+        var lp = isd_element.styleAttrs[imscStyles.byName.linePadding.qname];
+
+        if (lp && lp > 0) {
+
+            /* apply padding to the <p> so that line padding does not cause line wraps */
+
+            if (context.bpd === "tb") {
+
+                proc_e.style.paddingLeft = lp * context.h + "px";
+                proc_e.style.paddingRight = lp * context.h + "px";
+
+            } else {
+
+                proc_e.style.paddingTop = lp * context.h + "px";
+                proc_e.style.paddingBottom = lp * context.h + "px";
+
+            }
+
+            context.lp = lp;
+        }
+
+        // do we have multiRowAlign?
 
         var mra = isd_element.styleAttrs[imscStyles.byName.multiRowAlign.qname];
 
         if (mra && mra !== "auto") {
+
+            /* create inline block to handle multirowAlign */
 
             var s = document.createElement("span");
 
@@ -224,37 +319,31 @@
 
         }
 
-        var lp = isd_element.styleAttrs[imscStyles.byName.linePadding.qname];
+        /* remember we are filling line gaps */
 
-        if (lp && lp > 0) {
-
-            context.lp = lp;
-
+        if (isd_element.styleAttrs[imscStyles.byName.fillLineGap.qname]) {
+            context.flg = true;
         }
 
-        // wrap characters in spans to find the line wrap locations
 
         if (isd_element.kind === "span" && isd_element.text) {
 
-            if (context.lp || context.mra) {
+            // wrap characters in spans to find the line wrap locations
 
-                for (var j = 0; j < isd_element.text.length; j++) {
+            for (var j = 0; j < isd_element.text.length; j++) {
 
-                    var span = document.createElement("span");
+                var span = document.createElement("span");
 
-                    span.textContent = isd_element.text.charAt(j);
+                span.textContent = isd_element.text.charAt(j);
 
-                    e.appendChild(span);
+                e.appendChild(span);
 
-                }
-
-            } else {
-                e.textContent = isd_element.text;
             }
         }
 
-
         dom_parent.appendChild(e);
+
+        /* process the children of the ISD element */
 
         for (var k in isd_element.contents) {
 
@@ -262,26 +351,62 @@
 
         }
 
-        // handle linePadding and multiRowAlign
+        /* list of lines */
 
-        if ((context.lp || context.mra) && isd_element.kind === "p") {
+        var linelist = [];
 
-            var elist = [];
 
-            constructElementList(proc_e, elist, "red");
+        /* paragraph processing */
+        /* TODO: linePadding only supported for horizontal scripts */
 
-            /* TODO: linePadding only supported for horizontal scripts */
+        if ((context.lp || context.mra || context.flg || context.ruby) && isd_element.kind === "p") {
 
-            processLinePaddingAndMultiRowAlign(elist, context.lp * context.h);
+            constructLineList(context, proc_e, linelist, null);
 
-            /* TODO: clean-up the spans ? */
+            /* apply tts:rubyPosition="outside" */
 
-            if (context.lp)
-                delete context.lp;
-            if (context.mra)
-                delete context.mra;
+            if (context.ruby) {
+
+                applyRubyPosition(linelist, context);
+
+                context.ruby = null;
+
+            }
+
+            /* insert line breaks for multirowalign */
+
+            if (context.mra) {
+
+                applyMultiRowAlign(linelist);
+
+                context.mra = null;
+
+            }
+
+            /* add linepadding */
+
+            if (context.lp) {
+
+                applyLinePadding(linelist, context.lp * context.h, context);
+
+                context.lp = null;
+
+            }
+
+            /* fill line gaps linepadding */
+
+            if (context.flg) {
+
+                var par_edges = rect2edges(proc_e.getBoundingClientRect(), context);
+
+                applyFillLineGap(linelist, par_edges.before, par_edges.after, context);
+
+                context.flg = null;
+
+            }
 
         }
+
 
         /* region processing */
 
@@ -289,18 +414,14 @@
 
             /* build line list */
 
-            var linelist = [];
-
-            constructLineList(proc_e, linelist);
+            constructLineList(context, proc_e, linelist);
 
             /* perform roll up if needed */
-            
-            var wdir = isd_element.styleAttrs[imscStyles.byName.writingMode.qname];
 
-            if ((wdir === "lrtb" || wdir === "lr" || wdir === "rltb" || wdir === "rl") &&
-                context.enableRollUp && 
-                isd_element.contents.length > 0 &&
-                isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
+            if ((context.bpd === "tb") &&
+                    context.enableRollUp &&
+                    isd_element.contents.length > 0 &&
+                    isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
 
                 /* horrible hack, perhaps default region id should be underscore everywhere? */
 
@@ -311,11 +432,11 @@
                 context.currentISDState[rb.id] = rb;
 
                 if (context.previousISDState &&
-                    rb.id in context.previousISDState &&
-                    context.previousISDState[rb.id].plist.length > 0 &&
-                    rb.plist.length > 1 &&
-                    rb.plist[rb.plist.length - 2].text ===
-                    context.previousISDState[rb.id].plist[context.previousISDState[rb.id].plist.length - 1].text) {
+                        rb.id in context.previousISDState &&
+                        context.previousISDState[rb.id].plist.length > 0 &&
+                        rb.plist.length > 1 &&
+                        rb.plist[rb.plist.length - 2].text ===
+                        context.previousISDState[rb.id].plist[context.previousISDState[rb.id].plist.length - 1].text) {
 
                     var body_elem = e.firstElementChild;
 
@@ -328,9 +449,237 @@
 
             }
 
+            /* TODO: clean-up the spans ? */
+
         }
     }
 
+    function applyLinePadding(lineList, lp, context) {
+
+        for (var i in lineList) {
+
+            var l = lineList[i].elements.length;
+
+            var se = lineList[i].elements[lineList[i].start_elem];
+
+            var ee = lineList[i].elements[lineList[i].end_elem];
+
+            if (l !== 0) {
+
+                if (context.ipd === "lr") {
+
+                    se.node.style.paddingLeft = lp + "px";
+                    se.node.style.marginLeft = "-" + lp + "px";
+
+                } else if (context.ipd === "rl") {
+
+                    se.node.style.paddingRight = lp + "px";
+                    se.node.style.marginRight = "-" + lp + "px";
+
+                } else if (context.ipd === "tb") {
+
+                    se.node.style.paddingTop = lp + "px";
+                    se.node.style.marginTop = "-" + lp + "px";
+
+                }
+
+                se.node.style.backgroundColor = se.bgcolor;
+
+                if (context.ipd === "lr") {
+
+                    ee.node.style.paddingRight = lp + "px";
+                    ee.node.style.marginRight = "-" + lp + "px";
+
+                } else if (context.ipd === "rl") {
+
+                    ee.node.style.paddingLeft = lp + "px";
+                    ee.node.style.marginLeft = "-" + lp + "px";
+
+                } else if (context.ipd === "tb") {
+
+                    ee.node.style.paddingBottom = lp + "px";
+                    ee.node.style.marginBottom = "-" + lp + "px";
+
+                }
+
+                ee.node.style.backgroundColor = ee.bgcolor;
+
+            }
+
+        }
+
+    }
+
+    function applyMultiRowAlign(lineList) {
+
+        /* apply an explicit br to all but the last line */
+
+        for (var i = 0; i < lineList.length - 1; i++) {
+
+            var l = lineList[i].elements.length;
+
+            if (l !== 0 && lineList[i].br === false) {
+                var br = document.createElement("br");
+
+                var lastnode = lineList[i].elements[l - 1].node;
+
+                lastnode.parentElement.insertBefore(br, lastnode.nextSibling);
+            }
+
+        }
+
+    }
+
+    function applyRubyPosition(lineList, context) {
+
+        /* supports "outside" only */
+
+        for (var i = 0; i < lineList.length; i++) {
+
+            for (var j = 0; j < lineList[i].rbc.length; j++) {
+
+                var pos;
+
+                if (context.bpd === "tb") {
+
+                    pos = (i === lineList.length - 1) ? "under" : "over";
+
+
+                } else {
+
+                    if (context.bpd === "rl") {
+
+                        pos = (i === lineList.length - 1) ? "left" : "right";
+
+                    } else {
+
+                        pos = (i === lineList.length - 1) ? "right" : "left";
+
+                    }
+
+                }
+
+                lineList[i].rbc[j].style.rubyPosition = pos;
+
+            }
+
+        }
+
+    }
+
+    function applyFillLineGap(lineList, par_before, par_after, context) {
+
+        /* positive for BPD = lr and tb, negative for BPD = rl */
+        var s = Math.sign(par_after - par_before);
+
+        for (var i = 0; i <= lineList.length; i++) {
+
+            /* compute frontier between lines */
+
+            var frontier;
+
+            if (i === 0) {
+
+                frontier = par_before;
+
+            } else if (i === lineList.length) {
+
+                frontier = par_after;
+
+            } else {
+
+                frontier = (lineList[i].before + lineList[i - 1].after) / 2;
+
+            }
+
+            /* padding amount */
+
+            var pad;
+
+            /* current element */
+
+            var e;
+
+            /* before line */
+
+            if (i > 0) {
+
+                for (var j = 0; j < lineList[i - 1].elements.length; j++) {
+
+                    if (lineList[i - 1].elements[j].bgcolor === null)
+                        continue;
+
+                    e = lineList[i - 1].elements[j];
+
+                    if (s * (e.after - frontier) < 0) {
+
+                        pad = Math.ceil(Math.abs(frontier - e.after)) + "px";
+
+                        e.node.style.backgroundColor = e.bgcolor;
+
+                        if (context.bpd === "lr") {
+
+                            e.node.style.paddingRight = pad;
+
+
+                        } else if (context.bpd === "rl") {
+
+                            e.node.style.paddingLeft = pad;
+
+                        } else if (context.bpd === "tb") {
+
+                            e.node.style.paddingBottom = pad;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            /* after line */
+
+            if (i < lineList.length) {
+
+                for (var k = 0; k < lineList[i].elements.length; k++) {
+
+                    e = lineList[i].elements[k];
+
+                    if (e.bgcolor === null)
+                        continue;
+
+                    if (s * (e.before - frontier) > 0) {
+
+                        pad = Math.ceil(Math.abs(e.before - frontier)) + "px";
+
+                        e.node.style.backgroundColor = e.bgcolor;
+
+                        if (context.bpd === "lr") {
+
+                            e.node.style.paddingLeft = pad;
+
+
+                        } else if (context.bpd === "rl") {
+
+                            e.node.style.paddingRight = pad;
+
+
+                        } else if (context.bpd === "tb") {
+
+                            e.node.style.paddingTop = pad;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
 
     function RegionPBuffer(id, lineList) {
 
@@ -349,12 +698,12 @@
             var nchild = child.nextSibling;
 
             if (child.nodeType === Node.ELEMENT_NODE &&
-                child.localName === 'span') {
+                    child.localName === 'span') {
 
                 pruneEmptySpans(child);
 
                 if (child.childElementCount === 0 &&
-                    child.textContent.length === 0) {
+                        child.textContent.length === 0) {
 
                     element.removeChild(child);
 
@@ -366,68 +715,136 @@
 
     }
 
-    function constructElementList(element, elist, bgcolor) {
+    function rect2edges(rect, context) {
 
-        if (element.childElementCount === 0) {
+        var edges = {before: null, after: null, start: null, end: null};
 
-            elist.push({
-                "element": element,
-                "bgcolor": bgcolor}
-            );
+        if (context.bpd === "tb") {
 
-        } else {
+            edges.before = rect.top;
+            edges.after = rect.bottom;
 
-            var newbgcolor = element.style.backgroundColor || bgcolor;
+            if (context.ipd === "lr") {
 
-            var child = element.firstChild;
-
-            while (child) {
-
-                if (child.nodeType === Node.ELEMENT_NODE) {
-
-                    constructElementList(child, elist, newbgcolor);
-
-                }
-
-                child = child.nextSibling;
-            }
-        }
-
-    }
-
-
-    function constructLineList(element, llist) {
-
-        if (element.childElementCount === 0 && element.localName === 'span') {
-
-            var r = element.getBoundingClientRect();
-
-            if (llist.length === 0 ||
-                (!isSameLine(r.top, r.height, llist[llist.length - 1].top, llist[llist.length - 1].height))
-                ) {
-
-                llist.push({
-                    top: r.top,
-                    height: r.height,
-                    text: element.textContent
-                });
+                edges.start = rect.left;
+                edges.end = rect.right;
 
             } else {
 
-                if (r.top < llist[llist.length - 1].top) {
-                    llist[llist.length - 1].top = r.top;
-                }
+                edges.start = rect.right;
+                edges.end = rect.left;
+            }
 
-                if (r.height > llist[llist.length - 1].height) {
-                    llist[llist.length - 1].height = r.height;
+        } else if (context.bpd === "lr") {
+
+            edges.before = rect.left;
+            edges.after = rect.right;
+            edges.start = rect.top;
+            edges.end = rect.bottom;
+
+        } else if (context.bpd === "rl") {
+
+            edges.before = rect.right;
+            edges.after = rect.left;
+            edges.start = rect.top;
+            edges.end = rect.bottom;
+
+        }
+
+        return edges;
+
+    }
+
+    function constructLineList(context, element, llist, bgcolor) {
+
+        if (element.localName === "rt" || element.localName === "rtc") {
+
+            /* skip ruby annotations */
+
+            return;
+
+        }
+
+        var curbgcolor = element.style.backgroundColor || bgcolor;
+
+        if (element.childElementCount === 0) {
+
+            if (element.localName === 'span' || element.localName === 'rb') {
+
+                var r = element.getBoundingClientRect();
+
+                /* skip if span is not displayed */
+
+                if (r.height === 0 || r.width === 0)
+                    return;
+
+                var edges = rect2edges(r, context);
+
+                if (llist.length === 0 ||
+                        (!isSameLine(edges.before, edges.after, llist[llist.length - 1].before, llist[llist.length - 1].after))
+                        ) {
+
+                    llist.push({
+                        before: edges.before,
+                        after: edges.after,
+                        start: edges.start,
+                        end: edges.end,
+                        start_elem: 0,
+                        end_elem: 0,
+                        elements: [],
+                        rbc: [],
+                        text: "",
+                        br: false
+                    });
+
+                } else {
+
+                    /* positive for BPD = lr and tb, negative for BPD = rl */
+                    var bpd_dir = Math.sign(edges.after - edges.before);
+
+                    /* positive for IPD = lr and tb, negative for IPD = rl */
+                    var ipd_dir = Math.sign(edges.end - edges.start);
+
+                    /* check if the line height has increased */
+
+                    if (bpd_dir * (edges.before - llist[llist.length - 1].before) < 0) {
+                        llist[llist.length - 1].before = edges.before;
+                    }
+
+                    if (bpd_dir * (edges.after - llist[llist.length - 1].after) > 0) {
+                        llist[llist.length - 1].after = edges.after;
+                    }
+
+                    if (ipd_dir * (edges.start - llist[llist.length - 1].start) < 0) {
+                        llist[llist.length - 1].start = edges.start;
+                        llist[llist.length - 1].start_elem = llist[llist.length - 1].elements.length;
+                    }
+
+                    if (ipd_dir * (edges.end - llist[llist.length - 1].end) > 0) {
+                        llist[llist.length - 1].end = edges.end;
+                        llist[llist.length - 1].end_elem = llist[llist.length - 1].elements.length;
+                    }
+
                 }
 
                 llist[llist.length - 1].text += element.textContent;
 
+                llist[llist.length - 1].elements.push(
+                        {
+                            node: element,
+                            bgcolor: curbgcolor,
+                            before: edges.before,
+                            after: edges.after
+                        }
+                );
+
+            } else if (element.localName === 'br' && llist.length !== 0) {
+
+                llist[llist.length - 1].br = true;
+
             }
 
         } else {
-
 
             var child = element.firstChild;
 
@@ -435,7 +852,13 @@
 
                 if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    constructLineList(child, llist);
+                    constructLineList(context, child, llist, curbgcolor);
+
+                    if (child.localName === 'ruby') {
+
+                        llist[llist.length - 1].rbc.push(child);
+
+                    }
 
                 }
 
@@ -444,131 +867,12 @@
         }
 
     }
-    
-    function isSameLine(top1, height1, top2, height2) {
 
-        return (((top1 + height1) < (top2 + height2)) && (top1 > top2)) || (((top2 + height2) <= (top1 + height1)) && (top2 >= top1));
+    function isSameLine(before1, after1, before2, after2) {
 
-    }
-
-    function processLinePaddingAndMultiRowAlign(elist, lp) {
-
-        var line_head = null;
-
-        var lookingForHead = true;
-
-        var foundBR = false;
-
-        for (var i = 0; i <= elist.length; i++) {
-
-            /* skip <br> since they apparently have a different box top than
-             * the rest of the line 
-             */
-
-            if (i !== elist.length && elist[i].element.localName === "br") {
-                foundBR = true;
-                continue;
-            }
-
-            /* detect new line */
-
-            if (line_head === null ||
-                i === elist.length ||
-                (!isSameLine(elist[i].element.getBoundingClientRect().top,
-                    elist[i].element.getBoundingClientRect().height,
-                    elist[line_head].element.getBoundingClientRect().top,
-                    elist[line_head].element.getBoundingClientRect().height))
-                ) {
-
-                /* apply right padding to previous line (if applicable and unless this is the first line) */
-
-                if (lp && (!lookingForHead)) {
-
-                    for (; --i >= 0; ) {
-
-                        if (elist[i].element.getBoundingClientRect().width !== 0) {
-
-                            addRightPadding(elist[i].element, elist[i].color, lp);
-
-                            if (elist[i].element.getBoundingClientRect().width !== 0 &&
-                                isSameLine(elist[i].element.getBoundingClientRect().top,
-                                    elist[i].element.getBoundingClientRect().height,
-                                    elist[line_head].element.getBoundingClientRect().top,
-                                    elist[line_head].element.getBoundingClientRect().height))
-                                break;
-
-                            removeRightPadding(elist[i].element);
-
-                        }
-
-                    }
-
-                    lookingForHead = true;
-
-                    continue;
-
-                }
-
-                /* explicit <br> unless already present */
-
-                if (i !== elist.length && line_head !== null && (!foundBR)) {
-
-                    var br = document.createElement("br");
-
-                    elist[i].element.parentElement.insertBefore(br, elist[i].element);
-
-                    elist.splice(i, 0, {"element": br});
-
-                    foundBR = true;
-
-                    continue;
-
-                }
-
-                /* apply left padding to current line (if applicable) */
-
-                if (i !== elist.length && lp) {
-
-                    /* find first non-zero */
-
-                    for (; i < elist.length; i++) {
-
-                        if (elist[i].element.getBoundingClientRect().width !== 0) {
-                            addLeftPadding(elist[i].element, elist[i].color, lp);
-                            break;
-                        }
-
-                    }
-
-                }
-
-                lookingForHead = false;
-
-                foundBR = false;
-
-                line_head = i;
-
-            }
-
-        }
+        return ((after1 < after2) && (before1 > before2)) || ((after2 <= after1) && (before2 >= before1));
 
     }
-
-    function addLeftPadding(e, c, lp) {
-        e.style.paddingLeft = lp + "px";
-        e.style.backgroundColor = c;
-    }
-
-    function addRightPadding(e, c, lp) {
-        e.style.paddingRight = lp + "px";
-        e.style.backgroundColor = c;
-
-    }
-
-    function removeRightPadding(e) {
-        e.style.paddingRight = null;
-    }
-
 
     function HTMLStylingMapDefintion(qName, mapFunc) {
         this.qname = qName;
@@ -578,392 +882,478 @@
     var STYLING_MAP_DEFS = [
 
         new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling backgroundColor",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.backgroundColor = "rgba(" +
-                    attr[0].toString() + "," +
-                    attr[1].toString() + "," +
-                    attr[2].toString() + "," +
-                    (attr[3] / 255).toString() +
-                    ")";
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling color",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.color = "rgba(" +
-                    attr[0].toString() + "," +
-                    attr[1].toString() + "," +
-                    attr[2].toString() + "," +
-                    (attr[3] / 255).toString() +
-                    ")";
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling direction",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.direction = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling display",
-            function (context, dom_element, isd_element, attr) {}
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling displayAlign",
-            function (context, dom_element, isd_element, attr) {
+                "http://www.w3.org/ns/ttml#styling backgroundColor",
+                function (context, dom_element, isd_element, attr) {
 
-                /* see https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+                    /* skip if transparent */
+                    if (attr[3] === 0)
+                        return;
 
-                /* TODO: is this affected by writing direction? */
-
-                dom_element.style.display = "flex";
-                dom_element.style.flexDirection = "column";
-
-
-                if (attr === "before") {
-
-                    dom_element.style.justifyContent = "flex-start";
-
-                } else if (attr === "center") {
-
-                    dom_element.style.justifyContent = "center";
-
-                } else if (attr === "after") {
-
-                    dom_element.style.justifyContent = "flex-end";
+                    dom_element.style.backgroundColor = "rgba(" +
+                            attr[0].toString() + "," +
+                            attr[1].toString() + "," +
+                            attr[2].toString() + "," +
+                            (attr[3] / 255).toString() +
+                            ")";
                 }
-
-            }
         ),
         new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling extent",
-            function (context, dom_element, isd_element, attr) {
-                /* TODO: this is super ugly */
+                "http://www.w3.org/ns/ttml#styling color",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.color = "rgba(" +
+                            attr[0].toString() + "," +
+                            attr[1].toString() + "," +
+                            attr[2].toString() + "," +
+                            (attr[3] / 255).toString() +
+                            ")";
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling direction",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.direction = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling display",
+                function (context, dom_element, isd_element, attr) {}
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling displayAlign",
+                function (context, dom_element, isd_element, attr) {
 
-                context.regionH = (attr.h * context.h);
-                context.regionW = (attr.w * context.w);
+                    /* see https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
 
-                /* 
-                 * CSS height/width are measured against the content rectangle,
-                 * whereas TTML height/width include padding
-                 */
+                    /* TODO: is this affected by writing direction? */
 
-                var hdelta = 0;
-                var wdelta = 0;
+                    dom_element.style.display = "flex";
+                    dom_element.style.flexDirection = "column";
 
-                var p = isd_element.styleAttrs["http://www.w3.org/ns/ttml#styling padding"];
 
-                if (!p) {
+                    if (attr === "before") {
 
-                    /* error */
+                        dom_element.style.justifyContent = "flex-start";
 
-                } else {
+                    } else if (attr === "center") {
 
-                    hdelta = (p[0] + p[2]) * context.h;
-                    wdelta = (p[1] + p[3]) * context.w;
+                        dom_element.style.justifyContent = "center";
+
+                    } else if (attr === "after") {
+
+                        dom_element.style.justifyContent = "flex-end";
+                    }
 
                 }
-
-                dom_element.style.height = (context.regionH - hdelta) + "px";
-                dom_element.style.width = (context.regionW - wdelta) + "px";
-
-            }
         ),
         new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling fontFamily",
-            function (context, dom_element, isd_element, attr) {
+                "http://www.w3.org/ns/ttml#styling extent",
+                function (context, dom_element, isd_element, attr) {
+                    /* TODO: this is super ugly */
 
-                var rslt = [];
+                    context.regionH = (attr.h * context.h);
+                    context.regionW = (attr.w * context.w);
 
-                /* per IMSC1 */
+                    /* 
+                     * CSS height/width are measured against the content rectangle,
+                     * whereas TTML height/width include padding
+                     */
 
-                for (var i in attr) {
+                    var hdelta = 0;
+                    var wdelta = 0;
 
-                    if (attr[i] === "monospaceSerif") {
+                    var p = isd_element.styleAttrs["http://www.w3.org/ns/ttml#styling padding"];
 
-                        rslt.push("Courier New");
-                        rslt.push('"Liberation Mono"');
-                        rslt.push("Courier");
-                        rslt.push("monospace");
+                    if (!p) {
 
-                    } else if (attr[i] === "proportionalSansSerif") {
-
-                        rslt.push("Arial");
-                        rslt.push("Helvetica");
-                        rslt.push('"Liberation Sans"');
-                        rslt.push("sans-serif");
-
-                    } else if (attr[i] === "monospace") {
-
-                        rslt.push("monospace");
-
-                    } else if (attr[i] === "sansSerif") {
-
-                        rslt.push("sans-serif");
-
-                    } else if (attr[i] === "serif") {
-
-                        rslt.push("serif");
-
-                    } else if (attr[i] === "monospaceSansSerif") {
-
-                        rslt.push("Consolas");
-                        rslt.push("monospace");
-
-                    } else if (attr[i] === "proportionalSerif") {
-
-                        rslt.push("serif");
+                        /* error */
 
                     } else {
 
-                        rslt.push(attr[i]);
+                        hdelta = (p[0] + p[2]) * context.h;
+                        wdelta = (p[1] + p[3]) * context.w;
+
+                    }
+
+                    dom_element.style.height = (context.regionH - hdelta) + "px";
+                    dom_element.style.width = (context.regionW - wdelta) + "px";
+
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling fontFamily",
+                function (context, dom_element, isd_element, attr) {
+
+                    var rslt = [];
+
+                    /* per IMSC1 */
+
+                    for (var i in attr) {
+
+                        if (attr[i] === "monospaceSerif") {
+
+                            rslt.push("Courier New");
+                            rslt.push('"Liberation Mono"');
+                            rslt.push("Courier");
+                            rslt.push("monospace");
+
+                        } else if (attr[i] === "proportionalSansSerif") {
+
+                            rslt.push("Arial");
+                            rslt.push("Helvetica");
+                            rslt.push('"Liberation Sans"');
+                            rslt.push("sans-serif");
+
+                        } else if (attr[i] === "monospace") {
+
+                            rslt.push("monospace");
+
+                        } else if (attr[i] === "sansSerif") {
+
+                            rslt.push("sans-serif");
+
+                        } else if (attr[i] === "serif") {
+
+                            rslt.push("serif");
+
+                        } else if (attr[i] === "monospaceSansSerif") {
+
+                            rslt.push("Consolas");
+                            rslt.push("monospace");
+
+                        } else if (attr[i] === "proportionalSerif") {
+
+                            rslt.push("serif");
+
+                        } else {
+
+                            rslt.push(attr[i]);
+
+                        }
+
+                    }
+
+                    dom_element.style.fontFamily = rslt.join(",");
+                }
+        ),
+
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling fontShear",
+            function (context, dom_element, isd_element, attr) {
+
+                /* return immediately if tts:fontShear is 0% since CSS transforms are not inherited*/
+
+                if (attr === 0) return;
+
+                var angle = -Math.asin(attr/100);
+                
+                /* context.writingMode is needed since writing mode is not inherited and sets the inline progression */
+
+                if (context.writingMode.startsWith("horizontal")) {
+
+                    dom_element.style.transform = "skewX(" + angle + "rad)";
+
+                } else {
+
+                    dom_element.style.transform = "skewY(" + angle + "rad)";
+
+                }
+
+            }
+        ),
+
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling fontSize",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.fontSize = (attr * context.h) + "px";
+                }
+        ),
+
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling fontStyle",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.fontStyle = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling fontWeight",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.fontWeight = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling lineHeight",
+                function (context, dom_element, isd_element, attr) {
+                    if (attr === "normal") {
+
+                        dom_element.style.lineHeight = "normal";
+
+                    } else {
+
+                        dom_element.style.lineHeight = (attr * context.h) + "px";
+                    }
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling opacity",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.opacity = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling origin",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.top = (attr.h * context.h) + "px";
+                    dom_element.style.left = (attr.w * context.w) + "px";
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling overflow",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.overflow = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling padding",
+                function (context, dom_element, isd_element, attr) {
+
+                    /* attr: top,left,bottom,right*/
+
+                    /* style: top right bottom left*/
+
+                    var rslt = [];
+
+                    rslt[0] = (attr[0] * context.h) + "px";
+                    rslt[1] = (attr[3] * context.w) + "px";
+                    rslt[2] = (attr[2] * context.h) + "px";
+                    rslt[3] = (attr[1] * context.w) + "px";
+
+                    dom_element.style.padding = rslt.join(" ");
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling position",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.top = (attr.h * context.h) + "px";
+                    dom_element.style.left = (attr.w * context.w) + "px";
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling rubyAlign",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.rubyAlign = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling showBackground",
+                null
+                ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling textAlign",
+                function (context, dom_element, isd_element, attr) {
+
+                    var ta;
+                    var dir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
+
+                    /* handle UAs that do not understand start or end */
+
+                    if (attr === "start") {
+
+                        ta = (dir === "rtl") ? "right" : "left";
+
+                    } else if (attr === "end") {
+
+                        ta = (dir === "rtl") ? "left" : "right";
+
+                    } else {
+
+                        ta = attr;
+
+                    }
+
+                    dom_element.style.textAlign = ta;
+
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling textDecoration",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.textDecoration = attr.join(" ").replace("lineThrough", "line-through");
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling textOutline",
+                function (context, dom_element, isd_element, attr) {
+
+                /* defer to tts:textShadow */
+            }
+        ),
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textShadow",
+            function (context, dom_element, isd_element, attr) {
+
+                var txto = isd_element.styleAttrs[imscStyles.byName.textOutline.qname];
+
+                if (attr === "none" && txto === "none") {
+
+                        dom_element.style.textShadow = "";
+
+                    } else {
+
+                    var s = [];
+
+                    if (txto !== "none") {
+
+                        /* emulate text outline */
+
+                        s.push(
+                            "rgba(" +
+                            txto.color[0].toString() + "," +
+                            txto.color[1].toString() + "," +
+                            txto.color[2].toString() + "," +
+                            (txto.color[3] / 255).toString() +
+                                ")" + " 0px 0px " +
+                            (txto.thickness * context.h) + "px"
+                            );
+
+                    }
+
+                    /* add text shadow */
+
+                    for (var i in attr) {
+
+
+                        s.push((attr[i].x_off * context.w) + "px " +
+                            (attr[i].y_off * context.h) + "px " +
+                            (attr[i].b_radius * context.h) + "px " +
+                            "rgba(" +
+                            attr[i].color[0].toString() + "," +
+                            attr[i].color[1].toString() + "," +
+                            attr[i].color[2].toString() + "," +
+                            (attr[i].color[3] / 255).toString() +
+                            ")"
+                            );
+
+                    }
+
+                    dom_element.style.textShadow = s.join(",");
+
+                    }
+                }
+        ),
+        new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling textCombine",
+            function (context, dom_element, isd_element, attr) {
+
+                dom_element.style.textCombineUpright = attr.join(" ");
+
+            }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling unicodeBidi",
+                function (context, dom_element, isd_element, attr) {
+
+                    var ub;
+
+                    if (attr === 'bidiOverride') {
+                        ub = "bidi-override";
+                    } else {
+                        ub = attr;
+                    }
+
+                    dom_element.style.unicodeBidi = ub;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling visibility",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.visibility = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling wrapOption",
+                function (context, dom_element, isd_element, attr) {
+
+                    if (attr === "wrap") {
+
+                        if (isd_element.space === "preserve") {
+                            dom_element.style.whiteSpace = "pre-wrap";
+                        } else {
+                            dom_element.style.whiteSpace = "normal";
+                        }
+
+                    } else {
+
+                        if (isd_element.space === "preserve") {
+
+                            dom_element.style.whiteSpace = "pre";
+
+                        } else {
+                            dom_element.style.whiteSpace = "noWrap";
+                        }
 
                     }
 
                 }
-
-                dom_element.style.fontFamily = rslt.join(",");
-            }
-        ),
-
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling fontSize",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.fontSize = (attr * context.h) + "px";
-            }
-        ),
-
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling fontStyle",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.fontStyle = attr;
-            }
         ),
         new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling fontWeight",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.fontWeight = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling lineHeight",
-            function (context, dom_element, isd_element, attr) {
-                if (attr === "normal") {
+                "http://www.w3.org/ns/ttml#styling writingMode",
+                function (context, dom_element, isd_element, attr) {
+                    if (attr === "lrtb" || attr === "lr") {
 
-                    dom_element.style.lineHeight = "normal";
+                    context.writingMode = "horizontal-tb";
 
-                } else {
+                    } else if (attr === "rltb" || attr === "rl") {
 
-                    dom_element.style.lineHeight = (attr * context.h) + "px";
-                }
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling opacity",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.opacity = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling origin",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.top = (attr.h * context.h) + "px";
-                dom_element.style.left = (attr.w * context.w) + "px";
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling overflow",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.overflow = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling padding",
-            function (context, dom_element, isd_element, attr) {
+                    context.writingMode = "horizontal-tb";
 
-                /* attr: top,left,bottom,right*/
+                    } else if (attr === "tblr") {
 
-                /* style: top right bottom left*/
+                    context.writingMode = "vertical-lr";
 
-                var rslt = [];
+                    } else if (attr === "tbrl" || attr === "tb") {
 
-                rslt[0] = (attr[0] * context.h) + "px";
-                rslt[1] = (attr[3] * context.w) + "px";
-                rslt[2] = (attr[2] * context.h) + "px";
-                rslt[3] = (attr[1] * context.w) + "px";
+                    context.writingMode = "vertical-rl";
 
-                dom_element.style.padding = rslt.join(" ");
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling position",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.top = (attr.h * context.h) + "px";
-                dom_element.style.left = (attr.w * context.w) + "px";
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling showBackground",
-            null
-            ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling textAlign",
-            function (context, dom_element, isd_element, attr) {
-
-                var ta;
-                var dir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
-
-                /* handle UAs that do not understand start or end */
-
-                if (attr === "start") {
-
-                    ta = (dir === "rtl") ? "right" : "left";
-
-                } else if (attr === "end") {
-
-                    ta = (dir === "rtl") ? "left" : "right";
-
-                } else {
-
-                    ta = attr;
-
-                }
-
-                dom_element.style.textAlign = ta;
-
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling textDecoration",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.textDecoration = attr.join(" ").replace("lineThrough", "line-through");
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling textOutline",
-            function (context, dom_element, isd_element, attr) {
-
-                if (attr === "none") {
-
-                    dom_element.style.textShadow = "";
-
-                } else {
-
-                    dom_element.style.textShadow = "rgba(" +
-                        attr.color[0].toString() + "," +
-                        attr.color[1].toString() + "," +
-                        attr.color[2].toString() + "," +
-                        (attr.color[3] / 255).toString() +
-                        ")" + " 0px 0px " +
-                        (attr.thickness * context.h) + "px";
-
-                }
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling unicodeBidi",
-            function (context, dom_element, isd_element, attr) {
-
-                var ub;
-
-                if (attr === 'bidiOverride') {
-                    ub = "bidi-override";
-                } else {
-                    ub = attr;
-                }
-
-                dom_element.style.unicodeBidi = ub;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling visibility",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.visibility = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling wrapOption",
-            function (context, dom_element, isd_element, attr) {
-
-                if (attr === "wrap") {
-
-                    if (isd_element.space === "preserve") {
-                        dom_element.style.whiteSpace = "pre-wrap";
-                    } else {
-                        dom_element.style.whiteSpace = "normal";
                     }
+                
+                dom_element.style.writingMode = context.writingMode;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling zIndex",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.zIndex = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage",
+                function (context, dom_element, isd_element, attr) {
 
-                } else {
+                    if (context.imgResolver !== null && attr !== null) {
 
-                    if (isd_element.space === "preserve") {
+                        var img = document.createElement("img");
 
-                        dom_element.style.whiteSpace = "pre";
+                        var uri = context.imgResolver(attr, img);
 
-                    } else {
-                        dom_element.style.whiteSpace = "noWrap";
+                        if (uri)
+                            img.src = uri;
+
+                        img.height = context.regionH;
+                        img.width = context.regionW;
+
+                        dom_element.appendChild(img);
+                    }
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay",
+                function (context, dom_element, isd_element, attr) {
+
+                    if (context.displayForcedOnlyMode && attr === false) {
+                        dom_element.style.visibility = "hidden";
                     }
 
                 }
-
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling writingMode",
-            function (context, dom_element, isd_element, attr) {
-                if (attr === "lrtb" || attr === "lr") {
-
-                    dom_element.style.writingMode = "horizontal-tb";
-
-                } else if (attr === "rltb" || attr === "rl") {
-
-                    dom_element.style.writingMode = "horizontal-tb";
-
-                } else if (attr === "tblr") {
-
-                    dom_element.style.writingMode = "vertical-lr";
-
-                } else if (attr === "tbrl" || attr === "tb") {
-
-                    dom_element.style.writingMode = "vertical-rl";
-
-                }
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling zIndex",
-            function (context, dom_element, isd_element, attr) {
-                dom_element.style.zIndex = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage",
-            function (context, dom_element, isd_element, attr) {
-
-                if (context.imgResolver !== null && attr !== null) {
-
-                    var img = document.createElement("img");
-
-                    var uri = context.imgResolver(attr, img);
-
-                    if (uri) img.src = uri;
-
-                    img.height = context.regionH;
-                    img.width = context.regionW;
-
-                    dom_element.appendChild(img);
-                }
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay",
-            function (context, dom_element, isd_element, attr) {
-
-                if (context.displayForcedOnlyMode && attr === false) {
-                    dom_element.style.visibility = "hidden";
-                }
-
-            }
         )
     ];
 
@@ -982,5 +1372,5 @@
     }
 
 })(typeof exports === 'undefined' ? this.imscHTML = {} : exports,
-    typeof imscNames === 'undefined' ? require("./names") : imscNames,
-    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles);
+        typeof imscNames === 'undefined' ? require("./names") : imscNames,
+        typeof imscStyles === 'undefined' ? require("./styles") : imscStyles);
