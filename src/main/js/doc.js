@@ -595,8 +595,40 @@
             resolveTiming(doc, doc.body, null, null);
         }
 
+        /* remove undefined spans in ruby containers */
+
+        if (doc.body) {
+            cleanRubyContainers(doc.body);
+        }
+
         return doc;
     };
+
+    function cleanRubyContainers(element) {
+        
+        if (! ('contents' in element)) return;
+
+        var rubyval = 'styleAttrs' in element ? element.styleAttrs[imscStyles.byName.ruby.qname] : null;
+
+        var isrubycontainer = (element.kind === 'span' && (rubyval === "container" || rubyval === "textContainer" || rubyval === "textContainer"));
+
+        for (var i = element.contents.length - 1; i >= 0; i--) {
+
+            if (isrubycontainer && !('styleAttrs' in element.contents[i] && imscStyles.byName.ruby.qname in element.contents[i].styleAttrs)) {
+
+                /* prune undefined <span> in ruby containers */
+
+                delete element.contents[i];
+
+            } else {
+
+                cleanRubyContainers(element.contents[i]);
+
+            }
+
+        }
+
+    }
 
     function resolveTiming(doc, element, prev_sibling, parent) {
 
@@ -1209,7 +1241,7 @@
     function extractAspectRatio(node, errorHandler) {
 
         var ar = findAttribute(node, imscNames.ns_ittp, "aspectRatio");
-        
+
         if (ar === null) {
             
             ar = findAttribute(node, imscNames.ns_ttp, "displayAspectRatio");

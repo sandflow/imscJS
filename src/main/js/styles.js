@@ -127,7 +127,7 @@
                     }
 
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var h;
                     var w;
@@ -243,7 +243,7 @@
                 true,
                 true,
                 imscUtils.parseLength,
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var fs;
 
@@ -334,7 +334,7 @@
                         return imscUtils.parseLength(str);
                     }
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var lh;
 
@@ -409,7 +409,7 @@
                     }
 
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var h;
                     var w;
@@ -488,7 +488,7 @@
 
                     return r;
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     var padding;
 
@@ -682,6 +682,30 @@
         ),
         new StylingAttributeDefinition(
                 imscNames.ns_tts,
+                "ruby",
+                "none",
+                ['span'],
+                false,
+                true,
+                function (str) {
+                    return str;
+                },
+                null
+                ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
+                "rubyAlign",
+                "center",
+                ['span'],
+                false,
+                true,
+                function (str) {
+                    return str;
+                },
+                null
+                ),
+        new StylingAttributeDefinition(
+                imscNames.ns_tts,
                 "showBackground",
                 "always",
                 ['region'],
@@ -702,8 +726,7 @@
                 function (str) {
                     return str;
                 },
-                function (doc, parent, element, attr) {
-
+                function (doc, parent, element, attr, context) {
                     /* Section 7.16.9 of XSL */
 
                     if (attr === "left") {
@@ -819,7 +842,7 @@
                     }
 
                 },
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
 
                     /*
                      * returns {color: <color>, thickness: <norm length>}
@@ -1041,7 +1064,7 @@
                 true,
                 false,
                 imscUtils.parseLength,
-                function (doc, parent, element, attr) {
+                function (doc, parent, element, attr, context) {
                     if (attr.unit === "c") {
 
                         return attr.value / doc.cellResolution.h;
@@ -1088,18 +1111,18 @@
                     return str === 'true' ? true : false;
                 },
                 null
-            ),
+                ),
         new StylingAttributeDefinition(
-            imscNames.ns_itts,
-            "fillLineGap",
-            "false",
-            ['p'],
-            true,
-            true,
-            function (str) {
-                return str === 'true' ? true : false;
-            },
-            null
+                imscNames.ns_itts,
+                "fillLineGap",
+                "false",
+                ['p'],
+                true,
+                true,
+                function (str) {
+                    return str === 'true' ? true : false;
+                },
+                null
                 )
     ];
 
