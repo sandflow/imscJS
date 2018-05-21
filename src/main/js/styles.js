@@ -802,7 +802,7 @@
             "textEmphasis",
             "none",
             ['span'],
-            true,
+            false,
             true,
             function (str) {
                 var e = str.split(" ");
@@ -846,6 +846,8 @@
 
                     }
                 }
+                
+                return rslt;
             },
             null
             ),
