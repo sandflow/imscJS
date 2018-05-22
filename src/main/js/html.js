@@ -131,7 +131,8 @@
             mra: null, /* current multiRowAlign value if active, null otherwise */
             ipd: null, /* inline progression direction (lr, rl, tb) */
             bpd: null, /* block progression direction (lr, rl, tb) */
-            ruby: null /* is ruby present in a <p> */
+            ruby: null, /* is ruby present in a <p> */
+            textEmphasis: null /* is textEmphasis present in a <p> */
         };
 
         element.appendChild(rootcontainer);
@@ -205,6 +206,15 @@
                 e = document.createElement("span");
 
             }
+            
+            var te = isd_element.styleAttrs[imscStyles.byName.textEmphasis.qname];
+            
+            if (te && te !== "none") {
+                
+                 context.textEmphasis = true;
+                
+            }
+            
             //e.textContent = isd_element.text;
 
         } else if (isd_element.kind === 'br') {
@@ -359,7 +369,8 @@
         /* paragraph processing */
         /* TODO: linePadding only supported for horizontal scripts */
 
-        if ((context.lp || context.mra || context.flg || context.ruby) && isd_element.kind === "p") {
+        if ((context.lp || context.mra || context.flg || context.ruby || context.textEmphasis) && 
+            isd_element.kind === "p") {
 
             constructLineList(context, proc_e, linelist, null);
 
@@ -370,6 +381,16 @@
                 applyRubyPosition(linelist, context);
 
                 context.ruby = null;
+
+            }
+            
+            /* apply text emphasis "outside" position */
+
+            if (context.textEmphasis) {
+
+                applyTextEmphasis(linelist, context);
+
+                context.textEmphasis = null;
 
             }
 
@@ -524,6 +545,43 @@
                 var lastnode = lineList[i].elements[l - 1].node;
 
                 lastnode.parentElement.insertBefore(br, lastnode.nextSibling);
+            }
+
+        }
+
+    }
+    
+    function applyTextEmphasis(lineList, context) {
+
+        /* supports "outside" only */
+
+        for (var i = 0; i < lineList.length; i++) {
+
+            for (var j = 0; j < lineList[i].te.length; j++) {
+
+                var pos;
+
+                if (context.bpd === "tb") {
+
+                    pos = (i === lineList.length - 1) ? "left under" : "left over";
+
+
+                } else {
+
+                    if (context.bpd === "rl") {
+
+                        pos = (i === lineList.length - 1) ? "left under" : "right under";
+
+                    } else {
+
+                        pos = (i === lineList.length - 1) ? "right under" : "left under";
+
+                    }
+
+                }
+
+                lineList[i].te[j].style.textEmphasisPosition = pos;
+
             }
 
         }
@@ -793,6 +851,7 @@
                         end_elem: 0,
                         elements: [],
                         rbc: [],
+                        te: [],
                         text: "",
                         br: false
                     });
@@ -857,6 +916,12 @@
                     if (child.localName === 'ruby') {
 
                         llist[llist.length - 1].rbc.push(child);
+
+                    } else if (child.localName === 'span' &&
+                        'textEmphasisStyle' in child.style &&
+                        child.style.textEmphasisStyle !== "none") {
+
+                        llist[llist.length - 1].te.push(child);
 
                     }
 
@@ -1247,6 +1312,21 @@
                 dom_element.style.textCombineUpright = attr.join(" ");
 
             }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling textEmphasis",
+                function (context, dom_element, isd_element, attr) {
+                    
+                    /* ignore color (not used in IMSC 1.1 */
+                    /* ignore position (set in postprocessing) */
+                    
+                    if (attr.style !== "none") {
+                        
+                        /* text-emphasis does not inherit in w */
+                        
+                        dom_element.style.textEmphasisStyle = attr.style + " " + attr.symbol;
+                    }
+                }
         ),
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling unicodeBidi",
