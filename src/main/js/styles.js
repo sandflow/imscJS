@@ -127,7 +127,7 @@
                 }
 
             },
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
 
                 var h;
                 var w;
@@ -212,38 +212,38 @@
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
-                "fontShear",
-                "0%",
-                ['p'],
-                true,
-                true,
-                imscUtils.parseLength,
-                function (doc, parent, element, attr) {
+            "fontShear",
+            "0%",
+            ['p'],
+            true,
+            true,
+            imscUtils.parseLength,
+            function (doc, parent, element, attr) {
 
-                    var fs;
+                var fs;
 
-                    if (attr.unit === "%") {
+                if (attr.unit === "%") {
 
-                        fs = Math.abs(attr.value) > 100 ? Math.sign(attr.value) * 100 : attr.value;
+                    fs = Math.abs(attr.value) > 100 ? Math.sign(attr.value) * 100 : attr.value;
 
-                    } else {
-                        
-                        return null;
+                } else {
 
-                    }
+                    return null;
 
-                    return fs;
                 }
+
+                return fs;
+            }
         ),
         new StylingAttributeDefinition(
-                imscNames.ns_tts,
+            imscNames.ns_tts,
             "fontSize",
             "1c",
             ['span'],
             true,
             true,
             imscUtils.parseLength,
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
 
                 var fs;
 
@@ -334,7 +334,7 @@
                     return imscUtils.parseLength(str);
                 }
             },
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
 
                 var lh;
 
@@ -409,7 +409,7 @@
                 }
 
             },
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
 
                 var h;
                 var w;
@@ -488,7 +488,7 @@
 
                 return r;
             },
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
 
                 var padding;
 
@@ -682,30 +682,30 @@
         ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
-                "ruby",
-                "none",
-                ['span'],
-                false,
-                true,
-                function (str) {
-                    return str;
-                },
-                null
-                ),
+            "ruby",
+            "none",
+            ['span'],
+            false,
+            true,
+            function (str) {
+                return str;
+            },
+            null
+            ),
         new StylingAttributeDefinition(
-                imscNames.ns_tts,
-                "rubyAlign",
-                "center",
-                ['span'],
-                false,
-                true,
-                function (str) {
-                    return str;
-                },
-                null
-                ),
+            imscNames.ns_tts,
+            "rubyAlign",
+            "center",
+            ['span'],
+            false,
+            true,
+            function (str) {
+                return str;
+            },
+            null
+            ),
         new StylingAttributeDefinition(
-                imscNames.ns_tts,
+            imscNames.ns_tts,
             "showBackground",
             "always",
             ['region'],
@@ -726,7 +726,7 @@
             function (str) {
                 return str;
             },
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
                 /* Section 7.16.9 of XSL */
 
                 if (attr === "left") {
@@ -818,13 +818,13 @@
                     } else if (e[i] === "filled" ||
                         e[i] === "open") {
 
-                            rslt.style = e[i];
+                        rslt.style = e[i];
 
                     } else if (e[i] === "circle" ||
                         e[i] === "dot" ||
                         e[i] === "sesame") {
 
-                            rslt.symbol = e[i];
+                        rslt.symbol = e[i];
 
                     } else if (e[i] === "current") {
 
@@ -846,7 +846,7 @@
 
                     }
                 }
-                
+
                 return rslt;
             },
             null
@@ -896,7 +896,7 @@
                 }
 
             },
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
 
                 /*
                  * returns {color: <color>, thickness: <norm length>}
@@ -1025,7 +1025,7 @@
                         shadow.color = attr[i][3];
 
                     }
-                    
+
                     r.push(shadow);
 
                 }
@@ -1118,7 +1118,7 @@
             true,
             false,
             imscUtils.parseLength,
-                function (doc, parent, element, attr, context) {
+            function (doc, parent, element, attr, context) {
                 if (attr.unit === "c") {
 
                     return attr.value / doc.cellResolution.h;
@@ -1165,18 +1165,18 @@
                 return str === 'true' ? true : false;
             },
             null
-                ),
+            ),
         new StylingAttributeDefinition(
-                imscNames.ns_itts,
-                "fillLineGap",
-                "false",
-                ['p'],
-                true,
-                true,
-                function (str) {
-                    return str === 'true' ? true : false;
-                },
-                null
+            imscNames.ns_itts,
+            "fillLineGap",
+            "false",
+            ['p'],
+            true,
+            true,
+            function (str) {
+                return str === 'true' ? true : false;
+            },
+            null
             )
     ];
 

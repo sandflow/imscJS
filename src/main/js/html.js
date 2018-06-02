@@ -1293,23 +1293,26 @@
 
                     /* add text shadow */
 
-                    for (var i in attr) {
+                    if (attr !== "none") {
+
+                        for (var i in attr) {
 
 
-                        s.push((attr[i].x_off * context.w) + "px " +
-                            (attr[i].y_off * context.h) + "px " +
-                            (attr[i].b_radius * context.h) + "px " +
-                            "rgba(" +
-                            attr[i].color[0].toString() + "," +
-                            attr[i].color[1].toString() + "," +
-                            attr[i].color[2].toString() + "," +
-                            (attr[i].color[3] / 255).toString() +
-                            ")"
-                            );
+                            s.push((attr[i].x_off * context.w) + "px " +
+                                (attr[i].y_off * context.h) + "px " +
+                                (attr[i].b_radius * context.h) + "px " +
+                                "rgba(" +
+                                attr[i].color[0].toString() + "," +
+                                attr[i].color[1].toString() + "," +
+                                attr[i].color[2].toString() + "," +
+                                (attr[i].color[3] / 255).toString() +
+                                ")"
+                                );
 
+                        }
+
+                        dom_element.style.textShadow = s.join(",");
                     }
-
-                    dom_element.style.textShadow = s.join(",");
 
                 }
             }
