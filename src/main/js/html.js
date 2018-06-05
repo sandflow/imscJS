@@ -575,18 +575,18 @@
 
                 if (context.bpd === "tb") {
 
-                    pos = (i > 0 && i === lineList.length - 1) ? "left under" : "left over";
+                    pos = (i === 0) ? "left over" : "left under";
 
 
                 } else {
 
                     if (context.bpd === "rl") {
 
-                        pos = (i > 0 && i === lineList.length - 1) ? "left under" : "right under";
+                        pos = (i === 0) ?  "right under" : "left under";
 
                     } else {
 
-                        pos = (i > 0 && i === lineList.length - 1) ? "right under" : "left under";
+                        pos = (i === 0) ? "left under" : "right under";
 
                     }
 
@@ -612,18 +612,18 @@
 
                 if (context.bpd === "tb") {
 
-                    pos = (i > 0 && i === lineList.length - 1) ? "under" : "over";
+                    pos = (i === 0) ? "over" : "under";
 
 
                 } else {
 
                     if (context.bpd === "rl") {
 
-                        pos = (i > 0 && i === lineList.length - 1) ? "left" : "right";
+                        pos = (i === 0) ? "over" : "under";
 
                     } else {
 
-                        pos = (i > 0 && i === lineList.length - 1) ? "right" : "left";
+                        pos = (i === 0) ? "under" : "over";
 
                     }
 
