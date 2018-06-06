@@ -706,6 +706,56 @@
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
+            "rubyReserve",
+            "none",
+            ['p'],
+            true,
+            true,
+            function (str) {
+                var s = str.split(" ");
+
+                var r = [null, null];
+
+                if (s.length === 0 || s.length > 2)
+                    return null;
+
+                if (s[0] === "none" ||
+                    s[0] === "both" ||
+                    s[0] === "after" ||
+                    s[0] === "before" ||
+                    s[0] === "outside") {
+
+                    r[0] = s[0];
+
+                } else {
+
+                    return null;
+
+                }
+
+                if (s.length === 2 && s[0] !== "none") {
+
+                    var l = imscUtils.parseLength(s[1]);
+
+                    if (!l) {
+
+                        r[1] = l;
+
+                    } else {
+                        
+                        return null;
+                        
+                    }
+                    
+                }
+
+
+                return r;
+            },
+            null
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
             "showBackground",
             "always",
             ['region'],
