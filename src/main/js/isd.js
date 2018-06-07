@@ -259,12 +259,16 @@
             if (ivs.qname === imscStyles.byName.origin.qname &&
                 imscStyles.byName.position.qname in isd_element.styleAttrs)
                 continue;
+            
+            /* determine initial value */
+            
+            var iv = doc.head.styling.initials[ivs.qname] || ivs.initial;
 
             /* apply initial value to elements other than region only if non-inherited */
 
-            if (isd_element.kind === 'region' || (ivs.inherit === false && ivs.initial !== null)) {
+            if (isd_element.kind === 'region' || (ivs.inherit === false && iv !== null)) {
 
-                isd_element.styleAttrs[ivs.qname] = ivs.parse(ivs.initial);
+                isd_element.styleAttrs[ivs.qname] = ivs.parse(iv);
 
                 /* keep track of the style as specified */
 

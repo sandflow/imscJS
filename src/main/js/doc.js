@@ -271,12 +271,6 @@
                         reportFatal("Parent of <head> element is not <tt> at (" + this.line + "," + this.column + ")");
                     }
 
-                    if (doc.head !== null) {
-                        reportFatal("Second <head> element at (" + this.line + "," + this.column + ")");
-                    }
-
-                    doc.head = new Head();
-
                     estack.unshift(doc.head);
 
                 } else if (node.local === 'styling') {
@@ -284,12 +278,6 @@
                     if (!(estack[0] instanceof Head)) {
                         reportFatal("Parent of <styling> element is not <head> at (" + this.line + "," + this.column + ")");
                     }
-
-                    if (doc.head.styling !== null) {
-                        reportFatal("Second <styling> element at (" + this.line + "," + this.column + ")");
-                    }
-
-                    doc.head.styling = new Styling();
 
                     estack.unshift(doc.head.styling);
 
@@ -338,6 +326,30 @@
 
                     }
 
+                }  else if (node.local === 'initial') {
+
+                    var ini;
+
+                    if (estack[0] instanceof Styling) {
+
+                        ini = new Initial();
+
+                        ini.initFromNode(node, errorHandler);
+                        
+                        if (ini.qname && ini.value) {
+
+                            doc.head.styling.initials[ini.qname] = ini.value;
+                            
+                        }
+
+                        estack.unshift(ini);
+
+                    } else {
+
+                        reportFatal(errorHandler, "Parent of <initial> element is not <styling> at (" + this.line + "," + this.column + ")");
+
+                    }
+
                 } else if (node.local === 'layout') {
 
                     if (!(estack[0] instanceof Head)) {
@@ -345,14 +357,6 @@
                         reportFatal(errorHandler, "Parent of <layout> element is not <head> at " + this.line + "," + this.column + ")");
 
                     }
-
-                    if (doc.head.layout !== null) {
-
-                        reportFatal(errorHandler, "Second <layout> element at " + this.line + "," + this.column + ")");
-
-                    }
-
-                    doc.head.layout = new Layout();
 
                     estack.unshift(doc.head.layout);
 
@@ -542,22 +546,11 @@
 
         p.write(xmlstring).close();
 
-        // all referential styling has been flatten, so delete the styling elements if there is a head
-        // otherwise create an empty head
+        // all referential styling has been flatten, so delete styles
 
-        if (doc.head !== null) {
-            delete doc.head.styling;
-        } else {
-            doc.head = new Head();
-        }
-
+        delete doc.head.styling.styles;
+       
         // create default region if no regions specified
-
-        if (doc.head.layout === null) {
-
-            doc.head.layout = new Layout();
-
-        }
 
         var hasRegions = false;
 
@@ -762,7 +755,7 @@
 
     function TT() {
         this.events = [];
-        this.head = null;
+        this.head = new Head();
         this.body = null;
     }
 
@@ -872,8 +865,8 @@
      */
 
     function Head() {
-        this.styling = null;
-        this.layout = null;
+        this.styling = new Styling();
+        this.layout = new Layout();
     }
 
     /*
@@ -882,6 +875,7 @@
 
     function Styling() {
         this.styles = {};
+        this.initials = {};
     }
 
     /*
@@ -898,6 +892,32 @@
         this.id = elementGetXMLID(node);
         this.styleAttrs = elementGetStyles(node, errorHandler);
         this.styleRefs = elementGetStyleRefs(node);
+    };
+    
+    /*
+     * Represents a TTML initial element
+     */
+
+    function Initial() {
+        this.qname = null;
+        this.value = null;
+    }
+
+    Initial.prototype.initFromNode = function (node, errorHandler) {
+        
+        for (var i in node.attributes) {
+
+            if (node.attributes[i].uri === imscNames.ns_itts ||
+                node.attributes[i].uri === imscNames.ns_ebutts ||
+                node.attributes[i].uri === imscNames.ns_tts) {
+                
+                this.qname = node.attributes[i].uri + " " + node.attributes[i].local;
+                this.value = node.attributes[i].value;
+                
+                break;
+            }
+        }
+        
     };
 
     /*
