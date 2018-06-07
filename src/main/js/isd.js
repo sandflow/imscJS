@@ -533,12 +533,14 @@
          * * contains a background image
          * * <br/>
          * * if there are children
+         * * if it is an image
          * * if <span> and has text
          * * if region and showBackground = always
          */
 
         if ((isd_element.kind === 'div' && imscStyles.byName.backgroundImage.qname in isd_element.styleAttrs) ||
             isd_element.kind === 'br' ||
+            isd_element.kind === 'image' ||
             ('contents' in isd_element && isd_element.contents.length > 0) ||
             (isd_element.kind === 'span' && isd_element.text !== null) ||
             (isd_element.kind === 'region' &&
@@ -561,7 +563,7 @@
                 constructSpanList(element.contents[i], elist);
             }
 
-        } else {
+        } else if (element.kind === 'span' || element.kind === 'br') {
 
             elist.push(element);
 
@@ -621,14 +623,29 @@
             this.styleAttrs[sname] =
                 ttelem.styleAttrs[sname];
         }
+        
+        /* copy src and type if image */
+        
+        if ('src' in ttelem) {
+            
+            this.src = ttelem.src;
+            
+        }
+        
+         if ('type' in ttelem) {
+            
+            this.type = ttelem.type;
+            
+        }
 
-        /* TODO: clean this! */
+        /* TODO: clean this! 
+         * TODO: ISDElement and document element should be better tied together */
 
         if ('text' in ttelem) {
 
             this.text = ttelem.text;
 
-        } else if (ttelem.kind !== 'br') {
+        } else if (this.kind === 'region' || 'contents' in ttelem) {
 
             this.contents = [];
         }
