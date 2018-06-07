@@ -415,10 +415,35 @@
                     var d = new Div();
 
                     d.initFromNode(doc, estack[0], node, errorHandler);
+                    
+                    /* transform smpte:backgroundImage to TTML2 image element */
+                    
+                    var bi = d.styleAttrs[imscStyles.byName.backgroundImage.qname];
+                    
+                    if (bi) {
+                        d.contents.push(new Image(bi));
+                        delete d.styleAttrs[imscStyles.byName.backgroundImage.qname];                  
+                    }
 
                     estack[0].contents.push(d);
 
                     estack.unshift(d);
+
+                } else if (node.local === 'image') {
+
+                    if (!(estack[0] instanceof Div)) {
+
+                        reportFatal(errorHandler, "Parent of <image> element is not <div> at " + this.line + "," + this.column + ")");
+
+                    }
+
+                    var img = new Image();
+                    
+                    img.initFromNode(doc, estack[0], node, errorHandler);
+                    
+                    estack[0].contents.push(img);
+
+                    estack.unshift(img);
 
                 } else if (node.local === 'p') {
 
@@ -928,6 +953,35 @@
     function Layout() {
         this.regions = {};
     }
+    
+    /*
+     * Represents a TTML image element
+     */
+
+    function Image(src, type) {
+        ContentElement.call(this, 'image');
+        this.src = src;
+        this.type = type;
+    }
+
+    Image.prototype.initFromNode = function (doc, parent, node, errorHandler) {
+        this.src = 'src' in node.attributes ? node.attributes.src.value : null;
+        
+        if (! this.src) {
+            reportError(errorHandler, "Invalid image@src attribute");
+        }
+        
+        this.type = 'type' in node.attributes ? node.attributes.type.value : null;
+        
+        if (! this.type) {
+            reportError(errorHandler, "Invalid image@type attribute");
+        }
+        
+        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+    };
 
     /*
      * TTML element utility functions
