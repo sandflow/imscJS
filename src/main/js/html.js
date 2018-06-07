@@ -165,6 +165,22 @@
 
             e = document.createElement("div");
 
+        } else if (isd_element.kind === 'image') {
+            
+            e = document.createElement("img");
+
+            if (context.imgResolver !== null && isd_element.src !== null) {
+
+                var uri = context.imgResolver(isd_element.src, e);
+
+                if (uri)
+                    e.src = uri;
+
+                e.height = context.regionH;
+                e.width = context.regionW;
+
+            }
+
         } else if (isd_element.kind === 'p') {
 
             e = document.createElement("p");
@@ -1498,26 +1514,6 @@
             "http://www.w3.org/ns/ttml#styling zIndex",
             function (context, dom_element, isd_element, attr) {
                 dom_element.style.zIndex = attr;
-            }
-        ),
-        new HTMLStylingMapDefintion(
-            "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt backgroundImage",
-            function (context, dom_element, isd_element, attr) {
-
-                if (context.imgResolver !== null && attr !== null) {
-
-                    var img = document.createElement("img");
-
-                    var uri = context.imgResolver(attr, img);
-
-                    if (uri)
-                        img.src = uri;
-
-                    img.height = context.regionH;
-                    img.width = context.regionW;
-
-                    dom_element.appendChild(img);
-                }
             }
         ),
         new HTMLStylingMapDefintion(
