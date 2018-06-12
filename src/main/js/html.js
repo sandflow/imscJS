@@ -1329,8 +1329,9 @@
 
                         }
 
-                        dom_element.style.textShadow = s.join(",");
                     }
+                    
+                    dom_element.style.textShadow = s.join(",");
 
                 }
             }
