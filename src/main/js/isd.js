@@ -407,6 +407,13 @@
                 na = (isd_element.kind !== 'span') ||
                     (isd_element.styleAttrs[imscStyles.byName.ruby.qname] !== 'container');
 
+            } else if (qnameb === imscStyles.byName.rubyPosition.qname) {
+                
+                /* special applicability rule */
+                
+                na = (isd_element.kind !== 'span') ||
+                    (isd_element.styleAttrs[imscStyles.byName.ruby.qname] !== 'container');
+
             } else {
 
                 var da = imscStyles.byQName[qnameb];
