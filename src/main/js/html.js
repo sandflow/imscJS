@@ -1215,10 +1215,10 @@
         ),
 
         new HTMLStylingMapDefintion(
-            "http://www.w3.org/ns/ttml#styling fontShear",
+            "http://www.w3.org/ns/ttml#styling shear",
             function (context, dom_element, isd_element, attr) {
 
-                /* return immediately if tts:fontShear is 0% since CSS transforms are not inherited*/
+                /* return immediately if tts:shear is 0% since CSS transforms are not inherited*/
 
                 if (attr === 0) return;
 
@@ -1226,7 +1226,7 @@
 
                 /* context.writingMode is needed since writing mode is not inherited and sets the inline progression */
 
-                if (context.writingMode.startsWith("horizontal")) {
+                if (context.bpd === "tb") {
 
                     dom_element.style.transform = "skewX(" + angle + "rad)";
 
