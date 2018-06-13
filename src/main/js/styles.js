@@ -706,6 +706,93 @@
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
+            "rubyReserve",
+            "none",
+            ['p'],
+            true,
+            true,
+            function (str) {
+                var s = str.split(" ");
+
+                var r = [null, null];
+
+                if (s.length === 0 || s.length > 2)
+                    return null;
+
+                if (s[0] === "none" ||
+                    s[0] === "both" ||
+                    s[0] === "after" ||
+                    s[0] === "before" ||
+                    s[0] === "outside") {
+
+                    r[0] = s[0];
+
+                } else {
+
+                    return null;
+
+                }
+
+                if (s.length === 2 && s[0] !== "none") {
+
+                    var l = imscUtils.parseLength(s[1]);
+
+                    if (l) {
+
+                        r[1] = l;
+
+                    } else {
+                        
+                        return null;
+                        
+                    }
+                    
+                }
+
+
+                return r;
+            },
+            function (doc, parent, element, attr, context) {
+
+                if (attr[0] === "none") {
+                    
+                    return attr;
+                    
+                }
+                
+                var fs;
+                
+                if (attr[1] === null) {
+                    
+                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * 0.5;
+                    
+                } else if (attr[1].unit === "%") {
+
+                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr[1].value / 100;
+
+                } else if (attr[1].unit === "em") {
+
+                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr[1].value;
+
+                } else if (attr[1].unit === "c") {
+
+                    fs = attr[1].value / doc.cellResolution.h;
+
+                } else if (attr[1].unit === "px") {
+
+                    fs = attr[1].value / doc.pxDimensions.h;
+
+                } else {
+
+                    return null;
+
+                }
+
+                return [attr[0], fs];
+            }
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
             "showBackground",
             "always",
             ['region'],
