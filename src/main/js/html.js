@@ -687,15 +687,19 @@
             var rt1;
             var rt2;
             
+            var fs = (context.rubyReserve[1] * context.h) + "px";
+            
             if (context.rubyReserve[0] === "both") {
                 
                 rt1 = document.createElement("rtc");
                 rt1.style.rubyPosition = "under";
                 rt1.textContent = "\u200B";
+                rt1.style.fontSize = fs; 
                 
                 rt2 = document.createElement("rtc");
                 rt2.style.rubyPosition = "over";
                 rt2.textContent = "\u200B";
+                rt2.style.fontSize = fs; 
                 
                 ruby.appendChild(rt1);
                 ruby.appendChild(rt2);
@@ -704,6 +708,7 @@
                 
                 rt1 = document.createElement("rtc");
                 rt1.textContent = "\u200B";
+                rt1.style.fontSize = fs; 
                 
                 if (context.rubyReserve[0] === "after" || (context.rubyReserve[0] === "outside" && i > 0)) {
                 
@@ -714,7 +719,7 @@
                     rt1.style.rubyPosition = (context.bpd === "tb" || context.bpd === "rl") ? "over" : "under";
                     
                 }
-                                
+                                                
                 ruby.appendChild(rt1);
                 
             }

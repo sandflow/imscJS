@@ -220,6 +220,7 @@
                     isd_element.styleAttrs[sa.qname] = outs;
 
                 } else if (sa.qname === imscStyles.byName.fontSize.qname &&
+                    !(sa.qname in isd_element.styleAttrs) &&
                     isd_element.kind === 'span' &&
                     (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer" ||
                         isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text")) {

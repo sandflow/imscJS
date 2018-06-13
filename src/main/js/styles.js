@@ -737,7 +737,7 @@
 
                     var l = imscUtils.parseLength(s[1]);
 
-                    if (!l) {
+                    if (l) {
 
                         r[1] = l;
 
@@ -752,7 +752,44 @@
 
                 return r;
             },
-            null
+            function (doc, parent, element, attr, context) {
+
+                if (attr[0] === "none") {
+                    
+                    return attr;
+                    
+                }
+                
+                var fs;
+                
+                if (attr[1] === null) {
+                    
+                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * 0.5;
+                    
+                } else if (attr[1].unit === "%") {
+
+                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr[1].value / 100;
+
+                } else if (attr[1].unit === "em") {
+
+                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr[1].value;
+
+                } else if (attr[1].unit === "c") {
+
+                    fs = attr[1].value / doc.cellResolution.h;
+
+                } else if (attr[1].unit === "px") {
+
+                    fs = attr[1].value / doc.pxDimensions.h;
+
+                } else {
+
+                    return null;
+
+                }
+
+                return [attr[0], fs];
+            }
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
