@@ -166,7 +166,7 @@
             e = document.createElement("div");
 
         } else if (isd_element.kind === 'image') {
-            
+
             e = document.createElement("img");
 
             if (context.imgResolver !== null && isd_element.src !== null) {
@@ -638,11 +638,13 @@
 
     function applyRubyPosition(lineList, context) {
 
-        /* supports "outside" only */
-
         for (var i = 0; i < lineList.length; i++) {
 
             for (var j = 0; j < lineList[i].rbc.length; j++) {
+                
+                /* skip if ruby-position already set */
+                
+                if (lineList[i].rbc[j].style.rubyPosition !== "") continue;
 
                 var pos;
 
@@ -676,52 +678,52 @@
     function applyRubyReserve(lineList, context) {
 
         for (var i = 0; i < lineList.length; i++) {
-            
+
             var ruby = document.createElement("ruby");
-            
+
             var rb = document.createElement("rb");
-            rb.textContent = "\u200B"; 
-            
+            rb.textContent = "\u200B";
+
             ruby.appendChild(rb);
-            
+
             var rt1;
             var rt2;
-            
+
             var fs = (context.rubyReserve[1] * context.h) + "px";
-            
+
             if (context.rubyReserve[0] === "both") {
-                
+
                 rt1 = document.createElement("rtc");
                 rt1.style.rubyPosition = "under";
                 rt1.textContent = "\u200B";
-                rt1.style.fontSize = fs; 
-                
+                rt1.style.fontSize = fs;
+
                 rt2 = document.createElement("rtc");
                 rt2.style.rubyPosition = "over";
                 rt2.textContent = "\u200B";
-                rt2.style.fontSize = fs; 
-                
+                rt2.style.fontSize = fs;
+
                 ruby.appendChild(rt1);
                 ruby.appendChild(rt2);
-                
+
             } else {
-                
+
                 rt1 = document.createElement("rtc");
                 rt1.textContent = "\u200B";
-                rt1.style.fontSize = fs; 
-                
+                rt1.style.fontSize = fs;
+
                 if (context.rubyReserve[0] === "after" || (context.rubyReserve[0] === "outside" && i > 0)) {
-                
+
                     rt1.style.rubyPosition = (context.bpd === "tb" || context.bpd === "rl") ? "under" : "over";
-                    
+
                 } else {
-                    
+
                     rt1.style.rubyPosition = (context.bpd === "tb" || context.bpd === "rl") ? "over" : "under";
-                    
+
                 }
-                                                
+
                 ruby.appendChild(rt1);
-                
+
             }
 
             var e = lineList[i].elements[0].node.parentElement.insertBefore(
@@ -1022,13 +1024,13 @@
                     constructLineList(context, child, llist, curbgcolor);
 
                     if (child.localName === 'ruby') {
-                        
+
                         /* skips empty ruby elements at the start of a line */
-                        
+
                         if (llist.length > 0) {
 
                             llist[llist.length - 1].rbc.push(child);
-                            
+
                         }
 
                     } else if (child.localName === 'span' &&
@@ -1322,6 +1324,39 @@
             }
         ),
         new HTMLStylingMapDefintion(
+            "http://www.w3.org/ns/ttml#styling rubyPosition",
+            function (context, dom_element, isd_element, attr) {
+                
+                /* skip if "outside", which is handled by applyRubyPosition() */
+                
+                if (attr === "before" || attr === "after") {
+                    
+                    var pos;
+
+                    if (context.bpd === "tb") {
+
+                        pos = (attr === "before") ? "over" : "under";
+
+
+                    } else {
+
+                        if (context.bpd === "rl") {
+
+                            pos = (attr === "before") ? "over" : "under";
+
+                        } else {
+
+                            pos = (attr === "before") ? "under" : "over";
+
+                        }
+
+                    }
+
+                    dom_element.style.rubyPosition = pos;
+                }
+            }
+        ),
+        new HTMLStylingMapDefintion(
             "http://www.w3.org/ns/ttml#styling showBackground",
             null
             ),
@@ -1416,7 +1451,7 @@
                         }
 
                     }
-                    
+
                     dom_element.style.textShadow = s.join(",");
 
                 }

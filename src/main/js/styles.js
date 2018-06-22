@@ -697,7 +697,19 @@
             "rubyAlign",
             "center",
             ['span'],
-            false,
+            true,
+            true,
+            function (str) {
+                return str;
+            },
+            null
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
+            "rubyPosition",
+            "outside",
+            ['span'],
+            true,
             true,
             function (str) {
                 return str;
