@@ -212,7 +212,7 @@
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
-            "fontShear",
+            "shear",
             "0%",
             ['p'],
             true,
