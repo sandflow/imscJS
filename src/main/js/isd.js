@@ -412,7 +412,8 @@
                 /* special applicability rule */
                 
                 na = (isd_element.kind !== 'span') ||
-                    (isd_element.styleAttrs[imscStyles.byName.ruby.qname] !== 'container');
+                    ! (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === 'textContainer' ||
+                    isd_element.styleAttrs[imscStyles.byName.ruby.qname] === 'text');
 
             } else {
 
