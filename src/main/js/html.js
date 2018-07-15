@@ -78,9 +78,19 @@
         displayForcedOnlyMode,
         errorHandler,
         previousISDState,
-        enableRollUp
+        enableRollUp,
+        dom_document
         ) {
 
+        /* if alternative dom document functions wanted, use it */
+        if (dom_document){
+          imscHTML.document = dom_document;
+          imscHTML.Node = dom_document.document.Node;
+        } else {
+          imscHTML.document = document;
+          imscHTML.Node = Node;
+        }
+        
         /* maintain aspect ratio if specified */
 
         var height = eheight || element.clientHeight;
@@ -102,7 +112,7 @@
 
         }
 
-        var rootcontainer = document.createElement("div");
+        var rootcontainer = imscHTML.document.createElement("div");
 
         rootcontainer.style.position = "relative";
         rootcontainer.style.width = width + "px";
@@ -154,20 +164,20 @@
 
         if (isd_element.kind === 'region') {
 
-            e = document.createElement("div");
+            e = imscHTML.document.createElement("div");
             e.style.position = "absolute";
 
         } else if (isd_element.kind === 'body') {
 
-            e = document.createElement("div");
+            e = imscHTML.document.createElement("div");
 
         } else if (isd_element.kind === 'div') {
 
-            e = document.createElement("div");
+            e = imscHTML.document.createElement("div");
 
         } else if (isd_element.kind === 'image') {
 
-            e = document.createElement("img");
+            e = imscHTML.document.createElement("img");
 
             if (context.imgResolver !== null && isd_element.src !== null) {
 
@@ -183,33 +193,33 @@
 
         } else if (isd_element.kind === 'p') {
 
-            e = document.createElement("p");
+            e = imscHTML.document.createElement("p");
 
         } else if (isd_element.kind === 'span') {
 
             if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "container") {
 
-                e = document.createElement("ruby");
+                e = imscHTML.document.createElement("ruby");
 
                 context.ruby = true;
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "base") {
 
-                e = document.createElement("rb");
+                e = imscHTML.document.createElement("rb");
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
 
-                e = document.createElement("rt");
+                e = imscHTML.document.createElement("rt");
 
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "baseContainer") {
 
-                e = document.createElement("rbc");
+                e = imscHTML.document.createElement("rbc");
 
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
 
-                e = document.createElement("rtc");
+                e = imscHTML.document.createElement("rtc");
 
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "delimiter") {
@@ -220,7 +230,7 @@
 
             } else {
 
-                e = document.createElement("span");
+                e = imscHTML.document.createElement("span");
 
             }
 
@@ -236,7 +246,7 @@
 
         } else if (isd_element.kind === 'br') {
 
-            e = document.createElement("br");
+            e = imscHTML.document.createElement("br");
 
         }
 
@@ -332,7 +342,7 @@
 
             /* create inline block to handle multirowAlign */
 
-            var s = document.createElement("span");
+            var s = imscHTML.document.createElement("span");
 
             s.style.display = "inline-block";
 
@@ -376,7 +386,7 @@
 
                 for (var j = 0; j < isd_element.text.length; j++) {
 
-                    var span = document.createElement("span");
+                    var span = imscHTML.document.createElement("span");
 
                     span.textContent = isd_element.text.charAt(j);
 
@@ -588,7 +598,7 @@
             var l = lineList[i].elements.length;
 
             if (l !== 0 && lineList[i].br === false) {
-                var br = document.createElement("br");
+                var br = imscHTML.document.createElement("br");
 
                 var lastnode = lineList[i].elements[l - 1].node;
 
@@ -679,9 +689,9 @@
 
         for (var i = 0; i < lineList.length; i++) {
 
-            var ruby = document.createElement("ruby");
+            var ruby = imscHTML.document.createElement("ruby");
 
-            var rb = document.createElement("rb");
+            var rb = imscHTML.document.createElement("rb");
             rb.textContent = "\u200B";
 
             ruby.appendChild(rb);
@@ -693,12 +703,12 @@
 
             if (context.rubyReserve[0] === "both") {
 
-                rt1 = document.createElement("rtc");
+                rt1 = imscHTML.document.createElement("rtc");
                 rt1.style.rubyPosition = "under";
                 rt1.textContent = "\u200B";
                 rt1.style.fontSize = fs;
 
-                rt2 = document.createElement("rtc");
+                rt2 = imscHTML.document.createElement("rtc");
                 rt2.style.rubyPosition = "over";
                 rt2.textContent = "\u200B";
                 rt2.style.fontSize = fs;
@@ -708,7 +718,7 @@
 
             } else {
 
-                rt1 = document.createElement("rtc");
+                rt1 = imscHTML.document.createElement("rtc");
                 rt1.textContent = "\u200B";
                 rt1.style.fontSize = fs;
 
