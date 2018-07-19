@@ -336,12 +336,12 @@
 
                         ini.initFromNode(node, errorHandler);
                         
-                        if (ini.qname && ini.value) {
-
-                            doc.head.styling.initials[ini.qname] = ini.value;
+                        for (var qn in ini.styleAttrs) {
+                            
+                            doc.head.styling.initials[qn] = ini.styleAttrs[qn];
                             
                         }
-
+                        
                         estack.unshift(ini);
 
                     } else {
@@ -924,11 +924,12 @@
      */
 
     function Initial() {
-        this.qname = null;
-        this.value = null;
+        this.styleAttrs = null;
     }
 
     Initial.prototype.initFromNode = function (node, errorHandler) {
+        
+        this.styleAttrs = {};
         
         for (var i in node.attributes) {
 
@@ -936,10 +937,10 @@
                 node.attributes[i].uri === imscNames.ns_ebutts ||
                 node.attributes[i].uri === imscNames.ns_tts) {
                 
-                this.qname = node.attributes[i].uri + " " + node.attributes[i].local;
-                this.value = node.attributes[i].value;
+                var qname = node.attributes[i].uri + " " + node.attributes[i].local;
                 
-                break;
+                this.styleAttrs[qname] = node.attributes[i].value;
+
             }
         }
         
