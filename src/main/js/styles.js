@@ -700,6 +700,11 @@
             true,
             true,
             function (str) {
+                
+                if (! (str === "center" || str === "spaceAround")) {
+                    return null;
+                }
+                
                 return str;
             },
             null
