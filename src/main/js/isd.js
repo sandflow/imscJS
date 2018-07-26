@@ -222,8 +222,9 @@
                 } else if (sa.qname === imscStyles.byName.fontSize.qname &&
                     !(sa.qname in isd_element.styleAttrs) &&
                     isd_element.kind === 'span' &&
-                    (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer" ||
-                        isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text")) {
+                    isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
+                    
+                    /* special inheritance rule for ruby text font size */
 
                     isd_element.styleAttrs[sa.qname] = 0.5 * context.rubyfs[0];
 
