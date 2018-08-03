@@ -247,6 +247,10 @@
             return;
 
         }
+        
+        /* add to parent */
+        
+        dom_parent.appendChild(e);
 
         /* override UA default margin */
         /* TODO: should apply to <p> only */
@@ -386,8 +390,6 @@
 
             }
         }
-
-        dom_parent.appendChild(e);
 
         /* process the children of the ISD element */
 
@@ -1023,9 +1025,9 @@
 
                     constructLineList(context, child, llist, curbgcolor);
 
-                    if (child.localName === 'ruby') {
+                    if (child.localName === 'ruby' || child.localName === 'rtc') {
 
-                        /* skips empty ruby elements at the start of a line */
+                        /* remember non-empty ruby and rtc elements so that tts:rubyPosition can be applied */
 
                         if (llist.length > 0) {
 
@@ -1351,8 +1353,10 @@
                         }
 
                     }
+                    
+                    /* apply position to the parent dom_element, i.e. ruby or rtc */
 
-                    dom_element.style.rubyPosition = pos;
+                    dom_element.parentElement.style.rubyPosition = pos;
                 }
             }
         ),
