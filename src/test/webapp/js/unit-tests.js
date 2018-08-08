@@ -66,55 +66,55 @@ QUnit.test(
                     doc.body.contents[0].contents[2].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [255, 128, 255, 255]
                     );
-
+                    
                 assert.deepEqual(
                     doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [128, 255, 255, 63]
+                    [255, 128, 255, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[4].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 0, 0, 0]
+                    [128, 255, 255, 63]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[5].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [0, 0, 0, 0]
+                    );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[6].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [0, 0, 0, 255]
                     );
                 
                 assert.deepEqual(
-                    doc.body.contents[0].contents[6].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    doc.body.contents[0].contents[7].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [0xc0, 0xc0, 0xc0, 255]
                     );
 
                 assert.deepEqual(
-                    doc.body.contents[0].contents[7].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    doc.body.contents[0].contents[8].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [0x80, 0x80, 0x80, 255]
                     );
                 
                 assert.deepEqual(
-                    doc.body.contents[0].contents[8].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    doc.body.contents[0].contents[9].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [255, 255, 255, 255]
                     );
                 
                 assert.deepEqual(
-                    doc.body.contents[0].contents[9].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    doc.body.contents[0].contents[10].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [0x80, 0, 0, 255]
                     );
                 
                 assert.deepEqual(
-                    doc.body.contents[0].contents[10].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    doc.body.contents[0].contents[11].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [255, 0, 0, 255]
                     );
 
                 assert.deepEqual(
-                    doc.body.contents[0].contents[11].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0x80, 0, 0x80, 255]
-                    );
-
-                assert.deepEqual(
                     doc.body.contents[0].contents[12].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [255, 0, 255, 255]
+                    [0x80, 0, 0x80, 255]
                     );
 
                 assert.deepEqual(
@@ -124,46 +124,51 @@ QUnit.test(
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[14].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 0x80, 0, 255]
+                    [255, 0, 255, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[15].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 255, 0, 255]
+                    [0, 0x80, 0, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[16].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0x80, 0x80, 0, 255]
+                    [0, 255, 0, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[17].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [255, 255, 0, 255]
+                    [0x80, 0x80, 0, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[18].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 0, 0x80, 255]
+                    [255, 255, 0, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[19].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 0, 255, 255]
+                    [0, 0, 0x80, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[20].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 0x80, 0x80, 255]
+                    [0, 0, 255, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[21].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
-                    [0, 255, 255, 255]
+                    [0, 0x80, 0x80, 255]
                     );
 
                 assert.deepEqual(
                     doc.body.contents[0].contents[22].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
+                    [0, 255, 255, 255]
+                    );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[23].styleAttrs["http://www.w3.org/ns/ttml#styling color"],
                     [0, 255, 255, 255]
                     );
 
@@ -200,7 +205,7 @@ QUnit.test(
 );
 
 QUnit.test(
-    "Parse Color Expressions",
+    "Parse Length Expressions",
     function (assert) {
 
         return getIMSC1Document("unit-tests/lengthExpressions.ttml").then(

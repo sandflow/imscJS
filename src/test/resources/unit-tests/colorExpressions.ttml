@@ -10,6 +10,7 @@ xmlns:ittp="http://www.w3.org/ns/ttml/profile/imsc1#parameter">
 			<p tts:color="#FFFFFF">#FFFFFF</p>
 			<p tts:color="#FFFFFF7F">#FFFFFF7F</p>
 			<p tts:color="rgb(255,128,255)">rgb(255,128,255)</p>
+      <p tts:color="rgb( 255, 128 ,   255   )">rgb(255,128,255)</p>
 			<p tts:color="rgba(128,255,255,63)">rgba(128,255,255,63)</p>
 			<p tts:color="transparent">transparent</p>
                         <p tts:color="black">black</p>
