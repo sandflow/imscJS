@@ -1167,6 +1167,7 @@
 
     Br.prototype.initFromNode = function (doc, parent, node, errorHandler) {
         LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
     };
 
     /*
