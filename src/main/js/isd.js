@@ -30,7 +30,7 @@
 
 
 ;
-(function (imscISD, imscNames, imscStyles) { // wrapper for non-node envs
+(function (imscISD, imscNames, imscStyles, imscUtils) { // wrapper for non-node envs
 
     /** 
      * Creates a canonical representation of an IMSC1 document returned by <pre>imscDoc.fromXML()</pre>
@@ -226,7 +226,9 @@
                     
                     /* special inheritance rule for ruby text font size */
 
-                    isd_element.styleAttrs[sa.qname] = 0.5 * context.rubyfs[0];
+                    isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
+                        0.5 * context.rubyfs[0].rw,
+                        0.5 * context.rubyfs[0].rh);
 
                 } else if (sa.inherit &&
                     (sa.qname in parent.styleAttrs) &&
@@ -705,5 +707,6 @@
 
 })(typeof exports === 'undefined' ? this.imscISD = {} : exports,
     typeof imscNames === 'undefined' ? require("./names") : imscNames,
-    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles
+    typeof imscStyles === 'undefined' ? require("./styles") : imscStyles,
+    typeof imscUtils === 'undefined' ? require("./utils") : imscUtils
     );

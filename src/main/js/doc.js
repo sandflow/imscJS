@@ -788,7 +788,12 @@
 
         /* compute cell resolution */
 
-        this.cellResolution = extractCellResolution(node, errorHandler);
+        var cr = extractCellResolution(node, errorHandler);
+        
+        this.cellLength = {
+                'h': new imscUtils.ComputedLength(0, 1/cr.h),
+                'w': new imscUtils.ComputedLength(1/cr.w, 0)
+            };
 
         /* extract frame rate and tick rate */
 
@@ -818,9 +823,10 @@
 
         if (e === null) {
 
-            /* TODO: remove once unit tests are ready */
-
-            this.pxDimensions = {'h': 480, 'w': 640};
+            this.pxLength = {
+                'h': null,
+                'w': null
+            };
 
         } else {
 
@@ -828,8 +834,20 @@
                 reportFatal(errorHandler, "Extent on TT must be in px or absent");
             }
 
-            this.pxDimensions = {'h': e.h.value, 'w': e.w.value};
+            this.pxLength = {
+                'h': new imscUtils.ComputedLength(0, 1 / e.h.value),
+                'w': new imscUtils.ComputedLength(1 / e.w.value, 0)
+            };
         }
+        
+        /** set root container dimensions to (1, 1) arbitrarily
+          * the root container is mapped to actual dimensions at rendering
+        **/
+        
+        this.dimensions = {
+                'h': new imscUtils.ComputedLength(0, 1),
+                'w': new imscUtils.ComputedLength(1, 0)
+    };
 
     };
 

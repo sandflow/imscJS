@@ -170,9 +170,9 @@ function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params,
     fo.appendChild(rdiv);
 
     vdiv.appendChild(svg);
-
+    
     var isd = imsc.generateISD(doc, offset);
-
+    
     /* write isd */
 
     var isd_dir = test_renders_dir.folder('isd');

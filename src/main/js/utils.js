@@ -110,7 +110,7 @@
         return r;
     };
 
-    var LENGTH_RE = /^((?:\+|\-)?\d*(?:\.\d+)?)(px|em|c|%)$/;
+    var LENGTH_RE = /^((?:\+|\-)?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
 
     imscUtils.parseLength = function (str) {
 
@@ -148,7 +148,8 @@
 
                 var l = imscUtils.parseLength(shadow.shift());
 
-                if (l === null) return null;
+                if (l === null)
+                    return null;
 
                 out_shadow[0] = l;
 
@@ -156,7 +157,8 @@
 
                 l = imscUtils.parseLength(shadow.shift());
 
-                if (l === null) return null;
+                if (l === null)
+                    return null;
 
                 out_shadow[1] = l;
 
@@ -184,7 +186,8 @@
 
                 var c = imscUtils.parseColor(shadow[0]);
 
-                if (c === null) return null;
+                if (c === null)
+                    return null;
 
                 out_shadow[3] = c;
 
@@ -206,10 +209,10 @@
         var isKeyword = function (str) {
 
             return str === "center" ||
-                str === "left" ||
-                str === "top" ||
-                str === "bottom" ||
-                str === "right";
+                    str === "left" ||
+                    str === "top" ||
+                    str === "bottom" ||
+                    str === "right";
 
         };
 
@@ -227,7 +230,8 @@
 
                 var l = imscUtils.parseLength(s[j]);
 
-                if (l === null) return null;
+                if (l === null)
+                    return null;
 
                 s[j] = l;
             }
@@ -323,5 +327,81 @@
 
         return pos;
     };
+
+
+    imscUtils.ComputedLength = function (rw, rh) {
+        this.rw = rw;
+        this.rh = rh;
+    };
+
+    imscUtils.ComputedLength.prototype.toUsedLength = function (width, height) {
+        return width * this.rw + height * this.rh;
+    };
+
+    /**
+     * Computes a specified length to a root container relative length
+     * 
+     * @param {number} lengthVal Length value to be computed
+     * @param {string} lengthUnit Units of the length value
+     * @param {number} emScale length of 1em, or null if em is not allowed
+     * @param {number} percentScale length to which , or null if perecentage is not allowed
+     * @param {number} cellScale length of 1c, or null if c is not allowed
+     * @param {number} pxScale length of 1px, or null if px is not allowed
+     * @param {number} direction 0 if the length is computed in the horizontal direction, 1 if the length is computed in the vertical direction
+     * @return {number} Computed length
+     */
+    imscUtils.toComputedLength = function(lengthVal, lengthUnit, emLength, percentLength, cellLength, pxLength) {
+
+        if (lengthUnit === "%" && percentLength) {
+
+            return new imscUtils.ComputedLength(
+                    percentLength.rw * lengthVal / 100,
+                    percentLength.rh * lengthVal / 100
+                    );
+
+        } else if (lengthUnit === "em" && emLength) {
+
+            return new imscUtils.ComputedLength(
+                    emLength.rw * lengthVal,
+                    emLength.rh * lengthVal
+                    );
+
+        } else if (lengthUnit === "c" && cellLength) {
+
+            return new imscUtils.ComputedLength(
+                    lengthVal * cellLength.rw,
+                    lengthVal * cellLength.rh
+                    );
+
+        } else if (lengthUnit === "px" && pxLength) {
+
+            return new imscUtils.ComputedLength(
+                    lengthVal * pxLength.rw,
+                    lengthVal * pxLength.rh
+                    );
+
+        } else if (lengthUnit === "rh") {
+
+            return new imscUtils.ComputedLength(
+                    0,
+                    lengthVal / 100
+                    );
+
+        } else if (lengthUnit === "rw") {
+
+            return new imscUtils.ComputedLength(
+                    lengthVal / 100,
+                    0                    
+                    );
+
+        } else {
+
+            return null;
+
+        }
+
+    };
+
+
 
 })(typeof exports === 'undefined' ? this.imscUtils = {} : exports);

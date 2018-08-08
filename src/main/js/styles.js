@@ -134,37 +134,47 @@
 
                 if (attr === "auto") {
 
-                    h = 1;
-
-                } else if (attr.h.unit === "%") {
-
-                    h = attr.h.value / 100;
-
-                } else if (attr.h.unit === "px") {
-
-                    h = attr.h.value / doc.pxDimensions.h;
+                    h = new imscUtils.ComputedLength(0, 1);
 
                 } else {
 
-                    return null;
+                    h = imscUtils.toComputedLength(
+                        attr.h.value,
+                        attr.h.unit,
+                        null,
+                        doc.dimensions.h,
+                        null,
+                        doc.pxLength.h
+                        );
 
+
+                    if (h === null) {
+
+                        return null;
+
+                    }
                 }
 
                 if (attr === "auto") {
 
-                    w = 1;
-
-                } else if (attr.w.unit === "%") {
-
-                    w = attr.w.value / 100;
-
-                } else if (attr.w.unit === "px") {
-
-                    w = attr.w.value / doc.pxDimensions.w;
+                    w = new imscUtils.ComputedLength(1, 0);
 
                 } else {
 
-                    return null;
+                    w = imscUtils.toComputedLength(
+                        attr.w.value,
+                        attr.w.unit,
+                        null,
+                        doc.dimensions.w,
+                        null,
+                        doc.pxLength.w
+                        );
+
+                    if (w === null) {
+
+                        return null;
+
+                    }
 
                 }
 
@@ -247,47 +257,14 @@
 
                 var fs;
 
-                if (attr.unit === "%") {
-
-                    if (parent !== null) {
-
-                        fs = parent.styleAttrs[imscStyles.byName.fontSize.qname] * attr.value / 100;
-
-                    } else {
-
-                        /* region, so percent of 1c */
-
-                        fs = attr.value / 100 / doc.cellResolution.h;
-
-                    }
-
-                } else if (attr.unit === "em") {
-
-                    if (parent !== null) {
-
-                        fs = parent.styleAttrs[imscStyles.byName.fontSize.qname] * attr.value;
-
-                    } else {
-
-                        /* region, so percent of 1c */
-
-                        fs = attr.value / doc.cellResolution.h;
-
-                    }
-
-                } else if (attr.unit === "c") {
-
-                    fs = attr.value / doc.cellResolution.h;
-
-                } else if (attr.unit === "px") {
-
-                    fs = attr.value / doc.pxDimensions.h;
-
-                } else {
-
-                    return null;
-
-                }
+                fs = imscUtils.toComputedLength(
+                    attr.value,
+                    attr.unit,
+                    parent !== null ? parent.styleAttrs[imscStyles.byName.fontSize.qname] : doc.cellLength.h,
+                    parent !== null ? parent.styleAttrs[imscStyles.byName.fontSize.qname] : doc.cellLength.h,
+                    doc.cellLength.h,
+                    doc.pxLength.h
+                    );
 
                 return fs;
             }
@@ -344,27 +321,22 @@
 
                     lh = attr;
 
-                } else if (attr.unit === "%") {
-
-                    lh = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr.value / 100;
-
-                } else if (attr.unit === "em") {
-
-                    lh = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr.value;
-
-                } else if (attr.unit === "c") {
-
-                    lh = attr.value / doc.cellResolution.h;
-
-                } else if (attr.unit === "px") {
-
-                    /* TODO: handle error if no px dimensions are provided */
-
-                    lh = attr.value / doc.pxDimensions.h;
-
                 } else {
 
-                    return null;
+                    lh = imscUtils.toComputedLength(
+                        attr.value,
+                        attr.unit,
+                        element.styleAttrs[imscStyles.byName.fontSize.qname],
+                        element.styleAttrs[imscStyles.byName.fontSize.qname],
+                        doc.cellLength.h,
+                        doc.pxLength.h
+                        );
+
+                    if (lh === null) {
+
+                        return null;
+
+                    }
 
                 }
 
@@ -416,37 +388,47 @@
 
                 if (attr === "auto") {
 
-                    h = 0;
-
-                } else if (attr.h.unit === "%") {
-
-                    h = attr.h.value / 100;
-
-                } else if (attr.h.unit === "px") {
-
-                    h = attr.h.value / doc.pxDimensions.h;
+                    h = new imscUtils.ComputedLength(0,0);
 
                 } else {
 
-                    return null;
+                    h = imscUtils.toComputedLength(
+                        attr.h.value,
+                        attr.h.unit,
+                        null,
+                        doc.dimensions.h,
+                        null,
+                        doc.pxLength.h
+                        );
+
+                    if (h === null) {
+
+                        return null;
+
+                    }
 
                 }
 
                 if (attr === "auto") {
 
-                    w = 0;
-
-                } else if (attr.w.unit === "%") {
-
-                    w = attr.w.value / 100;
-
-                } else if (attr.w.unit === "px") {
-
-                    w = attr.w.value / doc.pxDimensions.w;
+                    w = new imscUtils.ComputedLength(0,0);
 
                 } else {
 
-                    return null;
+                    w = imscUtils.toComputedLength(
+                        attr.w.value,
+                        attr.w.unit,
+                        null,
+                        doc.dimensions.w,
+                        null,
+                        doc.pxLength.w
+                        );
+
+                    if (w === null) {
+
+                        return null;
+
+                    }
 
                 }
 
@@ -560,34 +542,20 @@
 
                     if (padding[i].value === 0) {
 
-                        out[i] = 0;
-
-                    } else if (padding[i].unit === "%") {
-
-                        if (i === "0" || i === "2") {
-
-                            out[i] = element.styleAttrs[imscStyles.byName.extent.qname].h * padding[i].value / 100;
-
-                        } else {
-
-                            out[i] = element.styleAttrs[imscStyles.byName.extent.qname].w * padding[i].value / 100;
-                        }
-
-                    } else if (padding[i].unit === "em") {
-
-                        out[i] = element.styleAttrs[imscStyles.byName.fontSize.qname] * padding[i].value;
-
-                    } else if (padding[i].unit === "c") {
-
-                        out[i] = padding[i].value / doc.cellResolution.h;
-
-                    } else if (padding[i].unit === "px") {
-
-                        out[i] = padding[i].value / doc.pxDimensions.h;
+                        out[i] = new imscUtils.ComputedLength(0,0);
 
                     } else {
 
-                        return null;
+                        out[i] = imscUtils.toComputedLength(
+                            padding[i].value,
+                            padding[i].unit,
+                            element.styleAttrs[imscStyles.byName.fontSize.qname],
+                            i === "0" || i === "2" ? element.styleAttrs[imscStyles.byName.extent.qname].h : element.styleAttrs[imscStyles.byName.extent.qname].w,
+                            i === "0" || i === "2" ? doc.cellLength.h : doc.cellLength.w,
+                            i === "0" || i === "2" ? doc.pxLength.h: doc.pxLength.w
+                            );
+
+                        if (out[i] === null) return null;
 
                     }
                 }
@@ -611,71 +579,53 @@
             function (doc, parent, element, attr) {
                 var h;
                 var w;
+                
+                h = imscUtils.toComputedLength(
+                    attr.v.offset.value,
+                    attr.v.offset.unit,
+                    null,
+                    new imscUtils.ComputedLength(
+                        - element.styleAttrs[imscStyles.byName.extent.qname].h.rw,
+                        doc.dimensions.h.rh - element.styleAttrs[imscStyles.byName.extent.qname].h.rh 
+                    ),
+                    null,
+                    doc.pxLength.h
+                    );
 
-                if (attr.v.offset.unit === "%") {
-
-                    if (attr.v.edge === "bottom") {
-
-                        h = (1 - element.styleAttrs[imscStyles.byName.extent.qname].h) * (1 - attr.v.offset.value / 100);
-
-
-                    } else {
-
-                        h = (1 - element.styleAttrs[imscStyles.byName.extent.qname].h) * attr.v.offset.value / 100;
-
-                    }
-
-                } else if (attr.v.offset.unit === "px") {
-
-                    if (attr.v.edge === "bottom") {
-
-                        h = 1 - attr.v.offset.value / doc.pxDimensions.h - element.styleAttrs[imscStyles.byName.extent.qname].h;
-
-                    } else {
-
-                        h = attr.v.offset.value / doc.pxDimensions.h;
-
-                    }
+                if (h === null) return null;
 
 
-                } else {
+                if (attr.v.edge === "bottom") {
 
-                    return null;
-
+                    h = new imscUtils.ComputedLength(
+                        - h.rw - element.styleAttrs[imscStyles.byName.extent.qname].h.rw,
+                        doc.dimensions.h.rh - h.rh - element.styleAttrs[imscStyles.byName.extent.qname].h.rh
+                    );
+            
                 }
 
+                w = imscUtils.toComputedLength(
+                    attr.h.offset.value,
+                    attr.h.offset.unit,
+                    null,
+                    new imscUtils.ComputedLength(
+                        doc.dimensions.w.rw - element.styleAttrs[imscStyles.byName.extent.qname].w.rw,
+                        - element.styleAttrs[imscStyles.byName.extent.qname].w.rh
+                    ),
+                    null,
+                    doc.pxLength.w
+                    );
 
-                if (attr.h.offset.unit === "%") {
+                if (h === null) return null;
 
-                    if (attr.h.edge === "right") {
-
-                        w = (1 - element.styleAttrs[imscStyles.byName.extent.qname].w) * (1 - attr.h.offset.value / 100);
-
-
-                    } else {
-
-                        w = (1 - element.styleAttrs[imscStyles.byName.extent.qname].w) * attr.h.offset.value / 100;
-
-                    }
-
-                } else if (attr.h.offset.unit === "px") {
-
-                    if (attr.h.edge === "right") {
-
-                        w = 1 - attr.h.offset.value / doc.pxDimensions.w - element.styleAttrs[imscStyles.byName.extent.qname].w;
-
-                    } else {
-
-                        w = attr.h.offset.value / doc.pxDimensions.w;
-
-                    }
-
-                } else {
-
-                    return null;
+                if (attr.h.edge === "right") {
+                    
+                    w = new imscUtils.ComputedLength(
+                        doc.dimensions.w.rw - w.rw - element.styleAttrs[imscStyles.byName.extent.qname].w.rw,
+                        - w.rh - element.styleAttrs[imscStyles.byName.extent.qname].w.rh
+                    );
 
                 }
-
 
                 return {'h': h, 'w': w};
             }
@@ -759,11 +709,11 @@
                         r[1] = l;
 
                     } else {
-                        
+
                         return null;
-                        
+
                     }
-                    
+
                 }
 
 
@@ -772,42 +722,37 @@
             function (doc, parent, element, attr, context) {
 
                 if (attr[0] === "none") {
-                    
+
                     return attr;
-                    
+
                 }
-                
-                var fs;
-                
+
+                var fs = null;
+
                 if (attr[1] === null) {
-                    
-                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * 0.5;
-                    
-                } else if (attr[1].unit === "%") {
 
-                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr[1].value / 100;
-
-                } else if (attr[1].unit === "em") {
-
-                    fs = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr[1].value;
-
-                } else if (attr[1].unit === "c") {
-
-                    fs = attr[1].value / doc.cellResolution.h;
-
-                } else if (attr[1].unit === "px") {
-
-                    fs = attr[1].value / doc.pxDimensions.h;
+                    fs = new imscUtils.ComputedLength(
+                            element.styleAttrs[imscStyles.byName.fontSize.qname].rw * 0.5,
+                            element.styleAttrs[imscStyles.byName.fontSize.qname].rh * 0.5
+                    );
 
                 } else {
 
-                    return null;
-
+                    fs = imscUtils.toComputedLength(attr[1].value,
+                        attr[1].unit,
+                        element.styleAttrs[imscStyles.byName.fontSize.qname],
+                        element.styleAttrs[imscStyles.byName.fontSize.qname],
+                        doc.cellLength.h,
+                        doc.pxLength.h
+                        );
+                
                 }
+
+                if (fs === null) return null;
 
                 return [attr[0], fs];
             }
-            ),
+        ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
             "showBackground",
@@ -946,7 +891,8 @@
 
                         rslt.color = imscUtils.parseColor(e[i]);
 
-                        if (rslt.color === null) return null;
+                        if (rslt.color === null)
+                            return null;
 
                     }
                 }
@@ -1022,28 +968,17 @@
 
                 }
 
-                if (attr.thickness.unit === "%") {
+                rslt.thickness = imscUtils.toComputedLength(
+                    attr.thickness.value,
+                    attr.thickness.unit,
+                    element.styleAttrs[imscStyles.byName.fontSize.qname],
+                    element.styleAttrs[imscStyles.byName.fontSize.qname],
+                    doc.cellLength.h,
+                    doc.pxLength.h
+                    );
 
-                    rslt.thickness = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr.thickness.value / 100;
-
-                } else if (attr.thickness.unit === "em") {
-
-                    rslt.thickness = element.styleAttrs[imscStyles.byName.fontSize.qname] * attr.thickness.value;
-
-                } else if (attr.thickness.unit === "c") {
-
-                    rslt.thickness = attr.thickness.value / doc.cellResolution.h;
-
-                } else if (attr.thickness.unit === "px") {
-
-                    rslt.thickness = attr.thickness.value / doc.pxDimensions.h;
-
-                } else {
-
+                if (rslt.thickness === null)
                     return null;
-
-                }
-
 
                 return rslt;
             }
@@ -1063,7 +998,8 @@
                  * 
                  */
 
-                if (attr === "none") return attr;
+                if (attr === "none")
+                    return attr;
 
                 var r = [];
 
@@ -1071,52 +1007,47 @@
 
                     var shadow = {};
 
-                    if (attr[i][0].unit === "%") {
+                    shadow.x_off = imscUtils.toComputedLength(
+                        attr[i][0].value,
+                        attr[i][0].unit,
+                        null,
+                        element.styleAttrs[imscStyles.byName.fontSize.qname],
+                        null,
+                        doc.pxLength.w
+                        );
 
-                        shadow.x_off = element.styleAttrs[imscStyles.byName.fontSize.qname] *
-                            attr[i][0].value / 100;
-
-                    } else if (attr[i][0].unit === "px") {
-
-                        shadow.x_off = attr[i][0].value / doc.pxDimensions.w;
-
-                    } else {
-
+                    if (shadow.x_off === null)
                         return null;
 
-                    }
+                    shadow.y_off = imscUtils.toComputedLength(
+                        attr[i][1].value,
+                        attr[i][1].unit,
+                        null,
+                        element.styleAttrs[imscStyles.byName.fontSize.qname],
+                        null,
+                        doc.pxLength.h
+                        );
 
-                    if (attr[i][1].unit === "%") {
-
-                        shadow.y_off = element.styleAttrs[imscStyles.byName.fontSize.qname] *
-                            attr[i][1].value / 100;
-
-                    } else if (attr[i][1].unit === "px") {
-
-                        shadow.y_off = attr[i][1].value / doc.pxDimensions.h;
-
-                    } else {
-
+                    if (shadow.y_off === null)
                         return null;
-
-                    }
 
                     if (attr[i][2] === null) {
 
                         shadow.b_radius = 0;
 
-                    } else if (attr[i][2].unit === "%") {
-
-                        shadow.b_radius = element.styleAttrs[imscStyles.byName.fontSize.qname] *
-                            attr[i][2].value / 100;
-
-                    } else if (attr[i][2].unit === "px") {
-
-                        shadow.b_radius = attr[i][2].value / doc.pxDimensions.h;
-
                     } else {
 
-                        return null;
+                        shadow.b_radius = imscUtils.toComputedLength(
+                            attr[i][2].value,
+                            attr[i][2].unit,
+                            null,
+                            element.styleAttrs[imscStyles.byName.fontSize.qname],
+                            null,
+                            doc.pxLength.h
+                            );
+
+                        if (shadow.b_radius === null)
+                            return null;
 
                     }
 
@@ -1223,15 +1154,9 @@
             false,
             imscUtils.parseLength,
             function (doc, parent, element, attr, context) {
-                if (attr.unit === "c") {
 
-                    return attr.value / doc.cellResolution.h;
+                return imscUtils.toComputedLength(attr.value, attr.unit, null, null, doc.cellLength.w, null);
 
-                } else {
-
-                    return null;
-
-                }
             }
         ),
         new StylingAttributeDefinition(
@@ -1297,6 +1222,7 @@
 
         imscStyles.byName[imscStyles.all[j].name] = imscStyles.all[j];
     }
+
 
 })(typeof exports === 'undefined' ? this.imscStyles = {} : exports,
     typeof imscNames === 'undefined' ? require("./names") : imscNames,
