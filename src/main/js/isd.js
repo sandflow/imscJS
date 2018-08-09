@@ -55,7 +55,7 @@
 
         var context = {
 
-            rubyfs: [] /* font size of the nearest textContainer or container */
+            /*rubyfs: []*/ /* font size of the nearest textContainer or container */
 
         };
 
@@ -222,14 +222,36 @@
                 } else if (sa.qname === imscStyles.byName.fontSize.qname &&
                     !(sa.qname in isd_element.styleAttrs) &&
                     isd_element.kind === 'span' &&
+                    isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
+                    
+                    /* special inheritance rule for ruby text container font size */
+                    
+                    var ruby_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
+
+                    isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
+                        0.5 * ruby_fs.rw,
+                        0.5 * ruby_fs.rh);
+
+                } else if (sa.qname === imscStyles.byName.fontSize.qname &&
+                    !(sa.qname in isd_element.styleAttrs) &&
+                    isd_element.kind === 'span' &&
                     isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
                     
                     /* special inheritance rule for ruby text font size */
-
-                    isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
-                        0.5 * context.rubyfs[0].rw,
-                        0.5 * context.rubyfs[0].rh);
-
+                    
+                    var parent_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
+                    
+                    if (parent.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
+                        
+                        isd_element.styleAttrs[sa.qname] = parent_fs;
+                        
+                    } else {
+                        
+                        isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
+                            0.5 * parent_fs.rw,
+                            0.5 * parent_fs.rh);
+                    }
+                    
                 } else if (sa.inherit &&
                     (sa.qname in parent.styleAttrs) &&
                     !(sa.qname in isd_element.styleAttrs)) {
@@ -313,7 +335,7 @@
 
         /* tts:fontSize special ineritance for ruby */
 
-        var isrubycontainer = false;
+/*        var isrubycontainer = false;
 
         if (isd_element.kind === "span") {
 
@@ -327,7 +349,7 @@
 
             }
 
-        }
+        } */
 
         /* prune if tts:display is none */
 
@@ -391,11 +413,11 @@
 
         /* tts:fontSize special ineritance for ruby */
 
-        if (isrubycontainer) {
+        /*if (isrubycontainer) {
 
             context.rubyfs.shift();
 
-        }
+        }*/
 
         /* remove styles that are not applicable */
 
