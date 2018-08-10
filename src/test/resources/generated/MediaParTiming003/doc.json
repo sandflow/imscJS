@@ -59,8 +59,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 0,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -92,8 +93,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 5,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -105,7 +107,7 @@
                   }
                 ],
                 "begin": 5,
-                "end": null
+                "end": "Infinity"
               }
             ],
             "begin": 0,
@@ -136,8 +138,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 15,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -169,8 +172,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 10,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -182,7 +186,7 @@
                   }
                 ],
                 "begin": 10,
-                "end": null
+                "end": "Infinity"
               }
             ],
             "begin": 10,

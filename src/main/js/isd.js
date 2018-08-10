@@ -82,9 +82,9 @@
 
     function isdProcessContentElement(doc, offset, region, body, parent, inherited_region_id, elem, errorHandler, context) {
 
-        /* prune if temporally inactive (<br> are not included in timing) */
+        /* prune if temporally inactive */
 
-        if (elem.kind !== 'br' && (offset < elem.begin || offset >= elem.end)) {
+        if (offset < elem.begin || offset >= elem.end) {
             return null;
         }
 

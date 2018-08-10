@@ -150,8 +150,9 @@
                                       {
                                         "kind": "br",
                                         "regionID": "",
+                                        "timeContainer": "par",
                                         "begin": 6,
-                                        "end": null
+                                        "end": "Infinity"
                                       },
                                       {
                                         "kind": "span",
@@ -177,8 +178,9 @@
                                   {
                                     "kind": "br",
                                     "regionID": "",
+                                    "timeContainer": "par",
                                     "begin": 5,
-                                    "end": null
+                                    "end": "Infinity"
                                   },
                                   {
                                     "kind": "span",
@@ -204,8 +206,9 @@
                               {
                                 "kind": "br",
                                 "regionID": "",
+                                "timeContainer": "par",
                                 "begin": 4,
-                                "end": null
+                                "end": "Infinity"
                               },
                               {
                                 "kind": "span",
@@ -231,8 +234,9 @@
                           {
                             "kind": "br",
                             "regionID": "",
+                            "timeContainer": "par",
                             "begin": 3,
-                            "end": null
+                            "end": "Infinity"
                           },
                           {
                             "kind": "span",
@@ -258,8 +262,9 @@
                       {
                         "kind": "br",
                         "regionID": "",
+                        "timeContainer": "par",
                         "begin": 2,
-                        "end": null
+                        "end": "Infinity"
                       },
                       {
                         "kind": "span",
@@ -285,8 +290,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 1,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
