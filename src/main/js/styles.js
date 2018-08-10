@@ -551,9 +551,16 @@
                             out[i] = padding[i].value / doc.cellResolution.h;
 
                         } else if (padding[i].unit === "px") {
+                            
+                            if (i === "0" || i === "2") {
 
-                            out[i] = padding[i].value / doc.pxDimensions.h;
+                                out[i] = padding[i].value / doc.pxDimensions.h;
 
+                            } else {
+
+                                out[i] = padding[i].value / doc.pxDimensions.w;
+                            }
+                            
                         } else {
 
                             return null;
