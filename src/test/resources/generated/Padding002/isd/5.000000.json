@@ -10,9 +10,9 @@
         },
         "http://www.w3.org/ns/ttml#styling padding": [
           0.041666666666666664,
-          0.125,
+          0.09375,
           0.041666666666666664,
-          0.125
+          0.09375
         ],
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           0,

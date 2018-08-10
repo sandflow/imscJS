@@ -51,8 +51,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 5,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -84,8 +85,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 15,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
