@@ -10,35 +10,51 @@ INTRODUCTION
 ============
 
 imscJS is a JavaScript library for rendering IMSC1 Text and Image Profile
-documents [1] to HTML5. IMSC1 is a profile of TTML [2] designed for subtitle and 
+documents [1] to HTML5. IMSC 1.1 is a profile of TTML 2 [2] designed for subtitle and 
 caption delivery worldwide.
 
-[1] https://www.w3.org/TR/ttml-imsc1/
-[2] https://www.w3.org/TR/ttml1/
+[1] https://www.w3.org/TR/ttml-imsc1.1/
+[2] https://www.w3.org/TR/ttml2/
 
 A live sample web app using imscJS is available at [3].
 
-[3] http://sandflow.com/imsc1proc/index.html
+[3] http://sandflow.com/imsc1_1/index.html
+
+
+
+VERSIONS
+========
+
+imscJS 1.0.x implements IMSC 1.0.1 [4], and is recommended for routine use.
+
+[4] https://www.w3.org/TR/ttml-imsc1/
+
+imscJS 1.1.x implements the latest draft of IMSC 1.1 [1], and is recommended only
+for development or experimental use. IMSC 1.1.x is intended to ultimately replace imscJS 1.0.x
+in routine use.
 
 
 
 KNOWN ISSUES AND LIMITATIONS
 ============================
 
-imscJS is primarily developed on Chrome. Latest versions of Firefox, Safari, 
+imscJS is primarily developed on Firefox. Latest versions of Chrome, Safari, 
 Microsoft Internet Explorer 11 and Microsoft Edge are intended to be supported
-nevertheless.
+nevertheless, albeit with potentially reduced capabilities. In particular, advanced ruby 
+layout is currently only supported by Firefox.
 
-imscJS is intended to reflect the most recent published versions of TTML1 and 
-IMSC1, as clarified by proposed resolutions to issues captured in their
-respective bug trackers [1-2].
+The `#lineShear` feature [5] is not currently supported due to CSS limitations.
 
-[1] https://github.com/w3c/ttml1/issues
-[2] https://github.com/w3c/imsc/issues
+[5] https://www.w3.org/TR/ttml2/#feature-lineShear
 
-imscJS bugs are tracked at [3]
+imscJS is intended to reflect the most recent published versions of IMSC 1 [6] and IMSC 1.1 [1]. These publications
+are routinely clarified by proposed resolutions to issues captured in their respective bug trackers.
 
-[3] https://github.com/sandflow/imscJS/issues
+[6] https://www.w3.org/TR/ttml-imsc1/
+
+imscJS bugs are tracked at [7]
+
+[7] https://github.com/sandflow/imscJS/issues
 
 
 
@@ -84,9 +100,9 @@ imscJS library and its sax-js dependency. Both are included in a web page using 
     <script src="libs/imsc.js"></script>
 
 See TESTS AND SAMPLES below for a list of samples available.
-    
 
-    
+
+
 ARCHITECTURE
 ============
 
@@ -162,6 +178,7 @@ NPM PACKAGE
 
 imscJS is released as an NPM package under the name "imsc".
 
+The `dev` distribution tag is used to indicate pre-releases.
 
 
 NOTABLE DIRECTORIES AND FILES
