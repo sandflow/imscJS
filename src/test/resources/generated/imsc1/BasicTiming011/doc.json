@@ -19,6 +19,9 @@
     3
   ],
   "head": {
+    "styling": {
+      "initials": {}
+    },
     "layout": {
       "regions": {
         "rollup": {
@@ -162,8 +165,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 0.75,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -176,7 +180,7 @@
                 ],
                 "space": "default",
                 "begin": 0.75,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -234,8 +238,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 1.3125,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -248,7 +253,7 @@
                 ],
                 "space": "default",
                 "begin": 1.3125,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -306,8 +311,9 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 1.875,
-                    "end": null
+                    "end": "Infinity"
                   },
                   {
                     "kind": "span",
@@ -320,7 +326,7 @@
                 ],
                 "space": "default",
                 "begin": 1.875,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -386,13 +392,14 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 2.4375,
-                    "end": null
+                    "end": "Infinity"
                   }
                 ],
                 "space": "default",
                 "begin": 2.4375,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -412,13 +419,14 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 2.625,
-                    "end": null
+                    "end": "Infinity"
                   }
                 ],
                 "space": "default",
                 "begin": 2.625,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -438,13 +446,14 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 2.8125,
-                    "end": null
+                    "end": "Infinity"
                   }
                 ],
                 "space": "default",
                 "begin": 2.8125,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -464,13 +473,14 @@
                   {
                     "kind": "br",
                     "regionID": "",
+                    "timeContainer": "par",
                     "begin": 3,
-                    "end": null
+                    "end": "Infinity"
                   }
                 ],
                 "space": "default",
                 "begin": 3,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -482,25 +492,41 @@
               }
             ],
             "begin": 0,
-            "end": null
+            "end": "Infinity"
           }
         ],
         "begin": 0,
-        "end": null
+        "end": "Infinity"
       }
     ],
     "begin": 0,
-    "end": null
+    "end": "Infinity"
   },
-  "cellResolution": {
-    "w": 32,
-    "h": 15
+  "cellLength": {
+    "h": {
+      "rw": 0,
+      "rh": 0.06666666666666667
+    },
+    "w": {
+      "rw": 0.03125,
+      "rh": 0
+    }
   },
   "effectiveFrameRate": 30,
   "tickRate": 1,
   "aspectRatio": null,
-  "pxDimensions": {
-    "h": 480,
-    "w": 640
+  "pxLength": {
+    "h": null,
+    "w": null
+  },
+  "dimensions": {
+    "h": {
+      "rw": 0,
+      "rh": 1
+    },
+    "w": {
+      "rw": 1,
+      "rh": 0
+    }
   }
 }

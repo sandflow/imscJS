@@ -15,6 +15,9 @@
     20
   ],
   "head": {
+    "styling": {
+      "initials": {}
+    },
     "layout": {
       "regions": {
         "": {
@@ -59,8 +62,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 0,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -72,7 +76,7 @@
               }
             ],
             "begin": 0,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -92,8 +96,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 1,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -105,7 +110,7 @@
               }
             ],
             "begin": 1,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -125,8 +130,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 2,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -138,7 +144,7 @@
               }
             ],
             "begin": 2,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -158,8 +164,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 3,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -171,7 +178,7 @@
               }
             ],
             "begin": 3,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -191,8 +198,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 4,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -204,7 +212,7 @@
               }
             ],
             "begin": 4,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -224,8 +232,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 5,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -237,7 +246,7 @@
               }
             ],
             "begin": 5,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -257,8 +266,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 6,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -270,7 +280,7 @@
               }
             ],
             "begin": 6,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -290,8 +300,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 7,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -303,7 +314,7 @@
               }
             ],
             "begin": 7,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -323,8 +334,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 8,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -336,7 +348,7 @@
               }
             ],
             "begin": 8,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -356,8 +368,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 9,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -369,7 +382,7 @@
               }
             ],
             "begin": 9,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -389,8 +402,9 @@
               {
                 "kind": "br",
                 "regionID": "",
+                "timeContainer": "par",
                 "begin": 10,
-                "end": null
+                "end": "Infinity"
               },
               {
                 "kind": "span",
@@ -402,7 +416,7 @@
               }
             ],
             "begin": 10,
-            "end": null
+            "end": "Infinity"
           },
           {
             "kind": "p",
@@ -425,21 +439,37 @@
           }
         ],
         "begin": 0,
-        "end": null
+        "end": "Infinity"
       }
     ],
     "begin": 0,
-    "end": null
+    "end": "Infinity"
   },
-  "cellResolution": {
-    "w": 32,
-    "h": 15
+  "cellLength": {
+    "h": {
+      "rw": 0,
+      "rh": 0.06666666666666667
+    },
+    "w": {
+      "rw": 0.03125,
+      "rh": 0
+    }
   },
   "effectiveFrameRate": 30,
   "tickRate": 1,
   "aspectRatio": null,
-  "pxDimensions": {
-    "h": 480,
-    "w": 640
+  "pxLength": {
+    "h": null,
+    "w": null
+  },
+  "dimensions": {
+    "h": {
+      "rw": 0,
+      "rh": 1
+    },
+    "w": {
+      "rw": 1,
+      "rh": 0
+    }
   }
 }

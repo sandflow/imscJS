@@ -3,6 +3,9 @@
     0
   ],
   "head": {
+    "styling": {
+      "initials": {}
+    },
     "layout": {
       "regions": {
         "r1": {
@@ -171,15 +174,31 @@
     "begin": 0,
     "end": "Infinity"
   },
-  "cellResolution": {
-    "w": 60,
-    "h": 20
+  "cellLength": {
+    "h": {
+      "rw": 0,
+      "rh": 0.05
+    },
+    "w": {
+      "rw": 0.016666666666666666,
+      "rh": 0
+    }
   },
   "effectiveFrameRate": 30,
   "tickRate": 1,
   "aspectRatio": null,
-  "pxDimensions": {
-    "h": 480,
-    "w": 640
+  "pxLength": {
+    "h": null,
+    "w": null
+  },
+  "dimensions": {
+    "h": {
+      "rw": 0,
+      "rh": 1
+    },
+    "w": {
+      "rw": 1,
+      "rh": 0
+    }
   }
 }

@@ -5,12 +5,24 @@
       "id": "area1",
       "styleAttrs": {
         "http://www.w3.org/ns/ttml#styling origin": {
-          "h": 0.083,
-          "w": 0.125
+          "h": {
+            "rw": 0,
+            "rh": 0.083
+          },
+          "w": {
+            "rw": 0.125,
+            "rh": 0
+          }
         },
         "http://www.w3.org/ns/ttml#styling extent": {
-          "h": 0.33299999999999996,
-          "w": 0.75
+          "h": {
+            "rw": 0,
+            "rh": 0.33299999999999996
+          },
+          "w": {
+            "rw": 0.75,
+            "rh": 0
+          }
         },
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           0,
@@ -23,10 +35,22 @@
         "http://www.w3.org/ns/ttml#styling opacity": 1,
         "http://www.w3.org/ns/ttml#styling overflow": "hidden",
         "http://www.w3.org/ns/ttml#styling padding": [
-          0,
-          0,
-          0,
-          0
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0
+          }
         ],
         "http://www.w3.org/ns/ttml#styling showBackground": "always",
         "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -41,12 +65,24 @@
       "id": "area2",
       "styleAttrs": {
         "http://www.w3.org/ns/ttml#styling origin": {
-          "h": 0.583,
-          "w": 0.125
+          "h": {
+            "rw": 0,
+            "rh": 0.583
+          },
+          "w": {
+            "rw": 0.125,
+            "rh": 0
+          }
         },
         "http://www.w3.org/ns/ttml#styling extent": {
-          "h": 0.33299999999999996,
-          "w": 0.75
+          "h": {
+            "rw": 0,
+            "rh": 0.33299999999999996
+          },
+          "w": {
+            "rw": 0.75,
+            "rh": 0
+          }
         },
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           0,
@@ -59,10 +95,22 @@
         "http://www.w3.org/ns/ttml#styling opacity": 1,
         "http://www.w3.org/ns/ttml#styling overflow": "hidden",
         "http://www.w3.org/ns/ttml#styling padding": [
-          0,
-          0,
-          0,
-          0
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0
+          }
         ],
         "http://www.w3.org/ns/ttml#styling showBackground": "always",
         "http://www.w3.org/ns/ttml#styling visibility": "visible",

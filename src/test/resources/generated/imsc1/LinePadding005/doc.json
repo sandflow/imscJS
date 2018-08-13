@@ -1,0 +1,288 @@
+{
+  "events": [
+    0,
+    1
+  ],
+  "head": {
+    "styling": {
+      "initials": {}
+    },
+    "layout": {
+      "regions": {
+        "top": {
+          "id": "top",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 10,
+                "unit": "%"
+              },
+              "w": {
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 10,
+                "unit": "%"
+              },
+              "w": {
+                "value": 55,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling displayAlign": "center",
+            "http://www.w3.org/ns/ttml#styling writingMode": "rltb",
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling fontSize": {
+              "value": 160,
+              "unit": "%"
+            },
+            "http://www.w3.org/ns/ttml#styling fontFamily": [
+              "monospaceSerif"
+            ],
+            "http://www.w3.org/ns/ttml#styling padding": [
+              {
+                "value": 2,
+                "unit": "%"
+              }
+            ],
+            "http://www.w3.org/ns/ttml#styling textAlign": "start",
+            "urn:ebu:tt:style linePadding": {
+              "value": 0.5,
+              "unit": "c"
+            }
+          },
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        },
+        "right": {
+          "id": "right",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling origin": {
+              "h": {
+                "value": 10,
+                "unit": "%"
+              },
+              "w": {
+                "value": 70,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 80,
+                "unit": "%"
+              },
+              "w": {
+                "value": 10,
+                "unit": "%"
+              }
+            },
+            "http://www.w3.org/ns/ttml#styling displayAlign": "before",
+            "http://www.w3.org/ns/ttml#styling writingMode": "tb",
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling fontSize": {
+              "value": 160,
+              "unit": "%"
+            },
+            "http://www.w3.org/ns/ttml#styling fontFamily": [
+              "monospaceSerif"
+            ],
+            "http://www.w3.org/ns/ttml#styling padding": [
+              {
+                "value": 2,
+                "unit": "%"
+              }
+            ],
+            "http://www.w3.org/ns/ttml#styling textAlign": "start",
+            "urn:ebu:tt:style linePadding": {
+              "value": 0.5,
+              "unit": "c"
+            }
+          },
+          "timeContainer": "par",
+          "sets": [],
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "par",
+        "sets": [],
+        "regionID": "",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "top",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n                ",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ]
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "space": "default",
+                "text": "نشاط التدويل، W3C",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n            ",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
+            "begin": 0,
+            "end": 1
+          },
+          {
+            "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "right",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n                hello ",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ]
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "contents": [
+                  {
+                    "kind": "span",
+                    "timeContainer": "par",
+                    "text": "みなさん、",
+                    "space": "default",
+                    "begin": 0,
+                    "end": "Infinity"
+                  },
+                  {
+                    "kind": "br",
+                    "regionID": "",
+                    "timeContainer": "par",
+                    "begin": 0,
+                    "end": "Infinity"
+                  },
+                  {
+                    "kind": "span",
+                    "timeContainer": "par",
+                    "text": "こんにちは",
+                    "space": "default",
+                    "begin": 0,
+                    "end": "Infinity"
+                  }
+                ],
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n            ",
+                "space": "default",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
+            "begin": 0,
+            "end": 1
+          }
+        ],
+        "begin": 0,
+        "end": 1
+      }
+    ],
+    "begin": 0,
+    "end": 1
+  },
+  "cellLength": {
+    "h": {
+      "rw": 0,
+      "rh": 0.03333333333333333
+    },
+    "w": {
+      "rw": 0.02,
+      "rh": 0
+    }
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxLength": {
+    "h": null,
+    "w": null
+  },
+  "dimensions": {
+    "h": {
+      "rw": 0,
+      "rh": 1
+    },
+    "w": {
+      "rw": 1,
+      "rh": 0
+    }
+  }
+}

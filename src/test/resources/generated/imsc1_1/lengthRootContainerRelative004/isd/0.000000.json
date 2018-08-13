@@ -1,0 +1,457 @@
+{
+  "contents": [
+    {
+      "kind": "region",
+      "id": "r1",
+      "styleAttrs": {
+        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "http://www.w3.org/ns/ttml#styling extent": {
+          "h": {
+            "rw": 0,
+            "rh": 0.4
+          },
+          "w": {
+            "rw": 0.9,
+            "rh": 0
+          }
+        },
+        "http://www.w3.org/ns/ttml#styling position": {
+          "h": {
+            "rw": 0,
+            "rh": 0.5499999999999999
+          },
+          "w": {
+            "rw": 0.04999999999999999,
+            "rh": 0
+          }
+        },
+        "http://www.w3.org/ns/ttml#styling padding": [
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0.2,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0.1
+          },
+          {
+            "rw": 0.05,
+            "rh": 0
+          }
+        ],
+        "http://www.w3.org/ns/ttml#styling display": "auto",
+        "http://www.w3.org/ns/ttml#styling displayAlign": "before",
+        "http://www.w3.org/ns/ttml#styling opacity": 1,
+        "http://www.w3.org/ns/ttml#styling overflow": "hidden",
+        "http://www.w3.org/ns/ttml#styling showBackground": "always",
+        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+        "http://www.w3.org/ns/ttml#styling writingMode": "lrtb",
+        "http://www.w3.org/ns/ttml#styling zIndex": "auto",
+        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false
+      },
+      "contents": [
+        {
+          "kind": "body",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "http://www.w3.org/ns/ttml#styling display": "auto"
+          },
+          "contents": [
+            {
+              "kind": "div",
+              "styleAttrs": {
+                "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "http://www.w3.org/ns/ttml#styling display": "auto"
+              },
+              "contents": [
+                {
+                  "kind": "p",
+                  "styleAttrs": {
+                    "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                      0,
+                      0,
+                      255,
+                      255
+                    ],
+                    "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                    "http://www.w3.org/ns/ttml#styling shear": 0,
+                    "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
+                    "http://www.w3.org/ns/ttml#styling rubyReserve": [
+                      "none",
+                      null
+                    ],
+                    "http://www.w3.org/ns/ttml#styling textAlign": "start",
+                    "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                    "urn:ebu:tt:style linePadding": {
+                      "rw": 0,
+                      "rh": 0
+                    },
+                    "urn:ebu:tt:style multiRowAlign": "auto",
+                    "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
+                    "http://www.w3.org/ns/ttml#styling display": "auto",
+                    "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                  },
+                  "contents": [
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": {
+                          "rw": 0,
+                          "rh": 0.06666666666666667
+                        },
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textCombine": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling textShadow": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling ruby": "none",
+                        "http://www.w3.org/ns/ttml#styling textEmphasis": {
+                          "style": "none",
+                          "symbol": "circle",
+                          "color": null,
+                          "position": null
+                        },
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "text": "tts:padding=\"0rh 5rw 10rh 20rw\"",
+                      "space": "default"
+                    },
+                    {
+                      "kind": "br",
+                      "styleAttrs": {}
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": {
+                          "rw": 0,
+                          "rh": 0.06666666666666667
+                        },
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textCombine": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling textShadow": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling ruby": "none",
+                        "http://www.w3.org/ns/ttml#styling textEmphasis": {
+                          "style": "none",
+                          "symbol": "circle",
+                          "color": null,
+                          "position": null
+                        },
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "text": "tts:displayAlign=\"before\"",
+                      "space": "default"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "region",
+      "id": "r2",
+      "styleAttrs": {
+        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "http://www.w3.org/ns/ttml#styling extent": {
+          "h": {
+            "rw": 0,
+            "rh": 0.4
+          },
+          "w": {
+            "rw": 0.9,
+            "rh": 0
+          }
+        },
+        "http://www.w3.org/ns/ttml#styling position": {
+          "h": {
+            "rw": 0,
+            "rh": 0.05
+          },
+          "w": {
+            "rw": 0.04999999999999999,
+            "rh": 0
+          }
+        },
+        "http://www.w3.org/ns/ttml#styling padding": [
+          {
+            "rw": 0,
+            "rh": 0
+          },
+          {
+            "rw": 0.2,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0.1
+          },
+          {
+            "rw": 0.05,
+            "rh": 0
+          }
+        ],
+        "http://www.w3.org/ns/ttml#styling displayAlign": "after",
+        "http://www.w3.org/ns/ttml#styling display": "auto",
+        "http://www.w3.org/ns/ttml#styling opacity": 1,
+        "http://www.w3.org/ns/ttml#styling overflow": "hidden",
+        "http://www.w3.org/ns/ttml#styling showBackground": "always",
+        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+        "http://www.w3.org/ns/ttml#styling writingMode": "lrtb",
+        "http://www.w3.org/ns/ttml#styling zIndex": "auto",
+        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false
+      },
+      "contents": [
+        {
+          "kind": "body",
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling visibility": "visible",
+            "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "http://www.w3.org/ns/ttml#styling display": "auto"
+          },
+          "contents": [
+            {
+              "kind": "div",
+              "styleAttrs": {
+                "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "http://www.w3.org/ns/ttml#styling display": "auto"
+              },
+              "contents": [
+                {
+                  "kind": "p",
+                  "styleAttrs": {
+                    "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                      0,
+                      0,
+                      255,
+                      255
+                    ],
+                    "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                    "http://www.w3.org/ns/ttml#styling shear": 0,
+                    "http://www.w3.org/ns/ttml#styling lineHeight": "normal",
+                    "http://www.w3.org/ns/ttml#styling rubyReserve": [
+                      "none",
+                      null
+                    ],
+                    "http://www.w3.org/ns/ttml#styling textAlign": "start",
+                    "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                    "urn:ebu:tt:style linePadding": {
+                      "rw": 0,
+                      "rh": 0
+                    },
+                    "urn:ebu:tt:style multiRowAlign": "auto",
+                    "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                    "http://www.w3.org/ns/ttml/profile/imsc1#styling fillLineGap": false,
+                    "http://www.w3.org/ns/ttml#styling display": "auto",
+                    "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                  },
+                  "contents": [
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": {
+                          "rw": 0,
+                          "rh": 0.06666666666666667
+                        },
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textCombine": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling textShadow": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling ruby": "none",
+                        "http://www.w3.org/ns/ttml#styling textEmphasis": {
+                          "style": "none",
+                          "symbol": "circle",
+                          "color": null,
+                          "position": null
+                        },
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "text": "tts:padding=\"0rh 5rw 10rh 20rw\"",
+                      "space": "default"
+                    },
+                    {
+                      "kind": "br",
+                      "styleAttrs": {}
+                    },
+                    {
+                      "kind": "span",
+                      "styleAttrs": {
+                        "http://www.w3.org/ns/ttml#styling color": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontFamily": [
+                          "monospaceSerif"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling fontSize": {
+                          "rw": 0,
+                          "rh": 0.06666666666666667
+                        },
+                        "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
+                        "http://www.w3.org/ns/ttml#styling textCombine": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textDecoration": [
+                          "none"
+                        ],
+                        "http://www.w3.org/ns/ttml#styling textOutline": "none",
+                        "http://www.w3.org/ns/ttml#styling textShadow": "none",
+                        "http://www.w3.org/ns/ttml#styling visibility": "visible",
+                        "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
+                        "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay": false,
+                        "http://www.w3.org/ns/ttml#styling backgroundColor": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "http://www.w3.org/ns/ttml#styling display": "auto",
+                        "http://www.w3.org/ns/ttml#styling ruby": "none",
+                        "http://www.w3.org/ns/ttml#styling textEmphasis": {
+                          "style": "none",
+                          "symbol": "circle",
+                          "color": null,
+                          "position": null
+                        },
+                        "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
+                      },
+                      "text": "tts:displayAlign=\"after\"",
+                      "space": "default"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aspectRatio": null
+}

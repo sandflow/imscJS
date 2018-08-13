@@ -5,14 +5,32 @@
       "id": "r1",
       "styleAttrs": {
         "http://www.w3.org/ns/ttml#styling extent": {
-          "h": 0.4166666666666667,
-          "w": 0.625
+          "h": {
+            "rw": 0,
+            "rh": 0.4166666666666667
+          },
+          "w": {
+            "rw": 0.625,
+            "rh": 0
+          }
         },
         "http://www.w3.org/ns/ttml#styling padding": [
-          0.08333333333333333,
-          0.08333333333333333,
-          0.08333333333333333,
-          0.08333333333333333
+          {
+            "rw": 0,
+            "rh": 0.08333333333333333
+          },
+          {
+            "rw": 0.0625,
+            "rh": 0
+          },
+          {
+            "rw": 0,
+            "rh": 0.08333333333333333
+          },
+          {
+            "rw": 0.0625,
+            "rh": 0
+          }
         ],
         "http://www.w3.org/ns/ttml#styling backgroundColor": [
           0,
@@ -24,8 +42,14 @@
         "http://www.w3.org/ns/ttml#styling displayAlign": "before",
         "http://www.w3.org/ns/ttml#styling opacity": 1,
         "http://www.w3.org/ns/ttml#styling origin": {
-          "h": 0,
-          "w": 0
+          "h": {
+            "rw": 0,
+            "rh": 0
+          },
+          "w": {
+            "rw": 0,
+            "rh": 0
+          }
         },
         "http://www.w3.org/ns/ttml#styling overflow": "hidden",
         "http://www.w3.org/ns/ttml#styling showBackground": "always",

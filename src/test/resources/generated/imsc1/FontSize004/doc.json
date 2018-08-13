@@ -4,6 +4,9 @@
     10
   ],
   "head": {
+    "styling": {
+      "initials": {}
+    },
     "layout": {
       "regions": {
         "": {
@@ -81,15 +84,31 @@
     "begin": 0,
     "end": 10
   },
-  "cellResolution": {
-    "w": 40,
-    "h": 24
+  "cellLength": {
+    "h": {
+      "rw": 0,
+      "rh": 0.041666666666666664
+    },
+    "w": {
+      "rw": 0.025,
+      "rh": 0
+    }
   },
   "effectiveFrameRate": 30,
   "tickRate": 1,
   "aspectRatio": null,
-  "pxDimensions": {
-    "h": 480,
-    "w": 640
+  "pxLength": {
+    "h": null,
+    "w": null
+  },
+  "dimensions": {
+    "h": {
+      "rw": 0,
+      "rh": 1
+    },
+    "w": {
+      "rw": 1,
+      "rh": 0
+    }
   }
 }
