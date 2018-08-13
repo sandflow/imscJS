@@ -5,7 +5,8 @@
     | | | | | | | | \__ \ | (__  | |__| |  ____) |
     |_| |_| |_| |_| |___/  \___|  \____/  |_____/ 
                                                   
-                                               
+                                  
+                                  
 INTRODUCTION
 ============
 
@@ -173,12 +174,15 @@ Unit tests are located at [1] and run as a webapp [2] using QUnit [3].
 [2] src/test/webapp/unit_tests.html
 [3] https://qunitjs.com/
 
+
+
 NPM PACKAGE
 ===========
 
 imscJS is released as an NPM package under the name "imsc".
 
 The `dev` distribution tag is used to indicate pre-releases.
+
 
 
 NOTABLE DIRECTORIES AND FILES
