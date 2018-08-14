@@ -8,7 +8,7 @@
     "repository": "github:sandflow/imscJS",
     "files": [
         "src/main/js",
-        "README.txt"
+        "README.md"
     ],
     "keywords": [
         "imsc1",
