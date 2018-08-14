@@ -5,7 +5,8 @@
     | | | | | | | | \__ \ | (__  | |__| |  ____) |
     |_| |_| |_| |_| |___/  \___|  \____/  |_____/ 
                                                   
-                                               
+[![npm version](https://badge.fury.io/js/imsc.svg)](https://badge.fury.io/js/imsc)
+
 INTRODUCTION
 ============
 
@@ -13,14 +14,12 @@ imscJS is a JavaScript library for rendering IMSC1 Text and Image Profile
 documents [1] to HTML5. IMSC1 is a profile of TTML [2] designed for subtitle and 
 caption delivery worldwide.
 
-[1] https://www.w3.org/TR/ttml-imsc1/
-[2] https://www.w3.org/TR/ttml1/
+[1] https://www.w3.org/TR/ttml-imsc1/  
+[2] https://www.w3.org/TR/ttml1/  
 
 A live sample web app using imscJS is available at [3].
 
 [3] http://sandflow.com/imsc1proc/index.html
-
-
 
 KNOWN ISSUES AND LIMITATIONS
 ============================
@@ -33,8 +32,8 @@ imscJS is intended to reflect the most recent published versions of TTML1 and
 IMSC1, as clarified by proposed resolutions to issues captured in their
 respective bug trackers [1-2].
 
-[1] https://github.com/w3c/ttml1/issues
-[2] https://github.com/w3c/imsc/issues
+[1] https://github.com/w3c/ttml1/issues  
+[2] https://github.com/w3c/imsc/issues  
 
 imscJS bugs are tracked at [3]
 
@@ -80,8 +79,10 @@ build/public_html directory, which can be served by popular web server.
 * the resulting imsc.js and sax.js files at build/public_html/libs are, respectively, the 
 imscJS library and its sax-js dependency. Both are included in a web page using the following:
 
+```html
     <script src="libs/sax.js"></script>
     <script src="libs/imsc.js"></script>
+```
 
 See TESTS AND SAMPLES below for a list of samples available.
     
@@ -144,18 +145,18 @@ imscJS imports the IMSC1 test suite [1] managed by the W3C as submodule at [2].
 The gen-renders.html web app can be used to generate PNG renderings as as well intermediary files from these
 tests. For regression testing, a copy of these intermediary files are committed at [3].
 
-[1] https://github.com/w3c/imsc-tests
-[2] src/test/resources/imsc-tests
-[3] src/test/resources/generated
+[1] https://github.com/w3c/imsc-tests  
+[2] src/test/resources/imsc-tests  
+[3] src/test/resources/generated  
 
 Unit tests
 **********
 
 Unit tests are located at [1] and run as a webapp [2] using QUnit [3].
 
-[1] src/test/webapp/js/unit-tests.js
-[2] src/test/webapp/unit_tests.html
-[3] https://qunitjs.com/
+[1] src/test/webapp/js/unit-tests.js  
+[2] src/test/webapp/unit_tests.html  
+[3] https://qunitjs.com/  
 
 NPM PACKAGE
 ===========
@@ -167,20 +168,14 @@ imscJS is released as an NPM package under the name "imsc".
 NOTABLE DIRECTORIES AND FILES
 =============================
 
-/package.json                           NPM package definition
-
-/Gruntfile.js                           Grunt build script
-
-/properties.json                        General project properties
-
-/README                                 This file
-
-/LICENSE                                License under which imscJS is made available
-
-/src/main/js                            JavaScript modules
-
-/src/test/resources                     Test files
-
-/src/test/webapp                        Test web applications
-
-/build                                  Build output
+|                                             |                                              |
+|---------------------------------------------|----------------------------------------------|
+| [/package.json](package.json)               | NPM package definition                       |
+| [/Gruntfile.js](Gruntfile.js)               | Grunt build script                           |
+| [/properties.json](properties.json)         | General project properties                   |
+| [/README.md](README.md)                     | This file                                    |
+| [/LICENSE](LICENSE)                         | License under which imscJS is made available |
+| [/src/main/js](src/main/js)                 | JavaScript modules                           |
+| [/src/test/resources](src/test/resources)   | Test files                                   |
+| [/src/test/webapp](src/test/webapp)         | Test web applications                        |
+| [/build](build)                             | Build output                                 |
