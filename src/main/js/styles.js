@@ -79,6 +79,27 @@
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
+            "disparity",
+            "0%",
+            ['region'],
+            false,
+            true,
+            imscUtils.parseLength,
+            function (doc, parent, element, attr, context) {
+
+                return imscUtils.toComputedLength(
+                        attr.value,
+                        attr.unit,
+                        null,
+                        doc.dimensions.w,
+                        null,
+                        doc.pxLength.w
+                        );
+
+            }
+            ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
             "display",
             "auto",
             ['body', 'div', 'p', 'region', 'span'],
@@ -345,6 +366,16 @@
                 return lh;
             }
         ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
+            "luminanceGain",
+            1.0,
+            ['region'],
+            false,
+            true,
+            parseFloat,
+            null
+            ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
             "opacity",

@@ -66,7 +66,7 @@ function generateRenders(reffiles_root) {
             }
 
             return Promise.all(p);
-        })
+        }, console.log)
         .then(function (output) {
 
             var manifest = {};
@@ -78,10 +78,10 @@ function generateRenders(reffiles_root) {
             renders_dir.file("file-list.json", JSON.stringify(manifest, customReplace, 2));
 
             return zip.generateAsync({type: "blob"});
-        })
+        }, console.log)
         .then(function (zipfile) {
             return saveAs(zipfile, "renders.zip");
-        });
+        }, console.log);
 
 }
 
@@ -115,13 +115,13 @@ function asyncProcessRefFile(reffiles_root, renders_dir, pngs_dir, finfo) {
             }
 
             return Promise.all(p);
-        })
+        }, console.log)
         .then(function (events) {
             return {
                 'name': test_name,
                 'events': events
             };
-        });
+        }, console.log);
 }
 
 function customReplace(k, v) {
@@ -204,11 +204,11 @@ function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params,
 
             png.src = reffile_dir + uri;
 
-        }).then(function (url) {
+        }, console.log).then(function (url) {
 
             img.src = url;
 
-        });
+        }, console.log);
 
         imgs.push(p);
 
@@ -222,7 +222,11 @@ function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params,
         exp_height,
         exp_width,
         params.displayForcedOnlyMode === true,
-        errorHandler
+        errorHandler,
+        null,
+        null,
+        params.stereo3D,
+        params.pqPixels === true
         );
 
 

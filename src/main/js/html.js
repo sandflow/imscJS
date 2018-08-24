@@ -29,7 +29,7 @@
  */
 
 ;
-(function (imscHTML, imscNames, imscStyles) {
+(function (imscHTML, imscNames, imscStyles, imscUtils) {
 
     /**
      * Function that maps <pre>smpte:background</pre> URIs to URLs resolving to image resource
@@ -78,7 +78,9 @@
             displayForcedOnlyMode,
             errorHandler,
             previousISDState,
-            enableRollUp
+            enableRollUp,
+            stereo3D,
+            pqPixels
             ) {
 
         /* maintain aspect ratio if specified */
@@ -133,7 +135,11 @@
             bpd: null, /* block progression direction (lr, rl, tb) */
             ruby: null, /* is ruby present in a <p> */
             textEmphasis: null, /* is textEmphasis present in a <p> */
-            rubyReserve: null /* is rubyReserve applicable to a <p> */
+            rubyReserve: null, /* is rubyReserve applicable to a <p> */
+            pqPixels: pqPixels || false, /* are we rendering to PQ-encoded pixels */
+            luminanceGain : null, /* current tts:luminanceGain value */
+            stereo: stereo3D, /* are we rendering to left-eye or right-eye or none */
+            disparity : null /* current tts:disparity value */
         };
 
         element.appendChild(rootcontainer);
@@ -1088,11 +1094,31 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling color",
                 function (context, dom_element, isd_element, attr) {
+                    
+                    /* convert to PQ-encoded color */
+                    
+                    var c;
+                    
+                    if (context.pqPixels) {
+                        
+                        c = [
+                            imscUtils.toPQ(attr[0], context.luminanceGain),
+                            imscUtils.toPQ(attr[1], context.luminanceGain),
+                            imscUtils.toPQ(attr[2], context.luminanceGain),
+                            attr[3]
+                        ];
+                        
+                    } else {
+                        
+                        c = attr;
+                        
+                    }
+                    
                     dom_element.style.color = "rgba(" +
-                            attr[0].toString() + "," +
-                            attr[1].toString() + "," +
-                            attr[2].toString() + "," +
-                            (attr[3] / 255).toString() +
+                            c[0].toString() + "," +
+                            c[1].toString() + "," +
+                            c[2].toString() + "," +
+                            (c[3] / 255).toString() +
                             ")";
                 }
         ),
@@ -1100,6 +1126,12 @@
                 "http://www.w3.org/ns/ttml#styling direction",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.direction = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling disparity",
+                function (context, dom_element, isd_element, attr) {
+                    context.disparity = attr;
                 }
         ),
         new HTMLStylingMapDefintion(
@@ -1283,6 +1315,12 @@
                 }
         ),
         new HTMLStylingMapDefintion(
+                "http://www.w3.org/ns/ttml#styling luminanceGain",
+                function (context, dom_element, isd_element, attr) {
+                    context.luminanceGain = attr;
+                }
+        ),
+        new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling opacity",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.opacity = attr;
@@ -1291,8 +1329,25 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling origin",
                 function (context, dom_element, isd_element, attr) {
+                    
+                    var offset;
+                        
+                    if (context.stereo === "left") {
+                        
+                        offset = - context.disparity.toUsedLength(context.w, context.h) / 2;
+                        
+                    } else if (context.stereo === "right") {
+                        
+                        offset = context.disparity.toUsedLength(context.w, context.h) / 2;
+                        
+                    } else {
+                        
+                        offset = 0;
+                        
+                    }
+                    
                     dom_element.style.top = attr.h.toUsedLength(context.w, context.h) + "px";
-                    dom_element.style.left = attr.w.toUsedLength(context.w, context.h) + "px";
+                    dom_element.style.left = (attr.w.toUsedLength(context.w, context.h) + offset) + "px";
                 }
         ),
         new HTMLStylingMapDefintion(
@@ -1322,8 +1377,25 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling position",
                 function (context, dom_element, isd_element, attr) {
+                    
+                    var offset;
+                        
+                    if (context.stereo === "left") {
+                        
+                        offset = - context.disparity.toUsedLength(context.w, context.h) / 2;
+                        
+                    } else if (context.stereo === "right") {
+                        
+                        offset = context.disparity.toUsedLength(context.w, context.h) / 2;
+                        
+                    } else {
+                        
+                        offset = 0;
+                        
+                    }
+                               
                     dom_element.style.top = attr.h.toUsedLength(context.w, context.h) + "px";
-                    dom_element.style.left = attr.w.toUsedLength(context.w, context.h) + "px";
+                    dom_element.style.left = (attr.w.toUsedLength(context.w, context.h) + offset) + "px";
                 }
         ),
         new HTMLStylingMapDefintion(

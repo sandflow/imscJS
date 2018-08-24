@@ -328,6 +328,19 @@
         return pos;
     };
 
+    imscUtils.toPQ = function(l, gain) {
+        
+        /* see https://www.w3.org/TR/ttml2/#pq-hdr */
+        
+        var r = l;
+        
+        r = Math.pow(l/255, 2.4) * 80 * gain / 10000;
+        
+        r = Math.pow((0.8359375 + 18.8515625 * Math.pow(r, 0.1593017578125)) /
+            (1 + 18.6875 * Math.pow(r, 0.1593017578125)), 78.84375);
+        
+        return Math.floor(r * 255 + 0.5);
+    };
 
     imscUtils.ComputedLength = function (rw, rh) {
         this.rw = rw;
