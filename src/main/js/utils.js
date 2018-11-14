@@ -85,27 +85,27 @@
         
         var r = null;
         
-        var lc = str.toLowerCase();
+        var nc = NAMED_COLOR[str.toLowerCase()];
         
-        if (lc in NAMED_COLOR) {
+        if (nc !== undefined) {
 
-            r = NAMED_COLOR[lc];
+            r = nc;
 
-        } else if ((m = HEX_COLOR_RE.exec(lc)) !== null) {
+        } else if ((m = HEX_COLOR_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1], 16),
                 parseInt(m[2], 16),
                 parseInt(m[3], 16),
                 (m[4] !== undefined ? parseInt(m[4], 16) : 255)];
             
-        } else if ((m = DEC_COLOR_RE.exec(lc)) !== null) {
+        } else if ((m = DEC_COLOR_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1]),
                 parseInt(m[2]),
                 parseInt(m[3]),
                 255];
             
-        } else if ((m = DEC_COLORA_RE.exec(lc)) !== null) {
+        } else if ((m = DEC_COLORA_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1]),
                 parseInt(m[2]),

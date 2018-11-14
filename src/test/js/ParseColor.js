@@ -4,7 +4,7 @@ if (typeof imscUtils === 'undefined')
 QUnit.test("ParseColor",
     function (assert) {
 
-        tests = [
+        var tests = [
             ["#FFFFFF", [255, 255, 255, 255]],
             ["#FFFFFF7F", [255, 255, 255, 127]],
             ["rgb(255,128,255)", [255, 128, 255, 255]],
@@ -32,7 +32,8 @@ QUnit.test("ParseColor",
             ["Cyan", [0, 255, 255, 255]],
             ["CYAN", [0, 255, 255, 255]],
             ["#FFffFF", [255, 255, 255, 255]],
-            ["#FfFFFF7f", [255, 255, 255, 127]]
+            ["#FfFFFF7f", [255, 255, 255, 127]],
+            ["#red", null],
         ];
 
         for (var i in tests) {
