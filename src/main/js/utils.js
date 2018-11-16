@@ -82,10 +82,14 @@
     imscUtils.parseColor = function (str) {
 
         var m;
+        
         var r = null;
-        if (str in NAMED_COLOR) {
+        
+        var nc = NAMED_COLOR[str.toLowerCase()];
+        
+        if (nc !== undefined) {
 
-            r = NAMED_COLOR[str];
+            r = nc;
 
         } else if ((m = HEX_COLOR_RE.exec(str)) !== null) {
 
@@ -93,18 +97,21 @@
                 parseInt(m[2], 16),
                 parseInt(m[3], 16),
                 (m[4] !== undefined ? parseInt(m[4], 16) : 255)];
+            
         } else if ((m = DEC_COLOR_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1]),
                 parseInt(m[2]),
                 parseInt(m[3]),
                 255];
+            
         } else if ((m = DEC_COLORA_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1]),
                 parseInt(m[2]),
                 parseInt(m[3]),
                 parseInt(m[4])];
+            
         }
 
         return r;
