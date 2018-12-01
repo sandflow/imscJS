@@ -433,41 +433,49 @@
 
                 if (context.ipd === "lr") {
 
-                    se.node.style.paddingLeft = lp + "px";
+                    se.node.style.borderLeftColor = se.bgcolor || "#00000000";
+                    se.node.style.borderLeftStyle = "solid";
+                    se.node.style.borderLeftWidth = lp + "px";
                     se.node.style.marginLeft = "-" + lp + "px";
 
                 } else if (context.ipd === "rl") {
 
-                    se.node.style.paddingRight = lp + "px";
+                    se.node.style.borderRightColor = se.bgcolor || "#00000000";
+                    se.node.style.borderRightStyle = "solid";
+                    se.node.style.borderRightWidth = lp + "px";
                     se.node.style.marginRight = "-" + lp + "px";
 
                 } else if (context.ipd === "tb") {
 
-                    se.node.style.paddingTop = lp + "px";
+                    se.node.style.borderTopColor = se.bgcolor || "#00000000";
+                    se.node.style.borderTopStyle = "solid";
+                    se.node.style.borderTopWidth = lp + "px";
                     se.node.style.marginTop = "-" + lp + "px";
 
                 }
 
-                se.node.style.backgroundColor = se.bgcolor;
-
                 if (context.ipd === "lr") {
 
-                    ee.node.style.paddingRight = lp + "px";
+                    ee.node.style.borderRightColor = ee.bgcolor  || "#00000000";
+                    ee.node.style.borderRightStyle = "solid";
+                    ee.node.style.borderRightWidth = lp + "px";
                     ee.node.style.marginRight = "-" + lp + "px";
 
                 } else if (context.ipd === "rl") {
 
-                    ee.node.style.paddingLeft = lp + "px";
+                    ee.node.style.borderLeftColor = ee.bgcolor || "#00000000";
+                    ee.node.style.borderLeftStyle = "solid";
+                    ee.node.style.borderLeftWidth = lp + "px";
                     ee.node.style.marginLeft = "-" + lp + "px";
 
                 } else if (context.ipd === "tb") {
 
-                    ee.node.style.paddingBottom = lp + "px";
+                    ee.node.style.borderBottomColor = ee.bgcolor || "#00000000";
+                    ee.node.style.borderBottomStyle = "solid";
+                    ee.node.style.borderBottomWidth = lp + "px";
                     ee.node.style.marginBottom = "-" + lp + "px";
 
                 }
-
-                ee.node.style.backgroundColor = ee.bgcolor;
 
             }
 
