@@ -297,13 +297,27 @@
 
                 // wrap characters in spans to find the line wrap locations
 
+                var cbuf = '';
+
                 for (var j = 0; j < isd_element.text.length; j++) {
 
-                    var span = document.createElement("span");
+                    cbuf += isd_element.text.charAt(j);
 
-                    span.textContent = isd_element.text.charAt(j);
+                    var cc = isd_element.text.charCodeAt(j);
 
-                    e.appendChild(span);
+                    if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length) {
+
+                        /* wrap the character(s) in a span unless it is a high surrogate */
+
+                        var span = document.createElement("span");
+
+                        span.textContent = cbuf;
+    
+                        e.appendChild(span);
+
+                        cbuf = '';
+
+                    }
 
                 }
 
