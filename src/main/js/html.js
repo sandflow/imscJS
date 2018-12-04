@@ -247,15 +247,17 @@
 
             /* apply padding to the <p> so that line padding does not cause line wraps */
 
+            var padmeasure = Math.ceil(lp * context.h) + "px";
+
             if (context.bpd === "tb") {
 
-                proc_e.style.paddingLeft = lp * context.h + "px";
-                proc_e.style.paddingRight = lp * context.h + "px";
+                proc_e.style.paddingLeft = padmeasure;
+                proc_e.style.paddingRight = padmeasure;
 
             } else {
 
-                proc_e.style.paddingTop = lp * context.h + "px";
-                proc_e.style.paddingBottom = lp * context.h + "px";
+                proc_e.style.paddingTop = padmeasure;
+                proc_e.style.paddingBottom = padmeasure;
 
             }
 
@@ -429,28 +431,32 @@
 
             var ee = lineList[i].elements[lineList[i].end_elem];
 
+            var pospadpxlen = Math.ceil(lp) + "px";
+
+            var negpadpxlen = "-" + Math.ceil(lp) + "px";
+
             if (l !== 0) {
 
                 if (context.ipd === "lr") {
 
                     se.node.style.borderLeftColor = se.bgcolor || "#00000000";
                     se.node.style.borderLeftStyle = "solid";
-                    se.node.style.borderLeftWidth = lp + "px";
-                    se.node.style.marginLeft = "-" + lp + "px";
+                    se.node.style.borderLeftWidth = pospadpxlen;
+                    se.node.style.marginLeft = negpadpxlen;
 
                 } else if (context.ipd === "rl") {
 
                     se.node.style.borderRightColor = se.bgcolor || "#00000000";
                     se.node.style.borderRightStyle = "solid";
-                    se.node.style.borderRightWidth = lp + "px";
-                    se.node.style.marginRight = "-" + lp + "px";
+                    se.node.style.borderRightWidth = pospadpxlen;
+                    se.node.style.marginRight = negpadpxlen;
 
                 } else if (context.ipd === "tb") {
 
                     se.node.style.borderTopColor = se.bgcolor || "#00000000";
                     se.node.style.borderTopStyle = "solid";
-                    se.node.style.borderTopWidth = lp + "px";
-                    se.node.style.marginTop = "-" + lp + "px";
+                    se.node.style.borderTopWidth = pospadpxlen;
+                    se.node.style.marginTop = negpadpxlen;
 
                 }
 
@@ -458,22 +464,22 @@
 
                     ee.node.style.borderRightColor = ee.bgcolor  || "#00000000";
                     ee.node.style.borderRightStyle = "solid";
-                    ee.node.style.borderRightWidth = lp + "px";
-                    ee.node.style.marginRight = "-" + lp + "px";
+                    ee.node.style.borderRightWidth = pospadpxlen;
+                    ee.node.style.marginRight = negpadpxlen;
 
                 } else if (context.ipd === "rl") {
 
                     ee.node.style.borderLeftColor = ee.bgcolor || "#00000000";
                     ee.node.style.borderLeftStyle = "solid";
-                    ee.node.style.borderLeftWidth = lp + "px";
-                    ee.node.style.marginLeft = "-" + lp + "px";
+                    ee.node.style.borderLeftWidth = pospadpxlen;
+                    ee.node.style.marginLeft = negpadpxlen;
 
                 } else if (context.ipd === "tb") {
 
                     ee.node.style.borderBottomColor = ee.bgcolor || "#00000000";
                     ee.node.style.borderBottomStyle = "solid";
-                    ee.node.style.borderBottomWidth = lp + "px";
-                    ee.node.style.marginBottom = "-" + lp + "px";
+                    ee.node.style.borderBottomWidth = pospadpxlen;
+                    ee.node.style.marginBottom = negpadpxlen;
 
                 }
 
