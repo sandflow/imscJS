@@ -643,6 +643,11 @@
 
             for (var j = 0; j < lineList[i].te.length; j++) {
 
+                /* skip if position already set */
+
+                if (lineList[i].te[j].style.textEmphasisPosition !== "")
+                    continue;
+
                 var pos;
 
                 if (context.bpd === "tb") {
@@ -1509,14 +1514,41 @@
                 "http://www.w3.org/ns/ttml#styling textEmphasis",
                 function (context, dom_element, isd_element, attr) {
 
-                    /* ignore color (not used in IMSC 1.1 */
-                    /* ignore position (set in postprocessing) */
+                    /* ignore color (not used in IMSC 1.1) */
 
                     if (attr.style !== "none") {
 
                         /* text-emphasis does not inherit in w */
 
                         dom_element.style.textEmphasisStyle = attr.style + " " + attr.symbol;
+                    }
+
+                    /* ignore "outside" position (set in postprocessing) */
+
+                    if (attr.position === "before" || attr.position === "after") {
+
+                        var pos;
+
+                        if (context.bpd === "tb") {
+
+                            pos = (attr === "before") ? "over" : "under";
+
+
+                        } else {
+
+                            if (context.bpd === "rl") {
+
+                                pos = (attr === "before") ? "right" : "left";
+
+                            } else {
+
+                                pos = (attr === "before") ? "left" : "right";
+
+                            }
+
+                        }
+
+                        dom_element.style.textEmphasisPosition = pos;
                     }
                 }
         ),
