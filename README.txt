@@ -142,11 +142,10 @@ W3C Test Suite
 
 imscJS imports the IMSC1 test suite [1] managed by the W3C as submodule at [2].
 The gen-renders.html web app can be used to generate PNG renderings as as well intermediary files from these
-tests. For regression testing, a copy of these intermediary files are committed at [3].
+tests.
 
 [1] https://github.com/w3c/imsc-tests
 [2] src/test/resources/imsc-tests
-[3] src/test/resources/generated
 
 Unit tests
 **********
