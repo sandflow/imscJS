@@ -1,7 +1,7 @@
 {
     "name": "imsc",
     "description": "Renders IMSC 1.1 documents to HTML5 fragments",
-    "version": "1.1.0-beta.2",
+    "version": "1.1.0-beta.3",
     "publishConfig": {
         "tag": "dev"
     },
