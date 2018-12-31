@@ -879,13 +879,9 @@
 
                         rslt.color = e[i];
 
-                    } else if (e[i] === "outside") {
+                    } else if (e[i] === "outside" || e[i] === "before" || e[i] === "after") {
 
-                        rslt.position = "outside";
-
-                    } else if (e[i] === "before" || e[i] === "after") {
-
-                        return null;
+                        rslt.position = e[i];
 
                     } else {
 
