@@ -12,7 +12,7 @@
     "files": [
         "src/main/js",
         "README.txt",
-        "build/umd"
+        "dist"
     ],
     "keywords": [
         "imsc1",
@@ -27,6 +27,7 @@
     ],
     "author": "Pierre-Anthony Lemieux <pal@sandflow.com>",
     "main": "src/main/js/main.js",
+    "unpkg": "dist/imsc.min.js",
     "scripts": {
         "prepublishOnly": "grunt build:release"
     },

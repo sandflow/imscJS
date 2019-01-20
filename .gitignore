@@ -1,4 +1,5 @@
 build/
+dist/
 node_modules/
 nbproject/private
 ga.js
