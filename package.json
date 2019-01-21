@@ -1,7 +1,7 @@
 {
     "name": "imsc",
     "description": "Renders IMSC 1.1 documents to HTML5 fragments",
-    "version": "1.1.0-beta.3",
+    "version": "1.1.0-rc.1",
     "publishConfig": {
         "tag": "dev"
     },
@@ -12,7 +12,7 @@
     "files": [
         "src/main/js",
         "README.txt",
-        "build/umd"
+        "dist"
     ],
     "keywords": [
         "imsc1",
@@ -27,6 +27,7 @@
     ],
     "author": "Pierre-Anthony Lemieux <pal@sandflow.com>",
     "main": "src/main/js/main.js",
+    "unpkg": "dist/imsc.min.js",
     "scripts": {
         "prepublishOnly": "grunt build:release"
     },

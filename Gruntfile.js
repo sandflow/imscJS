@@ -109,6 +109,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build:debug', ['jshint', 'browserify', 'exec:minify', 'sync:all', 'sync:debug', 'npmcopy']);
 
+    grunt.registerTask('build', ['build:debug']);
+
     grunt.registerTask('clean', ['clean']);
 
 };

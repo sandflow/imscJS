@@ -3,7 +3,7 @@
     "webappTestDir" : "src/test/webapp",
     "webappBuildDir" : "build/public_html",
     "unitTestsResourcesDir" : "src/test/resources",
-    "umdBuildDir" : "build/umd",
+    "umdBuildDir" : "dist",
     "umdAllDebugName" : "imsc.all.debug.js",
     "umdDebugName" : "imsc.debug.js",
     "umdAllMinName" : "imsc.all.min.js",
