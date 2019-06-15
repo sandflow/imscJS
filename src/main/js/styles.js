@@ -809,25 +809,8 @@
 
                         return [s[0]];
 
-                    } else if (s[0] === "digits") {
-
-                        return [s[0], 2];
-
                     }
 
-                } else if (s.length === 2) {
-
-                    if (s[0] === "digits") {
-
-                        var num = parseInt(s[1], 10);
-
-                        if (!isNaN(num)) {
-
-                            return [s[0], num];
-
-                        }
-
-                    }
                 }
 
                 return null;
