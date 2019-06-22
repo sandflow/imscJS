@@ -458,7 +458,7 @@
 
         if (isd_element.kind === 'span' && isd_element.text && isd_element.space === "default") {
 
-            var trimmedspan = isd_element.text.replace(/\s+/g, ' ');
+            var trimmedspan = isd_element.text.replace(/[\t\r\n ]+/g, ' ');
 
             isd_element.text = trimmedspan;
 
@@ -491,7 +491,7 @@
 
                         if (elist[l].space !== "preserve") {
 
-                            elist[l].text = elist[l].text.replace(/^\s+/g, '');
+                            elist[l].text = elist[l].text.replace(/^[\t\r\n ]+/g, '');
 
                         }
 
@@ -521,7 +521,7 @@
 
                         if (elist[l].space !== "preserve") {
 
-                            elist[l].text = elist[l].text.replace(/\s+$/g, '');
+                            elist[l].text = elist[l].text.replace(/[\t\r\n ]+$/g, '');
 
                         }
 
