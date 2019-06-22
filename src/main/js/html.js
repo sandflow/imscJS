@@ -1267,17 +1267,17 @@
                     if (attr === 0)
                         return;
 
-                    var angle = -Math.asin(attr / 100);
+                    var angle = attr * -0.9;
 
                     /* context.writingMode is needed since writing mode is not inherited and sets the inline progression */
 
                     if (context.bpd === "tb") {
 
-                        dom_element.style.transform = "skewX(" + angle + "rad)";
+                        dom_element.style.transform = "skewX(" + angle + "deg)";
 
                     } else {
 
-                        dom_element.style.transform = "skewY(" + angle + "rad)";
+                        dom_element.style.transform = "skewY(" + angle + "deg)";
 
                     }
 
