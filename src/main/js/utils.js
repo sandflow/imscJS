@@ -345,6 +345,10 @@
         return width * this.rw + height * this.rh;
     };
 
+    imscUtils.ComputedLength.prototype.isZero = function () {
+        return this.rw === 0 && this.rh === 0;
+    };
+
     /**
      * Computes a specified length to a root container relative length
      * 

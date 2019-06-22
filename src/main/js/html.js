@@ -226,7 +226,7 @@
 
             var te = isd_element.styleAttrs[imscStyles.byName.textEmphasis.qname];
 
-            if (te && te !== "none") {
+            if (te && te.style !== "none") {
 
                 context.textEmphasis = true;
 
@@ -309,7 +309,7 @@
 
         var lp = isd_element.styleAttrs[imscStyles.byName.linePadding.qname];
 
-        if (lp) {
+        if (lp && (! lp.isZero())) {
 
             var plength = lp.toUsedLength(context.w, context.h);
 
