@@ -1531,18 +1531,18 @@
 
                         if (context.bpd === "tb") {
 
-                            pos = (attr === "before") ? "over" : "under";
+                            pos = (attr.position === "before") ? "left over" : "left under";
 
 
                         } else {
 
                             if (context.bpd === "rl") {
 
-                                pos = (attr === "before") ? "right" : "left";
+                                pos = (attr.position === "before") ? "right under" : "left under";
 
                             } else {
 
-                                pos = (attr === "before") ? "left" : "right";
+                                pos = (attr.position === "before") ? "left under" : "right under";
 
                             }
 
