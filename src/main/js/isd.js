@@ -80,6 +80,17 @@
         return isd;
     };
 
+    /* set of styles not applicable to ruby container spans */
+
+    var _rcs_na_styles = [
+        imscStyles.byName.color.qname,
+        imscStyles.byName.textCombine.qname,
+        imscStyles.byName.textDecoration.qname,
+        imscStyles.byName.textEmphasis.qname,
+        imscStyles.byName.textOutline.qname,
+        imscStyles.byName.textShadow.qname
+    ];
+
     function isdProcessContentElement(doc, offset, region, body, parent, inherited_region_id, elem, errorHandler, context) {
 
         /* prune if temporally inactive */
@@ -423,24 +434,39 @@
 
         for (var qnameb in isd_element.styleAttrs) {
 
+            /* true if not applicable */
+
             var na = false;
 
-            if (qnameb === imscStyles.byName.rubyAlign.qname) {
-                
-                /* special applicability rule */
-                
-                na = (isd_element.kind !== 'span') ||
-                    (isd_element.styleAttrs[imscStyles.byName.ruby.qname] !== 'container');
+            /* special applicability of certain style properties to ruby container spans */
+            /* TODO: in the future ruby elements should be translated to elements instead of kept as spans */
 
-            } else if (qnameb === imscStyles.byName.rubyPosition.qname) {
-                
-                /* special applicability rule */
-                
-                na = (isd_element.kind !== 'span') ||
-                    ! (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === 'textContainer' ||
-                    isd_element.styleAttrs[imscStyles.byName.ruby.qname] === 'text');
+            if (isd_element.kind === 'span') {
 
-            } else {
+                var rsp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
+
+                na = ( rsp === 'container' || rsp === 'textContainer' || rsp === 'baseContainer' ) && 
+                    _rcs_na_styles.indexOf(qnameb) !== -1;
+
+                if (! na) {
+
+                    na = rsp !== 'container' &&
+                        qnameb === imscStyles.byName.rubyAlign.qname;
+
+                }
+
+                if (! na) {
+
+                    na =  (! (rsp === 'textContainer' || rsp === 'text')) &&
+                        qnameb === imscStyles.byName.rubyPosition.qname;
+
+                }
+
+            }
+
+            /* normal applicability */
+            
+            if (! na) {
 
                 var da = imscStyles.byQName[qnameb];
                 na = da.applies.indexOf(isd_element.kind) === -1;
