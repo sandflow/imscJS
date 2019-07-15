@@ -177,6 +177,20 @@
 
             } else if (estack[0] instanceof Span || estack[0] instanceof P) {
 
+                /* ignore children text nodes in ruby container spans */
+
+                if (estack[0] instanceof Span) {
+
+                    var ruby = estack[0].styleAttrs[imscStyles.byName.ruby.qname];
+
+                    if (ruby === 'container' || ruby === 'textContainer' || ruby === 'baseContainer') {
+
+                        return;
+
+                    }
+
+                }
+
                 /* create an anonymous span */
 
                 var s = new AnonymousSpan();
