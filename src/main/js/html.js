@@ -1076,11 +1076,18 @@
                         }
 
                     } else if (child.localName === 'span' &&
-                            child.style.textEmphasisStyle !== "") {
+                            child.style.textEmphasisStyle) {
 
-                        llist[llist.length - 1].te.push(child);
+                        /* remember non-empty span elements with textEmphasis */
+
+                        if (llist.length > 0) {
+
+                            llist[llist.length - 1].te.push(child);
+
+                        }
 
                     }
+                    
 
                 }
 
