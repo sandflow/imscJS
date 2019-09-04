@@ -1520,7 +1520,7 @@
 
                         /* text-emphasis does not inherit in w */
 
-                        dom_element.style.textEmphasisStyle = attr.style + " " + attr.symbol;
+                        dom_element.style.textEmphasisStyle =  (attr.style !== "auto" ? attr.style + " " : "") + attr.symbol;
                     }
 
                     /* ignore "outside" position (set in postprocessing) */
