@@ -645,7 +645,8 @@
 
                 /* skip if position already set */
 
-                if (lineList[i].te[j].style.textEmphasisPosition !== "")
+                if (lineList[i].te[j].style.textEmphasisPosition &&
+                    lineList[i].te[j].style.textEmphasisPosition !== "none")
                     continue;
 
                 var pos;
@@ -685,7 +686,7 @@
 
                 /* skip if ruby-position already set */
 
-                if (lineList[i].rbc[j].style.rubyPosition !== "")
+                if (lineList[i].rbc[j].style.rubyPosition)
                     continue;
 
                 var pos;
@@ -1076,11 +1077,19 @@
                         }
 
                     } else if (child.localName === 'span' &&
-                            child.style.textEmphasisStyle !== "") {
+                            child.style.textEmphasisStyle &&
+                            child.style.textEmphasisStyle !== "none") {
 
-                        llist[llist.length - 1].te.push(child);
+                        /* remember non-empty span elements with textEmphasis */
+
+                        if (llist.length > 0) {
+
+                            llist[llist.length - 1].te.push(child);
+
+                        }
 
                     }
+                    
 
                 }
 
