@@ -834,12 +834,12 @@
             "textEmphasis",
             "none",
             ['span'],
-            false,
+            true,
             true,
             function (str) {
                 var e = str.split(" ");
 
-                var rslt = {style: "filled", symbol: "circle", color: null, position: null};
+                var rslt = {style: null, symbol: null, color: null, position: null};
 
                 for (var i in e) {
 
@@ -875,6 +875,20 @@
 
                     }
                 }
+
+                if (rslt.style == null && rslt.symbol == null) {
+
+                    rslt.style = "auto";
+
+                } else {
+
+                    rslt.symbol = rslt.symbol || "circle";
+                    rslt.style = rslt.style || "filled";
+
+                }
+
+                rslt.position = rslt.position || "outside";
+                rslt.color = rslt.color || "current";
 
                 return rslt;
             },

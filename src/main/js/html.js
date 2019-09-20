@@ -1525,11 +1525,21 @@
 
                     /* ignore color (not used in IMSC 1.1) */
 
-                    if (attr.style !== "none") {
+                    if (attr.style === "none") {
 
-                        /* text-emphasis does not inherit in w */
+                        dom_element.style.textEmphasisStyle = "none";
 
-                        dom_element.style.textEmphasisStyle =  (attr.style !== "auto" ? attr.style + " " : "") + attr.symbol;
+                        /* no need to set position, so return */
+                        
+                        return;
+                    
+                    } else if (attr.style === "auto") {
+
+                        dom_element.style.textEmphasisStyle = "filled";
+                    
+                    } else {
+
+                        dom_element.style.textEmphasisStyle =  attr.style + " " + attr.symbol;
                     }
 
                     /* ignore "outside" position (set in postprocessing) */
