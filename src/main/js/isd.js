@@ -347,7 +347,7 @@
                         doc,
                         parent,
                         isd_element,
-                        cs.initial,
+                        cs.parse(cs.initial),
                         context
                     );
 
