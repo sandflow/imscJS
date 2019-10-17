@@ -336,8 +336,21 @@
                     );
 
                 if (cstyle !== null) {
+
                     isd_element.styleAttrs[cs.qname] = cstyle;
+                    
                 } else {
+                    /* if the style cannot be computed, replace it by its initial value */
+
+                    isd_element.styleAttrs[cs.qname] = cs.compute(
+                        /*doc, parent, element, attr, context*/
+                        doc,
+                        parent,
+                        isd_element,
+                        cs.initial,
+                        context
+                    );
+
                     reportError(errorHandler, "Style '" + cs.qname + "' on element '" + isd_element.kind + "' cannot be computed");
                 }
             }
