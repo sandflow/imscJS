@@ -645,8 +645,8 @@
 
                 /* skip if position already set */
 
-                if (lineList[i].te[j].style.textEmphasisPosition &&
-                    lineList[i].te[j].style.textEmphasisPosition !== "none")
+                if (lineList[i].te[j].style[TEXTEMPHASISPOSITION_PROP] &&
+                    lineList[i].te[j].style[TEXTEMPHASISPOSITION_PROP] !== "none")
                     continue;
 
                 var pos;
@@ -670,7 +670,7 @@
 
                 }
 
-                lineList[i].te[j].style.textEmphasisPosition = pos;
+                lineList[i].te[j].style[TEXTEMPHASISPOSITION_PROP] = pos;
 
             }
 
@@ -686,12 +686,18 @@
 
                 /* skip if ruby-position already set */
 
-                if (lineList[i].rbc[j].style.rubyPosition)
+                if (lineList[i].rbc[j].style[RUBYPOSITION_PROP])
                     continue;
 
                 var pos;
 
-                if (context.bpd === "tb") {
+                if (RUBYPOSITION_ISWK) {
+
+                    /* WebKit exception */
+
+                    pos = (i === 0) ? "before" : "after";
+
+                } else if (context.bpd === "tb") {
 
                     pos = (i === 0) ? "over" : "under";
 
@@ -710,7 +716,7 @@
 
                 }
 
-                lineList[i].rbc[j].style.rubyPosition = pos;
+                lineList[i].rbc[j].style[RUBYPOSITION_PROP] = pos;
 
             }
 
@@ -737,12 +743,12 @@
             if (context.rubyReserve[0] === "both") {
 
                 rt1 = document.createElement("rtc");
-                rt1.style.rubyPosition = "under";
+                rt1.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "after" : "under";
                 rt1.textContent = "\u200B";
                 rt1.style.fontSize = fs;
 
                 rt2 = document.createElement("rtc");
-                rt2.style.rubyPosition = "over";
+                rt2.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "before" : "over";
                 rt2.textContent = "\u200B";
                 rt2.style.fontSize = fs;
 
@@ -755,15 +761,19 @@
                 rt1.textContent = "\u200B";
                 rt1.style.fontSize = fs;
 
+                var pos;
+
                 if (context.rubyReserve[0] === "after" || (context.rubyReserve[0] === "outside" && i > 0)) {
 
-                    rt1.style.rubyPosition = (context.bpd === "tb" || context.bpd === "rl") ? "under" : "over";
+                    pos = RUBYPOSITION_ISWK ? "after" : ((context.bpd === "tb" || context.bpd === "rl") ? "under" : "over");
 
                 } else {
 
-                    rt1.style.rubyPosition = (context.bpd === "tb" || context.bpd === "rl") ? "over" : "under";
+                    pos = RUBYPOSITION_ISWK ? "before" : ((context.bpd === "tb" || context.bpd === "rl") ? "over" : "under");
 
                 }
+
+                rt1.style[RUBYPOSITION_PROP] = pos;
 
                 ruby.appendChild(rt1);
 
@@ -1077,8 +1087,8 @@
                         }
 
                     } else if (child.localName === 'span' &&
-                            child.style.textEmphasisStyle &&
-                            child.style.textEmphasisStyle !== "none") {
+                            child.style[TEXTEMPHASISSTYLE_PROP] &&
+                            child.style[TEXTEMPHASISSTYLE_PROP] !== "none") {
 
                         /* remember non-empty span elements with textEmphasis */
 
@@ -1385,7 +1395,13 @@
 
                         var pos;
 
-                        if (context.bpd === "tb") {
+                        if (RUBYPOSITION_ISWK) {
+
+                            /* WebKit exception */
+        
+                            pos = attr;
+        
+                        } else if (context.bpd === "tb") {
 
                             pos = (attr === "before") ? "over" : "under";
 
@@ -1406,7 +1422,7 @@
 
                         /* apply position to the parent dom_element, i.e. ruby or rtc */
 
-                        dom_element.parentElement.style.rubyPosition = pos;
+                        dom_element.parentElement.style[RUBYPOSITION_PROP] = pos;
                     }
                 }
         ),
@@ -1527,7 +1543,7 @@
 
                     if (attr.style === "none") {
 
-                        dom_element.style.textEmphasisStyle = "none";
+                        dom_element.style[TEXTEMPHASISSTYLE_PROP] = "none";
 
                         /* no need to set position, so return */
                         
@@ -1535,11 +1551,11 @@
                     
                     } else if (attr.style === "auto") {
 
-                        dom_element.style.textEmphasisStyle = "filled";
+                        dom_element.style[TEXTEMPHASISSTYLE_PROP] = "filled";
                     
                     } else {
 
-                        dom_element.style.textEmphasisStyle =  attr.style + " " + attr.symbol;
+                        dom_element.style[TEXTEMPHASISSTYLE_PROP] =  attr.style + " " + attr.symbol;
                     }
 
                     /* ignore "outside" position (set in postprocessing) */
@@ -1567,7 +1583,7 @@
 
                         }
 
-                        dom_element.style.textEmphasisPosition = pos;
+                        dom_element.style[TEXTEMPHASISPOSITION_PROP] = pos;
                     }
                 }
         ),
@@ -1666,6 +1682,18 @@
 
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
     }
+
+    /* CSS property names */
+
+    var RUBYPOSITION_ISWK = "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
+
+    var RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
+
+    var TEXTEMPHASISSTYLE_PROP = "webkitTextEmphasisStyle" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
+
+    var TEXTEMPHASISPOSITION_PROP = "webkitTextEmphasisPosition" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisPosition" : "textEmphasisPosition";
+
+    /* error utilities */
 
     function reportError(errorHandler, msg) {
 
