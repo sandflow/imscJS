@@ -1488,7 +1488,7 @@
 
                             /* emulate text outline */
 
-                            let to_color = "rgba(" +
+                            var to_color = "rgba(" +
                                                 txto.color[0].toString() + "," +
                                                 txto.color[1].toString() + "," +
                                                 txto.color[2].toString() + "," +
