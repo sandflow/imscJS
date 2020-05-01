@@ -1488,15 +1488,17 @@
 
                             /* emulate text outline */
 
-                            s.push(
-                                    "rgba(" +
-                                    txto.color[0].toString() + "," +
-                                    txto.color[1].toString() + "," +
-                                    txto.color[2].toString() + "," +
-                                    (txto.color[3] / 255).toString() +
-                                    ")" + " 0px 0px " +
-                                    txto.thickness.toUsedLength(context.w, context.h) + "px"
-                                    );
+                            let to_color = "rgba(" +
+                                                txto.color[0].toString() + "," +
+                                                txto.color[1].toString() + "," +
+                                                txto.color[2].toString() + "," +
+                                                (txto.color[3] / 255).toString() +
+                                                ")";
+
+                            s.push(  "1px 1px 1px " + to_color);
+                            s.push(  "-1px 1px 1px " + to_color);
+                            s.push(  "1px -1px 1px " + to_color);
+                            s.push(  "-1px -1px 1px " + to_color);
 
                         }
 
