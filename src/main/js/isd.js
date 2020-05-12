@@ -301,15 +301,31 @@
             
             var iv = doc.head.styling.initials[ivs.qname] || ivs.initial;
 
+            if (iv === null) {
+                /* skip processing if no initial value defined */
+
+                continue;
+            }
+
             /* apply initial value to elements other than region only if non-inherited */
 
             if (isd_element.kind === 'region' || (ivs.inherit === false && iv !== null)) {
 
-                isd_element.styleAttrs[ivs.qname] = ivs.parse(iv);
+                var piv = ivs.parse(iv);
 
-                /* keep track of the style as specified */
+                if (piv !== null) {
 
-                spec_attr[ivs.qname] = true;
+                    isd_element.styleAttrs[ivs.qname] = piv;
+
+                    /* keep track of the style as specified */
+
+                    spec_attr[ivs.qname] = true;
+
+                } else {
+
+                    reportError(errorHandler, "Invalid initial value for '" + ivs.qname + "' on element '" + isd_element.kind);
+
+                }
 
             }
 
