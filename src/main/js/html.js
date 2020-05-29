@@ -910,32 +910,6 @@
 
     }
 
-    function pruneEmptySpans(element) {
-
-        var child = element.firstChild;
-
-        while (child) {
-
-            var nchild = child.nextSibling;
-
-            if (child.nodeType === Node.ELEMENT_NODE &&
-                    child.localName === 'span') {
-
-                pruneEmptySpans(child);
-
-                if (child.childElementCount === 0 &&
-                        child.textContent.length === 0) {
-
-                    element.removeChild(child);
-
-                }
-            }
-
-            child = nchild;
-        }
-
-    }
-
     function rect2edges(rect, context) {
 
         var edges = {before: null, after: null, start: null, end: null};
