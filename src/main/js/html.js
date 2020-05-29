@@ -740,7 +740,7 @@
 
             var fs = context.rubyReserve[1].toUsedLength(context.w, context.h) + "px";
 
-            if (context.rubyReserve[0] === "both") {
+            if (context.rubyReserve[0] === "both" || (context.rubyReserve[0] === "outside" && lineList.length == 1)) {
 
                 rt1 = document.createElement("rtc");
                 rt1.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "after" : "under";
