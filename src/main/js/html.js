@@ -779,10 +779,25 @@
 
             }
 
-            var e = lineList[i].elements[0].node.parentElement.insertBefore(
-                    ruby,
-                    lineList[i].elements[0].node
-                    );
+            /* add in front of the first ruby element of the line, if it exists */
+
+            var sib = null;
+
+            for (var j = 0; j < lineList[i].rbc.length; j++) {
+
+                if (lineList[i].rbc[j].localName === 'ruby') {
+
+                    sib = lineList[i].rbc[j];
+                    break;
+                }
+
+            }
+
+            /* otherwise add before first span */
+
+            sib = sib || lineList[i].elements[0].node;
+
+            sib.parentElement.insertBefore(ruby, sib);
 
         }
 
