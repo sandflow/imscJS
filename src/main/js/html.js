@@ -788,6 +788,15 @@
                 if (lineList[i].rbc[j].localName === 'ruby') {
 
                     sib = lineList[i].rbc[j];
+
+                    /* copy specified style properties from the sibling ruby container */
+                    
+                    for(var k = 0; k < sib.style.length; k++) {
+
+                        ruby.style.setProperty(sib.style.item(k), sib.style.getPropertyValue(sib.style.item(k)));
+
+                    }
+
                     break;
                 }
 
