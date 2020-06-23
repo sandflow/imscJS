@@ -779,10 +779,34 @@
 
             }
 
-            var e = lineList[i].elements[0].node.parentElement.insertBefore(
-                    ruby,
-                    lineList[i].elements[0].node
-                    );
+            /* add in front of the first ruby element of the line, if it exists */
+
+            var sib = null;
+
+            for (var j = 0; j < lineList[i].rbc.length; j++) {
+
+                if (lineList[i].rbc[j].localName === 'ruby') {
+
+                    sib = lineList[i].rbc[j];
+
+                    /* copy specified style properties from the sibling ruby container */
+                    
+                    for(var k = 0; k < sib.style.length; k++) {
+
+                        ruby.style.setProperty(sib.style.item(k), sib.style.getPropertyValue(sib.style.item(k)));
+
+                    }
+
+                    break;
+                }
+
+            }
+
+            /* otherwise add before first span */
+
+            sib = sib || lineList[i].elements[0].node;
+
+            sib.parentElement.insertBefore(ruby, sib);
 
         }
 
