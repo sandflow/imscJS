@@ -224,14 +224,6 @@
 
             }
 
-            var te = isd_element.styleAttrs[imscStyles.byName.textEmphasis.qname];
-
-            if (te && te.style !== "none") {
-
-                context.textEmphasis = true;
-
-            }
-
             //e.textContent = isd_element.text;
 
         } else if (isd_element.kind === 'br') {
@@ -376,11 +368,25 @@
 
         if (isd_element.kind === "span" && isd_element.text) {
 
+            var te = isd_element.styleAttrs[imscStyles.byName.textEmphasis.qname];
+
+            if (te && te.style !== "none") {
+
+                context.textEmphasis = true;
+
+            }
+
             if (imscStyles.byName.textCombine.qname in isd_element.styleAttrs &&
                     isd_element.styleAttrs[imscStyles.byName.textCombine.qname][0] === "all") {
 
                 /* ignore tate-chu-yoku since line break cannot happen within */
                 e.textContent = isd_element.text;
+
+                if (te) {
+
+                    applyTextEmphasis(context, e, isd_element, te);
+
+                };
 
             } else {
 
@@ -401,6 +407,14 @@
                         var span = document.createElement("span");
 
                         span.textContent = cbuf;
+
+                        /* apply textEmphasis */
+                        
+                        if (te) {
+
+                            applyTextEmphasis(context, span, isd_element, te);
+
+                        };
     
                         e.appendChild(span);
 
@@ -458,7 +472,7 @@
 
             if (context.textEmphasis) {
 
-                applyTextEmphasis(linelist, context);
+                applyTextEmphasisOutside(linelist, context);
 
                 context.textEmphasis = null;
 
@@ -635,7 +649,7 @@
 
     }
 
-    function applyTextEmphasis(lineList, context) {
+    function applyTextEmphasisOutside(lineList, context) {
 
         /* supports "outside" only */
 
@@ -1113,6 +1127,56 @@
 
     }
 
+    function applyTextEmphasis(context, dom_element, isd_element, attr) {
+
+        /* ignore color (not used in IMSC 1.1) */
+
+        if (attr.style === "none") {
+
+            dom_element.style[TEXTEMPHASISSTYLE_PROP] = "none";
+
+            /* no need to set position, so return */
+            
+            return;
+        
+        } else if (attr.style === "auto") {
+
+            dom_element.style[TEXTEMPHASISSTYLE_PROP] = "filled";
+        
+        } else {
+
+            dom_element.style[TEXTEMPHASISSTYLE_PROP] =  attr.style + " " + attr.symbol;
+        }
+
+        /* ignore "outside" position (set in postprocessing) */
+
+        if (attr.position === "before" || attr.position === "after") {
+
+            var pos;
+
+            if (context.bpd === "tb") {
+
+                pos = (attr.position === "before") ? "left over" : "left under";
+
+
+            } else {
+
+                if (context.bpd === "rl") {
+
+                    pos = (attr.position === "before") ? "right under" : "left under";
+
+                } else {
+
+                    pos = (attr.position === "before") ? "left under" : "right under";
+
+                }
+
+            }
+
+            dom_element.style[TEXTEMPHASISPOSITION_PROP] = pos;
+        }
+    }
+
     function HTMLStylingMapDefintion(qName, mapFunc) {
         this.qname = qName;
         this.map = mapFunc;
@@ -1539,52 +1603,8 @@
                 "http://www.w3.org/ns/ttml#styling textEmphasis",
                 function (context, dom_element, isd_element, attr) {
 
-                    /* ignore color (not used in IMSC 1.1) */
+                    /* applied as part of HTML document construction */
 
-                    if (attr.style === "none") {
-
-                        dom_element.style[TEXTEMPHASISSTYLE_PROP] = "none";
-
-                        /* no need to set position, so return */
-                        
-                        return;
-                    
-                    } else if (attr.style === "auto") {
-
-                        dom_element.style[TEXTEMPHASISSTYLE_PROP] = "filled";
-                    
-                    } else {
-
-                        dom_element.style[TEXTEMPHASISSTYLE_PROP] =  attr.style + " " + attr.symbol;
-                    }
-
-                    /* ignore "outside" position (set in postprocessing) */
-
-                    if (attr.position === "before" || attr.position === "after") {
-
-                        var pos;
-
-                        if (context.bpd === "tb") {
-
-                            pos = (attr.position === "before") ? "left over" : "left under";
-
-
-                        } else {
-
-                            if (context.bpd === "rl") {
-
-                                pos = (attr.position === "before") ? "right under" : "left under";
-
-                            } else {
-
-                                pos = (attr.position === "before") ? "left under" : "right under";
-
-                            }
-
-                        }
-
-                        dom_element.style[TEXTEMPHASISPOSITION_PROP] = pos;
-                    }
                 }
         ),
         new HTMLStylingMapDefintion(
