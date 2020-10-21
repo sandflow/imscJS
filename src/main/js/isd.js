@@ -591,7 +591,7 @@
 
                             elist.splice(l, 1);
                             l--;
-
+                            br_pos--;
                         }
 
                     }
