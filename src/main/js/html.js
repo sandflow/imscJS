@@ -1452,7 +1452,7 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling rubyAlign",
                 function (context, dom_element, isd_element, attr) {
-                    dom_element.style.rubyAlign = attr;
+                    dom_element.style.rubyAlign = attr === "spaceAround" ? "space-around" : "center";
                 }
         ),
         new HTMLStylingMapDefintion(
