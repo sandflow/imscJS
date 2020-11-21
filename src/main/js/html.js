@@ -249,25 +249,7 @@
 
         e.style.margin = "0";
 
-        /* tranform TTML styles to CSS styles */
-
-        for (var i in STYLING_MAP_DEFS) {
-
-            var sm = STYLING_MAP_DEFS[i];
-
-            var attr = isd_element.styleAttrs[sm.qname];
-
-            if (attr !== undefined && sm.map !== null) {
-
-                sm.map(context, e, isd_element, attr);
-
-            }
-
-        }
-
-        var proc_e = e;
-
-        /* remember writing direction */
+        /* determine ipd and bpd */
 
         if (isd_element.kind === "region") {
 
@@ -294,8 +276,32 @@
                 context.bpd = "rl";
 
             }
+ 
+        } else if (isd_element.kind === "p" && context.bpd === "tb") {
+
+            var pdir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
+
+            context.ipd = pdir === "ltr" ? "lr" : "rl"; 
+ 
+        }
+
+        /* tranform TTML styles to CSS styles */
+
+        for (var i in STYLING_MAP_DEFS) {
+
+            var sm = STYLING_MAP_DEFS[i];
+
+            var attr = isd_element.styleAttrs[sm.qname];
+
+            if (attr !== undefined && sm.map !== null) {
+
+                sm.map(context, e, isd_element, attr);
+
+            }
 
         }
+
+        var proc_e = e;
 
         /* do we have linePadding ? */
 
@@ -1214,7 +1220,9 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling direction",
                 function (context, dom_element, isd_element, attr) {
+
                     dom_element.style.direction = attr;
+
                 }
         ),
         new HTMLStylingMapDefintion(
@@ -1350,7 +1358,7 @@
 
                     var angle = attr * -0.9;
 
-                    /* context.writingMode is needed since writing mode is not inherited and sets the inline progression */
+                    /* context.bpd is needed since writing mode is not inherited and sets the inline progression */
 
                     if (context.bpd === "tb") {
 
@@ -1497,17 +1505,16 @@
                 function (context, dom_element, isd_element, attr) {
 
                     var ta;
-                    var dir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
 
                     /* handle UAs that do not understand start or end */
 
                     if (attr === "start") {
 
-                        ta = (dir === "rtl") ? "right" : "left";
+                        ta = (context.ipd === "rl") ? "right" : "left";
 
                     } else if (attr === "end") {
 
-                        ta = (dir === "rtl") ? "left" : "right";
+                        ta = (context.ipd === "rl") ? "left" : "right";
 
                     } else {
 
@@ -1657,25 +1664,27 @@
         new HTMLStylingMapDefintion(
                 "http://www.w3.org/ns/ttml#styling writingMode",
                 function (context, dom_element, isd_element, attr) {
+
+                    var wm;
+
                     if (attr === "lrtb" || attr === "lr") {
 
-                        context.writingMode = "horizontal-tb";
+                        dom_element.style.writingMode = "horizontal-tb";
 
                     } else if (attr === "rltb" || attr === "rl") {
 
-                        context.writingMode = "horizontal-tb";
+                        dom_element.style.writingMode = "horizontal-tb";
 
                     } else if (attr === "tblr") {
 
-                        context.writingMode = "vertical-lr";
+                        dom_element.style.writingMode = "vertical-lr";
 
                     } else if (attr === "tbrl" || attr === "tb") {
 
-                        context.writingMode = "vertical-rl";
+                        dom_element.style.writingMode = "vertical-rl";
 
                     }
 
-                    dom_element.style.writingMode = context.writingMode;
                 }
         ),
         new HTMLStylingMapDefintion(
