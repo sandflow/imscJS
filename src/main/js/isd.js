@@ -156,7 +156,8 @@
              * if writingMode sets inline-direction to LTR or RTL  
              */
 
-            if (qname === imscStyles.byName.writingMode.qname &&
+            if (isd_element.kind === 'region' &&
+                qname === imscStyles.byName.writingMode.qname &&
                 !(imscStyles.byName.direction.qname in isd_element.styleAttrs)) {
 
                 var wm = isd_element.styleAttrs[qname];
