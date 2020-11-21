@@ -83,7 +83,18 @@
 
         p.onclosetag = function (node) {
 
-            if (estack[0] instanceof Styling) {
+            
+            if (estack[0] instanceof Region) {
+
+                /* merge referenced styles */
+
+                if (doc.head !== null && doc.head.styling !== null) {
+                    mergeReferencedStyles(doc.head.styling, estack[0].styleRefs, estack[0].styleAttrs, errorHandler);
+                }
+
+                delete estack[0].styleRefs;
+
+            } else if (estack[0] instanceof Styling) {
 
                 /* flatten chained referential styling */
 
@@ -1205,16 +1216,16 @@
 
     Region.prototype.initFromNode = function (doc, node, errorHandler) {
         IdentifiedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        StyledElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
         AnimatedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
 
-        /* immediately merge referenced styles */
+        /* add specified styles */
 
-        if (doc.head !== null && doc.head.styling !== null) {
-            mergeReferencedStyles(doc.head.styling, elementGetStyleRefs(node), this.styleAttrs, errorHandler);
-        }
+        this.styleAttrs = elementGetStyles(node, errorHandler);
 
+        /* remember referential styles for merging after nested styling is processed*/
+
+        this.styleRefs = elementGetStyleRefs(node);
     };
 
     /*
