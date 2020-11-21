@@ -374,24 +374,6 @@
 
         }
 
-        /* tts:fontSize special ineritance for ruby */
-
-/*        var isrubycontainer = false;
-
-        if (isd_element.kind === "span") {
-
-            var rtemp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
-
-            if (rtemp === "container" || rtemp === "textContainer") {
-
-                isrubycontainer = true;
-
-                context.rubyfs.unshift(isd_element.styleAttrs[imscStyles.byName.fontSize.qname]);
-
-            }
-
-        } */
-
         /* prune if tts:display is none */
 
         if (isd_element.styleAttrs[imscStyles.byName.display.qname] === "none")
@@ -441,24 +423,6 @@
             }
 
         }
-
-        /* compute used value of lineHeight="normal" */
-
-        /*        if (isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] === "normal"  ) {
-         
-         isd_element.styleAttrs[imscStyles.byName.lineHeight.qname] =
-         isd_element.styleAttrs[imscStyles.byName.fontSize.qname] * 1.2;
-         
-         }
-         */
-
-        /* tts:fontSize special ineritance for ruby */
-
-        /*if (isrubycontainer) {
-
-            context.rubyfs.shift();
-
-        }*/
 
         /* remove styles that are not applicable */
 
@@ -510,110 +474,19 @@
 
         }
 
-        /* collapse white space if space is "default" */
-
-        if (isd_element.kind === 'span' && isd_element.text && isd_element.space === "default") {
-
-            var trimmedspan = isd_element.text.replace(/[\t\r\n ]+/g, ' ');
-
-            isd_element.text = trimmedspan;
-
-        }
-
         /* trim whitespace around explicit line breaks */
 
-        if (isd_element.kind === 'p') {
+        var ruby = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
+
+        if (isd_element.kind === 'p' ||
+            (isd_element.kind === 'span' && (ruby === "textContainer" || ruby === "text"))
+            ) {
 
             var elist = [];
 
             constructSpanList(isd_element, elist);
 
-            var l = 0;
-
-            var state = "after_br";
-            var br_pos = 0;
-
-            while (true) {
-
-                if (state === "after_br") {
-
-                    if (l >= elist.length || elist[l].kind === "br") {
-
-                        state = "before_br";
-                        br_pos = l;
-                        l--;
-
-                    } else {
-
-                        if (elist[l].space !== "preserve") {
-
-                            elist[l].text = elist[l].text.replace(/^[\t\r\n ]+/g, '');
-
-                        }
-
-                        if (elist[l].text.length > 0) {
-
-                            state = "looking_br";
-                            l++;
-
-                        } else {
-
-                            elist.splice(l, 1);
-
-                        }
-
-                    }
-
-                } else if (state === "before_br") {
-
-                    if (l < 0 || elist[l].kind === "br") {
-
-                        state = "after_br";
-                        l = br_pos + 1;
-
-                        if (l >= elist.length) break;
-
-                    } else {
-
-                        if (elist[l].space !== "preserve") {
-
-                            elist[l].text = elist[l].text.replace(/[\t\r\n ]+$/g, '');
-
-                        }
-
-                        if (elist[l].text.length > 0) {
-
-                            state = "after_br";
-                            l = br_pos + 1;
-
-                            if (l >= elist.length) break;
-
-                        } else {
-
-                            elist.splice(l, 1);
-                            l--;
-
-                        }
-
-                    }
-
-                } else {
-
-                    if (l >= elist.length || elist[l].kind === "br") {
-
-                        state = "before_br";
-                        br_pos = l;
-                        l--;
-
-                    } else {
-
-                        l++;
-
-                    }
-
-                }
-
-            }
+            collapseLWSP(elist);
 
             pruneEmptySpans(isd_element);
 
@@ -645,17 +518,96 @@
         return null;
     }
 
-    function constructSpanList(element, elist) {
+    function collapseLWSP(elist) {
 
-        if ('contents' in element) {
+        function isPrevCharLWSP(prev_element) {
+            return prev_element.kind === 'br' || /[\r\n\t ]$/.test(prev_element.text);
+        }
 
-            for (var i in element.contents) {
-                constructSpanList(element.contents[i], elist);
+        function isNextCharLWSP(next_element) {
+            return next_element.kind === 'br' || (next_element.space === "preserve" && /^[\r\n]/.test(next_element.text));
+        }
+
+        /* collapse spaces and remove leading LWSPs */
+
+        var element;
+
+        for(var i = 0; i < elist.length;) {
+
+            element = elist[i];
+
+            if (element.kind === "br" || element.space === "preserve") {
+                i++;
+                continue;
             }
 
-        } else if (element.kind === 'span' || element.kind === 'br') {
+            var trimmed_text = element.text.replace(/[\t\r\n ]+/g, ' ');
 
-            elist.push(element);
+            if (/^[ ]/.test(trimmed_text)) {
+
+                if (i === 0 || isPrevCharLWSP(elist[i - 1])) {
+                    trimmed_text = trimmed_text.substring(1);
+                }
+
+            }
+
+            element.text = trimmed_text;
+
+            if (trimmed_text.length === 0) {
+                elist.splice(i, 1);
+            } else {
+                i++;
+            }
+
+        }
+
+        /* remove trailing LWSPs */
+
+        for(i = 0; i < elist.length; i++) {
+
+            element = elist[i];
+
+            if (element.kind === "br" || element.space === "preserve") {
+                i++;
+                continue;
+            }
+
+            if (/[ ]$/.test(element.text)) {
+
+                if (i === (elist.length - 1) || isNextCharLWSP(elist[i + 1])) {
+                    element.text = element.text.slice(0, -1);
+                }
+
+            }
+
+        }
+
+    }
+
+    function constructSpanList(element, elist) {
+
+        for (var i in element.contents) {
+
+            var child = element.contents[i];
+            var ruby = child.styleAttrs[imscStyles.byName.ruby.qname];
+
+            if (child.kind === 'span' && (ruby === "textContainer" || ruby === "text")) {
+
+                /* skip ruby text and text containers, which are handled on their own */
+            
+                continue;
+
+            } else if ('contents' in child) {
+    
+                constructSpanList(child, elist);
+    
+            } else if ((child.kind === 'span' && child.text.length !== 0) || child.kind === 'br') {
+
+                /* skip empty spans */
+
+                elist.push(child);
+
+            }
 
         }
 
