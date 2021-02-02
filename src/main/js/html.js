@@ -1183,14 +1183,14 @@
         }
     }
 
-    function HTMLStylingMapDefintion(qName, mapFunc) {
+    function HTMLStylingMapDefinition(qName, mapFunc) {
         this.qname = qName;
         this.map = mapFunc;
     }
 
     var STYLING_MAP_DEFS = [
 
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling backgroundColor",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1206,7 +1206,7 @@
                             ")";
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling color",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.color = "rgba(" +
@@ -1217,7 +1217,7 @@
                             ")";
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling direction",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1225,11 +1225,11 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling display",
                 function (context, dom_element, isd_element, attr) {}
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling displayAlign",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1256,7 +1256,7 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling extent",
                 function (context, dom_element, isd_element, attr) {
                     /* TODO: this is super ugly */
@@ -1290,7 +1290,7 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling fontFamily",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1347,7 +1347,7 @@
                 }
         ),
 
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling shear",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1373,26 +1373,26 @@
                 }
         ),
 
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling fontSize",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.fontSize = attr.toUsedLength(context.w, context.h) + "px";
                 }
         ),
 
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling fontStyle",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.fontStyle = attr;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling fontWeight",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.fontWeight = attr;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling lineHeight",
                 function (context, dom_element, isd_element, attr) {
                     if (attr === "normal") {
@@ -1405,26 +1405,26 @@
                     }
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling opacity",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.opacity = attr;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling origin",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.top = attr.h.toUsedLength(context.w, context.h) + "px";
                     dom_element.style.left = attr.w.toUsedLength(context.w, context.h) + "px";
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling overflow",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.overflow = attr;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling padding",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1442,20 +1442,20 @@
                     dom_element.style.padding = rslt.join(" ");
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling position",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.top = attr.h.toUsedLength(context.w, context.h) + "px";
                     dom_element.style.left = attr.w.toUsedLength(context.w, context.h) + "px";
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling rubyAlign",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.rubyAlign = attr === "spaceAround" ? "space-around" : "center";
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling rubyPosition",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1496,11 +1496,11 @@
                     }
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling showBackground",
                 null
                 ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling textAlign",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1526,20 +1526,20 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling textDecoration",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.textDecoration = attr.join(" ").replace("lineThrough", "line-through");
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling textOutline",
                 function (context, dom_element, isd_element, attr) {
 
                     /* defer to tts:textShadow */
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling textShadow",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1598,7 +1598,7 @@
                     }
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling textCombine",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1606,7 +1606,7 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling textEmphasis",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1614,7 +1614,7 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling unicodeBidi",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1629,13 +1629,13 @@
                     dom_element.style.unicodeBidi = ub;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling visibility",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.visibility = attr;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling wrapOption",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1661,7 +1661,7 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling writingMode",
                 function (context, dom_element, isd_element, attr) {
 
@@ -1687,13 +1687,13 @@
 
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling zIndex",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.zIndex = attr;
                 }
         ),
-        new HTMLStylingMapDefintion(
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml/profile/imsc1#styling forcedDisplay",
                 function (context, dom_element, isd_element, attr) {
 
