@@ -383,7 +383,7 @@
             }
 
             if (imscStyles.byName.textCombine.qname in isd_element.styleAttrs &&
-                    isd_element.styleAttrs[imscStyles.byName.textCombine.qname][0] === "all") {
+                    isd_element.styleAttrs[imscStyles.byName.textCombine.qname] === "all") {
 
                 /* ignore tate-chu-yoku since line break cannot happen within */
                 e.textContent = isd_element.text;
@@ -1602,7 +1602,7 @@
                 "http://www.w3.org/ns/ttml#styling textCombine",
                 function (context, dom_element, isd_element, attr) {
 
-                    dom_element.style.textCombineUpright = attr.join(" ");
+                    dom_element.style.textCombineUpright = attr;
 
                 }
         ),
