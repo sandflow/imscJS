@@ -1139,9 +1139,7 @@
 
         if (attr.style === "none") {
 
-            dom_element.style[TEXTEMPHASISSTYLE_PROP] = "none";
-
-            /* no need to set position, so return */
+            /* text-emphasis is not inherited and the default is none, so nothing to do */
             
             return;
         
