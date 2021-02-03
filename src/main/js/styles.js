@@ -273,7 +273,7 @@
             imscNames.ns_tts,
             "fontStyle",
             "normal",
-            ['span'],
+            ['span', 'p'],
             true,
             true,
             function (str) {
@@ -287,7 +287,7 @@
             imscNames.ns_tts,
             "fontWeight",
             "normal",
-            ['span'],
+            ['span', 'p'],
             true,
             true,
             function (str) {
