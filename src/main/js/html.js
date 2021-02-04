@@ -140,7 +140,7 @@
 
         for (var i in isd.contents) {
 
-            processElement(context, rootcontainer, isd.contents[i]);
+            processElement(context, rootcontainer, isd.contents[i], isd);
 
         }
 
@@ -148,7 +148,7 @@
 
     };
 
-    function processElement(context, dom_parent, isd_element) {
+    function processElement(context, dom_parent, isd_element, isd_parent) {
 
         var e;
 
@@ -237,6 +237,16 @@
             reportError(context.errorHandler, "Error processing ISD element kind: " + isd_element.kind);
 
             return;
+
+        }
+
+        /* set language */
+
+        if (isd_element.lang) {
+
+            if (isd_element.kind === 'region' || isd_element.lang !== isd_parent.lang) {
+                e.lang = isd_element.lang;
+            }
 
         }
 
@@ -437,7 +447,7 @@
 
         for (var k in isd_element.contents) {
 
-            processElement(context, proc_e, isd_element.contents[k]);
+            processElement(context, proc_e, isd_element.contents[k], isd_element);
 
         }
 

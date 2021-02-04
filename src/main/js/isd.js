@@ -643,6 +643,7 @@
     function ISD(tt) {
         this.contents = [];
         this.aspectRatio = tt.aspectRatio;
+        this.lang = tt.lang;
     }
 
     function ISDContentElement(ttelem) {
@@ -650,6 +651,10 @@
         /* assume the element is a region if it does not have a kind */
 
         this.kind = ttelem.kind || 'region';
+
+        /* copy lang */
+
+        this.lang = ttelem.lang;
 
         /* copy id */
 
