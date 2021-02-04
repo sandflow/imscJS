@@ -801,16 +801,9 @@
             true,
             true,
             function (str) {
-                var s = str.split(" ");
+                if (str === "none" || str === "all") {
 
-                if (s.length === 1) {
-
-                    if (s[0] === "none" || s[0] === "all") {
-
-                        return [s[0]];
-
-                    }
-
+                    return str;
                 }
 
                 return null;
