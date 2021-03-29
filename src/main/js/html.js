@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -40,11 +40,11 @@
 
 
     /**
-     * Renders an ISD object (returned by <pre>generateISD()</pre>) into a 
+     * Renders an ISD object (returned by <pre>generateISD()</pre>) into a
      * parent element, that must be attached to the DOM. The ISD will be rendered
      * into a child <pre>div</pre>
      * with heigh and width equal to the clientHeight and clientWidth of the element,
-     * unless explicitly specified otherwise by the caller. Images URIs specified 
+     * unless explicitly specified otherwise by the caller. Images URIs specified
      * by <pre>smpte:background</pre> attributes are mapped to image resource URLs
      * by an <pre>imgResolver</pre> function. The latter takes the value of <code>smpte:background</code>
      * attribute and an <code>img</code> DOM element as input, and is expected to
@@ -52,18 +52,18 @@
      * <pre>displayForcedOnlyMode</pre> sets the (boolean)
      * value of the IMSC1 displayForcedOnlyMode parameter. The function returns
      * an opaque object that should passed in <code>previousISDState</code> when this function
-     * is called for the next ISD, otherwise <code>previousISDState</code> should be set to 
+     * is called for the next ISD, otherwise <code>previousISDState</code> should be set to
      * <code>null</code>.
-     * 
+     *
      * @param {Object} isd ISD to be rendered
      * @param {Object} element Element into which the ISD is rendered
      * @param {?IMGResolver} imgResolver Resolve <pre>smpte:background</pre> URIs into URLs.
-     * @param {?number} eheight Height (in pixel) of the child <div>div</div> or null 
+     * @param {?number} eheight Height (in pixel) of the child <div>div</div> or null
      *                  to use clientHeight of the parent element
      * @param {?number} ewidth Width (in pixel) of the child <div>div</div> or null
      *                  to use clientWidth of the parent element
      * @param {?boolean} displayForcedOnlyMode Value of the IMSC1 displayForcedOnlyMode parameter,
-     *                   or false if null         
+     *                   or false if null
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
      * @param {Object} previousISDState State saved during processing of the previous ISD, or null if initial call
      * @param {?boolean} enableRollUp Enables roll-up animations (see CEA 708)
@@ -138,7 +138,7 @@
 
         element.appendChild(rootcontainer);
 
-        for (var i in isd.contents) {
+        for (var i = 0; i < isd.contents.length; i++) {
 
             processElement(context, rootcontainer, isd.contents[i], isd);
 
@@ -286,18 +286,18 @@
                 context.bpd = "rl";
 
             }
- 
+
         } else if (isd_element.kind === "p" && context.bpd === "tb") {
 
             var pdir = isd_element.styleAttrs[imscStyles.byName.direction.qname];
 
-            context.ipd = pdir === "ltr" ? "lr" : "rl"; 
- 
+            context.ipd = pdir === "ltr" ? "lr" : "rl";
+
         }
 
         /* tranform TTML styles to CSS styles */
 
-        for (var i in STYLING_MAP_DEFS) {
+        for (var i = 0; i < STYLING_MAP_DEFS.length; i++) {
 
             var sm = STYLING_MAP_DEFS[i];
 
@@ -323,7 +323,7 @@
 
 
             if (plength > 0) {
-                
+
                 /* apply padding to the <p> so that line padding does not cause line wraps */
 
                 var padmeasure = Math.ceil(plength) + "px";
@@ -425,13 +425,13 @@
                         span.textContent = cbuf;
 
                         /* apply textEmphasis */
-                        
+
                         if (te) {
 
                             applyTextEmphasis(context, span, isd_element, te);
 
                         };
-    
+
                         e.appendChild(span);
 
                         cbuf = '';
@@ -445,7 +445,7 @@
 
         /* process the children of the ISD element */
 
-        for (var k in isd_element.contents) {
+        for (var k = 0; k < isd_element.contents.length; k++) {
 
             processElement(context, proc_e, isd_element.contents[k], isd_element);
 
@@ -579,7 +579,7 @@
 
     function applyLinePadding(lineList, lp, context) {
 
-        for (var i in lineList) {
+        for (var i = 0; i < lineList.length; i++) {
 
             var l = lineList[i].elements.length;
 
@@ -820,7 +820,7 @@
                     sib = lineList[i].rbc[j];
 
                     /* copy specified style properties from the sibling ruby container */
-                    
+
                     for(var k = 0; k < sib.style.length; k++) {
 
                         ruby.style.setProperty(sib.style.item(k), sib.style.getPropertyValue(sib.style.item(k)));
@@ -1127,7 +1127,7 @@
                         }
 
                     }
-                    
+
 
                 }
 
@@ -1150,13 +1150,13 @@
         if (attr.style === "none") {
 
             /* text-emphasis is not inherited and the default is none, so nothing to do */
-            
+
             return;
-        
+
         } else if (attr.style === "auto") {
 
             dom_element.style[TEXTEMPHASISSTYLE_PROP] = "filled";
-        
+
         } else {
 
             dom_element.style[TEXTEMPHASISSTYLE_PROP] =  attr.style + " " + attr.symbol;
@@ -1272,7 +1272,7 @@
                     context.regionH = attr.h.toUsedLength(context.w, context.h);
                     context.regionW = attr.w.toUsedLength(context.w, context.h);
 
-                    /* 
+                    /*
                      * CSS height/width are measured against the content rectangle,
                      * whereas TTML height/width include padding
                      */
@@ -1306,7 +1306,7 @@
 
                     /* per IMSC1 */
 
-                    for (var i in attr) {
+                    for (var i = 0; i < attr.length; i++) {
 
                         if (attr[i] === "monospaceSerif") {
 
@@ -1476,9 +1476,9 @@
                         if (RUBYPOSITION_ISWK) {
 
                             /* WebKit exception */
-        
+
                             pos = attr;
-        
+
                         } else if (context.bpd === "tb") {
 
                             pos = (attr === "before") ? "over" : "under";
@@ -1583,7 +1583,7 @@
 
                         if (attr !== "none") {
 
-                            for (var i in attr) {
+                            for (var i = 0; i < attr.length; i++) {
 
 
                                 s.push(attr[i].x_off.toUsedLength(context.w, context.h) + "px " +
@@ -1715,7 +1715,7 @@
 
     var STYLMAP_BY_QNAME = {};
 
-    for (var i in STYLING_MAP_DEFS) {
+    for (var i = 0; i < STYLING_MAP_DEFS.length; i++) {
 
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
     }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -51,7 +51,7 @@
 
     /*
      * Parses a TTML color expression
-     * 
+     *
      */
 
     var HEX_COLOR_RE = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})?/;
@@ -82,11 +82,11 @@
     imscUtils.parseColor = function (str) {
 
         var m;
-        
+
         var r = null;
-        
+
         var nc = NAMED_COLOR[str.toLowerCase()];
-        
+
         if (nc !== undefined) {
 
             r = nc;
@@ -97,21 +97,21 @@
                 parseInt(m[2], 16),
                 parseInt(m[3], 16),
                 (m[4] !== undefined ? parseInt(m[4], 16) : 255)];
-            
+
         } else if ((m = DEC_COLOR_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1]),
                 parseInt(m[2]),
                 parseInt(m[3]),
                 255];
-            
+
         } else if ((m = DEC_COLORA_RE.exec(str)) !== null) {
 
             r = [parseInt(m[1]),
                 parseInt(m[2]),
                 parseInt(m[3]),
                 parseInt(m[4])];
-            
+
         }
 
         return r;
@@ -139,7 +139,7 @@
 
         var r = [];
 
-        for (var i in shadows) {
+        for (var i = 0; i < shadows.length; i++) {
 
             var shadow = shadows[i].split(" ");
 
@@ -231,7 +231,7 @@
 
         /* initial clean-up pass */
 
-        for (var j in s) {
+        for (var j = 0; j < s.length; j++) {
 
             if (!isKeyword(s[j])) {
 
@@ -351,7 +351,7 @@
 
     /**
      * Computes a specified length to a root container relative length
-     * 
+     *
      * @param {number} lengthVal Length value to be computed
      * @param {string} lengthUnit Units of the length value
      * @param {number} emScale length of 1em, or null if em is not allowed
@@ -402,7 +402,7 @@
 
             return new imscUtils.ComputedLength(
                     lengthVal / 100,
-                    0                    
+                    0
                     );
 
         } else {

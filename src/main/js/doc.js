@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -65,8 +65,8 @@
      * a single method <pre>getMediaTimeEvents()</pre> that returns a list of time
      * offsets (in seconds) of the ISD, i.e. the points in time where the visual
      * representation of the document change. `metadataHandler` allows the caller to
-     * be called back when nodes are present in <metadata> elements. 
-     * 
+     * be called back when nodes are present in <metadata> elements.
+     *
      * @param {string} xmlstring XML document
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
      * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
@@ -83,7 +83,7 @@
 
         p.onclosetag = function (node) {
 
-            
+
             if (estack[0] instanceof Region) {
 
                 /* merge referenced styles */
@@ -97,8 +97,7 @@
             } else if (estack[0] instanceof Styling) {
 
                 /* flatten chained referential styling */
-
-                for (var sid in estack[0].styles) {
+                for (var sid = 0; sid < estack[0].styles.length; sid++) {
 
                     mergeChainedStyles(estack[0], estack[0].styles[sid], errorHandler);
 
@@ -360,13 +359,13 @@
                         ini = new Initial();
 
                         ini.initFromNode(node, errorHandler);
-                        
-                        for (var qn in ini.styleAttrs) {
-                            
+
+                        for (var qn = 0; qn < ini.styleAttrs.length; qn++) {
+
                             doc.head.styling.initials[qn] = ini.styleAttrs[qn];
-                            
+
                         }
-                        
+
                         estack.unshift(ini);
 
                     } else {
@@ -440,14 +439,14 @@
                     var d = new Div();
 
                     d.initFromNode(doc, estack[0], node, xmllangstack[0], errorHandler);
-                    
+
                     /* transform smpte:backgroundImage to TTML2 image element */
-                    
+
                     var bi = d.styleAttrs[imscStyles.byName.backgroundImage.qname];
-                    
+
                     if (bi) {
                         d.contents.push(new Image(bi));
-                        delete d.styleAttrs[imscStyles.byName.backgroundImage.qname];                  
+                        delete d.styleAttrs[imscStyles.byName.backgroundImage.qname];
                     }
 
                     estack[0].contents.push(d);
@@ -463,9 +462,9 @@
                     }
 
                     var img = new Image();
-                    
+
                     img.initFromNode(doc, estack[0], node, xmllangstack[0], errorHandler);
-                    
+
                     estack[0].contents.push(img);
 
                     estack.unshift(img);
@@ -575,7 +574,8 @@
 
                     var attrs = [];
 
-                    for (var a in node.attributes) {
+                    for (var a = 0; a < node.attributes.length; a++) {
+
                         attrs[node.attributes[a].uri + " " + node.attributes[a].local] =
                                 {
                                     uri: node.attributes[a].uri,
@@ -599,7 +599,7 @@
         // all referential styling has been flatten, so delete styles
 
         delete doc.head.styling.styles;
-       
+
         // create default region if no regions specified
 
         var hasRegions = false;
@@ -626,7 +626,7 @@
 
         /* resolve desired timing for regions */
 
-        for (var region_i in doc.head.layout.regions) {
+        for (var region_i = 0; region_i < doc.head.layout.regions.length; region_i++) {
 
             resolveTiming(doc, doc.head.layout.regions[region_i], null, null);
 
@@ -648,7 +648,7 @@
     };
 
     function cleanRubyContainers(element) {
-        
+
         if (! ('contents' in element)) return;
 
         var rubyval = 'styleAttrs' in element ? element.styleAttrs[imscStyles.byName.ruby.qname] : null;
@@ -713,7 +713,7 @@
 
         var s = null;
 
-        for (var set_i in element.sets) {
+        for (var set_i = 0; set_i < element.sets.length; set_i++) {
 
             resolveTiming(doc, element.sets[set_i], s, element);
 
@@ -751,7 +751,7 @@
 
         } else {
 
-            for (var content_i in element.contents) {
+            for (var content_i = 0; content_i < element.contents.length; content_i++) {
 
                 resolveTiming(doc, element.contents[content_i], s, element);
 
@@ -814,7 +814,7 @@
         /* compute cell resolution */
 
         var cr = extractCellResolution(node, errorHandler);
-        
+
         this.cellLength = {
                 'h': new imscUtils.ComputedLength(0, 1/cr.h),
                 'w': new imscUtils.ComputedLength(1/cr.w, 0)
@@ -864,11 +864,11 @@
                 'w': new imscUtils.ComputedLength(1 / e.w.value, 0)
             };
         }
-        
+
         /** set root container dimensions to (1, 1) arbitrarily
           * the root container is mapped to actual dimensions at rendering
         **/
-        
+
         this.dimensions = {
                 'h': new imscUtils.ComputedLength(0, 1),
                 'w': new imscUtils.ComputedLength(1, 0)
@@ -914,9 +914,9 @@
 
     /*
      * Retrieves the range of ISD times covered by the document
-     * 
+     *
      * @returns {Array} Array of two elements: min_begin_time and max_begin_time
-     * 
+     *
      */
     TT.prototype.getMediaTimeRange = function () {
 
@@ -924,8 +924,8 @@
     };
 
     /*
-     * Returns list of ISD begin times  
-     * 
+     * Returns list of ISD begin times
+     *
      * @returns {Array}
      */
     TT.prototype.getMediaTimeEvents = function () {
@@ -966,7 +966,7 @@
         this.styleAttrs = elementGetStyles(node, errorHandler);
         this.styleRefs = elementGetStyleRefs(node);
     };
-    
+
     /*
      * Represents a TTML initial element
      */
@@ -976,33 +976,33 @@
     }
 
     Initial.prototype.initFromNode = function (node, errorHandler) {
-        
+
         this.styleAttrs = {};
-        
-        for (var i in node.attributes) {
+
+        for (var i = 0; i < node.attributes.length; i++) {
 
             if (node.attributes[i].uri === imscNames.ns_itts ||
                 node.attributes[i].uri === imscNames.ns_ebutts ||
                 node.attributes[i].uri === imscNames.ns_tts) {
-                
+
                 var qname = node.attributes[i].uri + " " + node.attributes[i].local;
-                
+
                 this.styleAttrs[qname] = node.attributes[i].value;
 
             }
         }
-        
+
     };
 
     /*
      * Represents a TTML Layout element
-     * 
+     *
      */
 
     function Layout() {
         this.regions = {};
     }
-    
+
     /*
      * Represents a TTML image element
      */
@@ -1015,17 +1015,17 @@
 
     Image.prototype.initFromNode = function (doc, parent, node, xmllang, errorHandler) {
         this.src = 'src' in node.attributes ? node.attributes.src.value : null;
-        
+
         if (! this.src) {
             reportError(errorHandler, "Invalid image@src attribute");
         }
-        
+
         this.type = 'type' in node.attributes ? node.attributes.type.value : null;
-        
+
         if (! this.type) {
             reportError(errorHandler, "Invalid image@type attribute");
         }
-        
+
         StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
@@ -1036,7 +1036,7 @@
 
     /*
      * TTML element utility functions
-     * 
+     *
      */
 
     function ContentElement(kind) {
@@ -1214,7 +1214,7 @@
 
     /*
      * Represents a TTML Region element
-     * 
+     *
      */
 
     function Region() {
@@ -1253,7 +1253,7 @@
 
     /*
      * Represents a TTML Set element
-     * 
+     *
      */
 
     function Set() {
@@ -1268,7 +1268,7 @@
         this.qname = null;
         this.value = null;
 
-        for (var qname in styles) {
+        for (var qname = 0; qname < styles.length; qname++) {
 
             if (this.qname) {
 
@@ -1286,7 +1286,7 @@
 
     /*
      * Utility functions
-     * 
+     *
      */
 
 
@@ -1332,7 +1332,7 @@
 
         if (node !== null) {
 
-            for (var i in node.attributes) {
+            for (var i = 0; i < node.attributes.length; i++) {
 
                 var qname = node.attributes[i].uri + " " + node.attributes[i].local;
 
@@ -1368,7 +1368,7 @@
     }
 
     function findAttribute(node, ns, name) {
-        for (var i in node.attributes) {
+        for (var i = 0; i < node.attributes.length; i++) {
 
             if (node.attributes[i].uri === ns &&
                     node.attributes[i].local === name) {
@@ -1385,9 +1385,9 @@
         var ar = findAttribute(node, imscNames.ns_ittp, "aspectRatio");
 
         if (ar === null) {
-            
+
             ar = findAttribute(node, imscNames.ns_ttp, "displayAspectRatio");
-            
+
         }
 
         var rslt = null;
@@ -1426,7 +1426,7 @@
 
     /*
      * Returns the cellResolution attribute from a node
-     * 
+     *
      */
     function extractCellResolution(node, errorHandler) {
 
@@ -1746,7 +1746,7 @@
 
     function mergeStylesIfNotPresent(from_styles, into_styles) {
 
-        for (var sname in from_styles) {
+        for (var sname = 0; sname < from_styles.length; sname++) {
 
             if (sname in into_styles)
                 continue;
@@ -1762,7 +1762,7 @@
 
     /*
      * ERROR HANDLING UTILITY FUNCTIONS
-     * 
+     *
      */
 
     function reportInfo(errorHandler, msg) {
@@ -1797,11 +1797,11 @@
 
     /*
      * Binary search utility function
-     * 
+     *
      * @typedef {Object} BinarySearchResult
      * @property {boolean} found Was an exact match found?
      * @property {number} index Position of the exact match or insert position
-     * 
+     *
      * @returns {BinarySearchResult}
      */
 
