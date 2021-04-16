@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -32,11 +32,11 @@
 ;
 (function (imscISD, imscNames, imscStyles, imscUtils) { // wrapper for non-node envs
 
-    /**
+    /** 
      * Creates a canonical representation of an IMSC1 document returned by <pre>imscDoc.fromXML()</pre>
      * at a given absolute offset in seconds. This offset does not have to be one of the values returned
      * by <pre>getMediaTimeEvents()</pre>.
-     *
+     * 
      * @param {Object} tt IMSC1 document
      * @param {number} offset Absolute offset (in seconds)
      * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
@@ -61,7 +61,7 @@
 
         /* process regions */
 
-        for (var r = 0; r <  tt.head.layout.regions.length; r++) {
+        for (var r in tt.head.layout.regions) {
 
             /* post-order traversal of the body tree per [construct intermediate document] */
 
@@ -99,8 +99,8 @@
             return null;
         }
 
-        /*
-         * set the associated region as specified by the regionID attribute, or the
+        /* 
+         * set the associated region as specified by the regionID attribute, or the 
          * inherited associated region otherwise
          */
 
@@ -108,7 +108,7 @@
 
         /* prune the element if either:
          * - the element is not terminal and the associated region is neither the default
-         *   region nor the parent region (this allows children to be associated with a
+         *   region nor the parent region (this allows children to be associated with a 
          *   region later on)
          * - the element is terminal and the associated region is not the parent region
          */
@@ -131,7 +131,7 @@
 
         /* apply set (animation) styling */
 
-        for (var i = 0; i < elem.sets.length; i++) {
+        for (var i in elem.sets) {
 
             if (offset < elem.sets[i].begin || offset >= elem.sets[i].end)
                 continue;
@@ -140,20 +140,20 @@
 
         }
 
-        /*
+        /* 
          * keep track of specified styling attributes so that we
          * can compute them later
          */
 
         var spec_attr = {};
 
-        for (var qname = 0; qname < isd_element.styleAttrs.length; qname++) {
+        for (var qname in isd_element.styleAttrs) {
 
             spec_attr[qname] = true;
 
             /* special rule for tts:writingMode (section 7.29.1 of XSL)
              * direction is set consistently with writingMode only
-             * if writingMode sets inline-direction to LTR or RTL
+             * if writingMode sets inline-direction to LTR or RTL  
              */
 
             if (isd_element.kind === 'region' &&
@@ -179,7 +179,7 @@
 
         if (parent !== null) {
 
-            for (var j = 0; j < imscStyles.all.length; j++) {
+            for (var j in imscStyles.all) {
 
                 var sa = imscStyles.all[j];
 
@@ -235,9 +235,9 @@
                     !(sa.qname in isd_element.styleAttrs) &&
                     isd_element.kind === 'span' &&
                     isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
-
+                    
                     /* special inheritance rule for ruby text container font size */
-
+                    
                     var ruby_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
 
                     isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
@@ -248,22 +248,22 @@
                     !(sa.qname in isd_element.styleAttrs) &&
                     isd_element.kind === 'span' &&
                     isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
-
+                    
                     /* special inheritance rule for ruby text font size */
-
+                    
                     var parent_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
-
+                    
                     if (parent.styleAttrs[imscStyles.byName.ruby.qname] === "textContainer") {
-
+                        
                         isd_element.styleAttrs[sa.qname] = parent_fs;
-
+                        
                     } else {
-
+                        
                         isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
                             0.5 * parent_fs.rw,
                             0.5 * parent_fs.rh);
                     }
-
+                    
                 } else if (sa.inherit &&
                     (sa.qname in parent.styleAttrs) &&
                     !(sa.qname in isd_element.styleAttrs)) {
@@ -278,7 +278,7 @@
 
         /* initial value styling */
 
-        for (var k = 0; k < imscStyles.all.length; k++) {
+        for (var k in imscStyles.all) {
 
             var ivs = imscStyles.all[k];
 
@@ -297,9 +297,9 @@
             if (ivs.qname === imscStyles.byName.origin.qname &&
                 imscStyles.byName.position.qname in isd_element.styleAttrs)
                 continue;
-
+            
             /* determine initial value */
-
+            
             var iv = doc.head.styling.initials[ivs.qname] || ivs.initial;
 
             if (iv === null) {
@@ -335,7 +335,7 @@
         /* compute styles (only for non-inherited styles) */
         /* TODO: get rid of spec_attr */
 
-        for (var z = 0; z < imscStyles.all.length; z++) {
+        for (var z in imscStyles.all) {
 
             var cs = imscStyles.all[z];
 
@@ -355,7 +355,7 @@
                 if (cstyle !== null) {
 
                     isd_element.styleAttrs[cs.qname] = cstyle;
-
+                    
                 } else {
                     /* if the style cannot be computed, replace it by its initial value */
 
@@ -407,12 +407,12 @@
 
         }
 
-        for (var x = 0; x < contents.length; x++) {
+        for (var x in contents) {
 
             var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x], errorHandler, context);
 
-            /*
-             * keep child element only if they are non-null and their region match
+            /* 
+             * keep child element only if they are non-null and their region match 
              * the region of this element
              */
 
@@ -426,7 +426,7 @@
 
         /* remove styles that are not applicable */
 
-        for (var qnameb = 0; qnameb < isd_element.styleAttrs.length; qnameb++) {
+        for (var qnameb in isd_element.styleAttrs) {
 
             /* true if not applicable */
 
@@ -439,7 +439,7 @@
 
                 var rsp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
 
-                na = ( rsp === 'container' || rsp === 'textContainer' || rsp === 'baseContainer' ) &&
+                na = ( rsp === 'container' || rsp === 'textContainer' || rsp === 'baseContainer' ) && 
                     _rcs_na_styles.indexOf(qnameb) !== -1;
 
                 if (! na) {
@@ -459,7 +459,7 @@
             }
 
             /* normal applicability */
-
+            
             if (! na) {
 
                 var da = imscStyles.byQName[qnameb];
@@ -586,7 +586,7 @@
 
     function constructSpanList(element, elist) {
 
-        for (var i = 0; i < element.contents.length; i++) {
+        for (var i in element.contents) {
 
             var child = element.contents[i];
             var ruby = child.styleAttrs[imscStyles.byName.ruby.qname];
@@ -594,13 +594,13 @@
             if (child.kind === 'span' && (ruby === "textContainer" || ruby === "text")) {
 
                 /* skip ruby text and text containers, which are handled on their own */
-
+            
                 continue;
 
             } else if ('contents' in child) {
-
+    
                 constructSpanList(child, elist);
-
+    
             } else if ((child.kind === 'span' && child.text.length !== 0) || child.kind === 'br') {
 
                 /* skip empty spans */
@@ -665,27 +665,27 @@
         /* deep copy of style attributes */
         this.styleAttrs = {};
 
-        for (var sname = 0; sname < ttelem.styleAttrs.length; sname++) {
+        for (var sname in ttelem.styleAttrs) {
 
             this.styleAttrs[sname] =
                 ttelem.styleAttrs[sname];
         }
-
+        
         /* copy src and type if image */
-
+        
         if ('src' in ttelem) {
-
+            
             this.src = ttelem.src;
-
+            
         }
-
+        
          if ('type' in ttelem) {
-
+            
             this.type = ttelem.type;
-
+            
         }
 
-        /* TODO: clean this!
+        /* TODO: clean this! 
          * TODO: ISDElement and document element should be better tied together */
 
         if ('text' in ttelem) {
@@ -706,7 +706,7 @@
 
     /*
      * ERROR HANDLING UTILITY FUNCTIONS
-     *
+     * 
      */
 
     function reportInfo(errorHandler, msg) {

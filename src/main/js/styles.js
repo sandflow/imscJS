@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -192,7 +192,7 @@
                 var ffs = str.split(",");
                 var rslt = [];
 
-                for (var i = 0; i < ffs.length; i++) {
+                for (var i in ffs) {
 
                     if (ffs[i].charAt(0) !== "'" && ffs[i].charAt(0) !== '"') {
 
@@ -460,7 +460,7 @@
                 if (s.length > 4)
                     return null;
                 var r = [];
-                for (var i = 0; i < s.length; i++) {
+                for (var i in s) {
 
                     var l = imscUtils.parseLength(s[i]);
                     if (!l)
@@ -477,9 +477,9 @@
                 /* TODO: make sure we are in region */
 
                 /*
-                 * expand padding shortcuts to
+                 * expand padding shortcuts to 
                  * [before, end, after, start]
-                 *
+                 * 
                  */
 
                 if (attr.length === 1) {
@@ -506,10 +506,10 @@
 
                 /* TODO: take into account tts:direction */
 
-                /*
-                 * transform [before, end, after, start] according to writingMode to
+                /* 
+                 * transform [before, end, after, start] according to writingMode to 
                  * [top,left,bottom,right]
-                 *
+                 * 
                  */
 
                 var dir = element.styleAttrs[imscStyles.byName.writingMode.qname];
@@ -538,7 +538,7 @@
 
                 var out = [];
 
-                for (var i = 0; i < padding.length; i++) {
+                for (var i in padding) {
 
                     if (padding[i].value === 0) {
 
@@ -579,14 +579,14 @@
             function (doc, parent, element, attr) {
                 var h;
                 var w;
-
+                
                 h = imscUtils.toComputedLength(
                     attr.v.offset.value,
                     attr.v.offset.unit,
                     null,
                     new imscUtils.ComputedLength(
                         - element.styleAttrs[imscStyles.byName.extent.qname].h.rw,
-                        doc.dimensions.h.rh - element.styleAttrs[imscStyles.byName.extent.qname].h.rh
+                        doc.dimensions.h.rh - element.styleAttrs[imscStyles.byName.extent.qname].h.rh 
                     ),
                     null,
                     doc.pxLength.h
@@ -601,7 +601,7 @@
                         - h.rw - element.styleAttrs[imscStyles.byName.extent.qname].h.rw,
                         doc.dimensions.h.rh - h.rh - element.styleAttrs[imscStyles.byName.extent.qname].h.rh
                     );
-
+            
                 }
 
                 w = imscUtils.toComputedLength(
@@ -619,7 +619,7 @@
                 if (h === null) return null;
 
                 if (attr.h.edge === "right") {
-
+                    
                     w = new imscUtils.ComputedLength(
                         doc.dimensions.w.rw - w.rw - element.styleAttrs[imscStyles.byName.extent.qname].w.rw,
                         - w.rh - element.styleAttrs[imscStyles.byName.extent.qname].w.rh
@@ -650,11 +650,11 @@
             true,
             true,
             function (str) {
-
+                
                 if (! (str === "center" || str === "spaceAround")) {
                     return null;
                 }
-
+                
                 return str;
             },
             null
@@ -745,7 +745,7 @@
                         doc.cellLength.h,
                         doc.pxLength.h
                         );
-
+                
                 }
 
                 if (fs === null) return null;
@@ -834,7 +834,7 @@
 
                 var rslt = {style: null, symbol: null, color: null, position: null};
 
-                for (var i = 0; i < e.length; i++) {
+                for (var i in e) {
 
                     if (e[i] === "none" || e[i] === "auto") {
 
@@ -898,7 +898,7 @@
 
                 /*
                  * returns {c: <color>?, thichness: <length>} | "none"
-                 *
+                 * 
                  */
 
                 if (str === "none") {
@@ -936,7 +936,7 @@
 
                 /*
                  * returns {color: <color>, thickness: <norm length>}
-                 *
+                 * 
                  */
 
                 if (attr === "none")
@@ -981,7 +981,7 @@
 
                 /*
                  * returns [{x_off: <length>, y_off: <length>, b_radius: <length>, color: <color>}*] or "none"
-                 *
+                 * 
                  */
 
                 if (attr === "none")
@@ -989,7 +989,7 @@
 
                 var r = [];
 
-                for (var i = 0; i < attr.length; i++) {
+                for (var i in attr) {
 
                     var shadow = {};
 
@@ -1198,13 +1198,13 @@
     /* TODO: allow null parse function */
 
     imscStyles.byQName = {};
-    for (var i = 0; i < imscStyles.all.length; i++) {
+    for (var i in imscStyles.all) {
 
         imscStyles.byQName[imscStyles.all[i].qname] = imscStyles.all[i];
     }
 
     imscStyles.byName = {};
-    for (var j = 0; j < imscStyles.all.length; j++) {
+    for (var j in imscStyles.all) {
 
         imscStyles.byName[imscStyles.all[j].name] = imscStyles.all[j];
     }
