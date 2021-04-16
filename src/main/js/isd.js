@@ -62,6 +62,8 @@
         /* process regions */
 
         for (var r in tt.head.layout.regions) {
+            
+            if (!tt.head.layout.regions.hasOwnProperty(r)) continue;
 
             /* post-order traversal of the body tree per [construct intermediate document] */
 
@@ -279,6 +281,8 @@
         /* initial value styling */
 
         for (var k in imscStyles.all) {
+            
+            if (!imscStyles.all.hasOwnProperty(k)) continue;
 
             var ivs = imscStyles.all[k];
 
@@ -336,6 +340,8 @@
         /* TODO: get rid of spec_attr */
 
         for (var z in imscStyles.all) {
+            
+            if (!imscStyles.all.hasOwnProperty(z)) continue;
 
             var cs = imscStyles.all[z];
 
@@ -427,6 +433,7 @@
         /* remove styles that are not applicable */
 
         for (var qnameb in isd_element.styleAttrs) {
+            if (!isd_element.styleAttrs.hasOwnProperty(qnameb)) continue;
 
             /* true if not applicable */
 
@@ -463,7 +470,9 @@
             if (! na) {
 
                 var da = imscStyles.byQName[qnameb];
-                na = da.applies.indexOf(isd_element.kind) === -1;
+                if (da.applies){
+                    na = da.applies.indexOf(isd_element.kind) === -1;
+                }
 
             }
 
@@ -587,6 +596,7 @@
     function constructSpanList(element, elist) {
 
         for (var i in element.contents) {
+            if (!element.contents[i].hasOwnProperty(i)) continue;
 
             var child = element.contents[i];
             var ruby = child.styleAttrs[imscStyles.byName.ruby.qname];

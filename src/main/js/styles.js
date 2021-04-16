@@ -193,6 +193,7 @@
                 var rslt = [];
 
                 for (var i in ffs) {
+                    if (!ffs.hasOwnProperty(i)) continue;
 
                     if (ffs[i].charAt(0) !== "'" && ffs[i].charAt(0) !== '"') {
 
@@ -835,6 +836,7 @@
                 var rslt = {style: null, symbol: null, color: null, position: null};
 
                 for (var i in e) {
+                    if (!e.hasOwnProperty(i)) continue;
 
                     if (e[i] === "none" || e[i] === "auto") {
 
