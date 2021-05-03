@@ -460,7 +460,7 @@
                 if (s.length > 4)
                     return null;
                 var r = [];
-                for (var i in s) {
+                for (var i = 0; i < s.length; i++) {
 
                     var l = imscUtils.parseLength(s[i]);
                     if (!l)
@@ -538,7 +538,7 @@
 
                 var out = [];
 
-                for (var i in padding) {
+                for (var i = 0 ; i < padding.length; i++) {
 
                     if (padding[i].value === 0) {
 
@@ -550,9 +550,9 @@
                             padding[i].value,
                             padding[i].unit,
                             element.styleAttrs[imscStyles.byName.fontSize.qname],
-                            i === "0" || i === "2" ? element.styleAttrs[imscStyles.byName.extent.qname].h : element.styleAttrs[imscStyles.byName.extent.qname].w,
-                            i === "0" || i === "2" ? doc.cellLength.h : doc.cellLength.w,
-                            i === "0" || i === "2" ? doc.pxLength.h: doc.pxLength.w
+                            i === 0 || i === 2 ? element.styleAttrs[imscStyles.byName.extent.qname].h : element.styleAttrs[imscStyles.byName.extent.qname].w,
+                            i === 0 || i === 2 ? doc.cellLength.h : doc.cellLength.w,
+                            i === 0 || i === 2 ? doc.pxLength.h: doc.pxLength.w
                             );
 
                         if (out[i] === null) return null;
@@ -989,7 +989,7 @@
 
                 var r = [];
 
-                for (var i in attr) {
+                for (var i = 0; i < attr.length; i++) {
 
                     var shadow = {};
 
