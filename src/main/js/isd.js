@@ -280,10 +280,8 @@
 
         /* initial value styling */
 
-        for (var k in imscStyles.all) {
+        for (var k = 0; k < imscStyles.all.length; k++) {
             
-            if (!imscStyles.all.hasOwnProperty(k)) continue;
-
             var ivs = imscStyles.all[k];
 
             /* skip if value is already specified */
@@ -339,10 +337,8 @@
         /* compute styles (only for non-inherited styles) */
         /* TODO: get rid of spec_attr */
 
-        for (var z in imscStyles.all) {
+        for (var z = 0; z < imscStyles.all.length; z++) {
             
-            if (!imscStyles.all.hasOwnProperty(z)) continue;
-
             var cs = imscStyles.all[z];
 
             if (!(cs.qname in spec_attr)) continue;
@@ -595,8 +591,11 @@
 
     function constructSpanList(element, elist) {
 
-        for (var i in element.contents) {
-            if (!element.contents[i].hasOwnProperty(i)) continue;
+        if (! ("contents" in element)) {
+            return;
+        }
+
+        for (var i = 0; i < element.contents.length; i++) {
 
             var child = element.contents[i];
             var ruby = child.styleAttrs[imscStyles.byName.ruby.qname];

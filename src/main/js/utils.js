@@ -139,8 +139,7 @@
 
         var r = [];
 
-        for (var i in shadows) {
-            if (!shadows.hasOwnProperty(i)) continue;
+        for (var i = 0; i < shadows.length; i++) {
 
             var shadow = shadows[i].split(" ");
 
