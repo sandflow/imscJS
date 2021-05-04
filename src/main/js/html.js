@@ -340,6 +340,7 @@
 
                 }
 
+                context.removePaddingElement=proc_e;
                 context.lp = lp;
             }
         }
@@ -416,7 +417,7 @@
 
                     var cc = isd_element.text.charCodeAt(j);
 
-                    if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length) {
+                    if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length-1) {
 
                         /* wrap the character(s) in a span unless it is a high surrogate */
 
@@ -436,6 +437,8 @@
 
                         cbuf = '';
 
+                        //For the sake of merging these back together, record what isd element generated it.
+                        span._isd_element = isd_element;
                     }
 
                 }
@@ -459,8 +462,7 @@
         /* paragraph processing */
         /* TODO: linePadding only supported for horizontal scripts */
 
-        if ((context.lp || context.mra || context.flg || context.ruby || context.textEmphasis || context.rubyReserve) &&
-                isd_element.kind === "p") {
+        if (isd_element.kind === "p") {
 
             constructLineList(context, proc_e, linelist, null);
 
@@ -510,9 +512,24 @@
 
                 applyLinePadding(linelist, context.lp.toUsedLength(context.w, context.h), context);
 
+                if (context.bpd === "tb") {
+
+                    // should this actually be remove?
+                    context.removePaddingElement.style.paddingLeft=0;
+                    context.removePaddingElement.style.paddingRight=0;
+
+                } else {
+
+                    context.removePaddingElement.style.paddingTop=0;
+                    context.removePaddingElement.style.paddingBottom=0;
+
+                }
+
                 context.lp = null;
 
             }
+
+            mergeSpans(linelist); // The earlier we can do this the less processing there will be.
 
             /* fill line gaps linepadding */
 
@@ -520,7 +537,7 @@
 
                 var par_edges = rect2edges(proc_e.getBoundingClientRect(), context);
 
-                applyFillLineGap(linelist, par_edges.before, par_edges.after, context);
+                applyFillLineGap(linelist, par_edges.before, par_edges.after, context,proc_e);
 
                 context.flg = null;
 
@@ -533,16 +550,14 @@
 
         if (isd_element.kind === "region") {
 
-            /* build line list */
-
-            constructLineList(context, proc_e, linelist);
-
             /* perform roll up if needed */
-
             if ((context.bpd === "tb") &&
                     context.enableRollUp &&
                     isd_element.contents.length > 0 &&
                     isd_element.styleAttrs[imscStyles.byName.displayAlign.qname] === 'after') {
+
+                /* build line list */
+                constructLineList(context, proc_e, linelist, null);
 
                 /* horrible hack, perhaps default region id should be underscore everywhere? */
 
@@ -571,10 +586,109 @@
                 }
 
             }
+        }
+    }
 
-            /* TODO: clean-up the spans ? */
+    function mergeSpans(lineList) {
+
+        for (var i = 0; i < lineList.length; i++) {
+
+            var line = lineList[i];
+
+            for (var j = 1; j < line.elements.length;) {
+
+                var previous = line.elements[j-1];
+                var span = line.elements[j];
+
+                if (spanMerge(previous.node, span.node)) {
+
+                    //removed from DOM by spanMerge(), remove from the list too.
+                    line.elements.splice(j, 1);
+                    continue;
+
+                } else {
+
+                    j++;
+
+                }
+
+            }
+        }
+
+        // Copy backgroundColor to each span so that fillLineGap will apply padding to elements with the right background
+        var thisNode, ancestorBackgroundColor;
+        var clearTheseBackgrounds = [];
+
+        for (var l = 0; l < lineList.length; l++) {
+
+            for (var el = 0; el < lineList[l].elements.length; el++) {
+
+                thisNode = lineList[l].elements[el].node;
+                ancestorBackgroundColor = getSpanAncestorColor(thisNode, clearTheseBackgrounds, false);
+
+                if (ancestorBackgroundColor) {
+
+                    thisNode.style.backgroundColor = ancestorBackgroundColor;
+
+                }
+            }
+        }
+
+        for (var bi = 0; bi < clearTheseBackgrounds.length; bi++) {
+
+            clearTheseBackgrounds[bi].style.backgroundColor = "";
 
         }
+    }
+
+    function getSpanAncestorColor(element, ancestorList, isAncestor) {
+
+        if (element.style.backgroundColor) {
+
+            if (isAncestor && !ancestorList.includes(element)) {
+
+                ancestorList.push(element);
+
+            }
+            return element.style.backgroundColor;
+
+        } else {
+
+            if (element.parentElement.nodeName === "SPAN") {
+
+                return getSpanAncestorColor(element.parentElement, ancestorList, true);
+
+            }
+
+        }
+
+        return undefined;
+    }
+
+    function spanMerge(first, second) {
+
+        if (first.tagName === "SPAN" &&
+            second.tagName === "SPAN" &&
+            first._isd_element === second._isd_element) {
+
+                first.textContent += second.textContent;
+
+                for (var i = 0; i < second.style.length; i++) {
+
+                    var styleName = second.style[i];
+                    if (styleName.indexOf("border") >= 0 || styleName.indexOf("padding") >= 0) {
+
+                        first.style[styleName] = second.style[styleName];
+
+                    }
+                }
+
+                second.parentElement.removeChild(second);
+
+                return true;
+            }
+
+        return false;
     }
 
     function applyLinePadding(lineList, lp, context) {
@@ -595,46 +709,34 @@
 
                 if (context.ipd === "lr") {
 
-                    se.node.style.borderLeftColor = se.bgcolor || "#00000000";
-                    se.node.style.borderLeftStyle = "solid";
-                    se.node.style.borderLeftWidth = pospadpxlen;
-                    se.node.style.marginLeft = negpadpxlen;
+                    se.node.marginLeft = negpadpxlen;
+                    se.node.style.paddingLeft = pospadpxlen;
 
                 } else if (context.ipd === "rl") {
 
-                    se.node.style.borderRightColor = se.bgcolor || "#00000000";
-                    se.node.style.borderRightStyle = "solid";
-                    se.node.style.borderRightWidth = pospadpxlen;
+                    se.node.style.paddingRight = pospadpxlen;
                     se.node.style.marginRight = negpadpxlen;
 
                 } else if (context.ipd === "tb") {
 
-                    se.node.style.borderTopColor = se.bgcolor || "#00000000";
-                    se.node.style.borderTopStyle = "solid";
-                    se.node.style.borderTopWidth = pospadpxlen;
+                    se.node.style.paddingTop = pospadpxlen;
                     se.node.style.marginTop = negpadpxlen;
 
                 }
 
                 if (context.ipd === "lr") {
 
-                    ee.node.style.borderRightColor = ee.bgcolor  || "#00000000";
-                    ee.node.style.borderRightStyle = "solid";
-                    ee.node.style.borderRightWidth = pospadpxlen;
                     ee.node.style.marginRight = negpadpxlen;
+                    ee.node.style.paddingRight = pospadpxlen;
 
                 } else if (context.ipd === "rl") {
 
-                    ee.node.style.borderLeftColor = ee.bgcolor || "#00000000";
-                    ee.node.style.borderLeftStyle = "solid";
-                    ee.node.style.borderLeftWidth = pospadpxlen;
+                    ee.node.style.paddingLeft = pospadpxlen;
                     ee.node.style.marginLeft = negpadpxlen;
 
                 } else if (context.ipd === "tb") {
 
-                    ee.node.style.borderBottomColor = ee.bgcolor || "#00000000";
-                    ee.node.style.borderBottomStyle = "solid";
-                    ee.node.style.borderBottomWidth = pospadpxlen;
+                    ee.node.style.paddingBottom = pospadpxlen;
                     ee.node.style.marginBottom = negpadpxlen;
 
                 }
@@ -842,7 +944,7 @@
 
     }
 
-    function applyFillLineGap(lineList, par_before, par_after, context) {
+    function applyFillLineGap(lineList, par_before, par_after, context, element) {
 
         /* positive for BPD = lr and tb, negative for BPD = rl */
         var s = Math.sign(par_after - par_before);
@@ -855,55 +957,42 @@
 
             if (i === 0) {
 
-                frontier = par_before;
+                frontier = Math.round(par_before);
 
             } else if (i === lineList.length) {
 
-                frontier = par_after;
+                frontier = Math.round(par_after);
 
             } else {
 
-                frontier = (lineList[i].before + lineList[i - 1].after) / 2;
+                frontier = Math.round((lineList[i - 1].after + lineList[i].before) / 2);
 
             }
 
-            /* padding amount */
-
-            var pad;
-
-            /* current element */
-
-            var e;
+            var padding;
+            var l,thisNode;
 
             /* before line */
-
             if (i > 0) {
 
-                for (var j = 0; j < lineList[i - 1].elements.length; j++) {
+                if (lineList[i-1]) {
 
-                    if (lineList[i - 1].elements[j].bgcolor === null)
-                        continue;
+                    for (l=0;l<lineList[i-1].elements.length;l++) {
 
-                    e = lineList[i - 1].elements[j];
-
-                    if (s * (e.after - frontier) < 0) {
-
-                        pad = Math.ceil(Math.abs(frontier - e.after)) + "px";
-
-                        e.node.style.backgroundColor = e.bgcolor;
+                        thisNode=lineList[i-1].elements[l];
+                        padding = s*(frontier-thisNode.after) + "px";
 
                         if (context.bpd === "lr") {
 
-                            e.node.style.paddingRight = pad;
-
+                            thisNode.node.style.paddingRight = padding;
 
                         } else if (context.bpd === "rl") {
 
-                            e.node.style.paddingLeft = pad;
+                            thisNode.node.style.paddingLeft = padding;
 
                         } else if (context.bpd === "tb") {
 
-                            e.node.style.paddingBottom = pad;
+                            thisNode.node.style.paddingBottom = padding;
 
                         }
 
@@ -914,40 +1003,26 @@
             }
 
             /* after line */
-
             if (i < lineList.length) {
 
-                for (var k = 0; k < lineList[i].elements.length; k++) {
+                for (l=0;l<lineList[i].elements.length;l++) {
 
-                    e = lineList[i].elements[k];
+                    thisNode = lineList[i].elements[l];
+                    padding = s * (thisNode.before - frontier) + "px";
 
-                    if (e.bgcolor === null)
-                        continue;
+                    if (context.bpd === "lr") {
 
-                    if (s * (e.before - frontier) > 0) {
+                        thisNode.node.style.paddingLeft = padding;
 
-                        pad = Math.ceil(Math.abs(e.before - frontier)) + "px";
+                    } else if (context.bpd === "rl") {
 
-                        e.node.style.backgroundColor = e.bgcolor;
+                        thisNode.node.style.paddingRight = padding;
 
-                        if (context.bpd === "lr") {
+                    } else if (context.bpd === "tb") {
 
-                            e.node.style.paddingLeft = pad;
-
-
-                        } else if (context.bpd === "rl") {
-
-                            e.node.style.paddingRight = pad;
-
-
-                        } else if (context.bpd === "tb") {
-
-                            e.node.style.paddingTop = pad;
-
-                        }
+                        thisNode.node.style.paddingTop = padding;
 
                     }
-
                 }
 
             }
@@ -1022,17 +1097,11 @@
 
                 var r = element.getBoundingClientRect();
 
-                /* skip if span is not displayed */
-
-                if (r.height === 0 || r.width === 0)
-                    return;
-
                 var edges = rect2edges(r, context);
 
                 if (llist.length === 0 ||
                         (!isSameLine(edges.before, edges.after, llist[llist.length - 1].before, llist[llist.length - 1].after))
                         ) {
-
                     llist.push({
                         before: edges.before,
                         after: edges.after,
