@@ -91,7 +91,11 @@
             }
         }
 
-        body = filter(offset, tt.body);
+        if (tt.body !== null) {
+            body = filter(offset, tt.body);
+        } else {
+            body = null;
+        }
 
         /* rewritten TTML will always have a default - this covers it. because the region is defaulted to "" */
         if (activeRegions.size === 0 && tt.head.layout.regions.hasOwnProperty("")) {
