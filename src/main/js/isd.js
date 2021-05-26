@@ -63,6 +63,32 @@
         var body = {};
         var activeRegions = new Set();
 
+        /* gather any regions that might have showBackground="always" */
+        /* NB don't bother checking for initial here - it'll get checked later anyway, */
+        /* and this code is for optimisation. */
+        /* NB2 do this before iterating through content, otherwise the order of regions */
+        /* in activeRegions might not match the document order, which it needs to. */
+        for (var layout_child in tt.head.layout.regions)
+        {
+            if (tt.head.layout.regions.hasOwnProperty(layout_child)) {
+                region = tt.head.layout.regions[layout_child];
+                showBackground = region.styleAttrs[imscStyles.byName.showBackground.qname];
+                backgroundColor = region.styleAttrs[imscStyles.byName.backgroundColor.qname];
+                backgroundImage = region.styleAttrs[imscStyles.byName.backgroundImage.qname];
+                if ((showBackground === 'always' || showBackground === undefined) &&
+                   (backgroundColor !== undefined || backgroundImage !== undefined) &&
+                   !(offset < region.begin || offset >= region.end)) {
+                    activeRegions.add(region.id);
+                }
+            }
+        }
+
+        /* If the body specifies a region, catch it, since no filtered content will */
+        /* likely specify the region. */
+        if (tt.body && tt.body.regionID) {
+            activeRegions.add(tt.body.regionID);
+        }
+
         function filter(offset, element) {
             function offsetFilter(element) {
                 return !(offset < element.begin || offset >= element.end);    
@@ -101,7 +127,7 @@
         if (activeRegions.size === 0 && tt.head.layout.regions.hasOwnProperty("")) {
             activeRegions.add("");
         }
-        
+
         /* process regions */      
 
         activeRegions.forEach(function (regionID) {
