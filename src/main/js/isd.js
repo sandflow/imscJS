@@ -96,7 +96,9 @@
             if (element.contents) {
                 var clone = {};
                 for (var prop in element) {
-                    clone[prop] = element[prop];
+                    if (element.hasOwnProperty(prop)) {
+                        clone[prop] = element[prop];
+                    }
                 }
                 clone.contents = [];
 
