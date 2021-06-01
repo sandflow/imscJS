@@ -64,19 +64,17 @@
         var activeRegions = {};
 
         /* gather any regions that might have showBackground="always" and show a background */
-        initialShowBackground = tt.head.styling.initials[imscStyles.byName.showBackground.qname];
-        initialbackgroundColor = tt.head.styling.initials[imscStyles.byName.backgroundColor.qname];
-        initialbackgroundImage = tt.head.styling.initials[imscStyles.byName.backgroundImage.qname];
+        var initialShowBackground = tt.head.styling.initials[imscStyles.byName.showBackground.qname];
+        var initialbackgroundColor = tt.head.styling.initials[imscStyles.byName.backgroundColor.qname];
         for (var layout_child in tt.head.layout.regions)
         {
             if (tt.head.layout.regions.hasOwnProperty(layout_child)) {
-                region = tt.head.layout.regions[layout_child];
-                showBackground = region.styleAttrs[imscStyles.byName.showBackground.qname] || initialShowBackground;
-                backgroundColor = region.styleAttrs[imscStyles.byName.backgroundColor.qname] || initialbackgroundColor;
-                backgroundImage = region.styleAttrs[imscStyles.byName.backgroundImage.qname] || initialbackgroundImage;
+                var region = tt.head.layout.regions[layout_child];
+                var showBackground = region.styleAttrs[imscStyles.byName.showBackground.qname] || initialShowBackground;
+                var backgroundColor = region.styleAttrs[imscStyles.byName.backgroundColor.qname] || initialbackgroundColor;
                 activeRegions[region.id] = (
                     (showBackground === 'always' || showBackground === undefined) &&
-                    (backgroundColor !== undefined || backgroundImage !== undefined) &&
+                    backgroundColor !== undefined &&
                     !(offset < region.begin || offset >= region.end)
                     );
             }
