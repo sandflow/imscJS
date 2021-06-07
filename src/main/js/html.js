@@ -1351,6 +1351,23 @@
 
                     }
 
+                    // prune later duplicates we may have inserted 
+                    if (rslt.length>0) {
+
+                        var unique=[rslt[0]];
+
+                        for (var fi=1;fi<rslt.length;fi++) {
+
+                            if (unique.indexOf(rslt[fi]) == -1) {
+
+                                unique.push(rslt[fi]);
+
+                            }
+                        }
+
+                        rslt=unique;
+                    }
+
                     dom_element.style.fontFamily = rslt.join(",");
                 }
         ),
