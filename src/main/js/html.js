@@ -1365,7 +1365,7 @@
                             }
                         }
 
-                        rslt=unique;
+                        rslt = unique;
                     }
 
                     dom_element.style.fontFamily = rslt.join(",");
