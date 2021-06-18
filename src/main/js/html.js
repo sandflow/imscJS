@@ -1352,7 +1352,7 @@
                     }
 
                     // prune later duplicates we may have inserted 
-                    if (rslt.length>0) {
+                    if (rslt.length > 0) {
 
                         var unique=[rslt[0]];
 
