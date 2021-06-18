@@ -1356,7 +1356,7 @@
 
                         var unique=[rslt[0]];
 
-                        for (var fi=1;fi<rslt.length;fi++) {
+                        for (var fi = 1; fi < rslt.length; fi++) {
 
                             if (unique.indexOf(rslt[fi]) == -1) {
 
