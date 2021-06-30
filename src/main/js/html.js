@@ -340,7 +340,6 @@
 
                 }
 
-                context.removePaddingElement=proc_e;
                 context.lp = lp;
             }
         }
@@ -511,19 +510,6 @@
             if (context.lp) {
 
                 applyLinePadding(linelist, context.lp.toUsedLength(context.w, context.h), context);
-
-                if (context.bpd === "tb") {
-
-                    // should this actually be remove?
-                    context.removePaddingElement.style.paddingLeft=0;
-                    context.removePaddingElement.style.paddingRight=0;
-
-                } else {
-
-                    context.removePaddingElement.style.paddingTop=0;
-                    context.removePaddingElement.style.paddingBottom=0;
-
-                }
 
                 context.lp = null;
 
