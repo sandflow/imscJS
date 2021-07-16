@@ -416,7 +416,7 @@
 
                     var cc = isd_element.text.charCodeAt(j);
 
-                    if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length-1) {
+                    if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length - 1) {
 
                         /* wrap the character(s) in a span unless it is a high surrogate */
 
@@ -523,7 +523,7 @@
 
                 var par_edges = rect2edges(proc_e.getBoundingClientRect(), context);
 
-                applyFillLineGap(linelist, par_edges.before, par_edges.after, context,proc_e);
+                applyFillLineGap(linelist, par_edges.before, par_edges.after, context, proc_e);
 
                 context.flg = null;
 
@@ -583,7 +583,7 @@
 
             for (var j = 1; j < line.elements.length;) {
 
-                var previous = line.elements[j-1];
+                var previous = line.elements[j - 1];
                 var span = line.elements[j];
 
                 if (spanMerge(previous.node, span.node)) {
@@ -981,9 +981,9 @@
 
                 if (lineList[i-1]) {
 
-                    for (l=0;l<lineList[i-1].elements.length;l++) {
+                    for (l = 0; l < lineList[i - 1].elements.length; l++) {
 
-                        thisNode=lineList[i-1].elements[l];
+                        thisNode=lineList[i - 1].elements[l];
                         padding = s*(frontier-thisNode.after) + "px";
 
                         if (context.bpd === "lr") {
@@ -1009,7 +1009,7 @@
             /* after line */
             if (i < lineList.length) {
 
-                for (l=0;l<lineList[i].elements.length;l++) {
+                for (l = 0; l < lineList[i].elements.length; l++) {
 
                     thisNode = lineList[i].elements[l];
                     padding = s * (thisNode.before - frontier) + "px";
