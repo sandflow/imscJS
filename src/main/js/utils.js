@@ -135,8 +135,8 @@
 
     imscUtils.parseTextShadow = function (str) {
 
-        var shadows = str.split(",");
-
+        var shadows = str.match(/([^\(,\)]|\([^\)]+\))+/g);
+        
         var r = [];
 
         for (var i in shadows) {
