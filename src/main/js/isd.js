@@ -197,13 +197,15 @@
 
         /* apply set (animation) styling */
 
-        for (var i in elem.sets) {
+        if ("sets" in elem) {
+            for (var i = 0; i < elem.sets.length; i++) {
 
-            if (offset < elem.sets[i].begin || offset >= elem.sets[i].end)
-                continue;
+                if (offset < elem.sets[i].begin || offset >= elem.sets[i].end)
+                    continue;
 
-            isd_element.styleAttrs[elem.sets[i].qname] = elem.sets[i].value;
+                isd_element.styleAttrs[elem.sets[i].qname] = elem.sets[i].value;
 
+            }
         }
 
         /* 
@@ -214,6 +216,8 @@
         var spec_attr = {};
 
         for (var qname in isd_element.styleAttrs) {
+
+            if (! isd_element.styleAttrs.hasOwnProperty(qname)) continue;
 
             spec_attr[qname] = true;
 
@@ -245,7 +249,7 @@
 
         if (parent !== null) {
 
-            for (var j in imscStyles.all) {
+            for (var j = 0; j < imscStyles.all.length; j++) {
 
                 var sa = imscStyles.all[j];
 
@@ -344,8 +348,8 @@
 
         /* initial value styling */
 
-        for (var k in imscStyles.all) {
-
+        for (var k = 0; k < imscStyles.all.length; k++) {
+            
             var ivs = imscStyles.all[k];
 
             /* skip if value is already specified */
@@ -401,8 +405,8 @@
         /* compute styles (only for non-inherited styles) */
         /* TODO: get rid of spec_attr */
 
-        for (var z in imscStyles.all) {
-
+        for (var z = 0; z < imscStyles.all.length; z++) {
+            
             var cs = imscStyles.all[z];
 
             if (!(cs.qname in spec_attr)) continue;
@@ -447,7 +451,7 @@
 
         /* process contents of the element */
 
-        var contents;
+        var contents = null;
 
         if (parent === null) {
 
@@ -473,7 +477,7 @@
 
         }
 
-        for (var x in contents) {
+        for (var x = 0; contents !== null && x < contents.length; x++) {
 
             var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x], errorHandler, context);
 
@@ -493,6 +497,7 @@
         /* remove styles that are not applicable */
 
         for (var qnameb in isd_element.styleAttrs) {
+            if (!isd_element.styleAttrs.hasOwnProperty(qnameb)) continue;
 
             /* true if not applicable */
 
@@ -529,7 +534,12 @@
             if (! na) {
 
                 var da = imscStyles.byQName[qnameb];
-                na = da.applies.indexOf(isd_element.kind) === -1;
+
+                if ("applies" in da){
+
+                    na = da.applies.indexOf(isd_element.kind) === -1;
+
+                }
 
             }
 
@@ -598,7 +608,7 @@
 
         var element;
 
-        for(var i = 0; i < elist.length;) {
+        for (var i = 0; i < elist.length;) {
 
             element = elist[i];
 
@@ -629,7 +639,7 @@
 
         /* remove trailing LWSPs */
 
-        for(i = 0; i < elist.length; i++) {
+        for (i = 0; i < elist.length; i++) {
 
             element = elist[i];
 
@@ -652,7 +662,11 @@
 
     function constructSpanList(element, elist) {
 
-        for (var i in element.contents) {
+        if (! ("contents" in element)) {
+            return;
+        }
+
+        for (var i = 0; i < element.contents.length; i++) {
 
             var child = element.contents[i];
             var ruby = child.styleAttrs[imscStyles.byName.ruby.qname];
@@ -732,6 +746,8 @@
         this.styleAttrs = {};
 
         for (var sname in ttelem.styleAttrs) {
+
+            if (! ttelem.styleAttrs.hasOwnProperty(sname)) continue;
 
             this.styleAttrs[sname] =
                 ttelem.styleAttrs[sname];

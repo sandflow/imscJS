@@ -139,7 +139,7 @@
         
         var r = [];
 
-        for (var i in shadows) {
+        for (var i = 0; i < shadows.length; i++) {
 
             var shadow = shadows[i].split(" ");
 
@@ -231,7 +231,7 @@
 
         /* initial clean-up pass */
 
-        for (var j in s) {
+        for (var j = 0 ; j < s.length; j++) {
 
             if (!isKeyword(s[j])) {
 

@@ -100,6 +100,8 @@
 
                 for (var sid in estack[0].styles) {
 
+                    if (! estack[0].styles.hasOwnProperty(sid)) continue;
+
                     mergeChainedStyles(estack[0], estack[0].styles[sid], errorHandler);
 
                 }
@@ -362,6 +364,8 @@
                         ini.initFromNode(node, errorHandler);
                         
                         for (var qn in ini.styleAttrs) {
+
+                            if (! ini.styleAttrs.hasOwnProperty(qn)) continue;
                             
                             doc.head.styling.initials[qn] = ini.styleAttrs[qn];
                             
@@ -608,9 +612,10 @@
 
         for (var i in doc.head.layout.regions) {
 
-            hasRegions = true;
-
-            break;
+            if (doc.head.layout.regions.hasOwnProperty(i)) {
+                hasRegions = true;
+                break;
+            }
 
         }
 
@@ -627,6 +632,8 @@
         /* resolve desired timing for regions */
 
         for (var region_i in doc.head.layout.regions) {
+
+            if (! doc.head.layout.regions.hasOwnProperty(region_i)) continue;
 
             resolveTiming(doc, doc.head.layout.regions[region_i], null, null);
 
@@ -713,21 +720,25 @@
 
         var s = null;
 
-        for (var set_i in element.sets) {
+        if ("sets" in element) {
 
-            resolveTiming(doc, element.sets[set_i], s, element);
+            for (var set_i = 0; set_i < element.sets.length; set_i++) {
 
-            if (element.timeContainer === "seq") {
+                resolveTiming(doc, element.sets[set_i], s, element);
 
-                implicit_end = element.sets[set_i].end;
+                if (element.timeContainer === "seq") {
 
-            } else {
+                    implicit_end = element.sets[set_i].end;
 
-                implicit_end = Math.max(implicit_end, element.sets[set_i].end);
+                } else {
+
+                    implicit_end = Math.max(implicit_end, element.sets[set_i].end);
+
+                }
+
+                s = element.sets[set_i];
 
             }
-
-            s = element.sets[set_i];
 
         }
 
@@ -749,9 +760,9 @@
 
             }
 
-        } else {
-
-            for (var content_i in element.contents) {
+        } else if ("contents" in element) {
+ 
+            for (var content_i = 0; content_i < element.contents.length; content_i++) {
 
                 resolveTiming(doc, element.contents[content_i], s, element);
 
@@ -1270,6 +1281,8 @@
 
         for (var qname in styles) {
 
+            if (! styles.hasOwnProperty(qname)) continue;
+
             if (this.qname) {
 
                 reportError(errorHandler, "More than one style specified on set");
@@ -1747,6 +1760,8 @@
     function mergeStylesIfNotPresent(from_styles, into_styles) {
 
         for (var sname in from_styles) {
+
+            if (! from_styles.hasOwnProperty(sname)) continue;
 
             if (sname in into_styles)
                 continue;

@@ -138,9 +138,13 @@
 
         element.appendChild(rootcontainer);
 
-        for (var i in isd.contents) {
+        if ("contents" in isd) {
 
-            processElement(context, rootcontainer, isd.contents[i], isd);
+            for (var i = 0; i < isd.contents.length; i++) {
+
+                processElement(context, rootcontainer, isd.contents[i], isd);
+
+            }
 
         }
 
@@ -297,7 +301,7 @@
 
         /* tranform TTML styles to CSS styles */
 
-        for (var i in STYLING_MAP_DEFS) {
+        for (var i = 0; i < STYLING_MAP_DEFS.length; i++) {
 
             var sm = STYLING_MAP_DEFS[i];
 
@@ -447,9 +451,13 @@
 
         /* process the children of the ISD element */
 
-        for (var k in isd_element.contents) {
+        if ("contents" in isd_element) {
 
-            processElement(context, proc_e, isd_element.contents[k], isd_element);
+            for (var k = 0; k < isd_element.contents.length; k++) {
+
+                processElement(context, proc_e, isd_element.contents[k], isd_element);
+
+            }
 
         }
 
@@ -681,7 +689,9 @@
 
     function applyLinePadding(lineList, lp, context) {
 
-        for (var i in lineList) {
+        if (lineList === null) return;
+
+        for (var i = 0; i < lineList.length; i++) {
 
             var l = lineList[i].elements.length;
 
@@ -927,7 +937,7 @@
 
                     /* copy specified style properties from the sibling ruby container */
                     
-                    for(var k = 0; k < sib.style.length; k++) {
+                    for (var k = 0; k < sib.style.length; k++) {
 
                         ruby.style.setProperty(sib.style.item(k), sib.style.getPropertyValue(sib.style.item(k)));
 
@@ -1379,7 +1389,7 @@
 
                     /* per IMSC1 */
 
-                    for (var i in attr) {
+                    for (var i = 0; i < attr.length; i++) {
 
                         if (attr[i] === "monospaceSerif") {
 
@@ -1673,7 +1683,7 @@
 
                         if (attr !== "none") {
 
-                            for (var i in attr) {
+                            for (var i = 0; i < attr.length; i++) {
 
 
                                 s.push(attr[i].x_off.toUsedLength(context.w, context.h) + "px " +
@@ -1805,7 +1815,7 @@
 
     var STYLMAP_BY_QNAME = {};
 
-    for (var i in STYLING_MAP_DEFS) {
+    for (var i = 0; i < STYLING_MAP_DEFS.length; i++) {
 
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
     }
