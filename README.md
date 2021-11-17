@@ -16,7 +16,7 @@ imscJS 1.1.x implements [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/) and 
 
 imscJS 1.0.x only implements [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/), and is no longer being actively developed.
 
-A sample web app that uses imscJS is available at http://sandflow.com/imsc1_1/index.html.
+A sample web app that uses imscJS is available at https://www.sandflow.com/imsc1_1/index.html.
 
 Documentation is available on [MDN](https://developer.mozilla.org/en-US/docs/Related/IMSC).
 
