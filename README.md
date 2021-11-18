@@ -12,10 +12,6 @@ INTRODUCTION
 
 imscJS is a JavaScript library for rendering [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/) and [IMSC 1.1](https://www.w3.org/TR/ttml-imsc1.1/) documents to HTML5. IMSC is a profile of [TTML 2](https://www.w3.org/TR/ttml2/) designed for subtitle and caption delivery worldwide.
 
-imscJS 1.1.x implements [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/) and [IMSC 1.1](https://www.w3.org/TR/ttml-imsc1.1/), and is recommended for routine use.
-
-imscJS 1.0.x only implements [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/), and is no longer being actively developed.
-
 A sample web app that uses imscJS is available at https://www.sandflow.com/imsc1_1/index.html.
 
 Documentation is available on [MDN](https://developer.mozilla.org/en-US/docs/Related/IMSC).
