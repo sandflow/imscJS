@@ -27,3 +27,4 @@
 exports.generateISD = require('./isd').generateISD;
 exports.fromXML = require('./doc').fromXML;
 exports.renderHTML = require('./html').render;
+exports.styles = require('./styles');
