@@ -78,9 +78,20 @@
             displayForcedOnlyMode,
             errorHandler,
             previousISDState,
-            enableRollUp
+            enableRollUp,
+            dom_document
             ) {
 
+        // if alternative dom document functions wanted, use it
+        if (dom_document){
+           imscHTML.document = dom_document;
+           imscHTML.Node = dom_document.Node;
+        } else {
+           imscHTML.document = document;
+           imscHTML.Node = Node;
+        }
+        var document = imscHTML.document;
+            
         /* maintain aspect ratio if specified */
 
         var height = eheight || element.clientHeight;
@@ -155,6 +166,7 @@
     function processElement(context, dom_parent, isd_element, isd_parent) {
 
         var e;
+        var document = imscHTML.document;
 
         if (isd_element.kind === 'region') {
 
@@ -762,6 +774,7 @@
     }
 
     function applyMultiRowAlign(lineList) {
+        var document = imscHTML.document;
 
         /* apply an explicit br to all but the last line */
 
@@ -871,6 +884,7 @@
     }
 
     function applyRubyReserve(lineList, context) {
+        var document = imscHTML.document;
 
         for (var i = 0; i < lineList.length; i++) {
 
@@ -1102,6 +1116,8 @@
             return;
 
         }
+        
+        var Node = imscHTML.Node;
 
         var curbgcolor = element.style.backgroundColor || bgcolor;
 
