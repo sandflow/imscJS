@@ -1838,24 +1838,21 @@
         STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
     }
 
-    /* CSS property names */
+    // if no browser window/document, then default, not break;
+    var RUBYPOSITION_ISWK = false;
+    var RUBYPOSITION_PROP = "rubyPosition";
+    var TEXTEMPHASISSTYLE_PROP = "textEmphasisStyle";
+    var TEXTEMPHASISPOSITION_PROP = "textEmphasisPosition";
+
     try {
-      var RUBYPOSITION_ISWK = "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
+      RUBYPOSITION_ISWK = "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
 
-      var RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
+      RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
 
-      var TEXTEMPHASISSTYLE_PROP = "webkitTextEmphasisStyle" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
+      TEXTEMPHASISSTYLE_PROP = "webkitTextEmphasisStyle" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
 
-      var TEXTEMPHASISPOSITION_PROP = "webkitTextEmphasisPosition" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisPosition" : "textEmphasisPosition";
+      TEXTEMPHASISPOSITION_PROP = "webkitTextEmphasisPosition" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisPosition" : "textEmphasisPosition";
     } catch (e){
-      // if no browser window/document, then default, not break;
-      var RUBYPOSITION_ISWK = false;
-      
-      var RUBYPOSITION_PROP = "rubyPosition";
-      
-      var TEXTEMPHASISSTYLE_PROP = "textEmphasisStyle";
-      
-      var TEXTEMPHASISPOSITION_PROP = "textEmphasisPosition";
     }
     /* error utilities */
 
