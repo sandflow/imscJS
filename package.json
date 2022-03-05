@@ -24,15 +24,18 @@
         "imsc"
     ],
     "author": "Pierre-Anthony Lemieux <pal@sandflow.com>",
-    "main": "src/main/js/main.js",
+    "main": "src/main/ts/main.ts",
     "unpkg": "dist/imsc.min.js",
     "scripts": {
-        "prepublishOnly": "grunt build:release"
+        "prepublishOnly": "grunt build:release",
+        "ts:compile": "tsc -p tsconfig.json"
     },
     "dependencies": {
         "sax": "1.2.1"
     },
     "devDependencies": {
+        "@types/node": "^17.0.21",
+        "@types/sax": "1.2.4",
         "browserify": "^16.2.3",
         "filesaver.js-npm": "latest",
         "google-closure-compiler": "^20180910.1.0",
@@ -43,9 +46,11 @@
         "grunt-exec": "^3.0.0",
         "grunt-npmcopy": "latest",
         "grunt-sync": "latest",
+        "grunt-ts": "^6.0.0-beta.22",
         "jszip": "latest",
-        "node-qunit": "^1.0.0",
+        "node-qunit": "^2.0.0",
         "qunit-assert-close": "latest",
-        "qunitjs": "latest"
+        "qunitjs": "latest",
+        "typescript": "^4.6.2"
     }
 }

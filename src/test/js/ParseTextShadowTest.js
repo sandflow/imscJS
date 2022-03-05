@@ -14,7 +14,7 @@ QUnit.test("ParseTextShadow",
         }
 
 
-        tests = [
+        var tests = [
 
             /* four components */
 

@@ -24,6 +24,16 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-exports.generateISD = require('./isd').generateISD;
-exports.fromXML = require('./doc').fromXML;
-exports.renderHTML = require('./html').render;
+export const ns_tt = "http://www.w3.org/ns/ttml";
+export const ns_tts = "http://www.w3.org/ns/ttml#styling";
+export const ns_ttp = "http://www.w3.org/ns/ttml#parameter";
+export const ns_xml = "http://www.w3.org/XML/1998/namespace";
+export const ns_itts = "http://www.w3.org/ns/ttml/profile/imsc1#styling";
+export const ns_ittp = "http://www.w3.org/ns/ttml/profile/imsc1#parameter";
+export const ns_smpte = "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt";
+export const ns_ebutts = "urn:ebu:tt:style";
+
+
+
+
+
