@@ -25,5 +25,5 @@
  */
 
 exports.generateISD = require('./isd').generateISD;
-exports.fromXML = require('./doc').fromXML;
+exports.fromXML = require('./doc-parser').fromXML;
 exports.renderHTML = require('./html').render;
