@@ -4,3 +4,4 @@ node_modules/
 nbproject/private
 ga.js
 .vscode/
+.idea/

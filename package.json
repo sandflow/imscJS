@@ -27,19 +27,32 @@
     "main": "src/main/js/main.js",
     "unpkg": "dist/imsc.min.js",
     "scripts": {
-        "prepublishOnly": "grunt build:release"
+        "prepublishOnly": "grunt build:release",
+        "transpile:babel:umd": "babel src/main/js -d dist/umd",
+        "build:babel:umd": "babel src/main/js --out-file dist/umd2/imsc.js",
+        "lint": "eslint src/main",
+        "lint:fix": "npm run lint -- --fix"
     },
     "dependencies": {
         "sax": "1.2.1"
     },
     "devDependencies": {
+        "@babel/cli": "^7.17.6",
+        "@babel/core": "^7.17.5",
+        "@babel/plugin-transform-modules-umd": "7.16.7",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-es2015": "7.0.0-beta.53",
+        "@types/eslint": "8.4.1",
+        "babelify": "10.0.0",
         "browserify": "^16.2.3",
+        "eslint": "^8.10.0",
         "filesaver.js-npm": "latest",
         "google-closure-compiler": "^20180910.1.0",
         "grunt": "latest",
+        "grunt-babel": "^8.0.0",
         "grunt-browserify": "latest",
         "grunt-contrib-clean": "latest",
-        "grunt-contrib-jshint": "latest",
+        "grunt-eslint": "^24.0.0",
         "grunt-exec": "^3.0.0",
         "grunt-npmcopy": "latest",
         "grunt-sync": "latest",

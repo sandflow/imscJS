@@ -28,391 +28,378 @@
  * @module imscUtils
  */
 
-;
-(function (imscUtils) { // wrapper for non-node envs
+const imscUtils = {};
 
-    /* Documents the error handler interface */
+/*
+ * Parses a TTML color expression
+ *
+ */
 
-    /**
-     * @classdesc Generic interface for handling events. The interface exposes four
-     * methods:
-     * * <pre>info</pre>: unusual event that does not result in an inconsistent state
-     * * <pre>warn</pre>: unexpected event that should not result in an inconsistent state
-     * * <pre>error</pre>: unexpected event that may result in an inconsistent state
-     * * <pre>fatal</pre>: unexpected event that results in an inconsistent state
-     *   and termination of processing
-     * Each method takes a single <pre>string</pre> describing the event as argument,
-     * and returns a single <pre>boolean</pre>, which terminates processing if <pre>true</pre>.
-     *
-     * @name ErrorHandler
-     * @class
-     */
+const HEX_COLOR_RE = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})?/;
+const DEC_COLOR_RE = /rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+const DEC_COLORA_RE = /rgba\(\s*(\d+),\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+const NAMED_COLOR = {
+    transparent: [0, 0, 0, 0],
+    black: [0, 0, 0, 255],
+    silver: [192, 192, 192, 255],
+    gray: [128, 128, 128, 255],
+    white: [255, 255, 255, 255],
+    maroon: [128, 0, 0, 255],
+    red: [255, 0, 0, 255],
+    purple: [128, 0, 128, 255],
+    fuchsia: [255, 0, 255, 255],
+    magenta: [255, 0, 255, 255],
+    green: [0, 128, 0, 255],
+    lime: [0, 255, 0, 255],
+    olive: [128, 128, 0, 255],
+    yellow: [255, 255, 0, 255],
+    navy: [0, 0, 128, 255],
+    blue: [0, 0, 255, 255],
+    teal: [0, 128, 128, 255],
+    aqua: [0, 255, 255, 255],
+    cyan: [0, 255, 255, 255]
+};
 
+imscUtils.parseColor = function (str) {
 
-    /*
-     * Parses a TTML color expression
-     * 
-     */
+    var m;
 
-    var HEX_COLOR_RE = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})?/;
-    var DEC_COLOR_RE = /rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
-    var DEC_COLORA_RE = /rgba\(\s*(\d+),\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
-    var NAMED_COLOR = {
-        transparent: [0, 0, 0, 0],
-        black: [0, 0, 0, 255],
-        silver: [192, 192, 192, 255],
-        gray: [128, 128, 128, 255],
-        white: [255, 255, 255, 255],
-        maroon: [128, 0, 0, 255],
-        red: [255, 0, 0, 255],
-        purple: [128, 0, 128, 255],
-        fuchsia: [255, 0, 255, 255],
-        magenta: [255, 0, 255, 255],
-        green: [0, 128, 0, 255],
-        lime: [0, 255, 0, 255],
-        olive: [128, 128, 0, 255],
-        yellow: [255, 255, 0, 255],
-        navy: [0, 0, 128, 255],
-        blue: [0, 0, 255, 255],
-        teal: [0, 128, 128, 255],
-        aqua: [0, 255, 255, 255],
-        cyan: [0, 255, 255, 255]
-    };
+    var r = null;
 
-    imscUtils.parseColor = function (str) {
+    var nc = NAMED_COLOR[str.toLowerCase()];
 
-        var m;
-        
-        var r = null;
-        
-        var nc = NAMED_COLOR[str.toLowerCase()];
-        
-        if (nc !== undefined) {
+    if (nc !== undefined) {
 
-            r = nc;
+        r = nc;
 
-        } else if ((m = HEX_COLOR_RE.exec(str)) !== null) {
+    } else if ((m = HEX_COLOR_RE.exec(str)) !== null) {
 
-            r = [parseInt(m[1], 16),
-                parseInt(m[2], 16),
-                parseInt(m[3], 16),
-                (m[4] !== undefined ? parseInt(m[4], 16) : 255)];
-            
-        } else if ((m = DEC_COLOR_RE.exec(str)) !== null) {
+        r = [parseInt(m[1], 16),
+            parseInt(m[2], 16),
+            parseInt(m[3], 16),
+            (m[4] !== undefined ? parseInt(m[4], 16) : 255)];
 
-            r = [parseInt(m[1]),
-                parseInt(m[2]),
-                parseInt(m[3]),
-                255];
-            
-        } else if ((m = DEC_COLORA_RE.exec(str)) !== null) {
+    } else if ((m = DEC_COLOR_RE.exec(str)) !== null) {
 
-            r = [parseInt(m[1]),
-                parseInt(m[2]),
-                parseInt(m[3]),
-                parseInt(m[4])];
-            
-        }
+        r = [parseInt(m[1]),
+            parseInt(m[2]),
+            parseInt(m[3]),
+            255];
 
-        return r;
-    };
+    } else if ((m = DEC_COLORA_RE.exec(str)) !== null) {
 
-    var LENGTH_RE = /^((?:\+|\-)?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
+        r = [parseInt(m[1]),
+            parseInt(m[2]),
+            parseInt(m[3]),
+            parseInt(m[4])];
 
-    imscUtils.parseLength = function (str) {
+    }
 
-        var m;
+    return r;
+};
 
-        var r = null;
+var LENGTH_RE = /^((?:[+-])?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
 
-        if ((m = LENGTH_RE.exec(str)) !== null) {
+imscUtils.parseLength = function (str) {
 
-            r = {value: parseFloat(m[1]), unit: m[2]};
-        }
+    var m;
 
-        return r;
-    };
+    var r = null;
 
-    imscUtils.parseTextShadow = function (str) {
+    if ((m = LENGTH_RE.exec(str)) !== null) {
 
-        var shadows = str.match(/([^\(,\)]|\([^\)]+\))+/g);
-        
-        var r = [];
+        r = {value: parseFloat(m[1]), unit: m[2]};
+    }
 
-        for (var i = 0; i < shadows.length; i++) {
+    return r;
+};
 
-            var shadow = shadows[i].split(" ");
+imscUtils.parseTextShadow = function (str) {
 
-            if (shadow.length === 1 && shadow[0] === "none") {
+    var shadows = str.match(/([^(,)]|\([^)]+\))+/g);
 
-                return "none";
+    var r = [];
 
-            } else if (shadow.length > 1 && shadow.length < 5) {
+    for (var i = 0; i < shadows.length; i++) {
 
-                var out_shadow = [null, null, null, null];
+        var shadow = shadows[i].split(' ');
 
-                /* x offset */
+        if (shadow.length === 1 && shadow[0] === 'none') {
 
-                var l = imscUtils.parseLength(shadow.shift());
+            return 'none';
 
-                if (l === null)
-                    return null;
+        } else if (shadow.length > 1 && shadow.length < 5) {
 
-                out_shadow[0] = l;
+            var out_shadow = [null, null, null, null];
 
-                /* y offset */
+            /* x offset */
 
-                l = imscUtils.parseLength(shadow.shift());
+            var l = imscUtils.parseLength(shadow.shift());
 
-                if (l === null)
-                    return null;
+            if (l === null)
+                return null;
 
-                out_shadow[1] = l;
+            out_shadow[0] = l;
 
-                /* is there a third component */
+            /* y offset */
 
-                if (shadow.length === 0) {
-                    r.push(out_shadow);
-                    continue;
-                }
+            l = imscUtils.parseLength(shadow.shift());
 
-                l = imscUtils.parseLength(shadow[0]);
+            if (l === null)
+                return null;
 
-                if (l !== null) {
+            out_shadow[1] = l;
 
-                    out_shadow[2] = l;
+            /* is there a third component */
 
-                    shadow.shift();
-
-                }
-
-                if (shadow.length === 0) {
-                    r.push(out_shadow);
-                    continue;
-                }
-
-                var c = imscUtils.parseColor(shadow[0]);
-
-                if (c === null)
-                    return null;
-
-                out_shadow[3] = c;
-
+            if (shadow.length === 0) {
                 r.push(out_shadow);
+                continue;
             }
 
+            l = imscUtils.parseLength(shadow[0]);
+
+            if (l !== null) {
+
+                out_shadow[2] = l;
+
+                shadow.shift();
+
+            }
+
+            if (shadow.length === 0) {
+                r.push(out_shadow);
+                continue;
+            }
+
+            var c = imscUtils.parseColor(shadow[0]);
+
+            if (c === null)
+                return null;
+
+            out_shadow[3] = c;
+
+            r.push(out_shadow);
         }
 
-        return r;
+    }
+
+    return r;
+};
+
+
+imscUtils.parsePosition = function (str) {
+
+    /* see https://www.w3.org/TR/ttml2/#style-value-position */
+
+    var s = str.split(' ');
+
+    var isKeyword = function (str) {
+
+        return str === 'center' ||
+            str === 'left' ||
+            str === 'top' ||
+            str === 'bottom' ||
+            str === 'right';
+
     };
 
+    if (s.length > 4) {
 
-    imscUtils.parsePosition = function (str) {
+        return null;
 
-        /* see https://www.w3.org/TR/ttml2/#style-value-position */
+    }
 
-        var s = str.split(" ");
+    /* initial clean-up pass */
 
-        var isKeyword = function (str) {
+    for (var j = 0; j < s.length; j++) {
 
-            return str === "center" ||
-                    str === "left" ||
-                    str === "top" ||
-                    str === "bottom" ||
-                    str === "right";
+        if (!isKeyword(s[j])) {
 
-        };
+            var l = imscUtils.parseLength(s[j]);
 
-        if (s.length > 4) {
+            if (l === null)
+                return null;
 
-            return null;
-
+            s[j] = l;
         }
 
-        /* initial clean-up pass */
+    }
 
-        for (var j = 0 ; j < s.length; j++) {
+    /* position default */
 
-            if (!isKeyword(s[j])) {
+    var pos = {
+        h: {edge: 'left', offset: {value: 50, unit: '%'}},
+        v: {edge: 'top', offset: {value: 50, unit: '%'}}
+    };
 
-                var l = imscUtils.parseLength(s[j]);
+    /* update position */
 
-                if (l === null)
-                    return null;
+    for (var i = 0; i < s.length;) {
 
-                s[j] = l;
+        /* extract the current component */
+
+        var comp = s[i++];
+
+        if (isKeyword(comp)) {
+
+            /* we have a keyword */
+
+            var offset = {value: 0, unit: '%'};
+
+            /* peek at the next component */
+
+            if (s.length !== 2 && i < s.length && (!isKeyword(s[i]))) {
+
+                /* followed by an offset */
+
+                offset = s[i++];
+
             }
 
-        }
+            /* skip if center */
 
-        /* position default */
+            if (comp === 'right') {
 
-        var pos = {
-            h: {edge: "left", offset: {value: 50, unit: "%"}},
-            v: {edge: "top", offset: {value: 50, unit: "%"}}
-        };
+                pos.h.edge = comp;
 
-        /* update position */
+                pos.h.offset = offset;
 
-        for (var i = 0; i < s.length; ) {
+            } else if (comp === 'bottom') {
 
-            /* extract the current component */
+                pos.v.edge = comp;
 
-            var comp = s[i++];
-
-            if (isKeyword(comp)) {
-
-                /* we have a keyword */
-
-                var offset = {value: 0, unit: "%"};
-
-                /* peek at the next component */
-
-                if (s.length !== 2 && i < s.length && (!isKeyword(s[i]))) {
-
-                    /* followed by an offset */
-
-                    offset = s[i++];
-
-                }
-
-                /* skip if center */
-
-                if (comp === "right") {
-
-                    pos.h.edge = comp;
-
-                    pos.h.offset = offset;
-
-                } else if (comp === "bottom") {
-
-                    pos.v.edge = comp;
+                pos.v.offset = offset;
 
 
-                    pos.v.offset = offset;
+            } else if (comp === 'left') {
 
+                pos.h.offset = offset;
 
-                } else if (comp === "left") {
+            } else if (comp === 'top') {
 
-                    pos.h.offset = offset;
+                pos.v.offset = offset;
 
+            }
 
-                } else if (comp === "top") {
+        } else if (s.length === 1 || s.length === 2) {
 
-                    pos.v.offset = offset;
+            /* we have a bare value */
 
+            if (i === 1) {
 
-                }
+                /* assign it to left edge if first bare value */
 
-            } else if (s.length === 1 || s.length === 2) {
-
-                /* we have a bare value */
-
-                if (i === 1) {
-
-                    /* assign it to left edge if first bare value */
-
-                    pos.h.offset = comp;
-
-                } else {
-
-                    /* assign it to top edge if second bare value */
-
-                    pos.v.offset = comp;
-
-                }
+                pos.h.offset = comp;
 
             } else {
 
-                /* error condition */
+                /* assign it to top edge if second bare value */
 
-                return null;
+                pos.v.offset = comp;
 
             }
 
-        }
-
-        return pos;
-    };
-
-
-    imscUtils.ComputedLength = function (rw, rh) {
-        this.rw = rw;
-        this.rh = rh;
-    };
-
-    imscUtils.ComputedLength.prototype.toUsedLength = function (width, height) {
-        return width * this.rw + height * this.rh;
-    };
-
-    imscUtils.ComputedLength.prototype.isZero = function () {
-        return this.rw === 0 && this.rh === 0;
-    };
-
-    /**
-     * Computes a specified length to a root container relative length
-     * 
-     * @param {number} lengthVal Length value to be computed
-     * @param {string} lengthUnit Units of the length value
-     * @param {number} emScale length of 1em, or null if em is not allowed
-     * @param {number} percentScale length to which , or null if perecentage is not allowed
-     * @param {number} cellScale length of 1c, or null if c is not allowed
-     * @param {number} pxScale length of 1px, or null if px is not allowed
-     * @param {number} direction 0 if the length is computed in the horizontal direction, 1 if the length is computed in the vertical direction
-     * @return {number} Computed length
-     */
-    imscUtils.toComputedLength = function(lengthVal, lengthUnit, emLength, percentLength, cellLength, pxLength) {
-
-        if (lengthUnit === "%" && percentLength) {
-
-            return new imscUtils.ComputedLength(
-                    percentLength.rw * lengthVal / 100,
-                    percentLength.rh * lengthVal / 100
-                    );
-
-        } else if (lengthUnit === "em" && emLength) {
-
-            return new imscUtils.ComputedLength(
-                    emLength.rw * lengthVal,
-                    emLength.rh * lengthVal
-                    );
-
-        } else if (lengthUnit === "c" && cellLength) {
-
-            return new imscUtils.ComputedLength(
-                    lengthVal * cellLength.rw,
-                    lengthVal * cellLength.rh
-                    );
-
-        } else if (lengthUnit === "px" && pxLength) {
-
-            return new imscUtils.ComputedLength(
-                    lengthVal * pxLength.rw,
-                    lengthVal * pxLength.rh
-                    );
-
-        } else if (lengthUnit === "rh") {
-
-            return new imscUtils.ComputedLength(
-                    0,
-                    lengthVal / 100
-                    );
-
-        } else if (lengthUnit === "rw") {
-
-            return new imscUtils.ComputedLength(
-                    lengthVal / 100,
-                    0                    
-                    );
-
         } else {
+
+            /* error condition */
 
             return null;
 
         }
 
-    };
+    }
+
+    return pos;
+};
 
 
+imscUtils.ComputedLength = function (rw, rh) {
+    this.rw = rw;
+    this.rh = rh;
+};
 
-})(typeof exports === 'undefined' ? this.imscUtils = {} : exports);
+imscUtils.ComputedLength.prototype.toUsedLength = function (width, height) {
+    return width * this.rw + height * this.rh;
+};
+
+imscUtils.ComputedLength.prototype.isZero = function () {
+    return this.rw === 0 && this.rh === 0;
+};
+
+/**
+ * Computes a specified length to a root container relative length
+ *
+ * @param {number} lengthVal Length value to be computed
+ * @param {string} lengthUnit Units of the length value
+ * @param {number} emScale length of 1em, or null if em is not allowed
+ * @param {number} percentScale length to which , or null if perecentage is not allowed
+ * @param {number} cellScale length of 1c, or null if c is not allowed
+ * @param {number} pxScale length of 1px, or null if px is not allowed
+ * @param {number} direction 0 if the length is computed in the horizontal direction, 1 if the length is computed in the vertical direction
+ * @return {imscUtils.ComputedLength} Computed length
+ */
+imscUtils.toComputedLength = function (lengthVal, lengthUnit, emLength, percentLength, cellLength, pxLength) {
+
+    if (lengthUnit === '%' && percentLength) {
+
+        return new imscUtils.ComputedLength(
+            percentLength.rw * lengthVal / 100,
+            percentLength.rh * lengthVal / 100
+        );
+
+    } else if (lengthUnit === 'em' && emLength) {
+
+        return new imscUtils.ComputedLength(
+            emLength.rw * lengthVal,
+            emLength.rh * lengthVal
+        );
+
+    } else if (lengthUnit === 'c' && cellLength) {
+
+        return new imscUtils.ComputedLength(
+            lengthVal * cellLength.rw,
+            lengthVal * cellLength.rh
+        );
+
+    } else if (lengthUnit === 'px' && pxLength) {
+
+        return new imscUtils.ComputedLength(
+            lengthVal * pxLength.rw,
+            lengthVal * pxLength.rh
+        );
+
+    } else if (lengthUnit === 'rh') {
+
+        return new imscUtils.ComputedLength(
+            0,
+            lengthVal / 100
+        );
+
+    } else if (lengthUnit === 'rw') {
+
+        return new imscUtils.ComputedLength(
+            lengthVal / 100,
+            0
+        );
+
+    } else {
+
+        return null;
+
+    }
+
+};
+
+/**
+ * Wrapper for a direct call to Object.prototype.hasOwnProperty
+ *
+ * @param {unknown} maybeObject
+ * @param {string} property
+ * @returns {boolean}
+ */
+imscUtils.checkHasOwnProperty = (maybeObject, property) => {
+    return Object.prototype.hasOwnProperty.call(maybeObject, property);
+};
+
+module.exports = imscUtils;
