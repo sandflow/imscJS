@@ -28,8 +28,7 @@
     "unpkg": "dist/imsc.min.js",
     "scripts": {
         "prepublishOnly": "grunt build:release",
-        "transpile:babel:umd": "babel src/main/js -d dist/umd",
-        "build:babel:umd": "babel src/main/js --out-file dist/umd2/imsc.js",
+        "build:all": "grunt build",
         "lint": "eslint src/main",
         "lint:fix": "npm run lint -- --fix"
     },

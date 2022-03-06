@@ -50,7 +50,7 @@ DEVELOPMENT DEPENDENCIES
 QUICK START
 ===========
 
-* run the `build` target defined in [Gruntfile.js](Gruntfile.js) using [grunt](http://gruntjs.com/).
+* run the `build:all` target defined in [Gruntfile.js](Gruntfile.js) using [grunt](http://gruntjs.com/).
 
 * the resulting `imsc.js` and `sax.js` files at `build/public_html/libs` are, respectively, the imscJS library and its sax-js dependency. For example, both libraries can be included in a web page as follows:
 
@@ -86,15 +86,15 @@ MODULES
 -------
 
 imscJS consists of the following modules, which can be used in a node 
-environment using the `require` functionality, or standalone, in which case each module hosts its 
-definitions under a global name (the token between parantheses):
+environment using the `require` functionality and in case of standalone use, there's a `imsc` global
+namespace that provides methods mentioned in **API** section:
 
-* `doc.js` (`imscDoc`): parses an IMSC document into an in-memory TT object
-* `isd.js` (`imscISD`): generates an ISD object from a TT object
-* `html.js` (`imscHTML`): generates an HTML fragment from an ISD object
-* `names.js` (`imscNames`): common constants
-* `styles.js` (`imscStyles`): defines TTML styling attributes processing
-* `utils.js` (`imscUtils`): common utility functions
+* `doc-parser`: parses an IMSC document into an in-memory TT object
+* `isd.js`: generates an ISD object from a TT object
+* `html.js`: generates an HTML fragment from an ISD object
+* `error.js`: a set of error handling functions
+* `styles.js`: defines TTML styling attributes processing
+* `utils.js`: common utility functions
 
 
 

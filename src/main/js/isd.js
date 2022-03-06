@@ -31,6 +31,7 @@
 const imscISD = {};
 const imscStyles = require('./styles');
 const imscUtils = require('./utils');
+const {reportError} = require('./error');
 
 /**
  * Creates a canonical representation of an IMSC1 document returned by <pre>imscDoc.fromXML()</pre>
@@ -49,28 +50,28 @@ imscISD.generateISD = function (tt, offset, errorHandler) {
 
     /* create the ISD object from the IMSC1 doc */
 
-    var isd = new ISD(tt);
+    const isd = new ISD(tt);
 
     /* context */
 
-    var context = {
+    const context = {
 
         /*rubyfs: []*/ /* font size of the nearest textContainer or container */
 
     };
 
     /* Filter body contents - Only process what we need within the offset and discard regions not applicable to the content */
-    var body = {};
-    var activeRegions = {};
+    let body = {};
+    const activeRegions = {};
 
     /* gather any regions that might have showBackground="always" and show a background */
-    var initialShowBackground = tt.head.styling.initials[imscStyles.byName.showBackground.qname];
-    var initialbackgroundColor = tt.head.styling.initials[imscStyles.byName.backgroundColor.qname];
-    for (var layout_child in tt.head.layout.regions) {
+    const initialShowBackground = tt.head.styling.initials[imscStyles.byName.showBackground.qname];
+    const initialbackgroundColor = tt.head.styling.initials[imscStyles.byName.backgroundColor.qname];
+    for (const layout_child in tt.head.layout.regions) {
         if (imscUtils.checkHasOwnProperty(tt.head.layout.regions, layout_child)) {
-            var region = tt.head.layout.regions[layout_child];
-            var showBackground = region.styleAttrs[imscStyles.byName.showBackground.qname] || initialShowBackground;
-            var backgroundColor = region.styleAttrs[imscStyles.byName.backgroundColor.qname] || initialbackgroundColor;
+            const region = tt.head.layout.regions[layout_child];
+            const showBackground = region.styleAttrs[imscStyles.byName.showBackground.qname] || initialShowBackground;
+            const backgroundColor = region.styleAttrs[imscStyles.byName.backgroundColor.qname] || initialbackgroundColor;
             activeRegions[region.id] = (
                 (showBackground === 'always' || showBackground === undefined) &&
                 backgroundColor !== undefined &&
@@ -91,8 +92,8 @@ imscISD.generateISD = function (tt, offset, errorHandler) {
         }
 
         if (element.contents) {
-            var clone = {};
-            for (var prop in element) {
+            const clone = {};
+            for (const prop in element) {
                 if (imscUtils.checkHasOwnProperty(element, prop)) {
                     clone[prop] = element[prop];
                 }
@@ -100,7 +101,7 @@ imscISD.generateISD = function (tt, offset, errorHandler) {
             clone.contents = [];
 
             element.contents.filter(offsetFilter).forEach(function (el) {
-                var filteredElement = filter(offset, el);
+                const filteredElement = filter(offset, el);
                 if (filteredElement.regionID) {
                     activeRegions[filteredElement.regionID] = true;
                 }
@@ -127,11 +128,11 @@ imscISD.generateISD = function (tt, offset, errorHandler) {
     }
 
     /* process regions */
-    for (var regionID in activeRegions) {
+    for (const regionID in activeRegions) {
         if (activeRegions[regionID]) {
             /* post-order traversal of the body tree per [construct intermediate document] */
 
-            var c = isdProcessContentElement(tt, offset, tt.head.layout.regions[regionID], body, null, '', tt.head.layout.regions[regionID], errorHandler, context);
+            const c = isdProcessContentElement(tt, offset, tt.head.layout.regions[regionID], body, null, '', tt.head.layout.regions[regionID], errorHandler, context);
 
             if (c !== null) {
 
@@ -147,7 +148,7 @@ imscISD.generateISD = function (tt, offset, errorHandler) {
 
 /* set of styles not applicable to ruby container spans */
 
-var _rcs_na_styles = [
+const _rcs_na_styles = [
     imscStyles.byName.color.qname,
     imscStyles.byName.textCombine.qname,
     imscStyles.byName.textDecoration.qname,
@@ -169,7 +170,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
      * inherited associated region otherwise
      */
 
-    var associated_region_id = 'regionID' in elem && elem.regionID !== '' ? elem.regionID : inherited_region_id;
+    const associated_region_id = 'regionID' in elem && elem.regionID !== '' ? elem.regionID : inherited_region_id;
 
     /* prune the element if either:
      * - the element is not terminal and the associated region is neither the default
@@ -192,12 +193,12 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     /* create an ISD element, including applying specified styles */
 
-    var isd_element = new ISDContentElement(elem);
+    const isd_element = new ISDContentElement(elem);
 
     /* apply set (animation) styling */
 
     if ('sets' in elem) {
-        for (var i = 0; i < elem.sets.length; i++) {
+        for (let i = 0; i < elem.sets.length; i++) {
 
             if (offset < elem.sets[i].begin || offset >= elem.sets[i].end)
                 continue;
@@ -212,9 +213,9 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
      * can compute them later
      */
 
-    var spec_attr = {};
+    const spec_attr = {};
 
-    for (var qname in isd_element.styleAttrs) {
+    for (const qname in isd_element.styleAttrs) {
 
         if (!imscUtils.checkHasOwnProperty(isd_element.styleAttrs, qname)) continue;
 
@@ -229,7 +230,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
             qname === imscStyles.byName.writingMode.qname &&
             !(imscStyles.byName.direction.qname in isd_element.styleAttrs)) {
 
-            var wm = isd_element.styleAttrs[qname];
+            const wm = isd_element.styleAttrs[qname];
 
             if (wm === 'lrtb' || wm === 'lr') {
 
@@ -248,9 +249,9 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     if (parent !== null) {
 
-        for (var j = 0; j < imscStyles.all.length; j++) {
+        for (let j = 0; j < imscStyles.all.length; j++) {
 
-            var sa = imscStyles.all[j];
+            const sa = imscStyles.all[j];
 
             /* textDecoration has special inheritance rules */
 
@@ -258,9 +259,9 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
                 /* handle both textDecoration inheritance and specification */
 
-                var ps = parent.styleAttrs[sa.qname];
-                var es = isd_element.styleAttrs[sa.qname];
-                var outs = [];
+                const ps = parent.styleAttrs[sa.qname];
+                const es = isd_element.styleAttrs[sa.qname];
+                let outs = [];
 
                 if (es === undefined) {
 
@@ -307,7 +308,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
                 /* special inheritance rule for ruby text container font size */
 
-                var ruby_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
+                const ruby_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
 
                 isd_element.styleAttrs[sa.qname] = new imscUtils.ComputedLength(
                     0.5 * ruby_fs.rw,
@@ -320,7 +321,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
                 /* special inheritance rule for ruby text font size */
 
-                var parent_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
+                const parent_fs = parent.styleAttrs[imscStyles.byName.fontSize.qname];
 
                 if (parent.styleAttrs[imscStyles.byName.ruby.qname] === 'textContainer') {
 
@@ -347,9 +348,9 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     /* initial value styling */
 
-    for (var k = 0; k < imscStyles.all.length; k++) {
+    for (let k = 0; k < imscStyles.all.length; k++) {
 
-        var ivs = imscStyles.all[k];
+        const ivs = imscStyles.all[k];
 
         /* skip if value is already specified */
 
@@ -369,7 +370,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
         /* determine initial value */
 
-        var iv = doc.head.styling.initials[ivs.qname] || ivs.initial;
+        const iv = doc.head.styling.initials[ivs.qname] || ivs.initial;
 
         if (iv === null) {
             /* skip processing if no initial value defined */
@@ -381,7 +382,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
         if (isd_element.kind === 'region' || (ivs.inherit === false && iv !== null)) {
 
-            var piv = ivs.parse(iv);
+            const piv = ivs.parse(iv);
 
             if (piv !== null) {
 
@@ -404,15 +405,15 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
     /* compute styles (only for non-inherited styles) */
     /* TODO: get rid of spec_attr */
 
-    for (var z = 0; z < imscStyles.all.length; z++) {
+    for (let z = 0; z < imscStyles.all.length; z++) {
 
-        var cs = imscStyles.all[z];
+        const cs = imscStyles.all[z];
 
         if (!(cs.qname in spec_attr)) continue;
 
         if (cs.compute !== null) {
 
-            var cstyle = cs.compute(
+            const cstyle = cs.compute(
                 /*doc, parent, element, attr, context*/
                 doc,
                 parent,
@@ -450,7 +451,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     /* process contents of the element */
 
-    var contents = null;
+    let contents = null;
 
     if (parent === null) {
 
@@ -476,9 +477,9 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     }
 
-    for (var x = 0; contents !== null && x < contents.length; x++) {
+    for (let x = 0; contents !== null && x < contents.length; x++) {
 
-        var c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x], errorHandler, context);
+        const c = isdProcessContentElement(doc, offset, region, body, isd_element, associated_region_id, contents[x], errorHandler, context);
 
         /*
          * keep child element only if they are non-null and their region match
@@ -495,19 +496,19 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     /* remove styles that are not applicable */
 
-    for (var qnameb in isd_element.styleAttrs) {
+    for (const qnameb in isd_element.styleAttrs) {
         if (!imscUtils.checkHasOwnProperty(isd_element.styleAttrs, qnameb)) continue;
 
         /* true if not applicable */
 
-        var na = false;
+        let na = false;
 
         /* special applicability of certain style properties to ruby container spans */
         /* TODO: in the future ruby elements should be translated to elements instead of kept as spans */
 
         if (isd_element.kind === 'span') {
 
-            var rsp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
+            const rsp = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
 
             na = (rsp === 'container' || rsp === 'textContainer' || rsp === 'baseContainer') &&
                 _rcs_na_styles.indexOf(qnameb) !== -1;
@@ -532,7 +533,7 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
         if (!na) {
 
-            var da = imscStyles.byQName[qnameb];
+            const da = imscStyles.byQName[qnameb];
 
             if ('applies' in da) {
 
@@ -551,13 +552,13 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
 
     /* trim whitespace around explicit line breaks */
 
-    var ruby = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
+    const ruby = isd_element.styleAttrs[imscStyles.byName.ruby.qname];
 
     if (isd_element.kind === 'p' ||
         (isd_element.kind === 'span' && (ruby === 'textContainer' || ruby === 'text'))
     ) {
 
-        var elist = [];
+        const elist = [];
 
         constructSpanList(isd_element, elist);
 
@@ -605,9 +606,9 @@ function collapseLWSP(elist) {
 
     /* collapse spaces and remove leading LWSPs */
 
-    var element;
+    let element;
 
-    for (var i = 0; i < elist.length;) {
+    for (let i = 0; i < elist.length;) {
 
         element = elist[i];
 
@@ -616,7 +617,7 @@ function collapseLWSP(elist) {
             continue;
         }
 
-        var trimmed_text = element.text.replace(/[\t\r\n ]+/g, ' ');
+        let trimmed_text = element.text.replace(/[\t\r\n ]+/g, ' ');
 
         if (/^[ ]/.test(trimmed_text)) {
 
@@ -638,7 +639,7 @@ function collapseLWSP(elist) {
 
     /* remove trailing LWSPs */
 
-    for (i = 0; i < elist.length; i++) {
+    for (let i = 0; i < elist.length; i++) {
 
         element = elist[i];
 
@@ -665,10 +666,10 @@ function constructSpanList(element, elist) {
         return;
     }
 
-    for (var i = 0; i < element.contents.length; i++) {
+    for (let i = 0; i < element.contents.length; i++) {
 
-        var child = element.contents[i];
-        var ruby = child.styleAttrs[imscStyles.byName.ruby.qname];
+        const child = element.contents[i];
+        const ruby = child.styleAttrs[imscStyles.byName.ruby.qname];
 
         if (child.kind === 'span' && (ruby === 'textContainer' || ruby === 'text')) {
 
@@ -704,7 +705,7 @@ function pruneEmptySpans(element) {
 
     } else if ('contents' in element) {
 
-        var i = element.contents.length;
+        let i = element.contents.length;
 
         while (i--) {
 
@@ -719,105 +720,73 @@ function pruneEmptySpans(element) {
     }
 }
 
-function ISD(tt) {
-    this.contents = [];
-    this.aspectRatio = tt.aspectRatio;
-    this.lang = tt.lang;
-}
-
-function ISDContentElement(ttelem) {
-
-    /* assume the element is a region if it does not have a kind */
-
-    this.kind = ttelem.kind || 'region';
-
-    /* copy lang */
-
-    this.lang = ttelem.lang;
-
-    /* copy id */
-
-    if (ttelem.id) {
-        this.id = ttelem.id;
-    }
-
-    /* deep copy of style attributes */
-    this.styleAttrs = {};
-
-    for (var sname in ttelem.styleAttrs) {
-
-        if (!imscUtils.checkHasOwnProperty(ttelem.styleAttrs, sname)) continue;
-
-        this.styleAttrs[sname] =
-            ttelem.styleAttrs[sname];
-    }
-
-    /* copy src and type if image */
-
-    if ('src' in ttelem) {
-
-        this.src = ttelem.src;
-
-    }
-
-    if ('type' in ttelem) {
-
-        this.type = ttelem.type;
-
-    }
-
-    /* TODO: clean this!
-     * TODO: ISDElement and document element should be better tied together */
-
-    if ('text' in ttelem) {
-
-        this.text = ttelem.text;
-
-    } else if (this.kind === 'region' || 'contents' in ttelem) {
-
+class ISD {
+    constructor(tt) {
         this.contents = [];
-    }
-
-    if ('space' in ttelem) {
-
-        this.space = ttelem.space;
+        this.aspectRatio = tt.aspectRatio;
+        this.lang = tt.lang;
     }
 }
 
+class ISDContentElement {
+    constructor(ttElem) {
 
-/*
- * ERROR HANDLING UTILITY FUNCTIONS
- * (not used, comments left)
- */
+        /* assume the element is a region if it does not have a kind */
 
-// function reportInfo(errorHandler, msg) {
-//
-//     if (errorHandler && errorHandler.info && errorHandler.info(msg))
-//         throw msg;
-//
-// }
+        this.kind = ttElem.kind || 'region';
 
-// function reportWarning(errorHandler, msg) {
-//
-//     if (errorHandler && errorHandler.warn && errorHandler.warn(msg))
-//         throw msg;
-//
-// }
+        /* copy lang */
 
-function reportError(errorHandler, msg) {
+        this.lang = ttElem.lang;
 
-    if (errorHandler && errorHandler.error && errorHandler.error(msg))
-        throw msg;
+        /* copy id */
 
+        if (ttElem.id) {
+            this.id = ttElem.id;
+        }
+
+        /* deep copy of style attributes */
+        this.styleAttrs = {};
+
+        for (const sname in ttElem.styleAttrs) {
+
+            if (!imscUtils.checkHasOwnProperty(ttElem.styleAttrs, sname)) continue;
+
+            this.styleAttrs[sname] =
+                ttElem.styleAttrs[sname];
+        }
+
+        /* copy src and type if image */
+
+        if ('src' in ttElem) {
+
+            this.src = ttElem.src;
+
+        }
+
+        if ('type' in ttElem) {
+
+            this.type = ttElem.type;
+
+        }
+
+        /* TODO: clean this!
+         * TODO: ISDElement and document element should be better tied together */
+
+        if ('text' in ttElem) {
+
+            this.text = ttElem.text;
+
+        } else if (this.kind === 'region' || 'contents' in ttElem) {
+
+            this.contents = [];
+        }
+
+        if ('space' in ttElem) {
+
+            this.space = ttElem.space;
+        }
+    }
 }
-
-// function reportFatal(errorHandler, msg) {
-//
-//     if (errorHandler && errorHandler.fatal)
-//         errorHandler.fatal(msg);
-//
-//     throw msg;
-//
-// }
 
 module.exports = imscISD;

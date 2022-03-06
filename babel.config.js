@@ -1,9 +1,10 @@
 module.exports = {
-    "presets": ["@babel/preset-env"],
-    "plugins": ["@babel/plugin-transform-modules-umd", {
-    }],
-    "include" : [
-        "@babel/plugin-transform-classes"
+    'presets': ['@babel/preset-env'],
+    'plugins': [
+        '@babel/plugin-transform-modules-umd'
     ],
-    "moduleId": "imsc"
+    'include' : [
+        '@babel/plugin-transform-classes'
+    ],
+    'moduleId': 'imsc'
 };

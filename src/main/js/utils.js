@@ -28,8 +28,6 @@
  * @module imscUtils
  */
 
-const imscUtils = {};
-
 /*
  * Parses a TTML color expression
  *
@@ -60,13 +58,13 @@ const NAMED_COLOR = {
     cyan: [0, 255, 255, 255]
 };
 
-imscUtils.parseColor = function (str) {
+function parseColor(str) {
 
-    var m;
+    let m;
 
-    var r = null;
+    let r = null;
 
-    var nc = NAMED_COLOR[str.toLowerCase()];
+    const nc = NAMED_COLOR[str.toLowerCase()];
 
     if (nc !== undefined) {
 
@@ -96,15 +94,16 @@ imscUtils.parseColor = function (str) {
     }
 
     return r;
-};
+}
+exports.parseColor = parseColor;
 
-var LENGTH_RE = /^((?:[+-])?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
+const LENGTH_RE = /^((?:[+-])?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
 
-imscUtils.parseLength = function (str) {
+function parseLength(str) {
 
-    var m;
+    let m;
 
-    var r = null;
+    let r = null;
 
     if ((m = LENGTH_RE.exec(str)) !== null) {
 
@@ -112,17 +111,18 @@ imscUtils.parseLength = function (str) {
     }
 
     return r;
-};
+}
+exports.parseLength = parseLength;
 
-imscUtils.parseTextShadow = function (str) {
+exports.parseTextShadow = function parseTextShadow(str) {
 
-    var shadows = str.match(/([^(,)]|\([^)]+\))+/g);
+    const shadows = str.match(/([^(,)]|\([^)]+\))+/g);
 
-    var r = [];
+    const r = [];
 
-    for (var i = 0; i < shadows.length; i++) {
+    for (let i = 0; i < shadows.length; i++) {
 
-        var shadow = shadows[i].split(' ');
+        const shadow = shadows[i].split(' ');
 
         if (shadow.length === 1 && shadow[0] === 'none') {
 
@@ -130,11 +130,11 @@ imscUtils.parseTextShadow = function (str) {
 
         } else if (shadow.length > 1 && shadow.length < 5) {
 
-            var out_shadow = [null, null, null, null];
+            const out_shadow = [null, null, null, null];
 
             /* x offset */
 
-            var l = imscUtils.parseLength(shadow.shift());
+            let l = parseLength(shadow.shift());
 
             if (l === null)
                 return null;
@@ -143,7 +143,7 @@ imscUtils.parseTextShadow = function (str) {
 
             /* y offset */
 
-            l = imscUtils.parseLength(shadow.shift());
+            l = parseLength(shadow.shift());
 
             if (l === null)
                 return null;
@@ -157,7 +157,7 @@ imscUtils.parseTextShadow = function (str) {
                 continue;
             }
 
-            l = imscUtils.parseLength(shadow[0]);
+            l = parseLength(shadow[0]);
 
             if (l !== null) {
 
@@ -172,7 +172,7 @@ imscUtils.parseTextShadow = function (str) {
                 continue;
             }
 
-            var c = imscUtils.parseColor(shadow[0]);
+            const c = parseColor(shadow[0]);
 
             if (c === null)
                 return null;
@@ -188,13 +188,13 @@ imscUtils.parseTextShadow = function (str) {
 };
 
 
-imscUtils.parsePosition = function (str) {
+exports.parsePosition = function parsePosition(str) {
 
     /* see https://www.w3.org/TR/ttml2/#style-value-position */
 
-    var s = str.split(' ');
+    const s = str.split(' ');
 
-    var isKeyword = function (str) {
+    const isKeyword = function (str) {
 
         return str === 'center' ||
             str === 'left' ||
@@ -212,11 +212,11 @@ imscUtils.parsePosition = function (str) {
 
     /* initial clean-up pass */
 
-    for (var j = 0; j < s.length; j++) {
+    for (let j = 0; j < s.length; j++) {
 
         if (!isKeyword(s[j])) {
 
-            var l = imscUtils.parseLength(s[j]);
+            const l = parseLength(s[j]);
 
             if (l === null)
                 return null;
@@ -228,24 +228,24 @@ imscUtils.parsePosition = function (str) {
 
     /* position default */
 
-    var pos = {
+    const pos = {
         h: {edge: 'left', offset: {value: 50, unit: '%'}},
         v: {edge: 'top', offset: {value: 50, unit: '%'}}
     };
 
     /* update position */
 
-    for (var i = 0; i < s.length;) {
+    for (let i = 0; i < s.length;) {
 
         /* extract the current component */
 
-        var comp = s[i++];
+        const comp = s[i++];
 
         if (isKeyword(comp)) {
 
             /* we have a keyword */
 
-            var offset = {value: 0, unit: '%'};
+            let offset = {value: 0, unit: '%'};
 
             /* peek at the next component */
 
@@ -314,18 +314,31 @@ imscUtils.parsePosition = function (str) {
 };
 
 
-imscUtils.ComputedLength = function (rw, rh) {
-    this.rw = rw;
-    this.rh = rh;
-};
+class ComputedLength {
+    /**
+     * @param {number} rw
+     * @param {number} rh
+     */
+    constructor(rw, rh) {
+        this.rw = rw;
+        this.rh = rh;
+    }
 
-imscUtils.ComputedLength.prototype.toUsedLength = function (width, height) {
-    return width * this.rw + height * this.rh;
-};
+    /**
+     * @param {number} width
+     * @param {number} height
+     * @returns {number}
+     */
+    toUsedLength(width, height) {
+        return width * this.rw + height * this.rh;
+    }
 
-imscUtils.ComputedLength.prototype.isZero = function () {
-    return this.rw === 0 && this.rh === 0;
-};
+    isZero () {
+        return this.rw === 0 && this.rh === 0;
+    }
+}
+
+exports.ComputedLength = ComputedLength;
 
 /**
  * Computes a specified length to a root container relative length
@@ -337,48 +350,48 @@ imscUtils.ComputedLength.prototype.isZero = function () {
  * @param {number} cellScale length of 1c, or null if c is not allowed
  * @param {number} pxScale length of 1px, or null if px is not allowed
  * @param {number} direction 0 if the length is computed in the horizontal direction, 1 if the length is computed in the vertical direction
- * @return {imscUtils.ComputedLength} Computed length
+ * @return {ComputedLength} Computed length
  */
-imscUtils.toComputedLength = function (lengthVal, lengthUnit, emLength, percentLength, cellLength, pxLength) {
+exports.toComputedLength = function (lengthVal, lengthUnit, emLength, percentLength, cellLength, pxLength) {
 
     if (lengthUnit === '%' && percentLength) {
 
-        return new imscUtils.ComputedLength(
+        return new ComputedLength(
             percentLength.rw * lengthVal / 100,
             percentLength.rh * lengthVal / 100
         );
 
     } else if (lengthUnit === 'em' && emLength) {
 
-        return new imscUtils.ComputedLength(
+        return new ComputedLength(
             emLength.rw * lengthVal,
             emLength.rh * lengthVal
         );
 
     } else if (lengthUnit === 'c' && cellLength) {
 
-        return new imscUtils.ComputedLength(
+        return new ComputedLength(
             lengthVal * cellLength.rw,
             lengthVal * cellLength.rh
         );
 
     } else if (lengthUnit === 'px' && pxLength) {
 
-        return new imscUtils.ComputedLength(
+        return new ComputedLength(
             lengthVal * pxLength.rw,
             lengthVal * pxLength.rh
         );
 
     } else if (lengthUnit === 'rh') {
 
-        return new imscUtils.ComputedLength(
+        return new ComputedLength(
             0,
             lengthVal / 100
         );
 
     } else if (lengthUnit === 'rw') {
 
-        return new imscUtils.ComputedLength(
+        return new ComputedLength(
             lengthVal / 100,
             0
         );
@@ -398,8 +411,6 @@ imscUtils.toComputedLength = function (lengthVal, lengthUnit, emLength, percentL
  * @param {string} property
  * @returns {boolean}
  */
-imscUtils.checkHasOwnProperty = (maybeObject, property) => {
+exports.checkHasOwnProperty = (maybeObject, property) => {
     return Object.prototype.hasOwnProperty.call(maybeObject, property);
 };
-
-module.exports = imscUtils;

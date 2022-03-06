@@ -28,20 +28,22 @@
  * @module imscStyles
  */
 
-const imscNames = require('./names');
+const imscNames = require('./doc-parser/namespaces');
 const imscUtils = require('./utils');
 const imscStyles = {};
 
-function StylingAttributeDefinition(ns, name, initialValue, appliesTo, isInherit, isAnimatable, parseFunc, computeFunc) {
-    this.name = name;
-    this.ns = ns;
-    this.qname = ns + ' ' + name;
-    this.inherit = isInherit;
-    this.animatable = isAnimatable;
-    this.initial = initialValue;
-    this.applies = appliesTo;
-    this.parse = parseFunc;
-    this.compute = computeFunc;
+class StylingAttributeDefinition {
+    constructor(ns, name, initialValue, appliesTo, isInherit, isAnimatable, parseFunc, computeFunc) {
+        this.name = name;
+        this.ns = ns;
+        this.qname = `${ns} ${name}`;
+        this.inherit = isInherit;
+        this.animatable = isAnimatable;
+        this.initial = initialValue;
+        this.applies = appliesTo;
+        this.parse = parseFunc;
+        this.compute = computeFunc;
+    }
 }
 
 imscStyles.all = [
@@ -117,11 +119,11 @@ imscStyles.all = [
 
             } else {
 
-                var s = str.split(' ');
+                const s = str.split(' ');
                 if (s.length !== 2)
                     return null;
-                var w = imscUtils.parseLength(s[0]);
-                var h = imscUtils.parseLength(s[1]);
+                const w = imscUtils.parseLength(s[0]);
+                const h = imscUtils.parseLength(s[1]);
                 if (!h || !w)
                     return null;
                 return {'h': h, 'w': w};
@@ -130,8 +132,8 @@ imscStyles.all = [
         },
         function (doc, parent, element, attr) {
 
-            var h;
-            var w;
+            let h;
+            let w;
 
             if (attr === 'auto') {
 
@@ -190,10 +192,10 @@ imscStyles.all = [
         true,
         true,
         function (str) {
-            var ffs = str.split(',');
-            var rslt = [];
+            const ffs = str.split(',');
+            const rslt = [];
 
-            for (var i = 0; i < ffs.length; i++) {
+            for (let i = 0; i < ffs.length; i++) {
 
                 if (ffs[i].charAt(0) !== '\'' && ffs[i].charAt(0) !== '"') {
 
@@ -231,7 +233,7 @@ imscStyles.all = [
         imscUtils.parseLength,
         function (doc, parent, element, attr) {
 
-            var fs;
+            let fs;
 
             if (attr.unit === '%') {
 
@@ -256,9 +258,7 @@ imscStyles.all = [
         imscUtils.parseLength,
         function (doc, parent, element, attr) {
 
-            var fs;
-
-            fs = imscUtils.toComputedLength(
+            const fs = imscUtils.toComputedLength(
                 attr.value,
                 attr.unit,
                 parent !== null ? parent.styleAttrs[imscStyles.byName.fontSize.qname] : doc.cellLength.h,
@@ -314,7 +314,7 @@ imscStyles.all = [
         },
         function (doc, parent, element, attr) {
 
-            var lh;
+            let lh;
 
             if (attr === 'normal') {
 
@@ -371,11 +371,11 @@ imscStyles.all = [
 
             } else {
 
-                var s = str.split(' ');
+                const s = str.split(' ');
                 if (s.length !== 2)
                     return null;
-                var w = imscUtils.parseLength(s[0]);
-                var h = imscUtils.parseLength(s[1]);
+                const w = imscUtils.parseLength(s[0]);
+                const h = imscUtils.parseLength(s[1]);
                 if (!h || !w)
                     return null;
                 return {'h': h, 'w': w};
@@ -384,8 +384,8 @@ imscStyles.all = [
         },
         function (doc, parent, element, attr) {
 
-            var h;
-            var w;
+            let h;
+            let w;
 
             if (attr === 'auto') {
 
@@ -457,13 +457,13 @@ imscStyles.all = [
         true,
         function (str) {
 
-            var s = str.split(' ');
+            const s = str.split(' ');
             if (s.length > 4)
                 return null;
-            var r = [];
-            for (var i = 0; i < s.length; i++) {
+            const r = [];
+            for (let i = 0; i < s.length; i++) {
 
-                var l = imscUtils.parseLength(s[i]);
+                const l = imscUtils.parseLength(s[i]);
                 if (!l)
                     return null;
                 r.push(l);
@@ -473,7 +473,7 @@ imscStyles.all = [
         },
         function (doc, parent, element, attr) {
 
-            var padding;
+            let padding;
 
             /* TODO: make sure we are in region */
 
@@ -513,7 +513,7 @@ imscStyles.all = [
              *
              */
 
-            var dir = element.styleAttrs[imscStyles.byName.writingMode.qname];
+            const dir = element.styleAttrs[imscStyles.byName.writingMode.qname];
 
             if (dir === 'lrtb' || dir === 'lr') {
 
@@ -537,9 +537,9 @@ imscStyles.all = [
 
             }
 
-            var out = [];
+            const out = [];
 
-            for (var i = 0; i < padding.length; i++) {
+            for (let i = 0; i < padding.length; i++) {
 
                 if (padding[i].value === 0) {
 
@@ -578,8 +578,8 @@ imscStyles.all = [
 
         },
         function (doc, parent, element, attr) {
-            var h;
-            var w;
+            let h;
+            let w;
 
             h = imscUtils.toComputedLength(
                 attr.v.offset.value,
@@ -680,9 +680,9 @@ imscStyles.all = [
         true,
         true,
         function (str) {
-            var s = str.split(' ');
+            const s = str.split(' ');
 
-            var r = [null, null];
+            const r = [null, null];
 
             if (s.length === 0 || s.length > 2)
                 return null;
@@ -703,7 +703,7 @@ imscStyles.all = [
 
             if (s.length === 2 && s[0] !== 'none') {
 
-                var l = imscUtils.parseLength(s[1]);
+                const l = imscUtils.parseLength(s[1]);
 
                 if (l) {
 
@@ -728,7 +728,7 @@ imscStyles.all = [
 
             }
 
-            var fs = null;
+            let fs;
 
             if (attr[1] === null) {
 
@@ -749,7 +749,9 @@ imscStyles.all = [
 
             }
 
-            if (fs === null) return null;
+            if (fs === null) {
+                return null;
+            }
 
             return [attr[0], fs];
         }
@@ -831,11 +833,11 @@ imscStyles.all = [
         true,
         true,
         function (str) {
-            var e = str.split(' ');
+            const e = str.split(' ');
 
-            var rslt = {style: null, symbol: null, color: null, position: null};
+            const rslt = {style: null, symbol: null, color: null, position: null};
 
-            for (var i = 0; i < e.length; i++) {
+            for (let i = 0; i < e.length; i++) {
 
                 if (e[i] === 'none' || e[i] === 'auto') {
 
@@ -908,11 +910,11 @@ imscStyles.all = [
 
             } else {
 
-                var r = {};
-                var s = str.split(' ');
+                const r = {};
+                const s = str.split(' ');
                 if (s.length === 0 || s.length > 2)
                     return null;
-                var c = imscUtils.parseColor(s[0]);
+                const c = imscUtils.parseColor(s[0]);
 
                 r.color = c;
 
@@ -922,7 +924,7 @@ imscStyles.all = [
                 if (s.length !== 1)
                     return null;
 
-                var l = imscUtils.parseLength(s[0]);
+                const l = imscUtils.parseLength(s[0]);
 
                 if (!l)
                     return null;
@@ -943,7 +945,7 @@ imscStyles.all = [
             if (attr === 'none')
                 return attr;
 
-            var rslt = {};
+            const rslt = {};
 
             if (attr.color === null) {
 
@@ -988,11 +990,11 @@ imscStyles.all = [
             if (attr === 'none')
                 return attr;
 
-            var r = [];
+            const r = [];
 
-            for (var i = 0; i < attr.length; i++) {
+            for (let i = 0; i < attr.length; i++) {
 
-                var shadow = {};
+                const shadow = {};
 
                 shadow.x_off = imscUtils.toComputedLength(
                     attr[i][0].value,
@@ -1112,7 +1114,7 @@ imscStyles.all = [
         true,
         function (str) {
 
-            var rslt;
+            let rslt;
 
             if (str === 'auto') {
 
@@ -1178,7 +1180,7 @@ imscStyles.all = [
         true,
         true,
         function (str) {
-            return str === 'true' ? true : false;
+            return str === 'true';
         },
         null
     ),
@@ -1199,13 +1201,13 @@ imscStyles.all = [
 /* TODO: allow null parse function */
 
 imscStyles.byQName = {};
-for (var i in imscStyles.all) {
+for (const i in imscStyles.all) {
 
     imscStyles.byQName[imscStyles.all[i].qname] = imscStyles.all[i];
 }
 
 imscStyles.byName = {};
-for (var j in imscStyles.all) {
+for (const j in imscStyles.all) {
 
     imscStyles.byName[imscStyles.all[j].name] = imscStyles.all[j];
 }
