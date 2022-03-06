@@ -28,20 +28,13 @@
  * @module imscNames
  */
 
-;
-(function (imscNames) { // wrapper for non-node envs
-
-    imscNames.ns_tt = "http://www.w3.org/ns/ttml";
-    imscNames.ns_tts = "http://www.w3.org/ns/ttml#styling";
-    imscNames.ns_ttp = "http://www.w3.org/ns/ttml#parameter";
-    imscNames.ns_xml = "http://www.w3.org/XML/1998/namespace";
-    imscNames.ns_itts = "http://www.w3.org/ns/ttml/profile/imsc1#styling";
-    imscNames.ns_ittp = "http://www.w3.org/ns/ttml/profile/imsc1#parameter";
-    imscNames.ns_smpte = "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt";
-    imscNames.ns_ebutts = "urn:ebu:tt:style";
-    
-})(typeof exports === 'undefined' ? this.imscNames = {} : exports);
-
-
+exports.ns_tt = 'http://www.w3.org/ns/ttml';
+exports.ns_tts = 'http://www.w3.org/ns/ttml#styling';
+exports.ns_ttp = 'http://www.w3.org/ns/ttml#parameter';
+exports.ns_xml = 'http://www.w3.org/XML/1998/namespace';
+exports.ns_itts = 'http://www.w3.org/ns/ttml/profile/imsc1#styling';
+exports.ns_ittp = 'http://www.w3.org/ns/ttml/profile/imsc1#parameter';
+exports.ns_smpte = 'http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt';
+exports.ns_ebutts = 'urn:ebu:tt:style';
 
 
