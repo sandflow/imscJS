@@ -101,6 +101,8 @@ definitions under a global name (the token between parantheses):
 BUILD
 =====
 
+Please ensure you are using `npm ci` / `npm clean-install` when installing packages to prevent accidental version upgrades of dependencies
+
 imscJS is built using the `build:release` or `build:debug` Grunt tasks -- the `build` task is an alias of `build:debug`.
 
 The `dist` directory contains the following build artifacts:
