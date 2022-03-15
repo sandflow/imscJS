@@ -11,6 +11,10 @@
         "README.txt",
         "dist"
     ],
+    "engines": {
+        "node": ">=12",
+        "npm": ">=6 <15"
+    },
     "keywords": [
         "imsc1",
         "imsc1.0.1",
@@ -27,7 +31,12 @@
     "main": "src/main/js/main.js",
     "unpkg": "dist/imsc.min.js",
     "scripts": {
-        "prepublishOnly": "grunt build:release"
+        "build:debug": "grunt build:debug",
+        "build:release": "grunt build:release",
+        "build": "npm run build:debug",
+        "clean": "grunt clean",
+        "prepublishOnly": "grunt build:release",
+        "test": "qunit src/test/js"
     },
     "dependencies": {
         "sax": "1.2.1"
@@ -44,7 +53,7 @@
         "grunt-npmcopy": "latest",
         "grunt-sync": "latest",
         "jszip": "latest",
-        "node-qunit": "^1.0.0",
+        "qunit": "^2.18.0",
         "qunit-assert-close": "latest",
         "qunitjs": "latest"
     }
