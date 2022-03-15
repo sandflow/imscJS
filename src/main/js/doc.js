@@ -847,8 +847,15 @@
 
         var attr = findAttribute(node, imscNames.ns_ttp, "timeBase");
 
-        if (attr !== null && attr !== "media") {
-
+        if (attr !== null && !['media', 'smpte', 'clock'].includes(attr)) {
+            /**
+             * According to TTML2 spec:
+             * 
+             * https://www.w3.org/TR/ttml2/#parameter-attribute-timeBase
+             * 
+             * `ttp:timeBase` has three possible, valid values (not just 'media')
+             * 
+             */
             reportFatal(errorHandler, "Unsupported time base");
 
         }
