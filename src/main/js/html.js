@@ -664,6 +664,7 @@
 
         if (first.tagName === "SPAN" &&
             second.tagName === "SPAN" &&
+            first._isd_element &&
             first._isd_element === second._isd_element) {
 
                 first.textContent += second.textContent;
