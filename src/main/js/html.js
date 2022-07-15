@@ -409,43 +409,51 @@
                 };
 
             } else {
+                if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text"){
+                    // don't split up the contents of ruby text elements - they do not get recombined.
+                    e.textContent = isd_element.text;
+                    e._isd_element = isd_element;
+                    if (te) {
+                        applyTextEmphasis(context, e, isd_element, te);
+                    };
+                } else {
 
-                // wrap characters in spans to find the line wrap locations
+                    // wrap characters in spans to find the line wrap locations
 
-                var cbuf = '';
+                    var cbuf = '';
 
-                for (var j = 0; j < isd_element.text.length; j++) {
+                    for (var j = 0; j < isd_element.text.length; j++) {
 
-                    cbuf += isd_element.text.charAt(j);
+                        cbuf += isd_element.text.charAt(j);
 
-                    var cc = isd_element.text.charCodeAt(j);
+                        var cc = isd_element.text.charCodeAt(j);
 
-                    if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length - 1) {
+                        if (cc < 0xD800 || cc > 0xDBFF || j === isd_element.text.length - 1) {
 
-                        /* wrap the character(s) in a span unless it is a high surrogate */
+                            /* wrap the character(s) in a span unless it is a high surrogate */
 
-                        var span = document.createElement("span");
+                            var span = document.createElement("span");
 
-                        span.textContent = cbuf;
+                            span.textContent = cbuf;
 
-                        /* apply textEmphasis */
-                        
-                        if (te) {
+                            /* apply textEmphasis */
+                            
+                            if (te) {
 
-                            applyTextEmphasis(context, span, isd_element, te);
+                                applyTextEmphasis(context, span, isd_element, te);
 
-                        };
-    
-                        e.appendChild(span);
+                            };
+        
+                            e.appendChild(span);
 
-                        cbuf = '';
+                            cbuf = '';
 
-                        //For the sake of merging these back together, record what isd element generated it.
-                        span._isd_element = isd_element;
+                            //For the sake of merging these back together, record what isd element generated it.
+                            span._isd_element = isd_element;
+                        }
+
                     }
-
                 }
-
             }
         }
 
