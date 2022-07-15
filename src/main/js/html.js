@@ -871,91 +871,47 @@
     }
 
     function applyRubyReserve(lineList, context) {
-
+        console.log(lineList);
         for (var i = 0; i < lineList.length; i++) {
-
-            var ruby = document.createElement("ruby");
-
-            var rb = document.createElement("rb");
-            rb.textContent = "\u200B";
-
-            ruby.appendChild(rb);
-
-            var rt1;
-            var rt2;
-
+            var rubyover = document.createElement("ruby");
             var fs = context.rubyReserve[1].toUsedLength(context.w, context.h) + "px";
 
+            var rb = document.createElement("rb");
+            rb.textContent = "ん";
+            rb.style.marginInlineStart = '-10em';
+            var rt = document.createElement("rt");
+            /* note: the text content matters from a size perspective */
+            rt.textContent = "ん";
+            rt.style.fontSize = fs;
+            rt.style.marginInlineStart = '-10em';
+            rubyover.style.visibility = 'hidden';
+            rubyover.style.rubyPosition = 'over';
+            rubyover.appendChild(rb);
+            rubyover.appendChild(rt);
+
+            var rubyunder = rubyover.cloneNode(true);
+            rubyunder.style.rubyPosition = 'under';
+
+            // get first leaf node on this line.
+            var sib = lineList[i].elements[0].node;
+            var target = sib;
+            var parent = sib.parentElement;
+            while (parent.nodeName !== 'P'){
+              target = parent;
+              parent = parent.parentElement;
+            }
+
             if (context.rubyReserve[0] === "both" || (context.rubyReserve[0] === "outside" && lineList.length == 1)) {
-
-                rt1 = document.createElement("rtc");
-                rt1.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "after" : "under";
-                rt1.textContent = "\u200B";
-                rt1.style.fontSize = fs;
-
-                rt2 = document.createElement("rtc");
-                rt2.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "before" : "over";
-                rt2.textContent = "\u200B";
-                rt2.style.fontSize = fs;
-
-                ruby.appendChild(rt1);
-                ruby.appendChild(rt2);
-
+              target.parentElement.insertBefore(rubyover, target);
+              target.parentElement.insertBefore(rubyunder, target);
             } else {
-
-                rt1 = document.createElement("rtc");
-                rt1.textContent = "\u200B";
-                rt1.style.fontSize = fs;
-
-                var pos;
-
                 if (context.rubyReserve[0] === "after" || (context.rubyReserve[0] === "outside" && i > 0)) {
-
-                    pos = RUBYPOSITION_ISWK ? "after" : ((context.bpd === "tb" || context.bpd === "rl") ? "under" : "over");
-
+                  target.parentElement.insertBefore(rubyunder, target);
                 } else {
-
-                    pos = RUBYPOSITION_ISWK ? "before" : ((context.bpd === "tb" || context.bpd === "rl") ? "over" : "under");
-
+                  target.parentElement.insertBefore(rubyover, target);
                 }
-
-                rt1.style[RUBYPOSITION_PROP] = pos;
-
-                ruby.appendChild(rt1);
-
             }
-
-            /* add in front of the first ruby element of the line, if it exists */
-
-            var sib = null;
-
-            for (var j = 0; j < lineList[i].rbc.length; j++) {
-
-                if (lineList[i].rbc[j].localName === 'ruby') {
-
-                    sib = lineList[i].rbc[j];
-
-                    /* copy specified style properties from the sibling ruby container */
-                    
-                    for (var k = 0; k < sib.style.length; k++) {
-
-                        ruby.style.setProperty(sib.style.item(k), sib.style.getPropertyValue(sib.style.item(k)));
-
-                    }
-
-                    break;
-                }
-
-            }
-
-            /* otherwise add before first span */
-
-            sib = sib || lineList[i].elements[0].node;
-
-            sib.parentElement.insertBefore(ruby, sib);
-
         }
-
     }
 
     function applyFillLineGap(lineList, par_before, par_after, context, element) {
@@ -1822,7 +1778,7 @@
 
     /* CSS property names */
 
-    var RUBYPOSITION_ISWK = "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
+    var RUBYPOSITION_ISWK = false; //"webkitRubyPosition" in window.getComputedStyle(document.documentElement);
 
     var RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
 
