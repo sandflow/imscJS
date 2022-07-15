@@ -723,8 +723,16 @@
             if (l !== 0) {
 
                 var se = lineList[i].elements[lineList[i].start_elem];
+                // if inside rb, move to ruby
+                if (se.node.parentNode.nodeName === 'RB'){
+                    se = {node: se.node.parentNode.parentNode};
+                }
 
                 var ee = lineList[i].elements[lineList[i].end_elem];
+                // if inside rb, move to ruby
+                if (ee.node.parentNode.nodeName === 'RB'){
+                    ee = {node: ee.node.parentNode.parentNode};
+                }
 
                 if (se === ee) {
 
