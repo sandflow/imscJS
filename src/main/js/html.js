@@ -634,6 +634,19 @@
 
                 }
             }
+
+            for (var el2 = 0; el2 < lineList[l].rbc.length; el2++) {
+                thisNode = lineList[l].rbc[el2];
+                ancestorBackgroundColor = getSpanAncestorColor(thisNode, clearTheseBackgrounds, false);
+
+                if (ancestorBackgroundColor) {
+
+                    thisNode.style.backgroundColor = ancestorBackgroundColor;
+
+                }
+            }
+
+
         }
 
         for (var bi = 0; bi < clearTheseBackgrounds.length; bi++) {
