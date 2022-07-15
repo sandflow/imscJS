@@ -401,6 +401,7 @@
 
                 /* ignore tate-chu-yoku since line break cannot happen within */
                 e.textContent = isd_element.text;
+                e._isd_element = isd_element;
 
                 if (te) {
 
