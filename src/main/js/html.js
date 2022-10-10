@@ -664,8 +664,14 @@
 
         if (first.tagName === "SPAN" &&
             second.tagName === "SPAN" &&
-            first._isd_element &&
             first._isd_element === second._isd_element) {
+                if (!first._isd_element){
+                    // we have no context, and probably don't want to abort
+                    //reportError(context.errorHandler, "Error SPAN has no _isd_element");
+                    //context.errorHandler? context.errorHandler.error? context.errorHandler.error("Error SPAN has no _isd_element");
+                    console.error("SPAN has no _isd_element", first);
+                    return false;
+                }
 
                 first.textContent += second.textContent;
 
