@@ -524,7 +524,7 @@
 
             }
 
-            mergeSpans(linelist); // The earlier we can do this the less processing there will be.
+            mergeSpans(linelist, context); // The earlier we can do this the less processing there will be.
 
             /* fill line gaps linepadding */
 
@@ -584,7 +584,7 @@
         }
     }
 
-    function mergeSpans(lineList) {
+    function mergeSpans(lineList, context) {
 
         for (var i = 0; i < lineList.length; i++) {
 
@@ -595,7 +595,7 @@
                 var previous = line.elements[j - 1];
                 var span = line.elements[j];
 
-                if (spanMerge(previous.node, span.node)) {
+                if (spanMerge(previous.node, span.node, context)) {
 
                     //removed from DOM by spanMerge(), remove from the list too.
                     line.elements.splice(j, 1);
@@ -660,16 +660,14 @@
         return undefined;
     }
 
-    function spanMerge(first, second) {
+    function spanMerge(first, second, context) {
 
         if (first.tagName === "SPAN" &&
             second.tagName === "SPAN" &&
             first._isd_element === second._isd_element) {
-                if (!first._isd_element){
-                    // we have no context, and probably don't want to abort
-                    //reportError(context.errorHandler, "Error SPAN has no _isd_element");
-                    //context.errorHandler? context.errorHandler.error? context.errorHandler.error("Error SPAN has no _isd_element");
-                    console.error("SPAN has no _isd_element", first);
+                if (! first._isd_element) {
+                    /* we should never get here since every span should have a source ISD element */
+                    reportError(context.errorHandler, "Span element is missing a source ISD element.");
                     return false;
                 }
 
