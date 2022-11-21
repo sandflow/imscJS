@@ -401,6 +401,7 @@
 
                 /* ignore tate-chu-yoku since line break cannot happen within */
                 e.textContent = isd_element.text;
+                e._isd_element = isd_element;
 
                 if (te) {
 
@@ -523,7 +524,7 @@
 
             }
 
-            mergeSpans(linelist); // The earlier we can do this the less processing there will be.
+            mergeSpans(linelist, context); // The earlier we can do this the less processing there will be.
 
             /* fill line gaps linepadding */
 
@@ -583,7 +584,7 @@
         }
     }
 
-    function mergeSpans(lineList) {
+    function mergeSpans(lineList, context) {
 
         for (var i = 0; i < lineList.length; i++) {
 
@@ -594,7 +595,7 @@
                 var previous = line.elements[j - 1];
                 var span = line.elements[j];
 
-                if (spanMerge(previous.node, span.node)) {
+                if (spanMerge(previous.node, span.node, context)) {
 
                     //removed from DOM by spanMerge(), remove from the list too.
                     line.elements.splice(j, 1);
@@ -659,11 +660,16 @@
         return undefined;
     }
 
-    function spanMerge(first, second) {
+    function spanMerge(first, second, context) {
 
         if (first.tagName === "SPAN" &&
             second.tagName === "SPAN" &&
             first._isd_element === second._isd_element) {
+                if (! first._isd_element) {
+                    /* we should never get here since every span should have a source ISD element */
+                    reportError(context.errorHandler, "Internal error: HTML span is not linked to a source element; cannot merge spans.");
+                    return false;
+                }
 
                 first.textContent += second.textContent;
 
