@@ -199,7 +199,7 @@
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "base") {
 
-                e = document.createElement("rb");
+                e = document.createElement("span"); // rb element is deprecated in HTML
 
             } else if (isd_element.styleAttrs[imscStyles.byName.ruby.qname] === "text") {
 
@@ -649,7 +649,11 @@
 
         } else {
 
-            if (element.parentElement.nodeName === "SPAN") {
+            if (element.parentElement.nodeName === "SPAN" ||
+                element.parentElement.nodeName === "RUBY" ||
+                element.parentElement.nodeName === "RBC" ||
+                element.parentElement.nodeName === "RTC" ||
+                element.parentElement.nodeName === "RT") {
 
                 return getSpanAncestorColor(element.parentElement, ancestorList, true);
 
@@ -882,7 +886,7 @@
 
             var ruby = document.createElement("ruby");
 
-            var rb = document.createElement("rb");
+            var rb = document.createElement("span");  // rb element is deprecated in HTML
             rb.textContent = "\u200B";
 
             ruby.appendChild(rb);
