@@ -648,7 +648,7 @@
 
         } else {
 
-            if (element.parentElement.nodeName === "SPAN"
+            if (element.parentElement.nodeName === "SPAN" ||
                 element.parentElement.nodeName === "RUBY" ||
                 element.parentElement.nodeName === "RBC" ||
                 element.parentElement.nodeName === "RTC" ||
