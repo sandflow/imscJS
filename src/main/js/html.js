@@ -667,7 +667,7 @@
             first._isd_element === second._isd_element) {
                 if (! first._isd_element) {
                     /* we should never get here since every span should have a source ISD element */
-                    reportError(context.errorHandler, "Span element is missing a source ISD element.");
+                    reportError(context.errorHandler, "Internal error: HTML span is not linked to a source element; cannot merge spans.");
                     return false;
                 }
 
