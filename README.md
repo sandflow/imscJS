@@ -120,9 +120,13 @@ RELEASES
 
 imscJS is released as an NPM package under [imsc](https://www.npmjs.com/package/imsc). The `dev` distribution tag indicates pre-releases.
 
-All builds are available on the [unpkg](https://unpkg.com/) CDN under the `dist` directory.
+All latest builds/dist are available on the [unpkg](https://unpkg.com/) CDN under the [`dist`](https://unpkg.com/browse/imsc/dist/) directory.
 
-EXAMPLE: https://unpkg.com/imsc@1.1.0-beta.2/dist/
+Available builds for the release 1.1.3 are: 
+* https://unpkg.com/browse/imsc@1.1.3/dist/imsc.all.min.js
+* https://unpkg.com/browse/imsc@1.1.3/dist/imsc.min.js
+* https://unpkg.com/browse/imsc@1.1.3/dist/imsc.all.debug.js
+* https://unpkg.com/browse/imsc@1.1.3/dist/imsc.debug.js
 
 
 
