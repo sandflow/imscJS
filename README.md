@@ -122,7 +122,7 @@ imscJS is released as an NPM package under [imsc](https://www.npmjs.com/package/
 
 Builds/dist are available on the [unpkg](https://unpkg.com/) CDN under the [`dist`](https://unpkg.com/browse/imsc/dist/) directory.
 
-To get access the latest builds, go the [release page](https://github.com/sandflow/imscJS/releases).
+To access the latest builds, please consult the [release page](https://github.com/sandflow/imscJS/releases).
 
 
 
