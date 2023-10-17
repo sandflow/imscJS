@@ -1400,6 +1400,7 @@
                     /* per IMSC1 */
 
                     for (var i = 0; i < attr.length; i++) {
+                        attr[i] = attr[i].trim();
 
                         if (attr[i] === "monospaceSerif") {
 
