@@ -29,7 +29,7 @@ for dir, dirs, files in os.walk(args.ref_dir):
             
         if fnmatch.fnmatch(file, '*.png'):
             try:
-                subprocess.check_output(["compare", '-metric', 'mse', reffile, genfile, 'null:'], stderr=subprocess.STDOUT, universal_newlines=True)
+                subprocess.check_output(["magick", "compare", '-metric', 'mse', reffile, genfile, 'null:'], stderr=subprocess.STDOUT, universal_newlines=True)
             except subprocess.CalledProcessError as err:
                 m = re.search('([^\(]+)\(([^\)]+)', err.output)
                 r = float(m.group(2))
@@ -41,8 +41,8 @@ for dir, dirs, files in os.walk(args.ref_dir):
                       if not os.path.exists(diffdir):
                         os.makedirs(diffdir)
                       difffile = os.path.join(args.d, os.path.relpath(dir, args.ref_dir) + "-" + file)
-                      p1 = subprocess.Popen(["compare", reffile, genfile, "png:-"], stdout=subprocess.PIPE)
-                      p2 = subprocess.Popen(["montage", "-mode", "concatenate", reffile, "-", genfile, difffile], stdin=p1.stdout)
+                      p1 = subprocess.Popen(["magick", "compare", reffile, genfile, "png:-"], stdout=subprocess.PIPE)
+                      p2 = subprocess.Popen(["magick", "montage", "-mode", "concatenate", reffile, "-", genfile, difffile], stdin=p1.stdout)
                       p1.stdout.close()
                       p2.communicate()
 
