@@ -28,6 +28,8 @@
  * @module imscHTML
  */
 
+var browserIsFirefox = /firefox/i.test(navigator.userAgent);
+
 ;
 (function (imscHTML, imscNames, imscStyles) {
 
@@ -750,13 +752,20 @@
                 // End element
                 if (context.ipd === "lr") {
 
-                    ee.node.style.marginRight = negpadpxlen;
+                    // Firefox has a problem with line-breaking when a negative margin is applied.
+                    // The positioning will be wrong but don't apply when on firefox.
+                    // https://bugzilla.mozilla.org/show_bug.cgi?id=1502610
+                    if (!browserIsFirefox) {
+                        ee.node.style.marginRight = negpadpxlen;
+                    }
                     ee.node.style.paddingRight = pospadpxlen;
 
                 } else if (context.ipd === "rl") {
 
                     ee.node.style.paddingLeft = pospadpxlen;
-                    ee.node.style.marginLeft = negpadpxlen;
+                    if (!browserIsFirefox) {
+                        ee.node.style.marginLeft = negpadpxlen;
+                    }
 
                 } else if (context.ipd === "tb") {
 
