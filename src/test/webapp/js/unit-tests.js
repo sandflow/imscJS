@@ -193,6 +193,18 @@ QUnit.test(
                     ["Arial", "monospaceSerif"],
                     "Maps 'default' value used as a fallback with spacing characters to 'monospaceSerif' correctly."
                 );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ["'My Test Font'", "monospaceSerif"],
+                    "Fonts names wrapped in '' are preserved."
+                );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[4].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ['"My Test Font"', "monospaceSerif"],
+                    'Fonts names wrapped in "" are preserved.'
+                );
             }
         );
 

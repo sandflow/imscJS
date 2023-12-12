@@ -9,6 +9,8 @@ xmlns:tts="http://www.w3.org/ns/ttml#styling" ttp:cellResolution="1 1" tts:exten
 			<p tts:fontFamily="default">Maps 'default' generic family name to 'monospaceSerif' correctly.</p>
             <p tts:fontFamily="Arial,default">Maps 'default' value used as a fallback to 'monospaceSerif' correctly.</p>
             <p tts:fontFamily="Arial, default ">Maps 'default' value used as a fallback with spacing characters to 'monospaceSerif' correctly.</p>
+			<p tts:fontFamily="'My Test Font', default ">Fonts names wrapped in '' are preserved.</p>
+			<p tts:fontFamily='"My Test Font", default '>Fonts names wrapped in "" are preserved.</p>
 		</div>
 	</body>
 </tt>
