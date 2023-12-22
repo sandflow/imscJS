@@ -168,3 +168,45 @@ QUnit.test(
 
     }
 );
+
+QUnit.test(
+    "Font Family Parsing",
+    function (assert) {
+
+        return getIMSC1Document("unit-tests/fontFamily.ttml").then(
+            function (doc) {
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[0].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ["monospaceSerif"],
+                    "Maps 'default' generic family name to 'monospaceSerif' correctly."
+                );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[1].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ["Arial", "monospaceSerif"],
+                    "Maps 'default' value used as a fallback to 'monospaceSerif' correctly."
+                );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[2].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ["Arial", "monospaceSerif"],
+                    "Maps 'default' value used as a fallback with spacing characters to 'monospaceSerif' correctly."
+                );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[3].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ["'My Test Font'", "monospaceSerif"],
+                    "Fonts names wrapped in '' are preserved."
+                );
+
+                assert.deepEqual(
+                    doc.body.contents[0].contents[4].styleAttrs["http://www.w3.org/ns/ttml#styling fontFamily"],
+                    ['"My Test Font"', "monospaceSerif"],
+                    'Fonts names wrapped in "" are preserved.'
+                );
+            }
+        );
+
+    }
+);

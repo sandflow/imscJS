@@ -193,6 +193,7 @@
                 var rslt = [];
 
                 for (var i = 0; i < ffs.length; i++) {
+                    ffs[i] = ffs[i].trim();
 
                     if (ffs[i].charAt(0) !== "'" && ffs[i].charAt(0) !== '"') {
 
