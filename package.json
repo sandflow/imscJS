@@ -37,7 +37,8 @@
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
-        "sax": "1.2.1"
+        "sax": "1.2.1",
+        "tinycolor2": "^1.6.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.1.1",
