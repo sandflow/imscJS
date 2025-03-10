@@ -1,0 +1,7 @@
+[{"colorSelector": "*", "colorGenerator": {"exactColor":"yellow"}}]
+
+[{"colorSelector": "*", "colorGenerator": {"desaturate":"60"}}]
+
+[{"colorSelector": "yellow", "colorGenerator": {"spin":"45"}}]
+
+[{"colorSelector": "yellow", "colorGenerator": {"spin":"45"}},{"colorSelector": "*", "colorGenerator": {"desaturate":"60"}}]
