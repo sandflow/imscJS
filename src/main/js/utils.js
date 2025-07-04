@@ -24,6 +24,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+import tinycolor from "tinycolor2";
+
 /**
  * @module imscUtils
  */
@@ -111,6 +113,85 @@ export function parseColor(str) {
     }
 
     return r;
+};
+
+export function toTinycolor(ic) {
+    return tinycolor(
+        {
+            r: ic[0],
+            g: ic[1],
+            b: ic[2],
+            a: ic[3] / 255,
+        },
+    );
+};
+
+export function fromTinycolor(tc) {
+    const rgb = tc.toRgb();
+    return [ rgb.r, rgb.g, rgb.b, rgb.a * 255 ];
+};
+
+export function customizeColor(inputColor, colorAdjustRules) {
+    let outputColor = inputColor;
+
+    for (let r = 0; r < colorAdjustRules.length; r++) {
+        const colorAdjustRule = colorAdjustRules[r];
+        const matchResult = colorMatchesSelector(inputColor, colorAdjustRule.colorSelector);
+        if (matchResult.matches) {
+            outputColor = generateAdjustedColor(matchResult, colorAdjustRule.colorGenerator);
+            break;
+        }
+    }
+
+    return outputColor;
+};
+
+export function arraysEqual(a1, a2) {
+    let rv = a1.length == a2.length;
+    if (rv) {
+        for (let i = 0; (i < a1.length) && rv; i++) {
+            rv = (a1[i] === a2[i]);
+        }
+    };
+    return rv;
+};
+
+export function colorMatchesSelector(inputColor, colorSelector) {
+    const rv = {
+        matches: false,
+        color: inputColor,
+    };
+
+    const parsedColorSelector = parseColor(colorSelector);
+    if (colorSelector === "*")
+    {
+        rv.matches = true;
+    } else if ( parsedColorSelector ) {
+        rv.matches = arraysEqual(inputColor, parsedColorSelector);
+    };
+
+    return rv;
+};
+
+export function generateAdjustedColor(matchResult, colorGenerator) {
+    let generatedColor = matchResult.color;
+
+    // TODO: refactor this to be a list of properties mapped to functions
+    // and iterate through that instead of this if ... else if ... else if
+    // pattern.
+    if (colorGenerator.exactColor) {
+        generatedColor = parseColor(colorGenerator.exactColor);
+    } else if (colorGenerator.desaturate) {
+        const desaturatedColor = toTinycolor(generatedColor).desaturate(colorGenerator.desaturate);
+        generatedColor = fromTinycolor(desaturatedColor);
+    } else if (colorGenerator.darken) {
+        const darkenedColor = toTinycolor(generatedColor).darken(colorGenerator.darken);
+        generatedColor = fromTinycolor(darkenedColor);
+    } else if (colorGenerator.spin) {
+        const spinnedColor = toTinycolor(generatedColor).spin(colorGenerator.spin);
+        generatedColor = fromTinycolor(spinnedColor);
+    };
+    return generatedColor;
 };
 
 const LENGTH_RE = /^((?:\+|-)?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
@@ -334,6 +415,10 @@ export class ComputedLength {
 
     toUsedLength(width, height) {
         return width * this.rw + height * this.rh;
+    };
+
+    multiply(value, factor) {
+        return factor ? value * factor: value;
     };
 
     isZero() {
