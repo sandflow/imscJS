@@ -1607,7 +1607,13 @@ const STYLING_MAP_DEFS = [
     new HTMLStylingMapDefinition(
         "http://www.w3.org/ns/ttml#styling overflow",
         function (context, dom_element, isd_element, attr) {
-            dom_element.style.overflow = attr;
+
+            let overflow = attr;
+            if (context.options.overflow != undefined) {
+                overflow = context.options.overflow;
+            }
+
+            dom_element.style.overflow = overflow;
         },
     ),
     new HTMLStylingMapDefinition(
