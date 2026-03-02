@@ -33,18 +33,18 @@
         "sax": "1.2.1"
     },
     "devDependencies": {
-        "browserify": "^16.2.3",
+        "browserify": "latest",
         "filesaver.js-npm": "latest",
-        "google-closure-compiler": "^20180910.1.0",
+        "google-closure-compiler": "latest",
         "grunt": "latest",
         "grunt-browserify": "latest",
         "grunt-contrib-clean": "latest",
         "grunt-contrib-jshint": "latest",
-        "grunt-exec": "^3.0.0",
+        "grunt-exec": "latest",
         "grunt-npmcopy": "latest",
         "grunt-sync": "latest",
         "jszip": "latest",
-        "node-qunit": "^1.0.0",
+        "node-qunit": "latest",
         "qunit-assert-close": "latest",
         "qunitjs": "latest"
     }

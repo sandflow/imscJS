@@ -20,6 +20,8 @@ module.exports = function (grunt) {
                         { expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1/tests.json', dest: '<%= properties.webappBuildDir %>' },
                         { expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1_1/ttml/**', dest: '<%= properties.webappBuildDir %>' },
                         { expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1_1/tests.json', dest: '<%= properties.webappBuildDir %>' },
+                        { expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1_3/ttml/**', dest: '<%= properties.webappBuildDir %>' },
+                        { expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'imsc-tests/imsc1_3/tests.json', dest: '<%= properties.webappBuildDir %>' },
                         { expand: true, cwd: '<%= properties.unitTestsResourcesDir %>', src: 'unit-tests/**', dest: '<%= properties.webappBuildDir %>' }
                     ]
             },

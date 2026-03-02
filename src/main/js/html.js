@@ -1515,6 +1515,12 @@ var browserIsFirefox = /firefox/i.test(navigator.userAgent);
                 }
         ),
         new HTMLStylingMapDefinition(
+                "http://www.w3.org/ns/ttml#styling fontVariant",
+                function (context, dom_element, isd_element, attr) {
+                    dom_element.style.fontVariant = attr;
+                }
+        ),
+        new HTMLStylingMapDefinition(
                 "http://www.w3.org/ns/ttml#styling fontWeight",
                 function (context, dom_element, isd_element, attr) {
                     dom_element.style.fontWeight = attr;

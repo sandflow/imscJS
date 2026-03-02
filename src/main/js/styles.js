@@ -286,6 +286,18 @@
             ),
         new StylingAttributeDefinition(
             imscNames.ns_tts,
+            "fontVariant",
+            "normal",
+            ['span'],
+            true,
+            true,
+            function (str) {
+                return str;
+            },
+            null
+        ),
+        new StylingAttributeDefinition(
+            imscNames.ns_tts,
             "fontWeight",
             "normal",
             ['span', 'p'],
