@@ -55,18 +55,18 @@
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
-        "sax": "^1.4.1",
+        "sax": "^1.6.1",
         "tslib": "^2.6.2"
     },
     "devDependencies": {
-        "@eslint/js": "^9.1.1",
-        "@rollup/plugin-commonjs": "^25.0.7",
-        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@eslint/js": "^9.39.5",
+        "@rollup/plugin-commonjs": "^29.0.3",
+        "@rollup/plugin-node-resolve": "^16.0.3",
         "@rollup/plugin-terser": "^1.0.0",
         "@types/sax": "^1.2.7",
-        "eslint": "^9.1.1",
+        "eslint": "^9.39.5",
         "filesaver.js-npm": "latest",
-        "globals": "^15.0.0",
+        "globals": "^17.11.0",
         "grunt": "latest",
         "grunt-contrib-clean": "latest",
         "grunt-exec": "^3.0.0",
