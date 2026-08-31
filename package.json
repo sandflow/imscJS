@@ -25,22 +25,26 @@
         "imsc"
     ],
     "author": "Pierre-Anthony Lemieux <pal@sandflow.com>",
-    "main": "dist/main/js/main.js",
-    "types": "dist/main/js/main.d.ts",
+    "main": "dist/main/mainNode.js",
+    "types": "dist/main/main.d.ts",
     "unpkg": "dist/imsc.min.js",
+    "sideEffects": false,
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js"
+            "types": "./dist/main/main.d.ts",
+            "node": "./dist/main/mainNode.js",
+            "default": "./dist/main/main.js"
         },
         "./*.js": {
-            "types": "./dist/*.d.ts",
-            "import": "./dist/*.js"
+            "types": "./dist/main/*.d.ts",
+            "default": "./dist/main/*.js"
         },
         "./*": {
-            "types": "./dist/*.d.ts",
-            "import": "./dist/*.js"
-        }
+            "types": "./dist/main/*.d.ts",
+            "default": "./dist/main/*.js"
+        },
+        "./dist/*": "./dist/*",
+        "./package.json": "./package.json"
     },
     "scripts": {
         "prepublishOnly": "grunt build:release",
@@ -51,7 +55,8 @@
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
-        "sax": "^1.4.1"
+        "sax": "^1.4.1",
+        "tslib": "^2.6.2"
     },
     "devDependencies": {
         "@eslint/js": "^9.1.1",
@@ -70,7 +75,6 @@
         "jszip": "latest",
         "rollup": "^4.14.3",
         "rollup-plugin-polyfill-node": "^0.13.0",
-        "tslib": "^2.6.2",
         "typescript": "^5.4.5"
     }
 }

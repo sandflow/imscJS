@@ -27,4 +27,5 @@
 export { fromXML } from "./doc.js";
 export { renderHTML } from "./html.js";
 export { generateISD } from "./isd.js";
-export { createDOMParser, createSAXParser } from "./parser.js";
+export { createDOMParser } from "./parser.js";
+export { createSAXParser } from "./saxParser.js";

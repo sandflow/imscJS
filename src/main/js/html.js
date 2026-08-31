@@ -1834,10 +1834,15 @@ for (let i = 0; i < STYLING_MAP_DEFS.length; i++) {
 
 /* CSS property names */
 
-const RUBYPOSITION_ISWK = "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
+/* guard against non-browser environments, where renderHTML() is not usable but
+   importing the module must not throw */
+
+const IS_BROWSER = typeof window !== "undefined" && typeof document !== "undefined";
+
+const RUBYPOSITION_ISWK = IS_BROWSER && "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
 
 const RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
 
-const TEXTEMPHASISSTYLE_PROP = "webkitTextEmphasisStyle" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
+const TEXTEMPHASISSTYLE_PROP = IS_BROWSER && "webkitTextEmphasisStyle" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
 
-const TEXTEMPHASISPOSITION_PROP = "webkitTextEmphasisPosition" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisPosition" : "textEmphasisPosition";
+const TEXTEMPHASISPOSITION_PROP = IS_BROWSER && "webkitTextEmphasisPosition" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisPosition" : "textEmphasisPosition";

@@ -95,7 +95,7 @@ function asyncProcessRefFile(reffiles_root, renders_dir, pngs_dir, finfo, use_sa
     return asyncLoadFile(getReferenceFilePath(reffiles_root, finfo.path))
         .then(function (contents) {
             var parser = use_sax ? imsc.createSAXParser() : imsc.createDOMParser();
-            var doc = imsc.fromXML(contents.replace(/\r\n/g, '\n'), errorHandler, parser);
+            var doc = imsc.fromXML(contents.replace(/\r\n/g, '\n'), errorHandler, null, parser);
 
             test_renders_dir.file("doc.json",
                 JSON.stringify(

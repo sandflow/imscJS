@@ -1,7 +1,5 @@
-import sax from "sax";
-
 /**
- * @typedef {sax.Tag | sax.QualifiedTag} Node
+ * @typedef {import("sax").Tag | import("sax").QualifiedTag} Node
  */
 
 /**
@@ -54,7 +52,7 @@ export class XMLParser {
       throw new Error("XML parsing error: " + errorNode.textContent);
     }
 
-    this.process(doc.firstChild);
+    this.process(doc.documentElement);
 
     return this;
   }
@@ -90,9 +88,3 @@ export function createDOMParser() {
   return new XMLParser();
 }
 
-/**
- * @returns {Parser}
- */
-export function createSAXParser() {
-  return sax.parser(true, { xmlns: true });
-}
