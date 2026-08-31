@@ -99,7 +99,7 @@ export class XMLParser {
 /**
  * @returns {Parser}
  */
-export function createDOMParser() {
+export function createSAXParserFromDOMParser() {
   return new XMLParser();
 }
 

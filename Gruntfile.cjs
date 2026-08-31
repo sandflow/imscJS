@@ -39,7 +39,6 @@ module.exports = function (grunt) {
             default: {
                 files: {
                     "<%= properties.webappBuildDir %>/libs/": [
-                        "sax:main",
                         "filesaver.js-npm:main",
                         "jszip/dist/jszip.js",
                     ],

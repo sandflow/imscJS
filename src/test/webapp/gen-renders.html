@@ -9,7 +9,6 @@
 
     <script src="libs/FileSaver.js"></script>
     <script src="libs/jszip.js"></script>
-    <script src="libs/sax.js"></script>
     <script src="libs/imsc.js"></script>
     <script src="js/reffiles.js"></script>
     <script src="js/gen-renders.js"></script>
@@ -20,14 +19,10 @@
     <div id="main">
 
         <section id="start">
-            <button onclick="generateRenders('imsc-tests/imsc1', true)">Generate IMSC 1 reference
-                renders - SAX</button>
-            <button onclick="generateRenders('imsc-tests/imsc1_1', true)">Generate IMSC 1.1 reference
-                renders - SAX</button>
-            <button onclick="generateRenders('imsc-tests/imsc1', false)">Generate IMSC 1 reference
-                renders - DOM</button>
-            <button onclick="generateRenders('imsc-tests/imsc1_1', false)">Generate IMSC 1.1 reference
-                renders- DOM</button>
+            <button onclick="generateRenders('imsc-tests/imsc1')">Generate IMSC 1 reference
+                renders</button>
+            <button onclick="generateRenders('imsc-tests/imsc1_1')">Generate IMSC 1.1 reference
+                renders</button>
         </section>
 
         <section id="visual">

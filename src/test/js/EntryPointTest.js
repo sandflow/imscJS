@@ -9,7 +9,7 @@ test("Entry point imports in node", async () => {
   const imsc = await import("../../main/js/main.js");
 
   equal(typeof imsc.fromXML, "function");
-  equal(typeof imsc.createDOMParser, "function");
+  equal(typeof imsc.createSAXParserFromDOMParser, "function");
   equal(typeof imsc.renderHTML, "function");
   equal(typeof imsc.generateISD, "function");
 

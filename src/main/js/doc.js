@@ -26,7 +26,7 @@
 
 import { reportError, reportFatal, reportWarning } from "./error.js";
 import { ns_ebutts, ns_ittp, ns_itts, ns_tt, ns_ttp, ns_tts } from "./names.js";
-import { createDOMParser } from "./parser.js";
+import { createSAXParserFromDOMParser } from "./parser.js";
 import { byName, byQName } from "./styles.js";
 import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
 
@@ -82,7 +82,7 @@ import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
  * @returns {?TT} Opaque in-memory representation of an IMSC1 document
  */
 
-export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createDOMParser()) {
+export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createSAXParserFromDOMParser()) {
     const estack = [];
     const xmllangstack = [];
     const xmlspacestack = [];
