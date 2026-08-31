@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import { fromXML } from "../../../main/js/doc.js";
-import { createSAXParser } from "../../../main/js/saxParser.js";
+import { createSAXParser } from "./saxParser.js";
 
 const errorHandler = {
   info: function (msg) {

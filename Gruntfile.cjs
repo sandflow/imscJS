@@ -80,6 +80,4 @@ module.exports = function (grunt) {
 
     grunt.registerTask("build", ["build:debug"]);
 
-    grunt.registerTask("clean", ["clean"]);
-
 };

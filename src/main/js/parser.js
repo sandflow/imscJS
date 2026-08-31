@@ -1,5 +1,20 @@
 /**
- * @typedef {import("sax").Tag | import("sax").QualifiedTag} Node
+ * @typedef {Object} Attribute
+ * @property {string} name
+ * @property {?string} prefix
+ * @property {?string} local
+ * @property {?string} uri
+ * @property {?string} value
+ */
+
+/**
+ * @typedef {Object} Node
+ * @property {string} name
+ * @property {?string} prefix
+ * @property {?string} local
+ * @property {?string} uri
+ * @property {?string} value
+ * @property {Object.<string, Attribute>} attributes
  */
 
 /**
@@ -14,7 +29,7 @@
 export class XMLParser {
   /**
    * @param {Element} element
-   * @returns {SAX}
+   * @returns {Node}
    */
   static toNode(element) {
     const attrs = element.attributes;

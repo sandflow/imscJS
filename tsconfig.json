@@ -36,6 +36,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "ES5",
+    "types": [],
   },
   "include": [
     "src/main"
