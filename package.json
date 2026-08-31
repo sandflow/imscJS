@@ -29,11 +29,14 @@
     "types": "dist/main/js/main.d.ts",
     "unpkg": "dist/imsc.min.js",
     "scripts": {
-        "prepublishOnly": "grunt build:release",
+        "prepublishOnly": "npm run build:release",
         "dev": "npx http-server build/public_html",
         "lint": "eslint .",
         "fix": "eslint --fix src",
-        "build": "grunt build",
+        "build": "npm run build:debug",
+        "build:debug": "npm run lint && tsc && rollup -c rollup.config.js && node scripts/build.js webapp:debug",
+        "build:release": "npm run lint && tsc && rollup -c rollup.config.js && node scripts/build.js webapp:release",
+        "clean": "node scripts/build.js clean",
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
@@ -48,11 +51,6 @@
         "eslint": "^9.39.5",
         "filesaver.js-npm": "latest",
         "globals": "^17.11.0",
-        "grunt": "latest",
-        "grunt-contrib-clean": "latest",
-        "grunt-exec": "^3.0.0",
-        "grunt-npmcopy": "latest",
-        "grunt-sync": "latest",
         "jszip": "latest",
         "rollup": "^4.14.3",
         "rollup-plugin-polyfill-node": "^0.13.0",
