@@ -28,23 +28,6 @@
  * @module imscUtils
  */
 
-/* Documents the error handler interface */
-
-/**
- * @classdesc Generic interface for handling events. The interface exposes four
- * methods:
- * * <pre>info</pre>: unusual event that does not result in an inconsistent state
- * * <pre>warn</pre>: unexpected event that should not result in an inconsistent state
- * * <pre>error</pre>: unexpected event that may result in an inconsistent state
- * * <pre>fatal</pre>: unexpected event that results in an inconsistent state
- *   and termination of processing
- * Each method takes a single <pre>string</pre> describing the event as argument,
- * and returns a single <pre>boolean</pre>, which terminates processing if <pre>true</pre>.
- *
- * @name ErrorHandler
- * @class
- */
-
 /*
  * Parses a TTML color expression
  *
@@ -75,6 +58,10 @@ const NAMED_COLOR = {
     cyan: [0, 255, 255, 255],
 };
 
+/**
+ * @param {string} str
+ * @returns {[number, number, number, number]}
+ */
 export function parseColor(str) {
 
     let m;
@@ -115,6 +102,10 @@ export function parseColor(str) {
 
 const LENGTH_RE = /^((?:\+|-)?\d*(?:\.\d+)?)(px|em|c|%|rh|rw)$/;
 
+/**
+ * @param {string} str
+ * @returns {{ value: number, unit: string } | null}
+ */
 export function parseLength(str) {
 
     let m;
@@ -129,6 +120,10 @@ export function parseLength(str) {
     return r;
 };
 
+/**
+ * @param {string} str
+ * @returns {string | any[] | null}
+ */
 export function parseTextShadow(str) {
 
     const shadows = str.match(/([^(,)]|\([^)]+\))+/g);
@@ -202,6 +197,15 @@ export function parseTextShadow(str) {
     return r;
 };
 
+/**
+ * @typedef {{ value: number, unit: string }} Offset
+ * @typedef {{ edge: string, offset: Offset }} Position
+ */
+
+/**
+ * @param {string} str
+ * @returns {{h: Position, v: Position} | null}
+ */
 export function parsePosition(str) {
 
     /* see https://www.w3.org/TR/ttml2/#style-value-position */
@@ -327,15 +331,27 @@ export function parsePosition(str) {
 };
 
 export class ComputedLength {
+    /**
+     * @param {number} rw
+     * @param {number} rh
+     */
     constructor(rw, rh) {
         this.rw = rw;
         this.rh = rh;
     }
 
+    /**
+     * @param {number} width
+     * @param {number} height
+     * @returns {number}
+     */
     toUsedLength(width, height) {
         return width * this.rw + height * this.rh;
     };
 
+    /**
+     * @returns {boolean}
+     */
     isZero() {
         return this.rw === 0 && this.rh === 0;
     };
@@ -406,6 +422,11 @@ export function toComputedLength(lengthVal, lengthUnit, emLength, percentLength,
 
 }
 
+/**
+ * @param {Object} obj
+ * @param {string} prop
+ * @returns {boolean}
+ */
 export function hasOwnProperty(obj, prop) {
     return Object.prototype.hasOwnProperty.call(obj, prop);
 }

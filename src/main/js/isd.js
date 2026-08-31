@@ -33,14 +33,19 @@ import { ComputedLength, hasOwnProperty } from "./utils.js";
  */
 
 /**
+ * @typedef {import("./doc").TT} TT
+ * @typedef {import("./error").ErrorHandler} ErrorHandler
+ */
+
+/**
  * Creates a canonical representation of an IMSC1 document returned by <pre>imscDoc.fromXML()</pre>
  * at a given absolute offset in seconds. This offset does not have to be one of the values returned
  * by <pre>getMediaTimeEvents()</pre>.
  *
- * @param {Object} tt IMSC1 document
+ * @param {TT} tt IMSC1 document
  * @param {number} offset Absolute offset (in seconds)
- * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
- * @returns {Object} Opaque in-memory representation of an ISD
+ * @param {ErrorHandler} errorHandler Error callback
+ * @returns {ISD} Opaque in-memory representation of an ISD
  */
 
 export function generateISD(tt, offset, errorHandler) {
@@ -720,15 +725,26 @@ function pruneEmptySpans(element) {
     }
 }
 
-class ISD {
+export class ISD {
     constructor(tt) {
+        /**
+         * @type {ISDContentElement[]}
+         */
         this.contents = [];
+
+        /**
+         * @type {string}
+         */
         this.aspectRatio = tt.aspectRatio;
+
+        /**
+         * @type {string}
+         */
         this.lang = tt.lang;
     }
 }
 
-class ISDContentElement {
+export class ISDContentElement {
     constructor(ttelem) {
 
         /* assume the element is a region if it does not have a kind */

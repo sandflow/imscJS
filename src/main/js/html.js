@@ -28,6 +28,11 @@ import { reportError } from "./error.js";
 import { byName } from "./styles.js";
 
 /**
+ * @typedef {import("./isd").ISD} ISD
+ * @typedef {import("./error").ErrorHandler} ErrorHandler
+ */
+
+/**
  * @module imscHTML
  */
 
@@ -36,7 +41,7 @@ const browserIsFirefox = /firefox/i.test(navigator.userAgent);
 /**
  * Function that maps <pre>smpte:background</pre> URIs to URLs resolving to image resource
  * @callback IMGResolver
- * @param {string} <pre>smpte:background</pre> URI
+ * @param {string} value <pre>smpte:background</pre> URI
  * @return {string} PNG resource URL
  */
 
@@ -56,8 +61,8 @@ const browserIsFirefox = /firefox/i.test(navigator.userAgent);
  * is called for the next ISD, otherwise <code>previousISDState</code> should be set to
  * <code>null</code>.
  *
- * @param {Object} isd ISD to be rendered
- * @param {Object} element Element into which the ISD is rendered
+ * @param {ISD} isd ISD to be rendered
+ * @param {HTMLElement} element Element into which the ISD is rendered
  * @param {?IMGResolver} imgResolver Resolve <pre>smpte:background</pre> URIs into URLs.
  * @param {?number} eheight Height (in pixel) of the child <div>div</div> or null
  *                  to use clientHeight of the parent element
@@ -65,10 +70,10 @@ const browserIsFirefox = /firefox/i.test(navigator.userAgent);
  *                  to use clientWidth of the parent element
  * @param {?boolean} displayForcedOnlyMode Value of the IMSC1 displayForcedOnlyMode parameter,
  *                   or false if null
- * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
- * @param {Object} previousISDState State saved during processing of the previous ISD, or null if initial call
+ * @param {?ErrorHandler} errorHandler Error callback
+ * @param {ISD} previousISDState State saved during processing of the previous ISD, or null if initial call
  * @param {?boolean} enableRollUp Enables roll-up animations (see CEA 708)
- * @return {Object} ISD state to be provided when this funtion is called for the next ISD
+ * @return {ISD} ISD state to be provided when this function is called for the next ISD
  */
 
 export function renderHTML(isd,

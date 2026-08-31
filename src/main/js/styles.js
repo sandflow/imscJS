@@ -31,7 +31,22 @@ import { ComputedLength, parseColor, parseLength, parsePosition, parseTextShadow
  * @module imscStyles
  */
 
-class StylingAttributeDefinition {
+/**
+ * @typedef {import("./doc").TT} TT
+ * @typedef {import("./doc").Node} Node
+ */
+
+export class StylingAttributeDefinition {
+    /**
+     * @param {string} ns
+     * @param {string} name
+     * @param {string} initialValue
+     * @param {string[]} appliesTo
+     * @param {boolean} isInherit
+     * @param {boolean} isAnimatable
+     * @param {(value: string) => any} parseFunc
+     * @param {(doc: TT, parent: Node, element: Node, attr: string) => any} computeFunc
+     */
     constructor(ns, name, initialValue, appliesTo, isInherit, isAnimatable, parseFunc, computeFunc) {
         this.name = name;
         this.ns = ns;
@@ -1193,12 +1208,18 @@ export const all = [
 
 /* TODO: allow null parse function */
 
+/**
+ * @type {Record<string, StylingAttributeDefinition>}
+ */
 export const byQName = {};
 for (const i in all) {
 
     byQName[all[i].qname] = all[i];
 }
 
+/**
+ * @type {Record<string, StylingAttributeDefinition>}
+ */
 export const byName = {};
 for (const j in all) {
 

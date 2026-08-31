@@ -35,6 +35,14 @@ import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
  */
 
 /**
+ * @typedef {import("./error").ErrorHandler} ErrorHandler
+ */
+
+/**
+ * @typedef {sax.Tag | sax.QualifiedTag} Node
+ */
+
+/**
  * Allows a client to provide callbacks to handle children of the <metadata> element
  * @typedef {Object} MetadataHandler
  * @property {?OpenTagCallBack} onOpenTag
@@ -47,7 +55,7 @@ import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
  * @callback OpenTagCallBack
  * @param {string} ns Namespace URI of the element
  * @param {string} name Local name of the element
- * @param {Object[]} attributes List of attributes, each consisting of a
+ * @param {Record<string, {uri: string, name: string, value: string}>} attributes List of attributes, each consisting of a
  *                              `uri`, `name` and `value`
  */
 
@@ -70,9 +78,9 @@ import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
  * be called back when nodes are present in <metadata> elements.
  *
  * @param {string} xmlstring XML document
- * @param {?module:imscUtils.ErrorHandler} errorHandler Error callback
+ * @param {ErrorHandler} errorHandler Error callback
  * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
- * @returns {Object} Opaque in-memory representation of an IMSC1 document
+ * @returns {?TT} Opaque in-memory representation of an IMSC1 document
  */
 
 export function fromXML(xmlstring, errorHandler, metadataHandler) {
@@ -807,19 +815,31 @@ function resolveTiming(doc, element, prev_sibling, parent) {
 
 }
 
-class ForeignElement {
+export class ForeignElement {
     constructor(node) {
         this.node = node;
     }
 }
 
-class TT {
+export class TT {
     constructor() {
+        /**
+         * @type {number[]}
+         */
         this.events = [];
         this.head = new Head();
+
+        /**
+         * @type {?Body}
+         */
         this.body = null;
     }
 
+    /**
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(node, xmllang, errorHandler) {
 
         /* compute cell resolution */
@@ -887,7 +907,9 @@ class TT {
         };
 
         /* xml:lang */
-
+        /**
+         * @type {string}
+         */
         this.lang = xmllang;
 
     }
@@ -922,10 +944,10 @@ class TT {
 
     }
 
-    /*
+    /**
      * Retrieves the range of ISD times covered by the document
      *
-     * @returns {Array} Array of two elements: min_begin_time and max_begin_time
+     * @returns {[number, number]} Array of two elements: min_begin_time and max_begin_time
      *
      */
     getMediaTimeRange() {
@@ -933,10 +955,10 @@ class TT {
         return [this.events[0], this.events[this.events.length - 1]];
     };
 
-    /*
+    /**
      * Returns list of ISD begin times
      *
-     * @returns {Array}
+     * @returns {number[]}
      */
     getMediaTimeEvents() {
 
@@ -948,7 +970,7 @@ class TT {
  * Represents a TTML Head element
  */
 
-class Head {
+export class Head {
     constructor() {
         this.styling = new Styling();
         this.layout = new Layout();
@@ -959,9 +981,16 @@ class Head {
  * Represents a TTML Styling element
  */
 
-class Styling {
+export class Styling {
     constructor() {
+        /**
+         * @type {Record<string, Style>}
+         */
         this.styles = {};
+
+        /**
+         * @type {Record<string, any>}
+         */
         this.initials = {};
     }
 }
@@ -970,13 +999,28 @@ class Styling {
  * Represents a TTML Style element
  */
 
-class Style {
+export class Style {
     constructor() {
+        /**
+         * @type {string}
+         */
         this.id = null;
+
+        /**
+         * @type {Record<string, any>}
+         */
         this.styleAttrs = null;
+
+        /**
+         * @type {string[]}
+         */
         this.styleRefs = null;
     }
 
+    /**
+     * @param {Node} node
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(node, errorHandler) {
         this.id = elementGetXMLID(node);
         this.styleAttrs = elementGetStyles(node, errorHandler);
@@ -988,11 +1032,17 @@ class Style {
  * Represents a TTML initial element
  */
 
-class Initial {
+export class Initial {
     constructor() {
+        /**
+         * @type {Record<string, string>}
+         */
         this.styleAttrs = null;
     }
 
+    /**
+     * @param {Node} node
+     */
     initFromNode(node) {
 
         this.styleAttrs = {};
@@ -1018,13 +1068,16 @@ class Initial {
  *
  */
 
-class Layout {
+export class Layout {
     constructor() {
         this.regions = {};
     }
 }
 
-class ContentElement {
+export class ContentElement {
+    /**
+     * @param {string} kind
+     */
     constructor(kind) {
         this.kind = kind;
     }
@@ -1034,13 +1087,32 @@ class ContentElement {
  * Represents a TTML image element
  */
 
-class Image extends ContentElement {
+export class Image extends ContentElement {
+    /**
+     * @param {string} src
+     * @param {string} type
+     */
     constructor(src, type) {
         super("image");
+
+        /**
+         * @type {string}
+         */
         this.src = src;
+
+        /**
+         * @type {string}
+         */
         this.type = type;
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
         this.src = "src" in node.attributes ? node.attributes.src.value : null;
 
@@ -1068,31 +1140,56 @@ class Image extends ContentElement {
  *
  */
 
-class IdentifiedElement {
+export class IdentifiedElement {
+    /**
+     * @param {string} id
+     */
     constructor(id) {
         this.id = id;
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     */
     initFromNode(doc, parent, node) {
         this.id = elementGetXMLID(node);
     }
 }
 
-class LayoutElement {
+export class LayoutElement {
+    /**
+     * @param {string} id
+     */
     constructor(id) {
         this.regionID = id;
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     */
     initFromNode(doc, parent, node) {
         this.regionID = elementGetRegionID(node);
     }
 }
 
-class StyledElement {
+export class StyledElement {
+    /**
+     * @param {Record<string, any>} styleAttrs
+     */
     constructor(styleAttrs) {
         this.styleAttrs = styleAttrs;
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, errorHandler) {
 
         this.styleAttrs = elementGetStyles(node, errorHandler);
@@ -1104,7 +1201,10 @@ class StyledElement {
     }
 }
 
-class AnimatedElement {
+export class AnimatedElement {
+    /**
+     * @param {any[]} sets
+     */
     constructor(sets) {
         this.sets = sets;
     }
@@ -1114,7 +1214,10 @@ class AnimatedElement {
     }
 }
 
-class ContainerElement {
+export class ContainerElement {
+    /**
+     * @param {string} contents
+     */
     constructor(contents) {
         this.contents = contents;
     }
@@ -1124,13 +1227,25 @@ class ContainerElement {
     }
 }
 
-class TimedElement {
+export class TimedElement {
+    /**
+     *
+     * @param {number} explicit_begin
+     * @param {number} explicit_end
+     * @param {number} explicit_dur
+     */
     constructor(explicit_begin, explicit_end, explicit_dur) {
         this.explicit_begin = explicit_begin;
         this.explicit_end = explicit_end;
         this.explicit_dur = explicit_dur;
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, errorHandler) {
         const t = processTiming(doc, parent, node, errorHandler);
         this.explicit_begin = t.explicit_begin;
@@ -1145,11 +1260,17 @@ class TimedElement {
  * Represents a TTML body element
  */
 
-class Body extends ContentElement {
+export class Body extends ContentElement {
     constructor() {
         super("body");
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, node, xmllang, errorHandler) {
         StyledElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
@@ -1165,11 +1286,18 @@ class Body extends ContentElement {
  * Represents a TTML div element
  */
 
-class Div extends ContentElement {
+export class Div extends ContentElement {
     constructor() {
         super("div");
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
         StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
@@ -1185,11 +1313,18 @@ class Div extends ContentElement {
  * Represents a TTML p element
  */
 
-class P extends ContentElement {
+export class P extends ContentElement {
     constructor() {
         super("p");
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
         StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
@@ -1205,11 +1340,19 @@ class P extends ContentElement {
  * Represents a TTML span element
  */
 
-class Span extends ContentElement {
+export class Span extends ContentElement {
     constructor() {
         super("span");
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {string} xmlspace
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, xmllang, xmlspace, errorHandler) {
         StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
@@ -1226,11 +1369,19 @@ class Span extends ContentElement {
  * Represents a TTML anonymous span element
  */
 
-class AnonymousSpan extends ContentElement {
+export class AnonymousSpan extends ContentElement {
     constructor() {
         super("span");
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {string} text
+     * @param {string} xmlspace
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromText(doc, parent, text, xmllang, xmlspace, errorHandler) {
         TimedElement.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
 
@@ -1244,11 +1395,18 @@ class AnonymousSpan extends ContentElement {
  * Represents a TTML br element
  */
 
-class Br extends ContentElement {
+export class Br extends ContentElement {
     constructor() {
         super("br");
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
         LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
@@ -1262,9 +1420,13 @@ class Br extends ContentElement {
  *
  */
 
-class Region {
+export class Region {
     constructor() { }
 
+    /**
+     * @param {string} xmllang
+     * @returns {Region}
+     */
     createDefaultRegion(xmllang) {
         const r = new Region();
 
@@ -1280,6 +1442,12 @@ class Region {
         return r;
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} node
+     * @param {string} xmllang
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, node, xmllang, errorHandler) {
         IdentifiedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
         TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
@@ -1304,10 +1472,16 @@ class Region {
  *
  */
 
-class Set {
+export class Set {
     constructor() {
     }
 
+    /**
+     * @param {TT} doc
+     * @param {Node} parent
+     * @param {Node} node
+     * @param {ErrorHandler} errorHandler
+     */
     initFromNode(doc, parent, node, errorHandler) {
 
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
@@ -1341,14 +1515,27 @@ class Set {
  *
  */
 
+/**
+ * @param {Node} node
+ * @returns {string | null}
+ */
 function elementGetXMLID(node) {
     return node && "xml:id" in node.attributes ? node.attributes["xml:id"].value || null : null;
 }
 
+/**
+ * @param {Node} node
+ * @returns {string}
+ */
 function elementGetRegionID(node) {
     return node && "region" in node.attributes ? node.attributes.region.value : "";
 }
 
+/**
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {string}
+ */
 function elementGetTimeContainer(node, errorHandler) {
 
     const tc = node && "timeContainer" in node.attributes ? node.attributes.timeContainer.value : null;
@@ -1371,12 +1558,21 @@ function elementGetTimeContainer(node, errorHandler) {
 
 }
 
+/**
+ * @param {Node} node
+ * @returns {string[]}
+ */
 function elementGetStyleRefs(node) {
 
     return node && "style" in node.attributes ? node.attributes.style.value.split(" ") : [];
 
 }
 
+/**
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {Record<string, any>}
+ */
 function elementGetStyles(node, errorHandler) {
 
     const s = {};
@@ -1418,6 +1614,12 @@ function elementGetStyles(node, errorHandler) {
     return s;
 }
 
+/**
+ * @param {Node} node
+ * @param {string} ns
+ * @param {string} name
+ * @returns {string | null}
+ */
 function findAttribute(node, ns, name) {
     for (const i in node.attributes) {
 
@@ -1431,6 +1633,11 @@ function findAttribute(node, ns, name) {
     return null;
 }
 
+/**
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {number | null}
+ */
 function extractAspectRatio(node, errorHandler) {
 
     let ar = findAttribute(node, ns_ittp, "aspectRatio");
@@ -1475,9 +1682,12 @@ function extractAspectRatio(node, errorHandler) {
 
 }
 
-/*
+/**
  * Returns the cellResolution attribute from a node
  *
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {{w: number, h: number}}
  */
 function extractCellResolution(node, errorHandler) {
 
@@ -1512,6 +1722,11 @@ function extractCellResolution(node, errorHandler) {
 
 }
 
+/**
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {{ effectiveFrameRate: number, tickRate: number }}
+ */
 function extractFrameAndTickRate(node, errorHandler) {
 
     // subFrameRate is ignored per IMSC1 specification
@@ -1604,6 +1819,11 @@ function extractFrameAndTickRate(node, errorHandler) {
 
 }
 
+/**
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {{w: number, h: number} | null}
+ */
 function extractExtent(node, errorHandler) {
 
     const attr = findAttribute(node, ns_tts, "extent");
@@ -1635,6 +1855,12 @@ function extractExtent(node, errorHandler) {
 
 }
 
+/**
+ * @param {number} tickRate
+ * @param {number} effectiveFrameRate
+ * @param {string} str
+ * @returns {number | null}
+ */
 function parseTimeExpression(tickRate, effectiveFrameRate, str) {
 
     const CLOCK_TIME_FRACTION_RE = /^(\d{2,}):(\d\d):(\d\d(?:\.\d+)?)$/;
@@ -1700,6 +1926,13 @@ function parseTimeExpression(tickRate, effectiveFrameRate, str) {
     return r;
 }
 
+/**
+ * @param {TT} doc
+ * @param {Node} parent
+ * @param {Node} node
+ * @param {ErrorHandler} errorHandler
+ * @returns {{explicit_begin: number, explicit_end: number, explicit_dur: number}}
+ */
 function processTiming(doc, parent, node, errorHandler) {
 
     /* determine explicit begin */
@@ -1758,6 +1991,11 @@ function processTiming(doc, parent, node, errorHandler) {
 
 }
 
+/**
+ * @param {Styling} styling
+ * @param {Style} style
+ * @param {ErrorHandler} errorHandler
+ */
 function mergeChainedStyles(styling, style, errorHandler) {
 
     while (style.styleRefs.length > 0) {
@@ -1777,6 +2015,12 @@ function mergeChainedStyles(styling, style, errorHandler) {
 
 }
 
+/**
+ * @param {Styling} styling
+ * @param {string[]} stylerefs
+ * @param {Record<string, any>} styleattrs
+ * @param {ErrorHandler} errorHandler
+ */
 function mergeReferencedStyles(styling, stylerefs, styleattrs, errorHandler) {
 
     for (let i = stylerefs.length - 1; i >= 0; i--) {
@@ -1794,6 +2038,10 @@ function mergeReferencedStyles(styling, stylerefs, styleattrs, errorHandler) {
 
 }
 
+/**
+ * @param {Record<string, any>} from_styles
+ * @param {Record<string, any>} into_styles
+ */
 function mergeStylesIfNotPresent(from_styles, into_styles) {
 
     for (const sname in from_styles) {
@@ -1811,13 +2059,15 @@ function mergeStylesIfNotPresent(from_styles, into_styles) {
 
 /* TODO: validate style format at parsing */
 
-/*
+/**
  * Binary search utility function
  *
  * @typedef {Object} BinarySearchResult
  * @property {boolean} found Was an exact match found?
  * @property {number} index Position of the exact match or insert position
  *
+ * @param {number[]} arr
+ * @param {number} searchval
  * @returns {BinarySearchResult}
  */
 
