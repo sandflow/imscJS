@@ -1,8 +1,10 @@
 import { equal, throws } from "node:assert";
 import { test } from "node:test";
-import { fromXML } from "../../main/js/doc.js";
+import { fromParser } from "../../main/js/doc.js";
 
-test("fromXML requires a parser", () => {
+const XML = '<tt xmlns="http://www.w3.org/ns/ttml" xml:lang="en"><body><div><p>hello</p></div></body></tt>';
+
+test("fromParser requires a parser", () => {
 
   let fatal_msg = null;
 
@@ -13,7 +15,7 @@ test("fromXML requires a parser", () => {
     fatal: function (msg) { fatal_msg = msg; },
   };
 
-  throws(() => fromXML("<tt/>", errorHandler));
+  throws(() => fromParser(XML, errorHandler));
 
   equal(fatal_msg, "No parser provided");
 

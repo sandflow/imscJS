@@ -81,7 +81,7 @@ import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
  * @returns {?TT} Opaque in-memory representation of an IMSC1 document
  */
 
-export function fromXML(xmlstring, errorHandler, metadataHandler, parser) {
+export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
     if (!parser) {
         reportFatal(errorHandler, "No parser provided");
     }

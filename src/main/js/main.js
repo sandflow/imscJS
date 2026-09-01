@@ -24,7 +24,30 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { fromXML } from "./doc.js";
+import { fromParser } from "./doc.js";
+import { createSAXParserFromDOMParser } from "./dom_to_parser.js";
+
 export { renderHTML } from "./html.js";
 export { generateISD } from "./isd.js";
-export { createSAXParserFromDOMParser } from "./dom_to_parser.js";
+export { createSAXParserFromDOMParser };
+
+/**
+ * @typedef {import("./error.js").ErrorHandler} ErrorHandler
+ * @typedef {import("./doc.js").MetadataHandler} MetadataHandler
+ * @typedef {import("./doc.js").TT} TT
+ * @typedef {import("./parser.js").Parser} Parser
+ */
+
+/**
+ * Parses an IMSC1 document into an opaque in-memory representation, using the
+ * DOMParser-backed parser unless a parser is provided.
+ *
+ * @param {string} xmlstring XML document
+ * @param {ErrorHandler} errorHandler Error callback
+ * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
+ * @param {?Parser} parser XML parser
+ * @returns {?TT} Opaque in-memory representation of an IMSC1 document
+ */
+export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createSAXParserFromDOMParser()) {
+    return fromParser(xmlstring, errorHandler, metadataHandler, parser);
+}
