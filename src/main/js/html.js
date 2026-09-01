@@ -87,8 +87,6 @@ export function renderHTML(isd,
     enableRollUp,
 ) {
 
-    initCSSPropertyNames();
-
     /* maintain aspect ratio if specified */
 
     let height = eheight || element.clientHeight;
@@ -1834,29 +1832,12 @@ for (let i = 0; i < STYLING_MAP_DEFS.length; i++) {
     STYLMAP_BY_QNAME[STYLING_MAP_DEFS[i].qname] = STYLING_MAP_DEFS[i];
 }
 
-/* CSS property names, detected lazily on the first render so that importing
-   this module does not require browser globals; renderHTML() is browser-only
-   (mocked or real) and throws when they are absent */
+/* CSS property names */
 
-let RUBYPOSITION_ISWK = null;
+const RUBYPOSITION_ISWK = "webkitRubyPosition" in window.getComputedStyle(document.documentElement);
 
-let RUBYPOSITION_PROP = null;
+const RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
 
-let TEXTEMPHASISSTYLE_PROP = null;
+const TEXTEMPHASISSTYLE_PROP = "webkitTextEmphasisStyle" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
 
-let TEXTEMPHASISPOSITION_PROP = null;
-
-function initCSSPropertyNames() {
-
-    if (RUBYPOSITION_PROP !== null) return;
-
-    const style = window.getComputedStyle(document.documentElement);
-
-    RUBYPOSITION_ISWK = "webkitRubyPosition" in style;
-
-    RUBYPOSITION_PROP = RUBYPOSITION_ISWK ? "webkitRubyPosition" : "rubyPosition";
-
-    TEXTEMPHASISSTYLE_PROP = "webkitTextEmphasisStyle" in style ? "webkitTextEmphasisStyle" : "textEmphasisStyle";
-
-    TEXTEMPHASISPOSITION_PROP = "webkitTextEmphasisPosition" in style ? "webkitTextEmphasisPosition" : "textEmphasisPosition";
-}
+const TEXTEMPHASISPOSITION_PROP = "webkitTextEmphasisPosition" in window.getComputedStyle(document.documentElement) ? "webkitTextEmphasisPosition" : "textEmphasisPosition";
