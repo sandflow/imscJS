@@ -1487,26 +1487,7 @@ export class Set {
 
         TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
-        const styles = elementGetStyles(node, errorHandler);
-
-        this.qname = null;
-        this.value = null;
-
-        for (const qname in styles) {
-
-            if (!hasOwnProperty(styles, qname)) continue;
-
-            if (this.qname) {
-
-                reportError(errorHandler, "More than one style specified on set");
-                break;
-
-            }
-
-            this.qname = qname;
-            this.value = styles[qname];
-
-        }
+        this.styles = elementGetStyles(node, errorHandler);
 
     }
 }
@@ -1591,6 +1572,10 @@ function elementGetStyles(node, errorHandler) {
                 const val = sa.parse(node.attributes[i].value);
 
                 if (val !== null) {
+
+                    if (qname in s) {
+                        reportWarning(errorHandler, "More than one style attribute for " + qname);
+                    }
 
                     s[qname] = val;
 

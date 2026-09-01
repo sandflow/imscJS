@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tt xml:lang="en" xmlns="http://www.w3.org/ns/ttml"
+xmlns:ttp="http://www.w3.org/ns/ttml#parameter" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text"
+xmlns:tts="http://www.w3.org/ns/ttml#styling">
+	<head>
+	</head>
+	<body>
+		<div>
+			<p begin="0s" end="10s">
+				Hello
+				<set begin="1s" end="5s" tts:fontWeight="bold" tts:textAlign="end"/>
+			</p>
+		</div>
+	</body>
+</tt>
