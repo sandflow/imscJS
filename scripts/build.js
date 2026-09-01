@@ -27,7 +27,6 @@ function assembleWebapp(bundleName) {
   copy(join(resources, "unit-tests"), join(out, "unit-tests"));
 
   for (const lib of [
-    require.resolve("sax"),
     require.resolve("filesaver.js-npm"),
     require.resolve("jszip/dist/jszip.js"),
   ]) {

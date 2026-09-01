@@ -25,9 +25,26 @@
         "imsc"
     ],
     "author": "Pierre-Anthony Lemieux <pal@sandflow.com>",
-    "main": "dist/main/js/main.js",
-    "types": "dist/main/js/main.d.ts",
+    "main": "dist/main/main.js",
+    "types": "dist/main/main.d.ts",
     "unpkg": "dist/imsc.min.js",
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "types": "./dist/main/main.d.ts",
+            "default": "./dist/main/main.js"
+        },
+        "./*.js": {
+            "types": "./dist/main/*.d.ts",
+            "default": "./dist/main/*.js"
+        },
+        "./*": {
+            "types": "./dist/main/*.d.ts",
+            "default": "./dist/main/*.js"
+        },
+        "./dist/*": "./dist/*",
+        "./package.json": "./package.json"
+    },
     "scripts": {
         "prepublishOnly": "npm run build:release",
         "dev": "npx http-server build/public_html",
@@ -40,21 +57,20 @@
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
-        "sax": "^1.6.1"
+        "tslib": "^2.6.2"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.5",
         "@rollup/plugin-commonjs": "^29.0.3",
         "@rollup/plugin-node-resolve": "^16.0.3",
         "@rollup/plugin-terser": "^1.0.0",
-        "@types/sax": "^1.2.7",
         "eslint": "^9.39.5",
         "filesaver.js-npm": "latest",
         "globals": "^17.11.0",
         "jszip": "latest",
         "rollup": "^4.14.3",
         "rollup-plugin-polyfill-node": "^0.13.0",
-        "tslib": "^2.6.2",
+        "sax": "^1.6.1",
         "typescript": "^5.4.5"
     }
 }

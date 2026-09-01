@@ -38,7 +38,7 @@ import { ComputedLength, hasOwnProperty } from "./utils.js";
  */
 
 /**
- * Creates a canonical representation of an IMSC1 document returned by <pre>imscDoc.fromXML()</pre>
+ * Creates a canonical representation of an IMSC1 document returned by <pre>fromXML()</pre>
  * at a given absolute offset in seconds. This offset does not have to be one of the values returned
  * by <pre>getMediaTimeEvents()</pre>.
  *
