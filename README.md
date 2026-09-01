@@ -50,7 +50,7 @@ DEVELOPMENT DEPENDENCIES
 QUICK START
 ===========
 
-* run the `build` target defined in [Gruntfile.cjs](./Gruntfile.cjs) using [grunt](http://gruntjs.com/).
+* run the `build` script defined in [package.json](./package.json): `npm run build`.
 
 * the resulting `imsc.js` and `sax.js` files at `build/public_html/libs` are, respectively, the imscJS library and its sax-js dependency. For example, both libraries can be included in a web page as follows:
 
@@ -101,7 +101,7 @@ definitions under a global name (the token between parantheses):
 BUILD
 =====
 
-imscJS is built using the `build:release` or `build:debug` Grunt tasks -- the `build` task is an alias of `build:debug`.
+imscJS is built using the `build:release` or `build:debug` npm scripts -- the `build` script is an alias of `build:debug`.
 
 The `dist` directory contains the following build artifacts:
 * `imsc.all.debug.js`: Non-minified build that includes the sax-js dependency.
@@ -150,7 +150,7 @@ NOTABLE DIRECTORIES AND FILES
 
 * [package.json](package.json): NPM package definition
 
-* [Gruntfile.cjs](Gruntfile.cjs): Grunt build script
+* [scripts/build.js](scripts/build.js): build helper (webapp assembly and clean)
 
 * [properties.json](properties.json): General project properties
 
