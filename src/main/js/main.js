@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
  * All rights reserved.
  *
@@ -24,6 +24,30 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-exports.generateISD = require('./isd').generateISD;
-exports.fromXML = require('./doc').fromXML;
-exports.renderHTML = require('./html').render;
+import { fromParser } from "./doc.js";
+import { createSAXParserFromDOMParser } from "./dom_to_parser.js";
+
+export { renderHTML } from "./html.js";
+export { generateISD } from "./isd.js";
+export { createSAXParserFromDOMParser };
+
+/**
+ * @typedef {import("./error.js").ErrorHandler} ErrorHandler
+ * @typedef {import("./doc.js").MetadataHandler} MetadataHandler
+ * @typedef {import("./doc.js").TT} TT
+ * @typedef {import("./parser.js").Parser} Parser
+ */
+
+/**
+ * Parses an IMSC1 document into an opaque in-memory representation, using the
+ * DOMParser-backed parser unless a parser is provided.
+ *
+ * @param {string} xmlstring XML document
+ * @param {ErrorHandler} errorHandler Error callback
+ * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
+ * @param {?Parser} parser XML parser
+ * @returns {?TT} Opaque in-memory representation of an IMSC1 document
+ */
+export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createSAXParserFromDOMParser()) {
+    return fromParser(xmlstring, errorHandler, metadataHandler, parser);
+}

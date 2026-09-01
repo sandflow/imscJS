@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@sandflow.com>
+ * Copyright (c) Sandflow Consulting LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,14 +25,37 @@
  */
 
 /**
- * @module imscNames
+ * Defines the contract for the parser expected by doc.js
+ *
+ * @module parser
  */
 
-export const ns_tt = "http://www.w3.org/ns/ttml";
-export const ns_tts = "http://www.w3.org/ns/ttml#styling";
-export const ns_ttp = "http://www.w3.org/ns/ttml#parameter";
-export const ns_xml = "http://www.w3.org/XML/1998/namespace";
-export const ns_itts = "http://www.w3.org/ns/ttml/profile/imsc1#styling";
-export const ns_ittp = "http://www.w3.org/ns/ttml/profile/imsc1#parameter";
-export const ns_smpte = "http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt";
-export const ns_ebutts = "urn:ebu:tt:style";
+/**
+ * @typedef {Object} Attribute
+ * @property {string} name
+ * @property {?string} prefix
+ * @property {?string} local
+ * @property {?string} uri
+ * @property {?string} value
+ */
+
+/**
+ * @typedef {Object} Node
+ * @property {string} name
+ * @property {?string} prefix
+ * @property {?string} local
+ * @property {?string} uri
+ * @property {?string} value
+ * @property {Object.<string, Attribute>} attributes
+ */
+
+/**
+ * @typedef {Object} Parser
+ * @property {(xml: string) => Parser} write
+ * @property {() => Parser} close
+ * @property {(node: Node) => void} onopentag
+ * @property {(text: string) => void} ontext
+ * @property {() => void} onclosetag
+ */
+
+export {};
