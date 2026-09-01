@@ -6,8 +6,7 @@
  * Drives it with Puppeteer against a fake origin whose requests are
  * intercepted and answered straight from build/public_html on disk
  * (no HTTP server needed), calls generateRenders(<reffiles_root>)
- * in-page, and intercepts the FileSaver.js saveAs() call to write the
- * resulting renders.zip to disk instead of triggering a browser download.
+ * in-page to get the renders.zip Blob directly, and writes it to disk.
  *
  * Usage:
  *   node script/gen-renders.mjs [imsc-tests/imsc1|imsc-tests/imsc1_1] [outfile] [--browser=chrome|firefox]
@@ -90,19 +89,15 @@ async function main() {
 
         console.log(`Generating renders for "${reffilesRoot}"...`);
 
-        const base64Zip = await page.evaluate((root) => {
-            return new Promise((resolve, reject) => {
-                // saveAs() from FileSaver.js normally triggers a browser
-                // download; intercept it to hand the Blob back to Node instead.
-                window.saveAs = function (blob) {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result.split(",")[1]);
-                    reader.onerror = () => reject(reader.error);
-                    reader.readAsDataURL(blob);
-                };
+        const base64Zip = await page.evaluate(async (root) => {
+            // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
+            const blob = await generateRenders(root);
 
-                // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
-                generateRenders(root).catch(reject);
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result.split(",")[1]);
+                reader.onerror = () => reject(reader.error);
+                reader.readAsDataURL(blob);
             });
         }, reffilesRoot);
 
