@@ -39,7 +39,6 @@ module.exports = function (grunt) {
             default: {
                 files: {
                     "<%= properties.webappBuildDir %>/libs/": [
-                        "sax:main",
                         "filesaver.js-npm:main",
                         "jszip/dist/jszip.js",
                     ],
@@ -79,7 +78,5 @@ module.exports = function (grunt) {
     grunt.registerTask("build:debug", ["lint", "exec:compile", "exec:bundle", "sync:all", "sync:debug", "npmcopy"]);
 
     grunt.registerTask("build", ["build:debug"]);
-
-    grunt.registerTask("clean", ["clean"]);
 
 };
