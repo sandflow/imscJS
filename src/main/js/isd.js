@@ -209,7 +209,13 @@ function isdProcessContentElement(doc, offset, region, body, parent, inherited_r
             if (offset < elem.sets[i].begin || offset >= elem.sets[i].end)
                 continue;
 
-            styleAttrs[elem.sets[i].qname] = elem.sets[i].value;
+            for (const qname in elem.sets[i].styles) {
+
+                if (!hasOwnProperty(elem.sets[i].styles, qname)) continue;
+
+                styleAttrs[qname] = elem.sets[i].styles[qname];
+
+            }
 
         }
     }
