@@ -48,6 +48,10 @@
     "scripts": {
         "prepublishOnly": "grunt build:release",
         "dev": "npx http-server build/public_html",
+        "gen-imsc1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1 build/renders-imsc1.zip",
+        "gen-imsc1_1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip",
+        "gen-reference-files": "node src/test/script/gen-reference-files.mjs",
+        "install:firefox": "puppeteer browsers install firefox",
         "lint": "eslint .",
         "fix": "eslint --fix src",
         "build": "grunt build",
@@ -70,6 +74,7 @@
         "grunt-npmcopy": "latest",
         "grunt-sync": "latest",
         "jszip": "latest",
+        "puppeteer": "^24.43.1",
         "rollup": "^4.14.3",
         "rollup-plugin-polyfill-node": "^0.13.0",
         "sax": "^1.6.1",

@@ -1,0 +1,156 @@
+{
+  "events": [
+    0,
+    1
+  ],
+  "head": {
+    "styling": {
+      "initials": {}
+    },
+    "layout": {
+      "regions": {
+        "r1": {
+          "id": "r1",
+          "timeContainer": "par",
+          "sets": [],
+          "styleAttrs": {
+            "http://www.w3.org/ns/ttml#styling displayAlign": "center",
+            "http://www.w3.org/ns/ttml#styling backgroundColor": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling color": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "http://www.w3.org/ns/ttml#styling textAlign": "center",
+            "http://www.w3.org/ns/ttml#styling extent": {
+              "h": {
+                "value": 100,
+                "unit": "%"
+              },
+              "w": {
+                "value": 100,
+                "unit": "%"
+              }
+            }
+          },
+          "lang": "en",
+          "begin": 0,
+          "end": "Infinity"
+        }
+      }
+    }
+  },
+  "body": {
+    "kind": "body",
+    "styleAttrs": {},
+    "timeContainer": "par",
+    "sets": [],
+    "regionID": "",
+    "contents": [
+      {
+        "kind": "div",
+        "styleAttrs": {},
+        "timeContainer": "par",
+        "sets": [],
+        "regionID": "r1",
+        "contents": [
+          {
+            "kind": "p",
+            "styleAttrs": {},
+            "timeContainer": "par",
+            "sets": [],
+            "regionID": "",
+            "contents": [
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n        \t█",
+                "space": "default",
+                "lang": "en",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "br",
+                "regionID": "",
+                "timeContainer": "par",
+                "lang": "en",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "styleAttrs": {
+                  "http://www.w3.org/ns/ttml#styling fontSize": {
+                    "value": 50,
+                    "unit": "%"
+                  }
+                },
+                "timeContainer": "par",
+                "sets": [],
+                "regionID": "",
+                "space": "default",
+                "lang": "en",
+                "text": "Pixels at the center of the rectangle above must have an RGB value of (0xA0, 0xA0, 0xA0) when encoded using the Reference PQ EOTF and full-range quantization over 8-bits.",
+                "begin": 0,
+                "end": "Infinity"
+              },
+              {
+                "kind": "span",
+                "timeContainer": "par",
+                "text": "\n      ",
+                "space": "default",
+                "lang": "en",
+                "begin": 0,
+                "end": "Infinity"
+              }
+            ],
+            "lang": "en",
+            "begin": 0,
+            "end": 1
+          }
+        ],
+        "lang": "en",
+        "begin": 0,
+        "end": 1
+      }
+    ],
+    "lang": "en",
+    "begin": 0,
+    "end": 1
+  },
+  "cellLength": {
+    "h": {
+      "rw": 0,
+      "rh": 0.06666666666666667
+    },
+    "w": {
+      "rw": 0.03125,
+      "rh": 0
+    }
+  },
+  "effectiveFrameRate": 30,
+  "tickRate": 1,
+  "aspectRatio": null,
+  "pxLength": {
+    "h": null,
+    "w": null
+  },
+  "dimensions": {
+    "h": {
+      "rw": 0,
+      "rh": 1
+    },
+    "w": {
+      "rw": 1,
+      "rh": 0
+    }
+  },
+  "lang": "en"
+}

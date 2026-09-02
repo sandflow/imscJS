@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2016, Pierre-Anthony Lemieux <pal@palemieux.com>
  * All rights reserved.
  *
@@ -25,7 +25,7 @@
  */
 
 
-var errorHandler = {
+const errorHandler = {
     info: function (msg) {
         console.log("info: " + msg);
         return false;
@@ -44,84 +44,182 @@ var errorHandler = {
     }
 };
 
-/* */
+async function asyncLoadFile(url) {
 
-function generateRenders(reffiles_root) {
+    const response = await fetch(url);
 
-    var zip = new JSZip();
-    
-    var renders_dir = zip.folder('generated');
-    var pngs_dir = zip.folder('png');
+    if (!response.ok) {
+        throw {
+            status: response.status,
+            statusText: response.statusText
+        };
+    }
 
-    return asyncLoadFile(getTestListPath(reffiles_root))
-        .then(function (contents) {
-            finfos = JSON.parse(contents);
+    return response.text();
+}
 
-            var p = [];
+function getTestListPath(reffiles_root) {
+    return reffiles_root + "/tests.json";
+}
 
-            for (var i in finfos) {
+function getReferenceFilePath(reffiles_root, reffile_path) {
+    return reffiles_root + "/ttml/" + reffile_path;
+}
 
-                p.push(asyncProcessRefFile(reffiles_root, renders_dir, pngs_dir, finfos[i]));
+function getReferenceFileDirectory(reffiles_root, reffile_path) {
+    return reffiles_root + "/ttml/" + reffile_path.substring(0, Math.max(reffile_path.lastIndexOf("/"), reffile_path.lastIndexOf("\\")) + 1);
+}
 
-            }
+function getTestName(reffile_path, renderer_params) {
+    return reffile_path.split('\\').pop().split('/').pop().split(".")[0];
+}
 
-            return Promise.all(p);
-        })
-        .then(function (output) {
+function filenameFromOffset(offset) {
+    return offset.toFixed(6).toString();
+}
 
-            var manifest = {};
+async function generateRenderPackageAsZip(reffiles_root) {
 
-            for (var j in output) {
-                manifest[output[j].name] = output[j].events;
-            }
-            
-            renders_dir.file("file-list.json", JSON.stringify(manifest, customReplace, 2));
+    const zip = new JSZip();
 
-            return zip.generateAsync({type: "blob"});
-        })
-        .then(function (zipfile) {
-            return saveAs(zipfile, "renders.zip");
-        });
+    const renders_dir = zip.folder('generated');
+    const pngs_dir = zip.folder('png');
+
+    const contents = await asyncLoadFile(getTestListPath(reffiles_root));
+
+    const finfos = JSON.parse(contents);
+
+    const p = [];
+
+    for (const finfo of finfos) {
+
+        p.push(renderTTMLFile(reffiles_root, finfo));
+
+    }
+
+    const renders = await Promise.all(p);
+
+    /* write the JSON document, ISD documents, HTML documents and PNGs */
+
+    const manifest = {};
+
+    for (const renderedFile of renders) {
+
+        const test_renders_dir = renders_dir.folder(renderedFile.name);
+        const test_pngs_dir = pngs_dir.folder(renderedFile.name);
+
+        test_renders_dir.file("doc.json", JSON.stringify(renderedFile.doc, customReplace, 2));
+
+        const isd_dir = test_renders_dir.folder('isd');
+        const html_dir = test_renders_dir.folder('html');
+
+        const event_names = [];
+
+        for (const event of renderedFile.events) {
+
+            isd_dir.file(event.name + ".json", JSON.stringify(event.isd, customReplace, 2));
+            html_dir.file(event.name + ".html", event.html);
+            test_pngs_dir.file(event.name + ".png", event.png, {base64: true});
+
+            event_names.push(event.name);
+
+        }
+
+        manifest[renderedFile.name] = event_names;
+
+    }
+
+    renders_dir.file("file-list.json", JSON.stringify(manifest, customReplace, 2));
+
+    return await zip.generateAsync({type: "blob"});
+}
+
+async function downloadRenderPackageAsZip(reffiles_root) {
+
+    const zipfile = await generateRenderPackageAsZip(reffiles_root);
+
+    return saveAs(zipfile, "renders.zip");
 
 }
 
-function asyncProcessRefFile(reffiles_root, renders_dir, pngs_dir, finfo) {
+/**
+ * Parses the test files at reffiles_root and generates the JSON document and
+ * ISD documents for each of their media time events (no HTML, no PNGs),
+ * returning a flat map of relative file path to file contents rather than
+ * writing any files or zipping anything.
+ */
+async function generateReferenceFiles(reffiles_root) {
 
-    var test_name = finfo.name || getTestName(finfo.path, finfo.params || {});
+    const contents = await asyncLoadFile(getTestListPath(reffiles_root));
 
-    var test_renders_dir = renders_dir.folder(test_name);
-    var test_pngs_dir = pngs_dir.folder(test_name);
+    const finfos = JSON.parse(contents);
 
-    return asyncLoadFile(getReferenceFilePath(reffiles_root, finfo.path))
-        .then(function (contents) {
-            var doc = imsc.fromXML(contents.replace(/\r\n/g, '\n'), errorHandler);
+    const p = [];
 
-            test_renders_dir.file("doc.json",
-                JSON.stringify(
-                    doc,
-                    customReplace,
-                    2
-                    )
-                );
+    for (const finfo of finfos) {
 
-            var events = doc.getMediaTimeEvents();
+        p.push(renderTTMLFile(reffiles_root, finfo));
 
-            var p = [];
+    }
 
-            for (var i in events) {
+    const renders = await Promise.all(p);
 
-                p.push(asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, events[i], finfo.params || {}, getReferenceFileDirectory(reffiles_root, finfo.path)));
+    const files = {};
+    const manifest = {};
 
-            }
+    for (const render of renders) {
 
-            return Promise.all(p);
-        })
-        .then(function (events) {
-            return {
-                'name': test_name,
-                'events': events
-            };
-        });
+        files[render.name + "/doc.json"] = JSON.stringify(render.doc, customReplace, 2);
+
+        const event_names = [];
+
+        for (const event of render.events) {
+
+            files[render.name + "/isd/" + event.name + ".json"] = JSON.stringify(event.isd, customReplace, 2);
+
+            event_names.push(event.name);
+
+        }
+
+        manifest[render.name] = event_names;
+
+    }
+
+    files["file-list.json"] = JSON.stringify(manifest, customReplace, 2);
+
+    return files;
+}
+
+/**
+ * Parses a reference file and generates the JSON document, ISD documents,
+ * HTML documents and PNGs for each of its media time events, returning them
+ * all as a plain JSON structure rather than writing any files.
+ */
+async function renderTTMLFile(reffiles_root, finfo) {
+
+    const test_name = finfo.name || getTestName(finfo.path, finfo.params || {});
+
+    const contents = await asyncLoadFile(getReferenceFilePath(reffiles_root, finfo.path));
+
+    const doc = imsc.fromXML(contents.replace(/\r\n/g, '\n'), errorHandler);
+
+    const events = doc.getMediaTimeEvents();
+
+    const p = [];
+
+    for (const offset of events) {
+
+        p.push(renderISD(doc, offset, finfo.params || {}, getReferenceFileDirectory(reffiles_root, finfo.path)));
+
+    }
+
+    const processedEvents = await Promise.all(p);
+
+    return {
+        'name': test_name,
+        'doc': doc,
+        'events': processedEvents
+    };
 }
 
 function customReplace(k, v) {
@@ -129,15 +227,20 @@ function customReplace(k, v) {
     return v;
 }
 
+/**
+ * Renders a single media time event and returns its ISD, HTML and PNG as a
+ * plain JSON structure rather than writing any files.
+ */
+async function renderISD(doc, offset, params, reffile_dir) {
 
-function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params, reffile_dir) {
+    const name = filenameFromOffset(offset);
 
-    var name = filenameFromOffset(offset);
+    const isd = imsc.generateISD(doc, offset);
 
-    var exp_width = 640;
-    var exp_height = 360;
+    const exp_width = 640;
+    const exp_height = 360;
 
-    var vdiv = document.getElementById('render-div');
+    const vdiv = document.getElementById('render-div');
 
     vdiv.style.height = exp_height + "px";
     vdiv.style.width = exp_width + "px";
@@ -148,12 +251,12 @@ function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params,
 
     /* create svg container */
 
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute('width', exp_width + "px");
     svg.setAttribute('height', exp_height + "px");
     svg.setAttribute("xmlns", svg.namespaceURI);
 
-    fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+    const fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
     fo.setAttribute('width', '100%');
     fo.setAttribute('height', '100%');
 
@@ -161,54 +264,48 @@ function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params,
 
     /* create container div */
 
-    var rdiv = document.createElement("div");
+    const rdiv = document.createElement("div");
     rdiv.style.height = "100%";
     rdiv.style.width = "100%";
     rdiv.style.position = "relative";
     rdiv.style.background = "#A9A9A9";
-    
+
     fo.appendChild(rdiv);
 
     vdiv.appendChild(svg);
-    
-    var isd = imsc.generateISD(doc, offset);
-    
-    /* write isd */
 
-    var isd_dir = test_renders_dir.folder('isd');
+    /* resolve images referenced by the ISD so they are embedded in the HTML */
 
-    isd_dir.file(name + ".json", JSON.stringify(isd, customReplace, 2));
+    const imgs = [];
 
-    /* write PNG  */
+    const imgr = function (uri, img) {
+        const p = (async function () {
 
-    var imgs = [];
+            const url = await new Promise(function (resolve) {
 
-    var imgr = function (uri, img) {
-        var p = new Promise(function (resolve) {
+                const png = new Image();
 
-            var png = new Image();
+                png.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = this.naturalWidth;
+                    canvas.height = this.naturalHeight;
 
-            png.onload = function () {
-                var canvas = document.createElement('canvas');
-                canvas.width = this.naturalWidth;
-                canvas.height = this.naturalHeight;
+                    const ctx = canvas.getContext('2d');
 
-                var ctx = canvas.getContext('2d');
-               
-                ctx.drawImage(this, 0, 0);
+                    ctx.drawImage(this, 0, 0);
 
-                // Get raw image data
+                    // Get raw image data
 
-                resolve(canvas.toDataURL('image/png'));
-            };
+                    resolve(canvas.toDataURL('image/png'));
+                };
 
-            png.src = reffile_dir + uri;
+                png.src = reffile_dir + uri;
 
-        }).then(function (url) {
+            });
 
             img.src = url;
 
-        });
+        })();
 
         imgs.push(p);
 
@@ -226,50 +323,42 @@ function asyncProcessEvent(doc, test_renders_dir, test_pngs_dir, offset, params,
         );
 
 
-    return Promise.all(imgs).then(
-        function () {
-            return new Promise(
-                function (resolve) {
+    await Promise.all(imgs);
 
-                    /* save the HTML */
+    const html = rdiv.innerHTML.replace(/></g, ">\n<");
 
-                    var html_dir = test_renders_dir.folder('html');
+    /* create PNG render */
 
-                    html_dir.file(name + ".html", rdiv.innerHTML.replace(/></g, ">\n<"));
+    const svgser = (new XMLSerializer).serializeToString(svg);
 
-                    /* create PNG render */
+    const canvas = document.createElement("canvas");
 
-                    var svgser = (new XMLSerializer).serializeToString(svg);
+    const ctx = canvas.getContext('2d');
+    ctx.canvas.height = exp_height;
+    ctx.canvas.width = exp_width;
 
-                    var canvas = document.createElement("canvas");
+    const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgser);
 
-                    var ctx = canvas.getContext('2d');
-                    ctx.canvas.height = exp_height;
-                    ctx.canvas.width = exp_width;
+    const png = await new Promise(function (resolve) {
 
-                    var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgser);
+        const img = new Image();
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
 
-                    var img = new Image();
-                    img.onload = function () {
-                        ctx.drawImage(img, 0, 0);
+            const data = canvas.toDataURL("image/png");
 
-                        var data = canvas.toDataURL("image/png");
+            resolve(data.substr(data.indexOf(',') + 1));
+        };
 
-                        test_pngs_dir.file(name + ".png", data.substr(data.indexOf(',') + 1), {base64: true});
+        img.src = url;
 
-                        resolve(name);
-                    };
+    });
 
-                    img.src = url;
-
-                }
-            );
-        }
-    );
-
-
-
+    return {
+        'name': name,
+        'isd': isd,
+        'html': html,
+        'png': png
+    };
 
 }
-
-
