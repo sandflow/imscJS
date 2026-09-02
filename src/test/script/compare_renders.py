@@ -8,7 +8,8 @@ performing deep file analysis:
   2. Byte-level diffs and PNG chunk inspection
   3. 100% pixel-by-pixel image verification using PIL
   4. JSON and HTML structural diff analysis
-  5. Standalone HTML comparison report generation
+  5. Markdown comparison report generation, with per-file PNG diff images
+     and TXT diff files written alongside the report
 """
 
 import argparse
@@ -20,11 +21,12 @@ from collections import Counter
 from pathlib import Path
 
 try:
-    from PIL import Image, ImageChops
+    from PIL import Image, ImageChops, ImageOps
 except ImportError:
     print("Warning: PIL not found. Pixel-level PNG comparison will be skipped.")
     Image = None
     ImageChops = None
+    ImageOps = None
 
 
 def parse_png_chunks(data: bytes):
@@ -41,7 +43,13 @@ def parse_png_chunks(data: bytes):
     return chunks
 
 
-def compare_directories(dir1: Path, dir2: Path, generate_html_path: Path = None):
+def _flatten_name(rel: Path) -> str:
+    """Turns a relative path into a filesystem-safe flat name, e.g.
+    'a/b/c.png' -> 'a__b__c.png'."""
+    return str(rel).replace('/', '__').replace('\\', '__')
+
+
+def compare_directories(dir1: Path, dir2: Path, report_dir: Path):
     print(f"Comparing:")
     print(f"  Directory 1: {dir1}")
     print(f"  Directory 2: {dir2}\n")
@@ -91,10 +99,13 @@ def compare_directories(dir1: Path, dir2: Path, generate_html_path: Path = None)
     for ext, count in diff_by_ext.items():
         print(f"  {ext or '[no ext]':10}: {count} modified")
 
+    report_dir.mkdir(parents=True, exist_ok=True)
+
     # PNG Pixel Comparison
     png_files = [f for f in common if f.suffix.lower() == '.png']
     print(f"\n=== PNG Pixel Comparison ({len(png_files)} files) ===")
     pixel_identical = 0
+    # Each entry: (rel_path, reason, diff_image_relpath_or_None)
     pixel_different = []
 
     if Image is not None:
@@ -105,7 +116,8 @@ def compare_directories(dir1: Path, dir2: Path, generate_html_path: Path = None)
             im2 = Image.open(p2)
 
             if im1.size != im2.size or im1.mode != im2.mode:
-                pixel_different.append((p, f"Dimension/mode mismatch: {im1.size}/{im1.mode} vs {im2.size}/{im2.mode}"))
+                reason = f"Dimension/mode mismatch: {im1.size}/{im1.mode} vs {im2.size}/{im2.mode}"
+                pixel_different.append((p, reason, None))
                 continue
 
             diff = ImageChops.difference(im1, im2)
@@ -113,13 +125,17 @@ def compare_directories(dir1: Path, dir2: Path, generate_html_path: Path = None)
             if bbox is None:
                 pixel_identical += 1
             else:
-                pixel_different.append((p, f"Non-zero bounding box diff: {bbox}"))
+                reason = f"Non-zero bounding box diff: {bbox}"
+                visible_diff = ImageOps.autocontrast(diff.convert('RGB')) if ImageOps else diff
+                diff_filename = f"{_flatten_name(p)}.diff.png"
+                visible_diff.save(report_dir / diff_filename)
+                pixel_different.append((p, reason, diff_filename))
 
         if png_files:
             print(f"Pixel Identical: {pixel_identical} / {len(png_files)} ({pixel_identical/len(png_files)*100:.1f}%)")
         print(f"Pixel Different: {len(pixel_different)}")
         if pixel_different:
-            for p, reason in pixel_different[:10]:
+            for p, reason, _ in pixel_different[:10]:
                 print(f"  - {p}: {reason}")
     else:
         print("Skipping pixel analysis (PIL not installed).")
@@ -138,26 +154,21 @@ def compare_directories(dir1: Path, dir2: Path, generate_html_path: Path = None)
     for h in html_diffs:
         print(f"  - {h}")
 
-    # Generate HTML Report if requested
-    if generate_html_path:
-        generate_html_report(
-            dir1=dir1,
-            dir2=dir2,
-            output_path=generate_html_path,
-            total_files=len(common),
-            byte_identical=len(byte_identical),
-            byte_different=len(byte_different),
-            png_total=len(png_files),
-            pixel_identical=pixel_identical,
-            pixel_different=pixel_different,
-            json_diffs=json_diffs,
-            html_diffs=html_diffs,
-        )
-        print(f"\nHTML report successfully written to: {generate_html_path}")
-
-
-def _html_escape(text: str) -> str:
-    return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+    # Generate Markdown Report
+    report_path = generate_markdown_report(
+        dir1=dir1,
+        dir2=dir2,
+        report_dir=report_dir,
+        total_files=len(common),
+        byte_identical=len(byte_identical),
+        byte_different=len(byte_different),
+        png_total=len(png_files),
+        pixel_identical=pixel_identical,
+        pixel_different=pixel_different,
+        json_diffs=json_diffs,
+        html_diffs=html_diffs,
+    )
+    print(f"\nMarkdown report successfully written to: {report_path}")
 
 
 def _read_lines(path: Path):
@@ -177,301 +188,111 @@ def _json_pretty_lines(path: Path):
         return _read_lines(path)
 
 
-def _unified_diff_html(lines1, lines2, max_lines=60):
-    """Renders a unified diff between two line lists as highlighted HTML."""
-    diff = [
-        line for line in difflib.unified_diff(lines1, lines2, lineterm='')
-        if not (line.startswith('---') or line.startswith('+++'))
-    ]
-    truncated = len(diff) > max_lines
-    diff = diff[:max_lines]
-
-    rendered = []
-    for line in diff:
-        escaped = _html_escape(line)
-        if line.startswith('+'):
-            rendered.append(f'<span class="add-line">{escaped}</span>')
-        elif line.startswith('-'):
-            rendered.append(f'<span class="del-line">{escaped}</span>')
-        else:
-            rendered.append(escaped)
-
-    body = "\n".join(rendered) if rendered else "(no textual differences)"
-    if truncated:
-        body += "\n... (diff truncated)"
-    return body
+def _write_unified_diff_txt(dir1, dir2, rel, output_path, as_json=False):
+    """Writes a unified diff between dir1/rel and dir2/rel to output_path as
+    plain text."""
+    p1, p2 = dir1 / rel, dir2 / rel
+    lines1 = _json_pretty_lines(p1) if as_json else _read_lines(p1)
+    lines2 = _json_pretty_lines(p2) if as_json else _read_lines(p2)
+    diff = list(difflib.unified_diff(
+        lines1, lines2,
+        fromfile=str(dir1 / rel), tofile=str(dir2 / rel), lineterm=''
+    ))
+    body = "\n".join(diff) if diff else "(no textual differences)"
+    output_path.write_text(body + "\n", encoding='utf-8')
 
 
-def _render_diff_section(dir1, dir2, files, max_samples=5, as_json=False):
-    """Builds a chip list of every diffed file, plus real unified diffs for
-    up to max_samples of them, read from dir1/dir2."""
-    chips = "".join(f'<span class="chip">{_html_escape(str(f))}</span>' for f in files)
-
-    blocks = []
-    for f in files[:max_samples]:
-        p1, p2 = dir1 / f, dir2 / f
-        lines1 = _json_pretty_lines(p1) if as_json else _read_lines(p1)
-        lines2 = _json_pretty_lines(p2) if as_json else _read_lines(p2)
-        diff_html = _unified_diff_html(lines1, lines2)
-        blocks.append(f'''
-        <div class="diff-box" style="margin-top: 0.75rem;">
-          <div class="diff-title">{_html_escape(str(f))}</div>
-          <pre><code>{diff_html}</code></pre>
-        </div>''')
-
-    remaining = len(files) - len(files[:max_samples])
-    more_note = (
-        f'<p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.75rem;">'
-        f'... and {remaining} more file(s) not shown.</p>'
-        if remaining > 0 else ""
-    )
-
-    return chips, "".join(blocks), more_note
+def _write_diff_files(dir1, dir2, report_dir, files, as_json=False):
+    """Writes a TXT unified diff file per entry in `files` into report_dir,
+    returning a list of (rel_path, diff_filename)."""
+    entries = []
+    for rel in files:
+        diff_filename = f"{_flatten_name(rel)}.diff.txt"
+        _write_unified_diff_txt(dir1, dir2, rel, report_dir / diff_filename, as_json=as_json)
+        entries.append((rel, diff_filename))
+    return entries
 
 
-def generate_html_report(dir1, dir2, output_path, total_files, byte_identical, byte_different,
-                          png_total, pixel_identical, pixel_different, json_diffs, html_diffs):
-    """Generates a responsive, modern HTML comparison report reflecting the
-    actual differences found between dir1 and dir2."""
+def generate_markdown_report(dir1, dir2, report_dir, total_files, byte_identical, byte_different,
+                              png_total, pixel_identical, pixel_different, json_diffs, html_diffs):
+    """Generates a Markdown comparison report reflecting the actual
+    differences found between dir1 and dir2, writing it to report_dir /
+    'report.md'. PNG diff images (.png) and text diffs (.txt) are written as
+    separate files into report_dir and linked to from the report. Returns
+    the path to the written report."""
 
+    output_path = report_dir / "report.md"
     pixel_pct = (pixel_identical / png_total * 100) if png_total else 100.0
-    pixel_color = "var(--accent-green)" if not pixel_different else "var(--accent-yellow)"
 
-    pixel_diff_rows = "".join(
-        f'<tr><td>{_html_escape(str(p))}</td><td>{_html_escape(reason)}</td></tr>'
-        for p, reason in pixel_different[:20]
-    )
-    pixel_diff_table = f'''
-        <table style="margin-top: 1rem;">
-          <thead><tr><th>File</th><th>Difference</th></tr></thead>
-          <tbody>{pixel_diff_rows}</tbody>
-        </table>''' if pixel_different else ""
-
-    json_chips, json_blocks, json_more = _render_diff_section(dir1, dir2, json_diffs, as_json=True)
-    html_chips, html_blocks, html_more = _render_diff_section(dir1, dir2, html_diffs, as_json=False)
+    json_entries = _write_diff_files(dir1, dir2, report_dir, json_diffs, as_json=True)
+    html_entries = _write_diff_files(dir1, dir2, report_dir, html_diffs, as_json=False)
 
     is_identical = byte_different == 0 and not pixel_different
     if is_identical:
         summary = (
-            f'The render outputs in <strong><code>{dir1.name}</code></strong> and '
-            f'<strong><code>{dir2.name}</code></strong> are byte-identical across all '
-            f'{total_files} compared files.'
+            f"The render outputs in `{dir1.name}` and `{dir2.name}` are byte-identical "
+            f"across all {total_files} compared files."
         )
     else:
         summary = (
-            f'<strong>{byte_different}</strong> of <strong>{total_files}</strong> compared files differ '
-            f'between <strong><code>{dir1.name}</code></strong> and <strong><code>{dir2.name}</code></strong>'
-            + (f', including <strong>{len(pixel_different)}</strong> PNG(s) with pixel differences' if pixel_different else '')
-            + '. See the sections above for details.'
+            f"**{byte_different}** of **{total_files}** compared files differ between "
+            f"`{dir1.name}` and `{dir2.name}`"
+            + (f", including **{len(pixel_different)}** PNG(s) with pixel differences" if pixel_different else "")
+            + ". See the sections below for details."
         )
 
-    html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Render Comparison Report: {dir1.name} vs {dir2.name}</title>
-  <style>
-    :root {{
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-card-header: #334155;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent-blue: #38bdf8;
-      --accent-green: #4ade80;
-      --accent-yellow: #facc15;
-      --border-color: #334155;
-      --diff-add-bg: rgba(74, 222, 128, 0.15);
-      --diff-add-text: #4ade80;
-      --diff-del-bg: rgba(248, 113, 113, 0.15);
-      --diff-del-text: #f87171;
-      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }}
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: var(--font-family);
-      line-height: 1.6;
-      padding: 2rem 1.5rem;
-    }}
-    .container {{ max-width: 1200px; margin: 0 auto; }}
-    header {{
-      margin-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1.5rem;
-    }}
-    .header-badge {{
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-radius: 9999px;
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--accent-blue);
-      margin-bottom: 0.75rem;
-    }}
-    h1 {{ font-size: 2.25rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }}
-    .subtitle {{ color: var(--text-muted); font-size: 1.05rem; }}
-    .stats-grid {{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }}
-    .stat-card {{
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-    }}
-    .stat-label {{ font-size: 0.875rem; font-weight: 500; color: var(--text-muted); margin-bottom: 0.35rem; }}
-    .stat-value {{ font-size: 1.75rem; font-weight: 700; color: #fff; }}
-    .stat-subtext {{ font-size: 0.8rem; color: var(--accent-green); margin-top: 0.25rem; }}
-    .card {{
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 0.75rem;
-      margin-bottom: 2rem;
-      overflow: hidden;
-    }}
-    .card-header {{
-      background: var(--bg-card-header);
-      padding: 1rem 1.5rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }}
-    .card-body {{ padding: 1.5rem; }}
-    .badge {{
-      display: inline-flex;
-      align-items: center;
-      padding: 0.2rem 0.6rem;
-      border-radius: 0.375rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }}
-    .badge-success {{ background-color: rgba(74, 222, 128, 0.2); color: var(--accent-green); border: 1px solid rgba(74, 222, 128, 0.4); }}
-    .badge-info {{ background-color: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.4); }}
-    .badge-warning {{ background-color: rgba(250, 204, 21, 0.2); color: var(--accent-yellow); border: 1px solid rgba(250, 204, 21, 0.4); }}
-    table {{ width: 100%; border-collapse: collapse; font-size: 0.95rem; }}
-    th, td {{ padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }}
-    th {{ background: rgba(15, 23, 42, 0.6); color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; }}
-    .diff-box {{
-      background: #090d16;
-      border: 1px solid var(--border-color);
-      border-radius: 0.5rem;
-      overflow: hidden;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-    }}
-    .diff-title {{ background: #131b2e; padding: 0.5rem 0.75rem; font-weight: 600; border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; }}
-    pre {{ padding: 0.75rem; overflow-x: auto; white-space: pre-wrap; }}
-    .del-line {{ background-color: var(--diff-del-bg); color: var(--diff-del-text); display: block; margin: 0 -0.75rem; padding: 0 0.75rem; }}
-    .add-line {{ background-color: var(--diff-add-bg); color: var(--diff-add-text); display: block; margin: 0 -0.75rem; padding: 0 0.75rem; }}
-    .chip-list {{ display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }}
-    .chip {{ background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); border-radius: 0.375rem; padding: 0.25rem 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); }}
-    .conclusion-box {{
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(74, 222, 128, 0.08) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }}
-    .conclusion-box h3 {{ color: var(--accent-blue); margin-bottom: 0.5rem; }}
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="header-badge">Automated Diff &amp; Visual Verification</div>
-      <h1>Render Comparison Report</h1>
-      <div class="subtitle">Comparing directory <code>{dir1.name}</code> against <code>{dir2.name}</code></div>
-    </header>
+    lines = []
+    lines.append(f"# Render Comparison Report: {dir1.name} vs {dir2.name}")
+    lines.append("")
+    lines.append(f"Comparing directory `{dir1}` against `{dir2}`.")
+    lines.append("")
+    lines.append("## Summary")
+    lines.append("")
+    lines.append(f"- Total files compared: **{total_files}**")
+    lines.append(f"- Byte-identical: **{byte_identical}**")
+    lines.append(f"- Byte-different: **{byte_different}**")
+    lines.append(f"- PNG pixel-identical: **{pixel_identical} / {png_total}** ({pixel_pct:.1f}%)")
+    lines.append(f"- JSON document diffs: **{len(json_diffs)}**")
+    lines.append(f"- HTML render diffs: **{len(html_diffs)}**")
+    lines.append("")
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-label">Visual Pixel Match</div>
-        <div class="stat-value" style="color: {pixel_color};">{pixel_pct:.1f}%</div>
-        <div class="stat-subtext">{pixel_identical} / {png_total} rendered PNGs pixel-identical</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Total Files Analyzed</div>
-        <div class="stat-value">{total_files:,}</div>
-        <div class="stat-subtext">{byte_identical:,} identical, {byte_different:,} modified</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">JSON Document Diffs</div>
-        <div class="stat-value" style="color: var(--accent-blue);">{len(json_diffs)} Files</div>
-        <div class="stat-subtext">of {total_files} files compared</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">HTML Render Diffs</div>
-        <div class="stat-value" style="color: var(--accent-yellow);">{len(html_diffs)} Files</div>
-        <div class="stat-subtext">of {total_files} files compared</div>
-      </div>
-    </div>
+    lines.append(f"## 1. Rendered Images Pixel Analysis (PNG) — {pixel_identical} / {png_total} identical")
+    lines.append("")
+    if not pixel_different:
+        lines.append("No pixel differences found.")
+    else:
+        lines.append("| File | Diff Image | Notes |")
+        lines.append("|---|---|---|")
+        for rel, reason, diff_relpath in pixel_different:
+            link = f"[view]({diff_relpath})" if diff_relpath else "(n/a)"
+            lines.append(f"| `{rel}` | {link} | {reason} |")
+    lines.append("")
 
-    <div class="card">
-      <div class="card-header">
-        <span>1. Rendered Images Pixel Analysis (<code>png/</code>)</span>
-        <span class="badge {'badge-success' if not pixel_different else 'badge-warning'}">{pixel_identical} / {png_total} Verified</span>
-      </div>
-      <div class="card-body">
-        <p>A full pixel-by-pixel bounding-box comparison was executed across all <strong>{png_total} PNG files</strong> present in both directories.</p>
-        {pixel_diff_table}
-      </div>
-    </div>
+    lines.append(f"## 2. JSON Document Diffs ({len(json_diffs)} files)")
+    lines.append("")
+    if not json_entries:
+        lines.append("No JSON differences found.")
+    else:
+        for rel, diff_filename in json_entries:
+            lines.append(f"- [`{rel}`]({diff_filename})")
+    lines.append("")
 
-    <div class="card">
-      <div class="card-header">
-        <span>2. JSON Document Diffs ({len(json_diffs)} Files)</span>
-      </div>
-      <div class="card-body">
-        {"<p>No JSON differences found.</p>" if not json_diffs else f'''
-        <p style="color: var(--text-muted);">Unified diffs of pretty-printed, key-sorted JSON for up to 5 of the {len(json_diffs)} differing files:</p>
-        {json_blocks}
-        {json_more}
-        <div style="margin-top: 1.5rem;">
-          <strong style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">All differing files:</strong>
-          <div class="chip-list">{json_chips}</div>
-        </div>
-        '''}
-      </div>
-    </div>
+    lines.append(f"## 3. HTML Render Diffs ({len(html_diffs)} files)")
+    lines.append("")
+    if not html_entries:
+        lines.append("No HTML differences found.")
+    else:
+        for rel, diff_filename in html_entries:
+            lines.append(f"- [`{rel}`]({diff_filename})")
+    lines.append("")
 
-    <div class="card">
-      <div class="card-header">
-        <span>3. HTML Render Diffs ({len(html_diffs)} Files)</span>
-      </div>
-      <div class="card-body">
-        {"<p>No HTML differences found.</p>" if not html_diffs else f'''
-        <p style="color: var(--text-muted);">Unified diffs for up to 5 of the {len(html_diffs)} differing files:</p>
-        {html_blocks}
-        {html_more}
-        <div style="margin-top: 1.5rem;">
-          <strong style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">All differing files:</strong>
-          <div class="chip-list">{html_chips}</div>
-        </div>
-        '''}
-      </div>
-    </div>
+    lines.append("## Summary")
+    lines.append("")
+    lines.append(summary)
+    lines.append("")
 
-    <div class="conclusion-box">
-      <h3>Summary</h3>
-      <p>{summary}</p>
-    </div>
-  </div>
-</body>
-</html>
-"""
-    output_path.write_text(html, encoding='utf-8')
+    output_path.write_text("\n".join(lines), encoding='utf-8')
+    return output_path
 
 
 def main():
@@ -487,14 +308,15 @@ def main():
         help="Second render directory"
     )
     parser.add_argument(
-        "--report-html",
+        "report_dir",
         type=Path,
-        default=None,
-        help="Path to write an HTML comparison report to (none by default)"
+        help="Directory to write the Markdown comparison report to (as 'report.md'), "
+             "along with the PNG diff images and TXT diff files it links to. "
+             "Created if it does not already exist."
     )
 
     args = parser.parse_args()
-    compare_directories(args.dir1, args.dir2, args.report_html)
+    compare_directories(args.dir1, args.dir2, args.report_dir)
 
 
 if __name__ == "__main__":
