@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const PUBLIC_DIR = path.resolve(__dirname, "..", "..", "build", "public_html");
+export const PUBLIC_DIR = path.resolve(__dirname, "..", "..", "..", "..", "build", "public_html");
 
 const MIME_TYPES = {
     ".html": "text/html",

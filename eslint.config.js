@@ -29,7 +29,7 @@ export default [
     },
   },
   {
-    files: ["script/**/*"],
+    files: ["src/test/script/**/*"],
     languageOptions: {
       globals: {
         ...globals.node,

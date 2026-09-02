@@ -7,7 +7,7 @@
  * writing them to src/test/resources/reference-files/<imsc1|imsc1_1>/.
  *
  * Usage:
- *   node script/gen-reference-files.mjs [--browser=chrome|firefox]
+ *   node src/test/script/gen-reference-files.mjs [--browser=chrome|firefox]
  */
 
 import fs from "node:fs";
@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 import { withGenRendersPage } from "./lib/gen-renders-page.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT_ROOT = path.resolve(__dirname, "..", "src", "test", "resources", "reference-files");
+const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
 
 const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1"];
 

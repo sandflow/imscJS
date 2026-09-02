@@ -9,7 +9,7 @@
  * in-page to get the renders.zip Blob directly, and writes it to disk.
  *
  * Usage:
- *   node script/gen-renders.mjs [imsc-tests/imsc1|imsc-tests/imsc1_1] [outfile] [--browser=chrome|firefox]
+ *   node src/test/script/gen-renders.mjs [imsc-tests/imsc1|imsc-tests/imsc1_1] [outfile] [--browser=chrome|firefox]
  */
 
 import fs from "node:fs";

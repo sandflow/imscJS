@@ -48,9 +48,9 @@
     "scripts": {
         "prepublishOnly": "grunt build:release",
         "dev": "npx http-server build/public_html",
-        "gen-imsc1": "node script/gen-renders.mjs imsc-tests/imsc1 build/renders-imsc1.zip --browser=firefox ",
-        "gen-imsc1_1": "node script/gen-renders.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip --browser=firefox ",
-        "gen-reference-files": "node script/gen-reference-files.mjs --browser=firefox",
+        "gen-imsc1": "node src/test/script/gen-renders.mjs imsc-tests/imsc1 build/renders-imsc1.zip --browser=firefox ",
+        "gen-imsc1_1": "node src/test/script/gen-renders.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip --browser=firefox ",
+        "gen-reference-files": "node src/test/script/gen-reference-files.mjs --browser=firefox",
         "install:firefox": "puppeteer browsers install firefox",
         "lint": "eslint .",
         "fix": "eslint --fix src",
