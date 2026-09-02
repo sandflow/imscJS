@@ -26,49 +26,41 @@
  */
 
 /*
- * Generates reference files for the IMSC 1 and IMSC 1.1 test suites, writing
- * them to src/test/resources/reference-files/<imsc1|imsc1_1>/.
+ * Renders all TTML files within a directory
  *
- * Usage: node src/test/script/gen-reference-files.mjs
- *   [--browser=chrome|firefox]
+ * Usage:
+ *   node src/test/script/gen-renders.mjs [imsc-tests/imsc1|imsc-tests/imsc1_1] [outfile] [--browser=chrome|firefox]
  */
 
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { renderTTMLInBrowser } from "./gen-renders-page.mjs";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
-
-const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1"];
-
 async function main() {
+    const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+    const reffilesRoot = args[0] || "imsc-tests/imsc1";
+    const outFile = path.resolve(args[1] || "renders.zip");
+
     const browserArg = process.argv.find((a) => a.startsWith("--browser="));
     const browserProduct = browserArg ? browserArg.split("=")[1] : "firefox";
 
-    await renderTTMLInBrowser(browserProduct, async (page) => {
-        for (const reffilesRoot of REFFILES_ROOTS) {
-            console.log(`Generating reference files for "${reffilesRoot}"...`);
+    console.log(`Generating renders for "${reffilesRoot}"...`);
 
-            const files = await page.evaluate(async (root) => {
-                // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
-                return await generateReferenceFiles(root);
-            }, reffilesRoot);
+    const base64Zip = await renderTTMLInBrowser(browserProduct, (page) => page.evaluate(async (root) => {
+        // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
+        const blob = await generateRenderPackageAsZip(root);
 
-            const destDir = path.join(OUTPUT_ROOT, path.basename(reffilesRoot));
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(",")[1]);
+            reader.onerror = () => reject(reader.error);
+            reader.readAsDataURL(blob);
+        });
+    }, reffilesRoot));
 
-            fs.rmSync(destDir, { recursive: true, force: true });
+    fs.writeFileSync(outFile, Buffer.from(base64Zip, "base64"));
 
-            for (const [relativePath, contents] of Object.entries(files)) {
-                const filePath = path.join(destDir, relativePath);
-                fs.mkdirSync(path.dirname(filePath), { recursive: true });
-                fs.writeFileSync(filePath, contents);
-            }
-
-            console.log(`Wrote ${Object.keys(files).length} files to ${destDir}`);
-        }
-    });
+    console.log(`Wrote ${outFile}`);
 }
 
 main().catch((err) => {

@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { withGenRendersPage } from "../script/lib/gen-renders-page.mjs";
+import { renderTTMLInBrowser } from "../script/gen-renders-page.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REFERENCE_FILES_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
@@ -21,7 +21,7 @@ async function listFilesRecursively(dir) {
 
 async function generateAndCompare(browserProduct) {
 
-  await withGenRendersPage(browserProduct, async (page) => {
+  await renderTTMLInBrowser(browserProduct, async (page) => {
 
     for (const reffilesRoot of REFFILES_ROOTS) {
 
