@@ -143,10 +143,10 @@ async function generateAndDownloadRenders(reffiles_root) {
 }
 
 /**
- * Parses the test files at reffiles_root and generates the JSON document,
- * ISD documents and HTML documents for each of their media time events (no
- * PNGs), returning a flat map of relative file path to file contents rather
- * than writing any files or zipping anything.
+ * Parses the test files at reffiles_root and generates the JSON document and
+ * ISD documents for each of their media time events (no HTML, no PNGs),
+ * returning a flat map of relative file path to file contents rather than
+ * writing any files or zipping anything.
  */
 async function generateReferenceFiles(reffiles_root) {
 
@@ -158,7 +158,7 @@ async function generateReferenceFiles(reffiles_root) {
 
     for (const finfo of finfos) {
 
-        p.push(renderTTMLFile(reffiles_root, finfo, false));
+        p.push(renderTTMLFile(reffiles_root, finfo, false, false));
 
     }
 
@@ -176,7 +176,6 @@ async function generateReferenceFiles(reffiles_root) {
         for (const event of renderedFile.events) {
 
             files[renderedFile.name + "/isd/" + event.name + ".json"] = JSON.stringify(event.isd, customReplace, 2);
-            files[renderedFile.name + "/html/" + event.name + ".html"] = event.html;
 
             event_names.push(event.name);
 
@@ -193,11 +192,11 @@ async function generateReferenceFiles(reffiles_root) {
 
 /**
  * Parses a reference file and generates the JSON document, ISD documents,
- * HTML documents and (unless generatePng is false) PNGs for each of its
- * media time events, returning them all as a plain JSON structure rather
- * than writing any files.
+ * and (unless generateHtml/generatePng are false) HTML documents and PNGs
+ * for each of its media time events, returning them all as a plain JSON
+ * structure rather than writing any files.
  */
-async function renderTTMLFile(reffiles_root, finfo, generatePng = true) {
+async function renderTTMLFile(reffiles_root, finfo, generateHtml = true, generatePng = true) {
 
     const test_name = finfo.name || getTestName(finfo.path, finfo.params || {});
 
@@ -211,7 +210,7 @@ async function renderTTMLFile(reffiles_root, finfo, generatePng = true) {
 
     for (const offset of events) {
 
-        p.push(renderISD(doc, offset, finfo.params || {}, getReferenceFileDirectory(reffiles_root, finfo.path), generatePng));
+        p.push(renderISD(doc, offset, finfo.params || {}, getReferenceFileDirectory(reffiles_root, finfo.path), generateHtml, generatePng));
 
     }
 
@@ -230,135 +229,141 @@ function customReplace(k, v) {
 }
 
 /**
- * Renders a single media time event and returns its ISD, HTML and PNG as a
- * plain JSON structure rather than writing any files.
+ * Renders a single media time event and returns its ISD and (unless
+ * generateHtml/generatePng are false) HTML and PNG as a plain JSON
+ * structure rather than writing any files.
  */
-async function renderISD(doc, offset, params, reffile_dir, generatePng = true) {
+async function renderISD(doc, offset, params, reffile_dir, generateHtml = true, generatePng = true) {
 
     const name = filenameFromOffset(offset);
 
-    const exp_width = 640;
-    const exp_height = 360;
-
-    const vdiv = document.getElementById('render-div');
-
-    vdiv.style.height = exp_height + "px";
-    vdiv.style.width = exp_width + "px";
-
-    while (vdiv.firstChild) {
-        vdiv.removeChild(vdiv.firstChild);
-    }
-
-    /* create svg container */
-
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute('width', exp_width + "px");
-    svg.setAttribute('height', exp_height + "px");
-    svg.setAttribute("xmlns", svg.namespaceURI);
-
-    const fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
-    fo.setAttribute('width', '100%');
-    fo.setAttribute('height', '100%');
-
-    svg.appendChild(fo);
-
-    /* create container div */
-
-    const rdiv = document.createElement("div");
-    rdiv.style.height = "100%";
-    rdiv.style.width = "100%";
-    rdiv.style.position = "relative";
-    rdiv.style.background = "#A9A9A9";
-
-    fo.appendChild(rdiv);
-
-    vdiv.appendChild(svg);
-
     const isd = imsc.generateISD(doc, offset);
 
-    /* resolve images referenced by the ISD so they are embedded in the HTML */
+    let html = null;
+    let png = null;
 
-    const imgs = [];
+    if (generateHtml || generatePng) {
 
-    const imgr = function (uri, img) {
-        const p = (async function () {
+        const exp_width = 640;
+        const exp_height = 360;
 
-            const url = await new Promise(function (resolve) {
+        const vdiv = document.getElementById('render-div');
 
-                const png = new Image();
+        vdiv.style.height = exp_height + "px";
+        vdiv.style.width = exp_width + "px";
 
-                png.onload = function () {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = this.naturalWidth;
-                    canvas.height = this.naturalHeight;
+        while (vdiv.firstChild) {
+            vdiv.removeChild(vdiv.firstChild);
+        }
 
-                    const ctx = canvas.getContext('2d');
+        /* create svg container */
 
-                    ctx.drawImage(this, 0, 0);
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute('width', exp_width + "px");
+        svg.setAttribute('height', exp_height + "px");
+        svg.setAttribute("xmlns", svg.namespaceURI);
 
-                    // Get raw image data
+        const fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+        fo.setAttribute('width', '100%');
+        fo.setAttribute('height', '100%');
 
-                    resolve(canvas.toDataURL('image/png'));
+        svg.appendChild(fo);
+
+        /* create container div */
+
+        const rdiv = document.createElement("div");
+        rdiv.style.height = "100%";
+        rdiv.style.width = "100%";
+        rdiv.style.position = "relative";
+        rdiv.style.background = "#A9A9A9";
+
+        fo.appendChild(rdiv);
+
+        vdiv.appendChild(svg);
+
+        /* resolve images referenced by the ISD so they are embedded in the HTML */
+
+        const imgs = [];
+
+        const imgr = function (uri, img) {
+            const p = (async function () {
+
+                const url = await new Promise(function (resolve) {
+
+                    const png = new Image();
+
+                    png.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = this.naturalWidth;
+                        canvas.height = this.naturalHeight;
+
+                        const ctx = canvas.getContext('2d');
+
+                        ctx.drawImage(this, 0, 0);
+
+                        // Get raw image data
+
+                        resolve(canvas.toDataURL('image/png'));
+                    };
+
+                    png.src = reffile_dir + uri;
+
+                });
+
+                img.src = url;
+
+            })();
+
+            imgs.push(p);
+
+            return null;
+        };
+
+        imsc.renderHTML(
+            isd,
+            rdiv,
+            imgr,
+            exp_height,
+            exp_width,
+            params.displayForcedOnlyMode === true,
+            errorHandler
+            );
+
+
+        await Promise.all(imgs);
+
+        html = rdiv.innerHTML.replace(/></g, ">\n<");
+
+        if (generatePng) {
+
+            /* create PNG render */
+
+            const svgser = (new XMLSerializer).serializeToString(svg);
+
+            const canvas = document.createElement("canvas");
+
+            const ctx = canvas.getContext('2d');
+            ctx.canvas.height = exp_height;
+            ctx.canvas.width = exp_width;
+
+            const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgser);
+
+            png = await new Promise(function (resolve) {
+
+                const img = new Image();
+                img.onload = function () {
+                    ctx.drawImage(img, 0, 0);
+
+                    const data = canvas.toDataURL("image/png");
+
+                    resolve(data.substr(data.indexOf(',') + 1));
                 };
 
-                png.src = reffile_dir + uri;
+                img.src = url;
 
             });
 
-            img.src = url;
-
-        })();
-
-        imgs.push(p);
-
-        return null;
-    };
-
-    imsc.renderHTML(
-        isd,
-        rdiv,
-        imgr,
-        exp_height,
-        exp_width,
-        params.displayForcedOnlyMode === true,
-        errorHandler
-        );
-
-
-    await Promise.all(imgs);
-
-    const html = rdiv.innerHTML.replace(/></g, ">\n<");
-
-    let png = null;
-
-    if (generatePng) {
-
-        /* create PNG render */
-
-        const svgser = (new XMLSerializer).serializeToString(svg);
-
-        const canvas = document.createElement("canvas");
-
-        const ctx = canvas.getContext('2d');
-        ctx.canvas.height = exp_height;
-        ctx.canvas.width = exp_width;
-
-        const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgser);
-
-        png = await new Promise(function (resolve) {
-
-            const img = new Image();
-            img.onload = function () {
-                ctx.drawImage(img, 0, 0);
-
-                const data = canvas.toDataURL("image/png");
-
-                resolve(data.substr(data.indexOf(',') + 1));
-            };
-
-            img.src = url;
-
-        });
+        }
 
     }
 

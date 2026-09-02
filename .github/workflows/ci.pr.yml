@@ -22,6 +22,9 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Install Firefox
+        run: npm run install:firefox
+
       - name: Lint
         run: npm run lint
 
