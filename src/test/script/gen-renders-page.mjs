@@ -61,6 +61,7 @@ export async function renderTTMLInBrowser(browserProduct, fn) {
     const browser = await puppeteer.launch({
         browser: browserProduct,
         headless: true,
+        args: browserProduct === "chrome" ? ["--no-sandbox", "--disable-setuid-sandbox"] : [],
     });
 
     try {
@@ -78,12 +79,14 @@ export async function renderTTMLInBrowser(browserProduct, fn) {
             const filePath = path.join(PUBLIC_DIR, urlPath);
 
             if (!filePath.startsWith(PUBLIC_DIR)) {
+                console.error(`[serve] 403 ${request.url()} (outside ${PUBLIC_DIR})`);
                 request.respond({ status: 403 });
                 return;
             }
 
             fs.readFile(filePath, (err, data) => {
                 if (err) {
+                    console.error(`[serve] 404 ${request.url()} -> ${filePath}`);
                     request.respond({ status: 404 });
                     return;
                 }
