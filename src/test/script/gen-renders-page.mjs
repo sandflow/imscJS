@@ -75,6 +75,13 @@ export async function renderTTMLInBrowser(browserProduct, fn) {
         await page.setRequestInterception(true);
 
         page.on("request", (request) => {
+            // data: URIs (embedded images, generated SVGs) are self-contained
+            // and don't need serving from disk; let the browser handle them.
+            if (!request.url().startsWith("http://gen-renders.local")) {
+                request.continue();
+                return;
+            }
+
             const urlPath = decodeURIComponent(new URL(request.url()).pathname);
             const filePath = path.join(PUBLIC_DIR, urlPath);
 
