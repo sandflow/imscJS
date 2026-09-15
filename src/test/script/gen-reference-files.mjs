@@ -29,8 +29,10 @@
  * Generates reference files for the IMSC 1 and IMSC 1.1 test suites, writing
  * them to src/test/resources/reference-files/<imsc1|imsc1_1>/.
  *
+ * Always uses Firefox, so the committed reference files come from one
+ * canonical, reproducible renderer.
+ *
  * Usage: node src/test/script/gen-reference-files.mjs
- *   [--browser=chrome|firefox]
  */
 
 import fs from "node:fs";
@@ -44,8 +46,7 @@ const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files"
 const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1"];
 
 async function main() {
-    const browserArg = process.argv.find((a) => a.startsWith("--browser="));
-    const browserProduct = browserArg ? browserArg.split("=")[1] : "firefox";
+    const browserProduct = "firefox";
 
     const results = [];
 
