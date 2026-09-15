@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { renderTTMLInBrowser } from "../script/gen-renders-page.mjs";
+import { renderTTMLInBrowser, renderTestSuite } from "../script/render-harness.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REFERENCE_FILES_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
@@ -25,10 +25,7 @@ async function generateAndCompare(browserProduct) {
 
     for (const reffilesRoot of REFFILES_ROOTS) {
 
-      const generatedFiles = await page.evaluate(async (root) => {
-        // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
-        return await generateReferenceFiles(root);
-      }, reffilesRoot);
+      const generatedFiles = await renderTestSuite(page, reffilesRoot);
 
       const referenceDir = path.join(REFERENCE_FILES_ROOT, path.basename(reffilesRoot));
 

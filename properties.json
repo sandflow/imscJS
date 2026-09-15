@@ -1,7 +1,5 @@
 {
     "webappSrcDir" : "src/main/webapp",
-    "webappTestDir" : "src/test/webapp",
-    "webappBuildDir" : "build/public_html",
     "unitTestsResourcesDir" : "src/test/resources",
     "umdBuildDir" : "dist",
     "umdDebugName" : "imsc.debug.js",

@@ -36,7 +36,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { renderTTMLInBrowser } from "./gen-renders-page.mjs";
+import { renderTTMLInBrowser, renderTestSuite } from "./render-harness.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
@@ -51,10 +51,7 @@ async function main() {
         for (const reffilesRoot of REFFILES_ROOTS) {
             console.log(`Generating reference files for "${reffilesRoot}"...`);
 
-            const files = await page.evaluate(async (root) => {
-                // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
-                return await generateReferenceFiles(root);
-            }, reffilesRoot);
+            const files = await renderTestSuite(page, reffilesRoot);
 
             const destDir = path.join(OUTPUT_ROOT, path.basename(reffilesRoot));
 
