@@ -1,14 +1,13 @@
+# imscJS
+
      _                                 _    _____ 
     (_)                               | |  / ____|
      _   _ __ ___    ___    ___       | | | (___  
     | | | '_ ` _ \  / __|  / __|  _   | |  \___ \ 
     | | | | | | | | \__ \ | (__  | |__| |  ____) |
     |_| |_| |_| |_| |___/  \___|  \____/  |_____/ 
-                                                  
-                                  
-                                  
-INTRODUCTION
-============
+
+## Introduction
 
 imscJS is a JavaScript library for rendering [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/) and [IMSC 1.1](https://www.w3.org/TR/ttml-imsc1.1/) documents to HTML5. IMSC is a profile of [TTML 2](https://www.w3.org/TR/ttml2/) designed for subtitle and caption delivery worldwide.
 
@@ -16,10 +15,7 @@ A sample web app that uses imscJS is available at https://www.sandflow.com/imsc1
 
 Documentation is available on [MDN](https://developer.mozilla.org/en-US/docs/Related/IMSC).
 
-
-
-KNOWN ISSUES AND LIMITATIONS
-============================
+## Known issues and limitations
 
 imscJS is primarily developed on Firefox. Latest versions of Chrome, Safari, and Microsoft Edge are intended to be supported nevertheless, albeit with potentially reduced capabilities. In particular, advanced ruby layout is currently only supported by Firefox.
 
@@ -27,28 +23,19 @@ imscJS is intended to reflect the most recent published versions of [IMSC 1.0.1]
 
 imscJS bugs are tracked at https://github.com/sandflow/imscJS/issues.
 
-
-
-RUNTIME DEPENDENCIES
-====================
+## Runtime dependencies
 
 imscJS requires an XML parser. By default it uses the browser's native [`DOMParser`](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser), so no additional library is needed in a browser environment. In environments where `DOMParser` is not available, e.g. Node.js, the caller must provide `fromXML()` with a parser that implements the contract defined in [src/main/js/parser.js](src/main/js/parser.js), e.g. [sax-js](https://www.npmjs.com/package/sax).
 
 Rendering to HTML5 requires a browser environment, but parsing an IMSC document and transforming it into ISDs does not.
 
-
-
-DEVELOPMENT DEPENDENCIES
-========================
+## Development dependencies
 
 (required) node.js (see [package.json](package.json) for a complete list of dependencies)
 
 (recommended) git
 
-
-
-QUICK START
-===========
+## Quick start
 
 * run the `build` target defined in [Gruntfile.cjs](./Gruntfile.cjs) using [grunt](http://gruntjs.com/).
 
@@ -60,13 +47,9 @@ QUICK START
 
 See BUILD ARTIFACTS for a full list of build artifacts, and TESTS AND SAMPLES for a list of samples and tests available.
 
+## Architecture
 
-
-ARCHITECTURE
-============
-
-API
----
+### API
 
 imscJS renders an IMSC document in three distinct steps:
 
@@ -80,41 +63,37 @@ In each step, the caller can provide an `errorHandler` to be notified of events 
 
 Inline documentation provides additional information.
 
+### Modules
 
-MODULES
--------
+imscJS consists of the following ES modules at [src/main/js](src/main/js), which can be imported individually, or used together as the `imsc` global when loaded as a UMD bundle (see [Build](#build)):
 
-imscJS consists of the following modules, which can be used in a node 
-environment using the `require` functionality, or standalone, in which case each module hosts its 
-definitions under a global name (the token between parantheses):
+* `main.js`: public entry point; exposes `fromXML()`, `renderHTML()`, `generateISD()` and `createSAXParserFromDOMParser()`
+* `doc.js`: parses an IMSC document into an in-memory TT object
+* `parser.js`: defines the XML parser contract expected by `doc.js`
+* `dom_to_parser.js`: implements the XML parser contract using the browser's `DOMParser`
+* `isd.js`: generates an ISD object from a TT object
+* `html.js`: generates an HTML fragment from an ISD object
+* `names.js`: common constants
+* `styles.js`: defines TTML styling attributes processing
+* `utils.js`: common utility functions
+* `error.js`: defines error handling utilities used across modules
 
-* `doc.js` (`imscDoc`): parses an IMSC document into an in-memory TT object
-* `isd.js` (`imscISD`): generates an ISD object from a TT object
-* `html.js` (`imscHTML`): generates an HTML fragment from an ISD object
-* `names.js` (`imscNames`): common constants
-* `styles.js` (`imscStyles`): defines TTML styling attributes processing
-* `utils.js` (`imscUtils`): common utility functions
-
-
-
-BUILD
-=====
+## Build
 
 imscJS is built using the `build:release` or `build:debug` Grunt tasks -- the `build` task is an alias of `build:debug`.
 
 The `dist` directory contains the following build artifacts:
+
 * `imsc.debug.js`: Non-minified UMD build.
 * `imsc.min.js`: Minified UMD build.
 * `main/`: ES modules and TypeScript type declarations, used when the library is imported as an NPM package.
 
 The `build/public_html/libs/imsc.js` file is identical to:
+
 * `imsc.debug.js`, if the `build:debug` task is executed.
 * `imsc.min.js`, if the `build:release` task is executed.
 
-
-
-RELEASES
-========
+## Releases
 
 imscJS is released as an NPM package under [imsc](https://www.npmjs.com/package/imsc). The `dev` distribution tag indicates pre-releases.
 
@@ -122,29 +101,39 @@ Builds/dist are available on the [unpkg](https://unpkg.com/) CDN under the [`dis
 
 To access the latest builds, please consult the [release page](https://github.com/sandflow/imscJS/releases).
 
+## Tests and samples
 
+### W3C Test Suite
 
-TESTS AND SAMPLES
-=================
+The `gen-renders.html` web app or the headless script [src/test/script/gen-render-package.mjs](src/test/script/gen-render-package.mjs) can be used to generate PNG renderings as well as intermediary files (JSON document, ISD documents and HTML documents) from the [W3C IMSC test suite](https://github.com/w3c/imsc-tests).
 
+```sh
+npm run gen-imsc1
+npm run gen-imsc1_1
+```
 
-W3C Test Suite
---------------
+[src/test/script/compare_renders.py](src/test/script/compare_renders.py) compares two such render outputs (unzipped), performing byte-level, JSON/HTML and pixel-level PNG diffs, and optionally generating an HTML comparison report.
 
-imscJS imports the [IMSC test suite](https://github.com/w3c/imsc-tests) as a submodule at `src/test/resources/imsc-tests`. The gen-renders.html web app can be used to generate PNG renderings as as well intermediary files from these tests.
+```sh
+pipenv install
+pipenv run python3 src/test/script/compare_renders.py <unzipped renders-imsc1> <unzipped renders-imsc1_1>
+```
 
+### Unit tests
 
-Unit tests
-----------
+Unit tests run using Node's built-in [test runner](https://nodejs.org/api/test.html) and are located at [src/test/js](src/test/js). They can be run with:
 
-Unit tests run using [QUnit](https://qunitjs.com/) are split between:
+```sh
+npm test
+```
 
-* [src/test/webapp/js/unit-tests.js](src/test/webapp/js/unit-tests.js)
-* [src/test/js](src/test/js)
+Some unit tests validate rendering output against the reference files at [src/test/resources/reference-files](src/test/resources/reference-files). These reference files are generated from the [W3C IMSC test suite](https://github.com/w3c/imsc-tests) by running:
 
+```sh
+npm run gen-reference-files
+```
 
-NOTABLE DIRECTORIES AND FILES
-=============================
+## Notable directories and files
 
 * [package.json](package.json): NPM package definition
 
@@ -152,11 +141,23 @@ NOTABLE DIRECTORIES AND FILES
 
 * [properties.json](properties.json): General project properties
 
+* [eslint.config.js](eslint.config.js): ESLint configuration
+
+* [tsconfig.json](tsconfig.json): TypeScript configuration used to generate the type declarations in `dist/main`
+
+* [rollup.config.js](rollup.config.js): Rollup configuration used to bundle `dist/main` into the UMD builds at `dist/imsc.debug.js` and `dist/imsc.min.js`
+
+* [src/test/script/Pipfile](src/test/script/Pipfile): [pipenv](https://pipenv.pypa.io/) dependency declaration for `compare_renders.py`
+
 * [LICENSE](LICENSE): License under which imscJS is made available
+
+* [CONTRIBUTING](CONTRIBUTING): Certification required of contributions to imscJS
 
 * [src/main/js](src/main/js): JavaScript modules
 
 * [src/test](src/test): Test files
+
+* [src/test/webapp](src/test/webapp): Web app, used to generate PNG renderings and intermediary files from the W3C IMSC test suite
 
 * [dist](dist): Built libraries
 

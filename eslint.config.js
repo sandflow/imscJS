@@ -28,4 +28,12 @@ export default [
       "eol-last": ["error", "always"],
     },
   },
+  {
+    files: ["src/test/script/**/*"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
 ];

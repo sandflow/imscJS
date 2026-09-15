@@ -48,12 +48,17 @@
     "scripts": {
         "prepublishOnly": "grunt build:release",
         "dev": "npx http-server build/public_html",
+        "gen-imsc1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1 build/renders-imsc1.zip",
+        "gen-imsc1_1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip",
+        "gen-reference-files": "node src/test/script/gen-reference-files.mjs",
+        "install:firefox": "puppeteer browsers install firefox",
         "lint": "eslint .",
         "fix": "eslint --fix src",
         "build": "grunt build",
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
+        "puppeteer": "^25.11.0",
         "tslib": "2.8.1"
     },
     "devDependencies": {
