@@ -3,7 +3,9 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "cron"
+      cronjob: "0 9 1 */2 *"
+      timezone: "UTC"
     cooldown:
       default-days: 7
       semver-major-days: 14
