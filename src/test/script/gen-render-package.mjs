@@ -35,7 +35,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import JSZip from "jszip";
-import { renderTTMLInBrowser, renderTestSuite } from "./render-harness.mjs";
+import { renderTestSuite } from "./render-harness.mjs";
 
 async function main() {
     const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
@@ -47,7 +47,7 @@ async function main() {
 
     console.log(`Generating renders for "${reffilesRoot}"...`);
 
-    const files = await renderTTMLInBrowser(browserProduct, (page) => renderTestSuite(page, reffilesRoot, true));
+    const files = await renderTestSuite(browserProduct, reffilesRoot, true);
 
     const zip = new JSZip();
 

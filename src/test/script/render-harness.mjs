@@ -35,18 +35,14 @@ import puppeteer from "puppeteer";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Test fixtures (tests.json, *.ttml, referenced images) are served straight
-// from here, so nothing needs to be pre-built or pre-copied anywhere.
 export const RESOURCES_DIR = path.resolve(__dirname, "..", "resources");
-
-// The imsc UMD bundle, produced by `npx tsc && npx rollup -c`.
 export const IMSC_BUNDLE_PATH = path.resolve(__dirname, "..", "..", "..", "dist", "imsc.debug.js");
+const HARNESS_PATH = path.resolve(__dirname, "render-harness.browser.js");
 
-const RENDERER_SCRIPT_PATH = path.resolve(__dirname, "render-harness.browser.js");
-
+/* We are not loading from an HTTP server, but instead intecerpting all load calls */
 const FAKE_ORIGIN = "http://gen-renders.local";
 
-// Fixed render dimensions used throughout the IMSC test suite.
+/* Dimensions of the rendered visuals */
 const RENDER_WIDTH = 640;
 const RENDER_HEIGHT = 360;
 
@@ -58,16 +54,20 @@ const MIME_TYPES = {
 };
 
 /**
- * Renders a TTML file within a blank page pre-loaded with the imsc library
- * and the helpers from render-harness.browser.js, using puppeteer.
+ * Renders an IMSC test suite, returning a list containing file names and
+ * corresponding file contents. JSON/HTML paths are nested under "generated/"
+ * and, when includeRenders is true, PNGs under "png/" -- matching the layout
+ * expected in a render package.
  *
- * @param {string} browserProduct Puppeteer browser product to launch, e.g. "chrome" or "firefox"
- * @param {(page: import("puppeteer").Page) => Promise<*>} fn Callback invoked with the Puppeteer page, once set up
- * @returns {Promise<*>} Whatever fn's returned promise resolves to
+ * @param {string} browserProduct Puppeteer browser product to launch, e.g.
+ * "chrome" or "firefox"
+ * @param {string} reffilesRoot e.g. "imsc-tests/imsc1"
+ * @param {boolean} includeRenders Whether to also render/screenshot each event
+ * @returns {Promise<Object<string, string|Buffer>>}
  */
-export async function renderTTMLInBrowser(browserProduct, fn) {
+export async function renderTestSuite(browserProduct, reffilesRoot, includeRenders = false) {
     if (!fs.existsSync(IMSC_BUNDLE_PATH)) {
-        throw new Error(`${IMSC_BUNDLE_PATH} does not exist. Run "npx tsc && npx rollup -c" first.`);
+        throw new Error(`${IMSC_BUNDLE_PATH} does not exist.`);
     }
 
     const browser = await puppeteer.launch({
@@ -82,13 +82,9 @@ export async function renderTTMLInBrowser(browserProduct, fn) {
         page.on("console", (msg) => console.log(`[page] ${msg.text()}`));
         page.on("pageerror", (err) => console.error(`[page error] ${err}`));
 
-        // Answers every request against a fake origin straight from
-        // src/test/resources, so no real HTTP server needs to be listening.
         await page.setRequestInterception(true);
 
         page.on("request", (request) => {
-            // data: URIs (embedded images, generated SVGs) are self-contained
-            // and don't need serving from disk; let the browser handle them.
             if (!request.url().startsWith(FAKE_ORIGIN)) {
                 request.continue();
                 return;
@@ -98,6 +94,11 @@ export async function renderTTMLInBrowser(browserProduct, fn) {
 
             if (urlPath === "/") {
                 request.respond({ status: 200, contentType: "text/html", body: "<!doctype html><title></title>" });
+                return;
+            }
+
+            if (urlPath === "/favicon.ico") {
+                request.respond({ status: 204 });
                 return;
             }
 
@@ -132,83 +133,60 @@ export async function renderTTMLInBrowser(browserProduct, fn) {
         await page.setViewport({ width: RENDER_WIDTH, height: RENDER_HEIGHT });
 
         await page.addScriptTag({ path: IMSC_BUNDLE_PATH });
-        await page.addScriptTag({ path: RENDERER_SCRIPT_PATH });
+        await page.addScriptTag({ path: HARNESS_PATH });
 
-        return await fn(page);
+        // eslint-disable-next-line no-undef -- injected by render-harness.browser.js in the page context
+        const finfos = await page.evaluate((root) => loadTestList(root), reffilesRoot);
+
+        const docPrefix = "generated/";
+
+        const files = {};
+        const manifest = {};
+
+        for (const finfo of finfos) {
+            const { name, events, docJson } = await page.evaluate(
+                // eslint-disable-next-line no-undef -- injected by render-harness.browser.js in the page context
+                (root, fi) => openTTMLFile(root, fi),
+                reffilesRoot,
+                finfo,
+            );
+
+            files[docPrefix + name + "/doc.json"] = docJson;
+
+            const eventNames = [];
+
+            for (const offset of events) {
+                const eventName = offset.toFixed(6).toString();
+
+                const { isdJson, html } = await page.evaluate(
+                    // eslint-disable-next-line no-undef -- injected by render-harness.browser.js in the page context
+                    (o, p, w, h) => renderEvent(o, p, w, h),
+                    offset,
+                    finfo.params || {},
+                    RENDER_WIDTH,
+                    RENDER_HEIGHT,
+                );
+
+                files[docPrefix + name + "/isd/" + eventName + ".json"] = isdJson;
+
+                if (includeRenders) {
+                    files[docPrefix + name + "/html/" + eventName + ".html"] = html;
+
+                    const renderDiv = await page.$("#render-div");
+                    files["png/" + name + "/" + eventName + ".png"] = await renderDiv.screenshot({ type: "png" });
+                    await renderDiv.dispose();
+                }
+
+                eventNames.push(eventName);
+            }
+
+            manifest[name] = eventNames;
+        }
+
+        files[docPrefix + "file-list.json"] = JSON.stringify(manifest, null, 2);
+
+        return files;
     } finally {
         await browser.close();
     }
-}
-
-/**
- * Renders every test file at reffilesRoot (as listed in its tests.json)
- * within page, returning a flat map of relative file path to file contents:
- * the JSON document and ISD documents for every media time event, plus --
- * when includeRenders is true -- the HTML document and a PNG screenshot (as
- * a Buffer) for each of those. Nothing is written to disk or zipped here.
- *
- * Events are rendered one at a time, in Node: only Puppeteer (not the page
- * itself) can take a real screenshot of #render-div, so each event must be
- * rendered and screenshotted before the next one reuses that same element.
- *
- * With includeRenders true, JSON/HTML paths are nested under "generated/"
- * and PNGs under "png/", matching the layout expected in a render package.
- *
- * @param {import("puppeteer").Page} page A page set up by renderTTMLInBrowser()
- * @param {string} reffilesRoot e.g. "imsc-tests/imsc1"
- * @param {boolean} includeRenders Whether to also render/screenshot each event
- * @returns {Promise<Object<string, string|Buffer>>}
- */
-export async function renderTestSuite(page, reffilesRoot, includeRenders = false) {
-    // eslint-disable-next-line no-undef -- injected by render-harness.browser.js in the page context
-    const finfos = await page.evaluate((root) => loadTestList(root), reffilesRoot);
-
-    const docPrefix = includeRenders ? "generated/" : "";
-
-    const files = {};
-    const manifest = {};
-
-    for (const finfo of finfos) {
-        const { name, events, docJson } = await page.evaluate(
-            // eslint-disable-next-line no-undef -- injected by render-harness.browser.js in the page context
-            (root, fi) => openTTMLFile(root, fi),
-            reffilesRoot,
-            finfo,
-        );
-
-        files[docPrefix + name + "/doc.json"] = docJson;
-
-        const eventNames = [];
-
-        for (const offset of events) {
-            const eventName = offset.toFixed(6).toString();
-
-            const { isdJson, html } = await page.evaluate(
-                // eslint-disable-next-line no-undef -- injected by render-harness.browser.js in the page context
-                (o, p, w, h) => renderEvent(o, p, w, h),
-                offset,
-                finfo.params || {},
-                RENDER_WIDTH,
-                RENDER_HEIGHT,
-            );
-
-            files[docPrefix + name + "/isd/" + eventName + ".json"] = isdJson;
-
-            if (includeRenders) {
-                files[docPrefix + name + "/html/" + eventName + ".html"] = html;
-
-                const renderDiv = await page.$("#render-div");
-                files["png/" + name + "/" + eventName + ".png"] = await renderDiv.screenshot({ type: "png" });
-                await renderDiv.dispose();
-            }
-
-            eventNames.push(eventName);
-        }
-
-        manifest[name] = eventNames;
-    }
-
-    files[docPrefix + "file-list.json"] = JSON.stringify(manifest, null, 2);
-
-    return files;
 }

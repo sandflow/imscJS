@@ -36,7 +36,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { renderTTMLInBrowser, renderTestSuite } from "./render-harness.mjs";
+import { renderTestSuite } from "./render-harness.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
@@ -47,25 +47,26 @@ async function main() {
     const browserArg = process.argv.find((a) => a.startsWith("--browser="));
     const browserProduct = browserArg ? browserArg.split("=")[1] : "firefox";
 
-    await renderTTMLInBrowser(browserProduct, async (page) => {
-        for (const reffilesRoot of REFFILES_ROOTS) {
-            console.log(`Generating reference files for "${reffilesRoot}"...`);
+    const results = [];
 
-            const files = await renderTestSuite(page, reffilesRoot);
+    for (const reffilesRoot of REFFILES_ROOTS) {
+        console.log(`Generating reference files for "${reffilesRoot}"...`);
+        results.push([reffilesRoot, await renderTestSuite(browserProduct, reffilesRoot)]);
+    }
 
-            const destDir = path.join(OUTPUT_ROOT, path.basename(reffilesRoot));
+    for (const [reffilesRoot, files] of results) {
+        const destDir = path.join(OUTPUT_ROOT, path.basename(reffilesRoot));
 
-            fs.rmSync(destDir, { recursive: true, force: true });
+        fs.rmSync(destDir, { recursive: true, force: true });
 
-            for (const [relativePath, contents] of Object.entries(files)) {
-                const filePath = path.join(destDir, relativePath);
-                fs.mkdirSync(path.dirname(filePath), { recursive: true });
-                fs.writeFileSync(filePath, contents);
-            }
-
-            console.log(`Wrote ${Object.keys(files).length} files to ${destDir}`);
+        for (const [relativePath, contents] of Object.entries(files)) {
+            const filePath = path.join(destDir, relativePath.replace(/^generated\//, ""));
+            fs.mkdirSync(path.dirname(filePath), { recursive: true });
+            fs.writeFileSync(filePath, contents);
         }
-    });
+
+        console.log(`Wrote ${Object.keys(files).length} files to ${destDir}`);
+    }
 }
 
 main().catch((err) => {

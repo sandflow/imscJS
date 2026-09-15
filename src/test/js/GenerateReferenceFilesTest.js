@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { renderTTMLInBrowser, renderTestSuite } from "../script/render-harness.mjs";
+import { renderTestSuite } from "../script/render-harness.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REFERENCE_FILES_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
@@ -21,38 +21,38 @@ async function listFilesRecursively(dir) {
 
 async function generateAndCompare(browserProduct) {
 
-  await renderTTMLInBrowser(browserProduct, async (page) => {
+  const results = [];
 
-    for (const reffilesRoot of REFFILES_ROOTS) {
+  for (const reffilesRoot of REFFILES_ROOTS) {
+    results.push([reffilesRoot, await renderTestSuite(browserProduct, reffilesRoot)]);
+  }
 
-      const generatedFiles = await renderTestSuite(page, reffilesRoot);
+  for (const [reffilesRoot, generatedFiles] of results) {
 
-      const referenceDir = path.join(REFERENCE_FILES_ROOT, path.basename(reffilesRoot));
+    const referenceDir = path.join(REFERENCE_FILES_ROOT, path.basename(reffilesRoot));
 
-      const generatedPaths = Object.keys(generatedFiles).sort();
-      const referencePaths = await listFilesRecursively(referenceDir);
+    const generatedPaths = Object.keys(generatedFiles).map((p) => p.replace(/^generated\//, "")).sort();
+    const referencePaths = await listFilesRecursively(referenceDir);
 
-      assert.deepStrictEqual(
-        generatedPaths,
-        referencePaths,
-        `generated files for ${reffilesRoot} do not match the set of reference files at ${referenceDir}`,
+    assert.deepStrictEqual(
+      generatedPaths,
+      referencePaths,
+      `generated files for ${reffilesRoot} do not match the set of reference files at ${referenceDir}`,
+    );
+
+    for (const relativePath of generatedPaths) {
+
+      const referenceContents = await fs.readFile(path.join(referenceDir, relativePath), "utf8");
+
+      assert.strictEqual(
+        generatedFiles["generated/" + relativePath],
+        referenceContents,
+        `${reffilesRoot}/${relativePath} does not match its reference file`,
       );
-
-      for (const relativePath of generatedPaths) {
-
-        const referenceContents = await fs.readFile(path.join(referenceDir, relativePath), "utf8");
-
-        assert.strictEqual(
-          generatedFiles[relativePath],
-          referenceContents,
-          `${reffilesRoot}/${relativePath} does not match its reference file`,
-        );
-
-      }
 
     }
 
-  });
+  }
 
 }
 

@@ -26,19 +26,10 @@
 
 /*
  * Browser-side rendering helpers for the IMSC test suite.
- *
- * This is a classic (non-module) script injected into a blank Puppeteer page
- * by render-harness.mjs, alongside the imsc UMD bundle. Its functions
- * become globals that the Node side calls through page.evaluate() -- they
- * are not meant to be loaded directly by a browser.
- *
- * PNG capture is not done here: renderEvent() only renders into #render-div
- * and reports its ISD/HTML; the Node side screenshots that element itself
- * (see renderTestSuite() in render-harness.mjs), since only Puppeteer -- not
- * the page -- can take a real screenshot.
+ * the global `imsc` is injected alongside this script.
  */
 
-/* global imsc -- provided by the imsc UMD bundle, injected alongside this script */
+/* global imsc */
 
 const errorHandler = {
     info: function (msg) {
