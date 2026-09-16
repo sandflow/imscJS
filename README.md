@@ -37,7 +37,7 @@ Rendering to HTML5 requires a browser environment, but parsing an IMSC document 
 
 ## Quick start
 
-* run the `build` target defined in [Gruntfile.cjs](./Gruntfile.cjs) using [grunt](http://gruntjs.com/).
+* run `npm run build`.
 
 * the resulting `dist/imsc.debug.js` (non-minified) or `dist/imsc.min.js` (minified) file is the imscJS library. For example, it can be included in a web page as follows:
 
@@ -80,7 +80,7 @@ imscJS consists of the following ES modules at [src/main/js](src/main/js), which
 
 ## Build
 
-imscJS is built using the `build` Grunt task.
+imscJS is built using the `build` NPM script, which bundles the library.
 
 The `dist` directory contains the following build artifacts:
 
@@ -131,10 +131,6 @@ npm run gen-reference-files
 ## Notable directories and files
 
 * [package.json](package.json): NPM package definition
-
-* [Gruntfile.cjs](Gruntfile.cjs): Grunt build script
-
-* [properties.json](properties.json): General project properties
 
 * [eslint.config.js](eslint.config.js): ESLint configuration
 

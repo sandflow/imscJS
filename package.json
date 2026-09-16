@@ -46,14 +46,16 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "prepublishOnly": "grunt build",
+        "prepublishOnly": "npm run build",
         "gen-imsc1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1 build/renders-imsc1.zip",
         "gen-imsc1_1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip",
         "gen-reference-files": "node src/test/script/gen-reference-files.mjs",
         "install:firefox": "puppeteer browsers install firefox",
         "lint": "eslint .",
         "fix": "eslint --fix src",
-        "build": "grunt build",
+        "compile": "tsc",
+        "bundle": "rollup -c rollup.config.js",
+        "build": "npm run lint && npm run compile && npm run bundle",
         "test": "node --test ./src/test/js/*Test.js"
     },
     "dependencies": {
@@ -67,9 +69,6 @@
         "@rollup/plugin-terser": "1.0.0",
         "eslint": "10.10.0",
         "globals": "17.12.0",
-        "grunt": "1.6.3",
-        "grunt-contrib-clean": "2.0.1",
-        "grunt-exec": "3.0.0",
         "jszip": "3.10.1",
         "rollup": "4.63.1",
         "rollup-plugin-polyfill-node": "0.13.0",
