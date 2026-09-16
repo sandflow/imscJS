@@ -39,10 +39,10 @@ Rendering to HTML5 requires a browser environment, but parsing an IMSC document 
 
 * run the `build` target defined in [Gruntfile.cjs](./Gruntfile.cjs) using [grunt](http://gruntjs.com/).
 
-* the resulting `imsc.js` file at `build/public_html/libs` is the imscJS library. For example, it can be included in a web page as follows:
+* the resulting `dist/imsc.debug.js` (non-minified) or `dist/imsc.min.js` (minified) file is the imscJS library. For example, it can be included in a web page as follows:
 
 ```html
-    <script src="libs/imsc.js"></script>
+    <script src="imsc.min.js"></script>
 ```
 
 See BUILD ARTIFACTS for a full list of build artifacts, and TESTS AND SAMPLES for a list of samples and tests available.
@@ -80,18 +80,13 @@ imscJS consists of the following ES modules at [src/main/js](src/main/js), which
 
 ## Build
 
-imscJS is built using the `build:release` or `build:debug` Grunt tasks -- the `build` task is an alias of `build:debug`.
+imscJS is built using the `build` Grunt task.
 
 The `dist` directory contains the following build artifacts:
 
 * `imsc.debug.js`: Non-minified UMD build.
 * `imsc.min.js`: Minified UMD build.
 * `main/`: ES modules and TypeScript type declarations, used when the library is imported as an NPM package.
-
-The `build/public_html/libs/imsc.js` file is identical to:
-
-* `imsc.debug.js`, if the `build:debug` task is executed.
-* `imsc.min.js`, if the `build:release` task is executed.
 
 ## Releases
 
@@ -105,7 +100,7 @@ To access the latest builds, please consult the [release page](https://github.co
 
 ### W3C Test Suite
 
-The `gen-renders.html` web app or the headless script [src/test/script/gen-render-package.mjs](src/test/script/gen-render-package.mjs) can be used to generate PNG renderings as well as intermediary files (JSON document, ISD documents and HTML documents) from the [W3C IMSC test suite](https://github.com/w3c/imsc-tests).
+The headless script [src/test/script/gen-render-package.mjs](src/test/script/gen-render-package.mjs) can be used to generate PNG renderings as well as intermediary files (JSON document, ISD documents and HTML documents) from the [W3C IMSC test suite](https://github.com/w3c/imsc-tests).
 
 ```sh
 npm run gen-imsc1
@@ -157,8 +152,4 @@ npm run gen-reference-files
 
 * [src/test](src/test): Test files
 
-* [src/test/webapp](src/test/webapp): Web app, used to generate PNG renderings and intermediary files from the W3C IMSC test suite
-
 * [dist](dist): Built libraries
-
-* [build/public_html](build/public_html): Test web applications

@@ -46,8 +46,7 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "prepublishOnly": "grunt build:release",
-        "dev": "npx http-server build/public_html",
+        "prepublishOnly": "grunt build",
         "gen-imsc1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1 build/renders-imsc1.zip",
         "gen-imsc1_1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip",
         "gen-reference-files": "node src/test/script/gen-reference-files.mjs",
@@ -67,13 +66,10 @@
         "@rollup/plugin-node-resolve": "16.0.3",
         "@rollup/plugin-terser": "1.0.0",
         "eslint": "10.10.0",
-        "filesaver.js-npm": "1.0.1",
         "globals": "17.12.0",
         "grunt": "1.6.3",
         "grunt-contrib-clean": "2.0.1",
         "grunt-exec": "3.0.0",
-        "grunt-npmcopy": "0.2.0",
-        "grunt-sync": "0.8.2",
         "jszip": "3.10.1",
         "rollup": "4.63.1",
         "rollup-plugin-polyfill-node": "0.13.0",

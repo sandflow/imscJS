@@ -34,7 +34,8 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { renderTTMLInBrowser } from "./gen-renders-page.mjs";
+import JSZip from "jszip";
+import { renderTestSuite } from "./render-harness.mjs";
 
 async function main() {
     const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
@@ -46,19 +47,15 @@ async function main() {
 
     console.log(`Generating renders for "${reffilesRoot}"...`);
 
-    const base64Zip = await renderTTMLInBrowser(browserProduct, (page) => page.evaluate(async (root) => {
-        // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
-        const blob = await generateRenderPackageAsZip(root);
+    const files = await renderTestSuite(browserProduct, reffilesRoot, true);
 
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result.split(",")[1]);
-            reader.onerror = () => reject(reader.error);
-            reader.readAsDataURL(blob);
-        });
-    }, reffilesRoot));
+    const zip = new JSZip();
 
-    fs.writeFileSync(outFile, Buffer.from(base64Zip, "base64"));
+    for (const [name, contents] of Object.entries(files)) {
+        zip.file(name, contents);
+    }
+
+    fs.writeFileSync(outFile, await zip.generateAsync({ type: "nodebuffer" }));
 
     console.log(`Wrote ${outFile}`);
 }

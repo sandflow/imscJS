@@ -29,14 +29,16 @@
  * Generates reference files for the IMSC 1 and IMSC 1.1 test suites, writing
  * them to src/test/resources/reference-files/<imsc1|imsc1_1>/.
  *
+ * Always uses Firefox, so the committed reference files come from one
+ * canonical, reproducible renderer.
+ *
  * Usage: node src/test/script/gen-reference-files.mjs
- *   [--browser=chrome|firefox]
  */
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { renderTTMLInBrowser } from "./gen-renders-page.mjs";
+import { renderTestSuite } from "./render-harness.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
@@ -44,31 +46,28 @@ const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files"
 const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1"];
 
 async function main() {
-    const browserArg = process.argv.find((a) => a.startsWith("--browser="));
-    const browserProduct = browserArg ? browserArg.split("=")[1] : "firefox";
+    const browserProduct = "firefox";
 
-    await renderTTMLInBrowser(browserProduct, async (page) => {
-        for (const reffilesRoot of REFFILES_ROOTS) {
-            console.log(`Generating reference files for "${reffilesRoot}"...`);
+    const results = [];
 
-            const files = await page.evaluate(async (root) => {
-                // eslint-disable-next-line no-undef -- injected by gen-renders.js in the page context
-                return await generateReferenceFiles(root);
-            }, reffilesRoot);
+    for (const reffilesRoot of REFFILES_ROOTS) {
+        console.log(`Generating reference files for "${reffilesRoot}"...`);
+        results.push([reffilesRoot, await renderTestSuite(browserProduct, reffilesRoot)]);
+    }
 
-            const destDir = path.join(OUTPUT_ROOT, path.basename(reffilesRoot));
+    for (const [reffilesRoot, files] of results) {
+        const destDir = path.join(OUTPUT_ROOT, path.basename(reffilesRoot));
 
-            fs.rmSync(destDir, { recursive: true, force: true });
+        fs.rmSync(destDir, { recursive: true, force: true });
 
-            for (const [relativePath, contents] of Object.entries(files)) {
-                const filePath = path.join(destDir, relativePath);
-                fs.mkdirSync(path.dirname(filePath), { recursive: true });
-                fs.writeFileSync(filePath, contents);
-            }
-
-            console.log(`Wrote ${Object.keys(files).length} files to ${destDir}`);
+        for (const [relativePath, contents] of Object.entries(files)) {
+            const filePath = path.join(destDir, relativePath.replace(/^generated\//, ""));
+            fs.mkdirSync(path.dirname(filePath), { recursive: true });
+            fs.writeFileSync(filePath, contents);
         }
-    });
+
+        console.log(`Wrote ${Object.keys(files).length} files to ${destDir}`);
+    }
 }
 
 main().catch((err) => {

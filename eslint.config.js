@@ -4,7 +4,6 @@ import globals from "globals";
 export default [
   {
     ignores: [
-      "src/test/webapp/**/*",
       "dist",
       "build",
     ],
@@ -30,6 +29,7 @@ export default [
   },
   {
     files: ["src/test/script/**/*"],
+    ignores: ["src/test/script/**/*.browser.js"],
     languageOptions: {
       globals: {
         ...globals.node,
