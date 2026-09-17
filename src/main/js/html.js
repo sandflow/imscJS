@@ -213,11 +213,12 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
 
         } else if (isd_element.styleAttrs[byName.ruby.qname] === "baseContainer") {
 
-            e = document.createElement("rbc");
+            e = document.createElement("span"); // rbc element is deprecated in HTML
 
         } else if (isd_element.styleAttrs[byName.ruby.qname] === "textContainer") {
 
-            e = document.createElement("rtc");
+            e = document.createElement("span"); // rtc element is deprecated in HTML
+            e.style.display = "ruby-text-container";
 
         } else if (isd_element.styleAttrs[byName.ruby.qname] === "delimiter") {
 
@@ -649,8 +650,6 @@ function getSpanAncestorColor(element, ancestorList, isAncestor) {
 
         if (element.parentElement.nodeName === "SPAN" ||
             element.parentElement.nodeName === "RUBY" ||
-            element.parentElement.nodeName === "RBC" ||
-            element.parentElement.nodeName === "RTC" ||
             element.parentElement.nodeName === "RT") {
 
             return getSpanAncestorColor(element.parentElement, ancestorList, true);
@@ -901,12 +900,14 @@ function applyRubyReserve(lineList, context) {
 
         if (context.rubyReserve[0] === "both" || (context.rubyReserve[0] === "outside" && lineList.length == 1)) {
 
-            rt1 = document.createElement("rtc");
+            rt1 = document.createElement("span"); // rtc element is deprecated in HTML
+            rt1.style.display = "ruby-text-container";
             rt1.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "after" : "under";
             rt1.textContent = "\u200B";
             rt1.style.fontSize = fs;
 
-            rt2 = document.createElement("rtc");
+            rt2 = document.createElement("span"); // rtc element is deprecated in HTML
+            rt2.style.display = "ruby-text-container";
             rt2.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "before" : "over";
             rt2.textContent = "\u200B";
             rt2.style.fontSize = fs;
@@ -916,7 +917,8 @@ function applyRubyReserve(lineList, context) {
 
         } else {
 
-            rt1 = document.createElement("rtc");
+            rt1 = document.createElement("span"); // rtc element is deprecated in HTML
+            rt1.style.display = "ruby-text-container";
             rt1.textContent = "\u200B";
             rt1.style.fontSize = fs;
 
@@ -1111,7 +1113,7 @@ function rect2edges(rect, context) {
 
 function constructLineList(context, element, llist, bgcolor) {
 
-    if (element.localName === "rt" || element.localName === "rtc") {
+    if (element.localName === "rt" || element.style.display === "ruby-text-container") {
 
         /* skip ruby annotations */
 
@@ -1123,7 +1125,7 @@ function constructLineList(context, element, llist, bgcolor) {
 
     if (element.childElementCount === 0) {
 
-        if (element.localName === "span" || element.localName === "rb") {
+        if (element.localName === "span") {
 
             const r = element.getBoundingClientRect();
 
@@ -1203,7 +1205,7 @@ function constructLineList(context, element, llist, bgcolor) {
 
                 constructLineList(context, child, llist, curbgcolor);
 
-                if (child.localName === "ruby" || child.localName === "rtc") {
+                if (child.localName === "ruby" || child.style.display === "ruby-text-container") {
 
                     /* remember non-empty ruby and rtc elements so that tts:rubyPosition can be applied */
 
