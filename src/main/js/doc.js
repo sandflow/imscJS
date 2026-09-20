@@ -1587,7 +1587,7 @@ function elementGetStyles(node, errorHandler) {
 
                 } else {
 
-                    reportError(errorHandler, "Cannot parse styling attribute " + qname + " --> " + node.attributes[i].value);
+                    reportError(errorHandler, "Cannot parse styling attribute " + qname);
 
                 }
 
@@ -1931,7 +1931,7 @@ function processTiming(doc, parent, node, errorHandler) {
 
         if (explicit_begin === null) {
 
-            reportWarning(errorHandler, "Malformed begin value " + node.attributes.begin.value + " (using 0)");
+            reportWarning(errorHandler, "Malformed begin value (using 0)");
 
         }
 
@@ -1947,7 +1947,7 @@ function processTiming(doc, parent, node, errorHandler) {
 
         if (explicit_dur === null) {
 
-            reportWarning(errorHandler, "Malformed dur value " + node.attributes.dur.value + " (ignoring)");
+            reportWarning(errorHandler, "Malformed dur value (ignoring)");
 
         }
 
