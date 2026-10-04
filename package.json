@@ -73,6 +73,6 @@
         "rollup": "4.63.1",
         "rollup-plugin-polyfill-node": "0.13.0",
         "sax": "1.6.1",
-        "typescript": "5.9.3"
+        "typescript": "7.0.2"
     }
 }
