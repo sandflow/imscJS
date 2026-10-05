@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tt xml:lang="en" xmlns="http://www.w3.org/ns/ttml"
+xmlns:ttp="http://www.w3.org/ns/ttml#parameter" ttp:profile="http://www.w3.org/ns/ttml/profile/imsc1/text"
+xmlns:tts="http://www.w3.org/ns/ttml#styling">
+	<head>
+	</head>
+	<body>
+		<div>
+			<p begin="0s" end="10s">E = mc<span tts:fontVariant="super">2<span>x</span></span>H<span tts:fontVariant="sub">2</span>O</p>
+			<p begin="0s" end="10s" tts:fontVariant="sub">a<span tts:fontVariant="normal">b</span></p>
+		</div>
+	</body>
+</tt>

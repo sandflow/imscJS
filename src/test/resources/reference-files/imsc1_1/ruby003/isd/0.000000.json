@@ -148,6 +148,7 @@
                           "rh": 0.06666666666666667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -196,6 +197,7 @@
                           "rh": 0.06666666666666667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling rubyAlign": "center",
                         "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -231,6 +233,7 @@
                               "rh": 0.06666666666666667
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -279,6 +282,7 @@
                               "rh": 0.03333333333333333
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
@@ -335,6 +339,7 @@
                           "rh": 0.06666666666666667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [

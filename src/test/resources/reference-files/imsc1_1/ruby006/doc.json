@@ -161,7 +161,7 @@
                         "regionID": "",
                         "space": "default",
                         "lang": "ja",
-                        "text": "single underline",
+                        "text": "single underline base",
                         "begin": 0,
                         "end": "Infinity"
                       }
@@ -190,7 +190,7 @@
                         "regionID": "",
                         "space": "default",
                         "lang": "ja",
-                        "text": "single underline",
+                        "text": "default",
                         "begin": 0,
                         "end": "Infinity"
                       }
@@ -267,7 +267,7 @@
                         "regionID": "",
                         "space": "preserve",
                         "lang": "ja",
-                        "text": "single underline",
+                        "text": "single underline base",
                         "begin": 0,
                         "end": "Infinity"
                       }
@@ -296,7 +296,7 @@
                         "regionID": "",
                         "space": "preserve",
                         "lang": "ja",
-                        "text": "single underline",
+                        "text": "preserve",
                         "begin": 0,
                         "end": "Infinity"
                       }

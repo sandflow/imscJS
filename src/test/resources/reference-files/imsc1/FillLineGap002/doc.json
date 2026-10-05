@@ -16,7 +16,7 @@
           "styleAttrs": {
             "http://www.w3.org/ns/ttml#styling origin": {
               "h": {
-                "value": 10,
+                "value": 50,
                 "unit": "%"
               },
               "w": {
@@ -26,7 +26,7 @@
             },
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
-                "value": 80,
+                "value": 40,
                 "unit": "%"
               },
               "w": {
@@ -57,7 +57,7 @@
             },
             "http://www.w3.org/ns/ttml#styling extent": {
               "h": {
-                "value": 80,
+                "value": 40,
                 "unit": "%"
               },
               "w": {

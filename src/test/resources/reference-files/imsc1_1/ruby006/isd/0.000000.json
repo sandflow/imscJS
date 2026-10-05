@@ -143,6 +143,7 @@
                           "rh": 0.06666666666666667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling rubyAlign": "center",
                         "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -172,6 +173,7 @@
                               "rh": 0.06666666666666667
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling visibility": "visible",
                             "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
@@ -206,6 +208,7 @@
                                   "rh": 0.06666666666666667
                                 },
                                 "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                                "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                                 "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                                 "http://www.w3.org/ns/ttml#styling textCombine": "none",
                                 "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -231,7 +234,7 @@
                                 "http://www.w3.org/ns/ttml#styling display": "auto",
                                 "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                               },
-                              "text": "single underline",
+                              "text": "single underline base",
                               "space": "default"
                             }
                           ],
@@ -251,6 +254,7 @@
                               "rh": 0.03333333333333333
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                             "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -286,6 +290,7 @@
                                   "rh": 0.03333333333333333
                                 },
                                 "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                                "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                                 "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                                 "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                                 "http://www.w3.org/ns/ttml#styling textCombine": "none",
@@ -312,7 +317,7 @@
                                 "http://www.w3.org/ns/ttml#styling display": "auto",
                                 "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                               },
-                              "text": "single underline",
+                              "text": "default",
                               "space": "default"
                             }
                           ],
@@ -472,6 +477,7 @@
                           "rh": 0.06666666666666667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling rubyAlign": "center",
                         "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -501,6 +507,7 @@
                               "rh": 0.06666666666666667
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling visibility": "visible",
                             "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
@@ -535,6 +542,7 @@
                                   "rh": 0.06666666666666667
                                 },
                                 "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                                "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                                 "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                                 "http://www.w3.org/ns/ttml#styling textCombine": "none",
                                 "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -560,7 +568,7 @@
                                 "http://www.w3.org/ns/ttml#styling display": "auto",
                                 "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                               },
-                              "text": "single underline",
+                              "text": "single underline base",
                               "space": "preserve"
                             }
                           ],
@@ -580,6 +588,7 @@
                               "rh": 0.03333333333333333
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                             "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -615,6 +624,7 @@
                                   "rh": 0.03333333333333333
                                 },
                                 "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                                "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                                 "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                                 "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                                 "http://www.w3.org/ns/ttml#styling textCombine": "none",
@@ -641,7 +651,7 @@
                                 "http://www.w3.org/ns/ttml#styling display": "auto",
                                 "http://www.w3.org/ns/ttml#styling unicodeBidi": "normal"
                               },
-                              "text": "single underline",
+                              "text": "preserve",
                               "space": "preserve"
                             }
                           ],
@@ -669,6 +679,7 @@
                           "rh": 0.06666666666666667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [

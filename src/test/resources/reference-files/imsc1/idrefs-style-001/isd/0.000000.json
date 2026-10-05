@@ -155,6 +155,7 @@
                           "monospaceSerif"
                         ],
                         "http://www.w3.org/ns/ttml#styling direction": "ltr",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
                           "none"

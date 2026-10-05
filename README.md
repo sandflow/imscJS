@@ -105,6 +105,7 @@ The headless script [src/test/script/gen-render-package.mjs](src/test/script/gen
 ```sh
 npm run gen-imsc1
 npm run gen-imsc1_1
+npm run gen-imsc1_3
 ```
 
 [src/test/script/compare_renders.py](src/test/script/compare_renders.py) compares two such render outputs (unzipped), performing byte-level, JSON/HTML and pixel-level PNG diffs, and optionally generating an HTML comparison report.

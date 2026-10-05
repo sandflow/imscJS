@@ -49,6 +49,7 @@
         "prepublishOnly": "npm run build",
         "gen-imsc1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1 build/renders-imsc1.zip",
         "gen-imsc1_1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip",
+        "gen-imsc1_3": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_3 build/renders-imsc1_3.zip",
         "gen-reference-files": "node src/test/script/gen-reference-files.mjs",
         "install:firefox": "puppeteer browsers install firefox",
         "lint": "eslint .",

@@ -8,7 +8,7 @@ import { renderTestSuite } from "../script/render-harness.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REFERENCE_FILES_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
 
-const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1"];
+const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1", "imsc-tests/imsc1_3"];
 
 async function listFilesRecursively(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true, recursive: true });

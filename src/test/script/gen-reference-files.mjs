@@ -26,8 +26,8 @@
  */
 
 /*
- * Generates reference files for the IMSC 1 and IMSC 1.1 test suites, writing
- * them to src/test/resources/reference-files/<imsc1|imsc1_1>/.
+ * Generates reference files for the IMSC 1, IMSC 1.1 and IMSC 1.3 test suites, writing
+ * them to src/test/resources/reference-files/<imsc1|imsc1_1|imsc1_3>/.
  *
  * Always uses Firefox, so the committed reference files come from one
  * canonical, reproducible renderer.
@@ -43,7 +43,7 @@ import { renderTestSuite } from "./render-harness.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_ROOT = path.resolve(__dirname, "..", "resources", "reference-files");
 
-const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1"];
+const REFFILES_ROOTS = ["imsc-tests/imsc1", "imsc-tests/imsc1_1", "imsc-tests/imsc1_3"];
 
 async function main() {
     const browserProduct = "firefox";

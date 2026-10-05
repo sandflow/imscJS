@@ -299,6 +299,23 @@ export const all = [
     ),
     new StylingAttributeDefinition(
         ns_tts,
+        "fontVariant",
+        "normal",
+        ["span"],
+        true,
+        true,
+        function (str) {
+            if (str === "normal" || str === "sub" || str === "super") {
+
+                return str;
+            }
+
+            return null;
+        },
+        null,
+    ),
+    new StylingAttributeDefinition(
+        ns_tts,
         "fontWeight",
         "normal",
         ["span", "p"],
