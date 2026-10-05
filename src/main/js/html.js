@@ -1513,6 +1513,31 @@ const STYLING_MAP_DEFS = [
         },
     ),
     new HTMLStylingMapDefinition(
+        "http://www.w3.org/ns/ttml#styling fontVariant",
+        function (context, dom_element, isd_element, attr) {
+
+            /*
+             * font-variant-position is not used since some browsers do not
+             * synthesize sub/superscript glyphs when the font does not provide
+             * them.
+             *
+             * vertical-align/font-size are applied only to spans that contain
+             * text to avoid accumulating baseline offsets and smaller font
+             * size.
+             *
+             * The sub/superscript font size is 70% of the normal font size.
+             */
+
+            if (!isd_element.text || attr === "normal") return;
+
+            dom_element.style.verticalAlign = attr;
+
+            const fs = isd_element.styleAttrs[byName.fontSize.qname];
+
+            dom_element.style.fontSize = (fs.toUsedLength(context.w, context.h) * 0.70) + "px";
+        },
+    ),
+    new HTMLStylingMapDefinition(
         "http://www.w3.org/ns/ttml#styling fontWeight",
         function (context, dom_element, isd_element, attr) {
             dom_element.style.fontWeight = attr;

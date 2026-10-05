@@ -143,6 +143,7 @@
                           "rh": 0.06667
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling rubyAlign": "center",
                         "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -172,6 +173,7 @@
                               "rh": 0.06667
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling visibility": "visible",
                             "http://www.w3.org/ns/ttml#styling wrapOption": "wrap",
@@ -206,6 +208,7 @@
                                   "rh": 0.06667
                                 },
                                 "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                                "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                                 "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                                 "http://www.w3.org/ns/ttml#styling textCombine": "none",
                                 "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -251,6 +254,7 @@
                               "monospaceSerif"
                             ],
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                             "http://www.w3.org/ns/ttml#styling visibility": "visible",
@@ -286,6 +290,7 @@
                                   "monospaceSerif"
                                 ],
                                 "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                                "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                                 "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                                 "http://www.w3.org/ns/ttml#styling rubyPosition": "outside",
                                 "http://www.w3.org/ns/ttml#styling textCombine": "none",

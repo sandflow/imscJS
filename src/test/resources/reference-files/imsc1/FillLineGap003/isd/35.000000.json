@@ -151,6 +151,7 @@
                           "rh": 0.05
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -205,6 +206,7 @@
                           "rh": 0.05
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -245,6 +247,7 @@
                               "rh": 0.05
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -298,6 +301,7 @@
                               "rh": 0.05
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -355,6 +359,7 @@
                           "proportionalSansSerif"
                         ],
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -403,6 +408,7 @@
                           "rh": 0.05
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -451,6 +457,7 @@
                           "proportionalSansSerif"
                         ],
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -493,6 +500,7 @@
                           "rh": 0.05
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -547,6 +555,7 @@
                           "rh": 0.05
                         },
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -587,6 +596,7 @@
                               "rh": 0.05
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -649,6 +659,7 @@
                           "proportionalSansSerif"
                         ],
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -689,6 +700,7 @@
                               "rh": 0.075
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -751,6 +763,7 @@
                           "proportionalSansSerif"
                         ],
                         "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                        "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                         "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                         "http://www.w3.org/ns/ttml#styling textCombine": "none",
                         "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -791,6 +804,7 @@
                               "rh": 0.025
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [
@@ -844,6 +858,7 @@
                               "rh": 0.025
                             },
                             "http://www.w3.org/ns/ttml#styling fontStyle": "normal",
+                            "http://www.w3.org/ns/ttml#styling fontVariant": "normal",
                             "http://www.w3.org/ns/ttml#styling fontWeight": "normal",
                             "http://www.w3.org/ns/ttml#styling textCombine": "none",
                             "http://www.w3.org/ns/ttml#styling textDecoration": [

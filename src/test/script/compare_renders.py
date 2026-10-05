@@ -112,11 +112,13 @@ def compare_directories(dir1: Path, dir2: Path, report_dir: Path):
         for p in png_files:
             p1 = dir1 / p
             p2 = dir2 / p
-            im1 = Image.open(p1)
-            im2 = Image.open(p2)
+            # the alpha channel is ignored: for RGBA images, getbbox() only considers alpha, which
+            # would report fully opaque images as identical regardless of their colors
+            im1 = Image.open(p1).convert('RGB')
+            im2 = Image.open(p2).convert('RGB')
 
-            if im1.size != im2.size or im1.mode != im2.mode:
-                reason = f"Dimension/mode mismatch: {im1.size}/{im1.mode} vs {im2.size}/{im2.mode}"
+            if im1.size != im2.size:
+                reason = f"Dimension mismatch: {im1.size} vs {im2.size}"
                 pixel_different.append((p, reason, None))
                 continue
 

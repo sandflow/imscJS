@@ -29,7 +29,7 @@
  * Renders all TTML files within a directory
  *
  * Usage:
- *   node src/test/script/gen-renders.mjs [imsc-tests/imsc1|imsc-tests/imsc1_1] [outfile] [--browser=chrome|firefox]
+ *   node src/test/script/gen-renders.mjs [imsc-tests/imsc1|imsc-tests/imsc1_1|imsc-tests/imsc1_3] [outfile] [--browser=chrome|firefox]
  */
 
 import fs from "node:fs";
@@ -55,6 +55,7 @@ async function main() {
         zip.file(name, contents);
     }
 
+    fs.mkdirSync(path.dirname(outFile), { recursive: true });
     fs.writeFileSync(outFile, await zip.generateAsync({ type: "nodebuffer" }));
 
     console.log(`Wrote ${outFile}`);
