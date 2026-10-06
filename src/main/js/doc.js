@@ -78,7 +78,7 @@ import { ComputedLength, hasOwnProperty, parseLength } from "./utils.js";
  * @param {ErrorHandler} errorHandler Error callback
  * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
  * @param {Parser} parser XML parser
- * @returns {?TT} Opaque in-memory representation of an IMSC1 document
+ * @returns {?TTElement} Opaque in-memory representation of an IMSC1 document
  */
 
 export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
@@ -94,7 +94,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
     parser.onclosetag = function () {
 
-        if (estack[0] instanceof Region) {
+        if (estack[0] instanceof RegionElement) {
 
             /* merge referenced styles */
 
@@ -104,7 +104,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             delete estack[0].styleRefs;
 
-        } else if (estack[0] instanceof Styling) {
+        } else if (estack[0] instanceof StylingElement) {
 
             /* flatten chained referential styling */
 
@@ -116,7 +116,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             }
 
-        } else if (estack[0] instanceof P || estack[0] instanceof Span) {
+        } else if (estack[0] instanceof PElement || estack[0] instanceof SpanElement) {
 
             /* merge anonymous spans */
 
@@ -128,8 +128,8 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
                 for (c = 1; c < estack[0].contents.length; c++) {
 
-                    if (estack[0].contents[c] instanceof AnonymousSpan &&
-                        cs[cs.length - 1] instanceof AnonymousSpan) {
+                    if (estack[0].contents[c] instanceof AnonymousSpanElement &&
+                        cs[cs.length - 1] instanceof AnonymousSpanElement) {
 
                         cs[cs.length - 1].text += estack[0].contents[c].text;
 
@@ -147,9 +147,9 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             // remove redundant nested anonymous spans (9.3.3(1)(c))
 
-            if (estack[0] instanceof Span &&
+            if (estack[0] instanceof SpanElement &&
                 estack[0].contents.length === 1 &&
-                estack[0].contents[0] instanceof AnonymousSpan) {
+                estack[0].contents[0] instanceof AnonymousSpanElement) {
 
                 estack[0].text = estack[0].contents[0].text;
                 delete estack[0].contents;
@@ -198,11 +198,11 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             /* ignoring text outside of elements */
 
-        } else if (estack[0] instanceof Span || estack[0] instanceof P) {
+        } else if (estack[0] instanceof SpanElement || estack[0] instanceof PElement) {
 
             /* ignore children text nodes in ruby container spans */
 
-            if (estack[0] instanceof Span) {
+            if (estack[0] instanceof SpanElement) {
 
                 const ruby = estack[0].styleAttrs[byName.ruby.qname];
 
@@ -216,7 +216,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             /* create an anonymous span */
 
-            const s = new AnonymousSpan();
+            const s = new AnonymousSpanElement();
 
             s.initFromText(doc, estack[0], str, xmllangstack[0], xmlspacestack[0], errorHandler);
 
@@ -293,7 +293,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
                 }
 
-                doc = new TT();
+                doc = new TTElement();
 
                 doc.initFromNode(node, xmllangstack[0], errorHandler);
 
@@ -301,7 +301,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "head") {
 
-                if (!(estack[0] instanceof TT)) {
+                if (!(estack[0] instanceof TTElement)) {
                     reportFatal(errorHandler, "Parent of <head> element is not <tt> at (" + this.line + "," + this.column + ")");
                 }
 
@@ -309,7 +309,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "styling") {
 
-                if (!(estack[0] instanceof Head)) {
+                if (!(estack[0] instanceof HeadElement)) {
                     reportFatal(errorHandler, "Parent of <styling> element is not <head> at (" + this.line + "," + this.column + ")");
                 }
 
@@ -319,9 +319,9 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
                 let s;
 
-                if (estack[0] instanceof Styling) {
+                if (estack[0] instanceof StylingElement) {
 
-                    s = new Style();
+                    s = new StyleElement();
 
                     s.initFromNode(node, errorHandler);
 
@@ -339,14 +339,14 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
                     estack.unshift(s);
 
-                } else if (estack[0] instanceof Region) {
+                } else if (estack[0] instanceof RegionElement) {
 
                     /* nested styles can be merged with specified styles
                      * immediately, with lower priority
                      * (see 8.4.4.2(3) at TTML1 )
                      */
 
-                    s = new Style();
+                    s = new StyleElement();
 
                     s.initFromNode(node, errorHandler);
 
@@ -364,9 +364,9 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
                 let ini;
 
-                if (estack[0] instanceof Styling) {
+                if (estack[0] instanceof StylingElement) {
 
-                    ini = new Initial();
+                    ini = new InitialElement();
 
                     ini.initFromNode(node, errorHandler);
 
@@ -388,7 +388,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "layout") {
 
-                if (!(estack[0] instanceof Head)) {
+                if (!(estack[0] instanceof HeadElement)) {
 
                     reportFatal(errorHandler, "Parent of <layout> element is not <head> at " + this.line + "," + this.column + ")");
 
@@ -398,11 +398,11 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "region") {
 
-                if (!(estack[0] instanceof Layout)) {
+                if (!(estack[0] instanceof LayoutElement)) {
                     reportFatal(errorHandler, "Parent of <region> element is not <layout> at " + this.line + "," + this.column + ")");
                 }
 
-                const r = new Region();
+                const r = new RegionElement();
 
                 r.initFromNode(doc, node, xmllangstack[0], errorHandler);
 
@@ -420,7 +420,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "body") {
 
-                if (!(estack[0] instanceof TT)) {
+                if (!(estack[0] instanceof TTElement)) {
 
                     reportFatal(errorHandler, "Parent of <body> element is not <tt> at " + this.line + "," + this.column + ")");
 
@@ -432,7 +432,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
                 }
 
-                const b = new Body();
+                const b = new BodyElement();
 
                 b.initFromNode(doc, node, xmllangstack[0], errorHandler);
 
@@ -442,13 +442,13 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "div") {
 
-                if (!(estack[0] instanceof Div || estack[0] instanceof Body)) {
+                if (!(estack[0] instanceof DivElement || estack[0] instanceof BodyElement)) {
 
                     reportFatal(errorHandler, "Parent of <div> element is not <body> or <div> at " + this.line + "," + this.column + ")");
 
                 }
 
-                const d = new Div();
+                const d = new DivElement();
 
                 d.initFromNode(doc, estack[0], node, xmllangstack[0], errorHandler);
 
@@ -457,7 +457,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
                 const bi = d.styleAttrs[byName.backgroundImage.qname];
 
                 if (bi) {
-                    d.contents.push(new Image(bi));
+                    d.contents.push(new ImageElement(bi));
                     delete d.styleAttrs[byName.backgroundImage.qname];
                 }
 
@@ -467,13 +467,13 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "image") {
 
-                if (!(estack[0] instanceof Div)) {
+                if (!(estack[0] instanceof DivElement)) {
 
                     reportFatal(errorHandler, "Parent of <image> element is not <div> at " + this.line + "," + this.column + ")");
 
                 }
 
-                const img = new Image();
+                const img = new ImageElement();
 
                 img.initFromNode(doc, estack[0], node, xmllangstack[0], errorHandler);
 
@@ -483,13 +483,13 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "p") {
 
-                if (!(estack[0] instanceof Div)) {
+                if (!(estack[0] instanceof DivElement)) {
 
                     reportFatal(errorHandler, "Parent of <p> element is not <div> at " + this.line + "," + this.column + ")");
 
                 }
 
-                const p = new P();
+                const p = new PElement();
 
                 p.initFromNode(doc, estack[0], node, xmllangstack[0], errorHandler);
 
@@ -499,13 +499,13 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "span") {
 
-                if (!(estack[0] instanceof Span || estack[0] instanceof P)) {
+                if (!(estack[0] instanceof SpanElement || estack[0] instanceof PElement)) {
 
                     reportFatal(errorHandler, "Parent of <span> element is not <span> or <p> at " + this.line + "," + this.column + ")");
 
                 }
 
-                const ns = new Span();
+                const ns = new SpanElement();
 
                 ns.initFromNode(doc, estack[0], node, xmllangstack[0], xmlspacestack[0], errorHandler);
 
@@ -515,13 +515,13 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "br") {
 
-                if (!(estack[0] instanceof Span || estack[0] instanceof P)) {
+                if (!(estack[0] instanceof SpanElement || estack[0] instanceof PElement)) {
 
                     reportFatal(errorHandler, "Parent of <br> element is not <span> or <p> at " + this.line + "," + this.column + ")");
 
                 }
 
-                const nb = new Br();
+                const nb = new BrElement();
 
                 nb.initFromNode(doc, estack[0], node, xmllangstack[0], errorHandler);
 
@@ -531,18 +531,18 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
             } else if (node.local === "set") {
 
-                if (!(estack[0] instanceof Span ||
-                    estack[0] instanceof P ||
-                    estack[0] instanceof Div ||
-                    estack[0] instanceof Body ||
-                    estack[0] instanceof Region ||
-                    estack[0] instanceof Br)) {
+                if (!(estack[0] instanceof SpanElement ||
+                    estack[0] instanceof PElement ||
+                    estack[0] instanceof DivElement ||
+                    estack[0] instanceof BodyElement ||
+                    estack[0] instanceof RegionElement ||
+                    estack[0] instanceof BrElement)) {
 
                     reportFatal(errorHandler, "Parent of <set> element is not a content element or a region at " + this.line + "," + this.column + ")");
 
                 }
 
-                const st = new Set();
+                const st = new SetElement();
 
                 st.initFromNode(doc, estack[0], node, errorHandler);
 
@@ -631,7 +631,7 @@ export function fromParser(xmlstring, errorHandler, metadataHandler, parser) {
 
         /* create default region */
 
-        const dr = Region.prototype.createDefaultRegion(doc.lang);
+        const dr = RegionElement.prototype.createDefaultRegion(doc.lang);
 
         regions[dr.id] = dr;
 
@@ -822,16 +822,16 @@ export class ForeignElement {
     }
 }
 
-export class TT {
+export class TTElement {
     constructor() {
         /**
          * @type {number[]}
          */
         this.events = [];
-        this.head = new Head();
+        this.head = new HeadElement();
 
         /**
-         * @type {?Body}
+         * @type {?BodyElement}
          */
         this.body = null;
     }
@@ -971,10 +971,10 @@ export class TT {
  * Represents a TTML Head element
  */
 
-export class Head {
+export class HeadElement {
     constructor() {
-        this.styling = new Styling();
-        this.layout = new Layout();
+        this.styling = new StylingElement();
+        this.layout = new LayoutElement();
     }
 }
 
@@ -982,10 +982,10 @@ export class Head {
  * Represents a TTML Styling element
  */
 
-export class Styling {
+export class StylingElement {
     constructor() {
         /**
-         * @type {Record<string, Style>}
+         * @type {Record<string, StyleElement>}
          */
         this.styles = {};
 
@@ -1000,7 +1000,7 @@ export class Styling {
  * Represents a TTML Style element
  */
 
-export class Style {
+export class StyleElement {
     constructor() {
         /**
          * @type {string}
@@ -1033,7 +1033,7 @@ export class Style {
  * Represents a TTML initial element
  */
 
-export class Initial {
+export class InitialElement {
     constructor() {
         /**
          * @type {Record<string, string>}
@@ -1069,7 +1069,7 @@ export class Initial {
  *
  */
 
-export class Layout {
+export class LayoutElement {
     constructor() {
         this.regions = {};
     }
@@ -1088,7 +1088,7 @@ export class ContentElement {
  * Represents a TTML image element
  */
 
-export class Image extends ContentElement {
+export class ImageElement extends ContentElement {
     /**
      * @param {string} src
      * @param {string} type
@@ -1108,7 +1108,7 @@ export class Image extends ContentElement {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {string} xmllang
@@ -1127,10 +1127,10 @@ export class Image extends ContentElement {
             reportError(errorHandler, "Invalid image@type attribute");
         }
 
-        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        StyledMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         this.lang = xmllang;
     }
@@ -1141,7 +1141,7 @@ export class Image extends ContentElement {
  *
  */
 
-export class IdentifiedElement {
+export class IdentifiedMixin {
     /**
      * @param {string} id
      */
@@ -1150,7 +1150,7 @@ export class IdentifiedElement {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      */
@@ -1159,7 +1159,7 @@ export class IdentifiedElement {
     }
 }
 
-export class LayoutElement {
+export class LayoutMixin {
     /**
      * @param {string} id
      */
@@ -1168,7 +1168,7 @@ export class LayoutElement {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      */
@@ -1177,7 +1177,7 @@ export class LayoutElement {
     }
 }
 
-export class StyledElement {
+export class StyledMixin {
     /**
      * @param {Record<string, any>} styleAttrs
      */
@@ -1186,7 +1186,7 @@ export class StyledElement {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {ErrorHandler} errorHandler
@@ -1202,7 +1202,7 @@ export class StyledElement {
     }
 }
 
-export class AnimatedElement {
+export class AnimatedMixin {
     /**
      * @param {any[]} sets
      */
@@ -1215,7 +1215,7 @@ export class AnimatedElement {
     }
 }
 
-export class ContainerElement {
+export class ContainerMixin {
     /**
      * @param {string} contents
      */
@@ -1228,7 +1228,7 @@ export class ContainerElement {
     }
 }
 
-export class TimedElement {
+export class TimedMixin {
     /**
      *
      * @param {number} explicit_begin
@@ -1242,7 +1242,7 @@ export class TimedElement {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {ErrorHandler} errorHandler
@@ -1261,23 +1261,23 @@ export class TimedElement {
  * Represents a TTML body element
  */
 
-export class Body extends ContentElement {
+export class BodyElement extends ContentElement {
     constructor() {
         super("body");
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} node
      * @param {string} xmllang
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, node, xmllang, errorHandler) {
-        StyledElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        AnimatedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        LayoutElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        ContainerElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        StyledMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        AnimatedMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        LayoutMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        ContainerMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
 
         this.lang = xmllang;
     }
@@ -1287,24 +1287,24 @@ export class Body extends ContentElement {
  * Represents a TTML div element
  */
 
-export class Div extends ContentElement {
+export class DivElement extends ContentElement {
     constructor() {
         super("div");
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {string} xmllang
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
-        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        ContainerElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        StyledMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        ContainerMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         this.lang = xmllang;
     }
@@ -1314,24 +1314,24 @@ export class Div extends ContentElement {
  * Represents a TTML p element
  */
 
-export class P extends ContentElement {
+export class PElement extends ContentElement {
     constructor() {
         super("p");
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {string} xmllang
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
-        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        ContainerElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        StyledMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        ContainerMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         this.lang = xmllang;
     }
@@ -1341,13 +1341,13 @@ export class P extends ContentElement {
  * Represents a TTML span element
  */
 
-export class Span extends ContentElement {
+export class SpanElement extends ContentElement {
     constructor() {
         super("span");
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {string} xmllang
@@ -1355,11 +1355,11 @@ export class Span extends ContentElement {
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, parent, node, xmllang, xmlspace, errorHandler) {
-        StyledElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        AnimatedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        ContainerElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        StyledMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        AnimatedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        ContainerMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         this.space = xmlspace;
         this.lang = xmllang;
@@ -1370,13 +1370,13 @@ export class Span extends ContentElement {
  * Represents a TTML anonymous span element
  */
 
-export class AnonymousSpan extends ContentElement {
+export class AnonymousSpanElement extends ContentElement {
     constructor() {
         super("span");
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {string} text
      * @param {string} xmlspace
@@ -1384,7 +1384,7 @@ export class AnonymousSpan extends ContentElement {
      * @param {ErrorHandler} errorHandler
      */
     initFromText(doc, parent, text, xmllang, xmlspace, errorHandler) {
-        TimedElement.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, null, errorHandler);
 
         this.text = text;
         this.space = xmlspace;
@@ -1396,21 +1396,21 @@ export class AnonymousSpan extends ContentElement {
  * Represents a TTML br element
  */
 
-export class Br extends ContentElement {
+export class BrElement extends ContentElement {
     constructor() {
         super("br");
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {string} xmllang
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, parent, node, xmllang, errorHandler) {
-        LayoutElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        LayoutMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         this.lang = xmllang;
     }
@@ -1421,15 +1421,15 @@ export class Br extends ContentElement {
  *
  */
 
-export class Region {
+export class RegionElement {
     constructor() { }
 
     /**
      * @param {string} xmllang
-     * @returns {Region}
+     * @returns {RegionElement}
      */
     createDefaultRegion(xmllang) {
-        const r = new Region();
+        const r = new RegionElement();
 
         r.id = "";
         r.styleAttrs = {};
@@ -1444,15 +1444,15 @@ export class Region {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} node
      * @param {string} xmllang
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, node, xmllang, errorHandler) {
-        IdentifiedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        TimedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
-        AnimatedElement.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        IdentifiedMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
+        AnimatedMixin.prototype.initFromNode.call(this, doc, null, node, errorHandler);
 
         /* add specified styles */
 
@@ -1473,19 +1473,19 @@ export class Region {
  *
  */
 
-export class Set {
+export class SetElement {
     constructor() {
     }
 
     /**
-     * @param {TT} doc
+     * @param {TTElement} doc
      * @param {Node} parent
      * @param {Node} node
      * @param {ErrorHandler} errorHandler
      */
     initFromNode(doc, parent, node, errorHandler) {
 
-        TimedElement.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
+        TimedMixin.prototype.initFromNode.call(this, doc, parent, node, errorHandler);
 
         this.styles = elementGetStyles(node, errorHandler);
 
@@ -1913,7 +1913,7 @@ function parseTimeExpression(tickRate, effectiveFrameRate, str) {
 }
 
 /**
- * @param {TT} doc
+ * @param {TTElement} doc
  * @param {Node} parent
  * @param {Node} node
  * @param {ErrorHandler} errorHandler
@@ -1978,8 +1978,8 @@ function processTiming(doc, parent, node, errorHandler) {
 }
 
 /**
- * @param {Styling} styling
- * @param {Style} style
+ * @param {StylingElement} styling
+ * @param {StyleElement} style
  * @param {ErrorHandler} errorHandler
  */
 function mergeChainedStyles(styling, style, errorHandler) {
@@ -2002,7 +2002,7 @@ function mergeChainedStyles(styling, style, errorHandler) {
 }
 
 /**
- * @param {Styling} styling
+ * @param {StylingElement} styling
  * @param {string[]} stylerefs
  * @param {Record<string, any>} styleattrs
  * @param {ErrorHandler} errorHandler
