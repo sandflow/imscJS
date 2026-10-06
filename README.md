@@ -86,6 +86,9 @@ The `dist` directory contains the following build artifacts:
 
 * `imsc.debug.js`: Non-minified UMD build.
 * `imsc.min.js`: Minified UMD build.
+* **deprecated** `imsc.all.debug.js` and `imsc.all.min.js`: Identical to
+  `imsc.debug.js` and `imsc.min.js`, only for compatibility with imscJS 1.x and
+  subject to removal in a future release.
 * `main/`: ES modules and TypeScript type declarations, used when the library is imported as an NPM package.
 
 ## Releases
