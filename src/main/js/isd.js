@@ -33,7 +33,7 @@ import { ComputedLength, hasOwnProperty } from "./utils.js";
  */
 
 /**
- * @typedef {import("./doc").TT} TT
+ * @typedef {import("./doc").TTElement} TTElement
  * @typedef {import("./error").ErrorHandler} ErrorHandler
  */
 
@@ -42,7 +42,7 @@ import { ComputedLength, hasOwnProperty } from "./utils.js";
  * at a given absolute offset in seconds. This offset does not have to be one of the values returned
  * by <pre>getMediaTimeEvents()</pre>.
  *
- * @param {TT} tt IMSC1 document
+ * @param {TTElement} tt IMSC1 document
  * @param {number} offset Absolute offset (in seconds)
  * @param {ErrorHandler} errorHandler Error callback
  * @returns {ISD} Opaque in-memory representation of an ISD

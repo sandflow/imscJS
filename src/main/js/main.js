@@ -34,7 +34,7 @@ export { createSAXParserFromDOMParser };
 /**
  * @typedef {import("./error.js").ErrorHandler} ErrorHandler
  * @typedef {import("./doc.js").MetadataHandler} MetadataHandler
- * @typedef {import("./doc.js").TT} TT
+ * @typedef {import("./doc.js").TTElement} TTElement
  * @typedef {import("./parser.js").Parser} Parser
  */
 
@@ -46,7 +46,7 @@ export { createSAXParserFromDOMParser };
  * @param {ErrorHandler} errorHandler Error callback
  * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
  * @param {?Parser} parser XML parser
- * @returns {?TT} Opaque in-memory representation of an IMSC1 document
+ * @returns {?TTElement} Opaque in-memory representation of an IMSC1 document
  */
 export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createSAXParserFromDOMParser()) {
     return fromParser(xmlstring, errorHandler, metadataHandler, parser);

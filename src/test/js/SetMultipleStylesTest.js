@@ -9,10 +9,10 @@ const TEXT_ALIGN_QNAME = "http://www.w3.org/ns/ttml#styling textAlign";
 test("Multiple styles specified on set", async () => {
   const doc = await getIMSC1Document("./src/test/resources/unit-tests/setMultipleStyles.ttml");
 
-  const set = doc.body.contents[0].contents[0].sets[0];
+  const setElement = doc.body.contents[0].contents[0].sets[0];
 
-  equal(set.styles[FONT_WEIGHT_QNAME], "bold");
-  equal(set.styles[TEXT_ALIGN_QNAME], "end");
+  equal(setElement.styles[FONT_WEIGHT_QNAME], "bold");
+  equal(setElement.styles[TEXT_ALIGN_QNAME], "end");
 
   /* before the set is active */
 

@@ -32,7 +32,7 @@ import { ComputedLength, parseColor, parseLength, parsePosition, parseTextShadow
  */
 
 /**
- * @typedef {import("./doc").TT} TT
+ * @typedef {import("./doc").TTElement} TTElement
  * @typedef {import("./doc").Node} Node
  */
 
@@ -45,7 +45,7 @@ export class StylingAttributeDefinition {
      * @param {boolean} isInherit
      * @param {boolean} isAnimatable
      * @param {(value: string) => any} parseFunc
-     * @param {(doc: TT, parent: Node, element: Node, attr: string) => any} computeFunc
+     * @param {(doc: TTElement, parent: Node, element: Node, attr: string) => any} computeFunc
      */
     constructor(ns, name, initialValue, appliesTo, isInherit, isAnimatable, parseFunc, computeFunc) {
         this.name = name;
