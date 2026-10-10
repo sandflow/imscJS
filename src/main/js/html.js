@@ -985,36 +985,27 @@ function applyRubyReserve(lineList, context) {
 
         /* add in front of the first ruby element of the line, if it exists */
 
-        let sib = null;
+        let ruby_sibling = null;
 
         for (let j = 0; j < lineList[i].rbc.length; j++) {
 
             if (lineList[i].rbc[j].localName === "ruby") {
 
-                sib = lineList[i].rbc[j];
+                ruby_sibling = lineList[i].rbc[j];
 
                 break;
             }
 
         }
 
-        const copy_styles_from = sib;
-
-        /* otherwise add before first span */
-
-        sib = sib || lineList[i].elements[0].node;
-
-        /* each annotation is placed in its own ruby element since Chrome ignores ruby-position on rt elements
-           and positions all the annotations of a ruby element according to its ruby-position */
+        let base = document.createElement("span");  // rb element is deprecated in HTML
+        base.textContent = "\u200B";
 
         for (const pos of reserved_pos) {
 
             const ruby = document.createElement("ruby");
 
-            const rb = document.createElement("span");  // rb element is deprecated in HTML
-            rb.textContent = "\u200B";
-
-            ruby.appendChild(rb);
+            ruby.appendChild(base);
 
             const rt = document.createElement("rt");
             rt.style[RUBYPOSITION_PROP] = pos;
@@ -1025,21 +1016,22 @@ function applyRubyReserve(lineList, context) {
 
             /* copy specified style properties from the sibling ruby container */
 
-            if (copy_styles_from !== null) {
+            if (ruby_sibling !== null) {
 
-                for (let k = 0; k < copy_styles_from.style.length; k++) {
-
-                    ruby.style.setProperty(copy_styles_from.style.item(k), copy_styles_from.style.getPropertyValue(copy_styles_from.style.item(k)));
-
+                for (let k = 0; k < ruby_sibling.style.length; k++) {
+                    ruby.style.setProperty(ruby_sibling.style.item(k), ruby_sibling.style.getPropertyValue(ruby_sibling.style.item(k)));
                 }
 
             }
 
             ruby.style[RUBYPOSITION_PROP] = pos; // for Chrome
 
-            sib.parentElement.insertBefore(ruby, sib);
-
+            base = ruby;
         }
+
+        /* add before first span if there is no ruby sibling */
+        const actual_sibling = ruby_sibling || lineList[i].elements[0].node;
+        actual_sibling.parentElement.insertBefore(base, actual_sibling);
 
     }
 
