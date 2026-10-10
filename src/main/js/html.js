@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { reportError } from "./error.js";
+import { reportError, reportWarning } from "./error.js";
 import { byName } from "./styles.js";
 
 /**
@@ -594,6 +594,9 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
  *   <ruby> element that contains the ith ruby base and the ith ruby text of the
  *   second text container; followed by
  * - the ith ruby text of the first text container.
+ *
+ * If a text container has more ruby texts than the base container has ruby
+ * bases, the extra ruby texts are kept and annotate an empty base.
  */
 function processRubyContainer(context, ruby, isd_ruby) {
 
@@ -615,11 +618,27 @@ function processRubyContainer(context, ruby, isd_ruby) {
 
     }
 
+    /* number of <ruby> elements, i.e. the greater of the number of ruby bases and the number of ruby text in the first two text containers */
+
+    let ruby_count = bases.length;
+
+    for (let k = 0; k < textContainers.length && k < 2; k++) {
+
+        ruby_count = Math.max(ruby_count, textContainers[k].length);
+
+    }
+
+    if (ruby_count > bases.length) {
+
+        reportWarning(context.errorHandler, "Ruby text container has more ruby text than the ruby base container has ruby bases.");
+
+    }
+
     const template = ruby.cloneNode(false);
 
     let outer = ruby;
 
-    for (let i = 0; i < bases.length; i++) {
+    for (let i = 0; i < ruby_count; i++) {
 
         if (i > 0) {
 
@@ -641,7 +660,11 @@ function processRubyContainer(context, ruby, isd_ruby) {
 
         }
 
-        processElement(context, base_parent, bases[i], isd_ruby);
+        if (i < bases.length) {
+
+            processElement(context, base_parent, bases[i], isd_ruby);
+
+        }
 
         if (textContainers.length > 1 && i < textContainers[1].length) {
 
