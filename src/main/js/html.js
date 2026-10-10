@@ -211,15 +211,6 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
 
             e = document.createElement("rt");
 
-        } else if (isd_element.styleAttrs[byName.ruby.qname] === "baseContainer") {
-
-            e = document.createElement("span"); // rbc element is deprecated in HTML
-
-        } else if (isd_element.styleAttrs[byName.ruby.qname] === "textContainer") {
-
-            e = document.createElement("span"); // rtc element is deprecated in HTML
-            e.style.display = "ruby-text-container";
-
         } else if (isd_element.styleAttrs[byName.ruby.qname] === "delimiter") {
 
             /* ignore rp */
@@ -455,9 +446,19 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
 
     if ("contents" in isd_element) {
 
-        for (let k = 0; k < isd_element.contents.length; k++) {
+        if (isd_element.kind === "span" &&
+            isd_element.styleAttrs[byName.ruby.qname] === "container" &&
+            isd_element.contents.some((c) => c.styleAttrs[byName.ruby.qname] === "baseContainer")) {
 
-            processElement(context, proc_e, isd_element.contents[k], isd_element);
+            processRubyContainer(context, e, isd_element);
+
+        } else {
+
+            for (let k = 0; k < isd_element.contents.length; k++) {
+
+                processElement(context, proc_e, isd_element.contents[k], isd_element);
+
+            }
 
         }
 
@@ -581,6 +582,81 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
 
         }
     }
+}
+
+/*
+ * Maps a TTML ruby container that contains a ruby base container to N <ruby>
+ * elements, one for each ruby base of the base container, since <rtc> and <rbc>
+ * are deprecated.
+ *
+ * The ith <ruby> element contains:
+ * - the ith ruby base, or, if there are two ruby text containers, a nested
+ *   <ruby> element that contains the ith ruby base and the ith ruby text of the
+ *   second text container; followed by
+ * - the ith ruby text of the first text container.
+ */
+function processRubyContainer(context, ruby, isd_ruby) {
+
+    let bases = [];
+
+    const textContainers = [];
+
+    for (const c of isd_ruby.contents) {
+
+        if (c.styleAttrs[byName.ruby.qname] === "baseContainer") {
+
+            bases = c.contents.filter((b) => b.styleAttrs[byName.ruby.qname] === "base");
+
+        } else if (c.styleAttrs[byName.ruby.qname] === "textContainer") {
+
+            textContainers.push(c.contents.filter((t) => t.styleAttrs[byName.ruby.qname] === "text"));
+
+        }
+
+    }
+
+    const template = ruby.cloneNode(false);
+
+    let outer = ruby;
+
+    for (let i = 0; i < bases.length; i++) {
+
+        if (i > 0) {
+
+            const next = template.cloneNode(false);
+
+            outer.parentElement.insertBefore(next, outer.nextSibling);
+
+            outer = next;
+
+        }
+
+        let base_parent = outer;
+
+        if (textContainers.length > 1) {
+
+            base_parent = template.cloneNode(false);
+
+            outer.appendChild(base_parent);
+
+        }
+
+        processElement(context, base_parent, bases[i], isd_ruby);
+
+        if (textContainers.length > 1 && i < textContainers[1].length) {
+
+            processElement(context, base_parent, textContainers[1][i], isd_ruby);
+
+        }
+
+        if (textContainers.length > 0 && i < textContainers[0].length) {
+
+            processElement(context, outer, textContainers[0][i], isd_ruby);
+
+        }
+
+    }
+
 }
 
 function mergeSpans(lineList, context) {
@@ -886,57 +962,24 @@ function applyRubyReserve(lineList, context) {
 
     for (let i = 0; i < lineList.length; i++) {
 
-        const ruby = document.createElement("ruby");
-
-        const rb = document.createElement("span");  // rb element is deprecated in HTML
-        rb.textContent = "\u200B";
-
-        ruby.appendChild(rb);
-
-        let rt1;
-        let rt2;
-
         const fs = context.rubyReserve[1].toUsedLength(context.w, context.h) + "px";
+
+        /* We cannot use the deprecated <rtc> to reserve space, so instead we use nested rubies */
+
+        const reserved_pos = [];
 
         if (context.rubyReserve[0] === "both" || (context.rubyReserve[0] === "outside" && lineList.length == 1)) {
 
-            rt1 = document.createElement("rt");
-            rt1.style.display = "ruby-text-container"; // for Firefox
-            rt1.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "after" : "under";
-            rt1.textContent = "\u200B";
-            rt1.style.fontSize = fs;
+            reserved_pos.push(RUBYPOSITION_ISWK ? "after" : "under");
+            reserved_pos.push(RUBYPOSITION_ISWK ? "before" : "over");
 
-            rt2 = document.createElement("rt");
-            rt2.style.display = "ruby-text-container"; // for Firefox
-            rt2.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "before" : "over";
-            rt2.textContent = "\u200B";
-            rt2.style.fontSize = fs;
+        } else if (context.rubyReserve[0] === "after" || (context.rubyReserve[0] === "outside" && i > 0)) {
 
-            ruby.appendChild(rt1);
-            ruby.appendChild(rt2);
+            reserved_pos.push(RUBYPOSITION_ISWK ? "after" : ((context.bpd === "tb" || context.bpd === "rl") ? "under" : "over"));
 
         } else {
 
-            rt1 = document.createElement("rt");
-            rt1.style.display = "ruby-text-container"; // for Firefox
-            rt1.textContent = "\u200B";
-            rt1.style.fontSize = fs;
-
-            let pos;
-
-            if (context.rubyReserve[0] === "after" || (context.rubyReserve[0] === "outside" && i > 0)) {
-
-                pos = RUBYPOSITION_ISWK ? "after" : ((context.bpd === "tb" || context.bpd === "rl") ? "under" : "over");
-
-            } else {
-
-                pos = RUBYPOSITION_ISWK ? "before" : ((context.bpd === "tb" || context.bpd === "rl") ? "over" : "under");
-
-            }
-
-            rt1.style[RUBYPOSITION_PROP] = pos;
-
-            ruby.appendChild(rt1);
+            reserved_pos.push(RUBYPOSITION_ISWK ? "before" : ((context.bpd === "tb" || context.bpd === "rl") ? "over" : "under"));
 
         }
 
@@ -950,24 +993,53 @@ function applyRubyReserve(lineList, context) {
 
                 sib = lineList[i].rbc[j];
 
-                /* copy specified style properties from the sibling ruby container */
-
-                for (let k = 0; k < sib.style.length; k++) {
-
-                    ruby.style.setProperty(sib.style.item(k), sib.style.getPropertyValue(sib.style.item(k)));
-
-                }
-
                 break;
             }
 
         }
 
+        const copy_styles_from = sib;
+
         /* otherwise add before first span */
 
         sib = sib || lineList[i].elements[0].node;
 
-        sib.parentElement.insertBefore(ruby, sib);
+        /* each annotation is placed in its own ruby element since Chrome ignores ruby-position on rt elements
+           and positions all the annotations of a ruby element according to its ruby-position */
+
+        for (const pos of reserved_pos) {
+
+            const ruby = document.createElement("ruby");
+
+            const rb = document.createElement("span");  // rb element is deprecated in HTML
+            rb.textContent = "\u200B";
+
+            ruby.appendChild(rb);
+
+            const rt = document.createElement("rt");
+            rt.style[RUBYPOSITION_PROP] = pos;
+            rt.textContent = "\u200B";
+            rt.style.fontSize = fs;
+
+            ruby.appendChild(rt);
+
+            /* copy specified style properties from the sibling ruby container */
+
+            if (copy_styles_from !== null) {
+
+                for (let k = 0; k < copy_styles_from.style.length; k++) {
+
+                    ruby.style.setProperty(copy_styles_from.style.item(k), copy_styles_from.style.getPropertyValue(copy_styles_from.style.item(k)));
+
+                }
+
+            }
+
+            ruby.style[RUBYPOSITION_PROP] = pos; // for Chrome
+
+            sib.parentElement.insertBefore(ruby, sib);
+
+        }
 
     }
 
@@ -1113,7 +1185,7 @@ function rect2edges(rect, context) {
 
 function constructLineList(context, element, llist, bgcolor) {
 
-    if (element.localName === "rt" || element.style.display === "ruby-text-container") {
+    if (element.localName === "rt") {
 
         /* skip ruby annotations */
 
@@ -1205,9 +1277,9 @@ function constructLineList(context, element, llist, bgcolor) {
 
                 constructLineList(context, child, llist, curbgcolor);
 
-                if (child.localName === "ruby" || child.style.display === "ruby-text-container") {
+                if (child.localName === "ruby") {
 
-                    /* remember non-empty ruby and rtc elements so that tts:rubyPosition can be applied */
+                    /* remember non-empty ruby elements so that tts:rubyPosition can be applied */
 
                     if (llist.length > 0) {
 
@@ -1640,7 +1712,7 @@ const STYLING_MAP_DEFS = [
 
                 }
 
-                /* apply position to the parent dom_element, i.e. ruby or rtc */
+                /* apply position to the parent dom_element, i.e. ruby */
 
                 dom_element.parentElement.style[RUBYPOSITION_PROP] = pos;
             }
