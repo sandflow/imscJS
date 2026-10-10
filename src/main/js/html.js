@@ -900,14 +900,14 @@ function applyRubyReserve(lineList, context) {
 
         if (context.rubyReserve[0] === "both" || (context.rubyReserve[0] === "outside" && lineList.length == 1)) {
 
-            rt1 = document.createElement("span"); // rtc element is deprecated in HTML
-            rt1.style.display = "ruby-text-container";
+            rt1 = document.createElement("rt");
+            rt1.style.display = "ruby-text-container"; // for Firefox
             rt1.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "after" : "under";
             rt1.textContent = "\u200B";
             rt1.style.fontSize = fs;
 
-            rt2 = document.createElement("span"); // rtc element is deprecated in HTML
-            rt2.style.display = "ruby-text-container";
+            rt2 = document.createElement("rt");
+            rt2.style.display = "ruby-text-container"; // for Firefox
             rt2.style[RUBYPOSITION_PROP] = RUBYPOSITION_ISWK ? "before" : "over";
             rt2.textContent = "\u200B";
             rt2.style.fontSize = fs;
@@ -917,8 +917,8 @@ function applyRubyReserve(lineList, context) {
 
         } else {
 
-            rt1 = document.createElement("span"); // rtc element is deprecated in HTML
-            rt1.style.display = "ruby-text-container";
+            rt1 = document.createElement("rt");
+            rt1.style.display = "ruby-text-container"; // for Firefox
             rt1.textContent = "\u200B";
             rt1.style.fontSize = fs;
 
