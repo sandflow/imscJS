@@ -118,6 +118,13 @@ pipenv install
 pipenv run python3 src/test/script/compare_renders.py <unzipped renders-imsc1> <unzipped renders-imsc1_1>
 ```
 
+[src/test/script/gen-compare-site.mjs](src/test/script/gen-compare-site.mjs) generates, under `build/compare`, a static website that compares imscJS renders with the reference PNGs of the [W3C IMSC test suite](https://github.com/w3c/imsc-tests).
+
+```sh
+npm run build
+npm run gen-compare-site
+```
+
 ### Unit tests
 
 Unit tests run using Node's built-in [test runner](https://nodejs.org/api/test.html) and are located at [src/test/js](src/test/js). They can be run with:
