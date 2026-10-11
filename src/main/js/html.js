@@ -388,10 +388,11 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
 
         }
 
-        if (byName.textCombine.qname in isd_element.styleAttrs &&
-            isd_element.styleAttrs[byName.textCombine.qname] === "all") {
+        if ((byName.textCombine.qname in isd_element.styleAttrs &&
+            isd_element.styleAttrs[byName.textCombine.qname] === "all") ||
+            e.closest("rt") !== null) {
 
-            /* ignore tate-chu-yoku since line break cannot happen within */
+            /* ignore tate-chu-yoku and ruby text since line break cannot happen within */
             e.textContent = isd_element.text;
             e._isd_element = isd_element;
 
