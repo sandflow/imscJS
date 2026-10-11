@@ -46,7 +46,8 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "prepublishOnly": "npm run build",
+        "prepare": "npm run compile && npm run bundle",
+        "prepublishOnly": "npm run lint",
         "gen-imsc1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1 build/renders-imsc1.zip",
         "gen-imsc1_1": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_1 build/renders-imsc1_1.zip",
         "gen-imsc1_3": "node src/test/script/gen-render-package.mjs imsc-tests/imsc1_3 build/renders-imsc1_3.zip",
