@@ -156,7 +156,7 @@ npm run gen-reference-files
 
 * [rollup.config.js](rollup.config.js): Rollup configuration used to bundle `dist/main` into the UMD builds at `dist/imsc.debug.js` and `dist/imsc.min.js`
 
-* [src/test/script/Pipfile](src/test/script/Pipfile): [pipenv](https://pipenv.pypa.io/) dependency declaration for `compare_renders.py`
+* [Pipfile](Pipfile): [pipenv](https://pipenv.pypa.io/) dependency declaration for `compare_renders.py`
 
 * [LICENSE](LICENSE): License under which imscJS is made available
 
