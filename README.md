@@ -9,7 +9,10 @@
 
 ## Introduction
 
-imscJS is a JavaScript library for rendering [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/) and [IMSC 1.1](https://www.w3.org/TR/ttml-imsc1.1/) documents to HTML5. IMSC is a profile of [TTML 2](https://www.w3.org/TR/ttml2/) designed for subtitle and caption delivery worldwide.
+imscJS is a JavaScript library for rendering
+[IMSC](https://www.w3.org/TR/ttml-imsc/) documents to HTML5. IMSC is a profile
+of [TTML 2](https://www.w3.org/TR/ttml2/) designed for subtitle and caption
+delivery worldwide.
 
 A sample web app that uses imscJS is available at https://imsc-renderer.sandflow.com/.
 
@@ -17,9 +20,13 @@ Documentation is available on [MDN](https://developer.mozilla.org/en-US/docs/Rel
 
 ## Known issues and limitations
 
-imscJS is primarily developed on Firefox. Latest versions of Chrome, Safari, and Microsoft Edge are intended to be supported nevertheless, albeit with potentially reduced capabilities. In particular, advanced ruby layout is currently only supported by Firefox.
+imscJS is primarily developed on Firefox and Chrome. Recent versions of Safari are intended to be supported nevertheless, albeit with potentially reduced capabilities.
 
-imscJS is intended to reflect the most recent published versions of [IMSC 1.0.1](https://www.w3.org/TR/ttml-imsc1.0.1/) and [IMSC 1.1](https://www.w3.org/TR/ttml-imsc1.1/). These publications are routinely clarified by proposed resolutions to issues captured in their respective bug trackers.
+The following IMSC features are currently not supported:
+
+* [tts:disparity](https://www.w3.org/TR/ttml2/#style-attribute-disparity)
+* [tts:luminanceGain](https://www.w3.org/TR/ttml2/#style-attribute-luminanceGain)
+* [embedded fonts](https://www.w3.org/TR/ttml2/#embedded-content-vocabulary-font)
 
 imscJS bugs are tracked at https://github.com/sandflow/imscJS/issues.
 
@@ -86,7 +93,7 @@ The `dist` directory contains the following build artifacts:
 
 * `imsc.debug.js`: Non-minified UMD build.
 * `imsc.min.js`: Minified UMD build.
-* **deprecated** `imsc.all.debug.js` and `imsc.all.min.js`: Identical to
+* `imsc.all.debug.js` and `imsc.all.min.js` (**deprecated**): Identical to
   `imsc.debug.js` and `imsc.min.js`, only for compatibility with imscJS 1.x and
   subject to removal in a future release.
 * `main/`: ES modules and TypeScript type declarations, used when the library is imported as an NPM package.
