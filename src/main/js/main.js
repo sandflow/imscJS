@@ -44,8 +44,8 @@ export { createSAXParserFromDOMParser };
  *
  * @param {string} xmlstring XML document
  * @param {ErrorHandler} errorHandler Error callback
- * @param {?MetadataHandler} metadataHandler Callback for <Metadata> elements
- * @param {?Parser} parser XML parser
+ * @param {?MetadataHandler} [metadataHandler] Callback for <Metadata> elements
+ * @param {?Parser} [parser] XML parser
  * @returns {?TTElement} Opaque in-memory representation of an IMSC1 document
  */
 export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createSAXParserFromDOMParser()) {
