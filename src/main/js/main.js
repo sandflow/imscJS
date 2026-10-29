@@ -48,6 +48,10 @@ export { createSAXParserFromDOMParser };
  * @param {?Parser} [parser] XML parser
  * @returns {?TTElement} Opaque in-memory representation of an IMSC1 document
  */
-export function fromXML(xmlstring, errorHandler, metadataHandler, parser = createSAXParserFromDOMParser()) {
+export function fromXML(xmlstring, errorHandler, metadataHandler, parser) {
+    if (parser === null || parser === undefined) {
+        parser = createSAXParserFromDOMParser();
+    }
+
     return fromParser(xmlstring, errorHandler, metadataHandler, parser);
 }
