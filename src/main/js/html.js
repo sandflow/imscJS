@@ -71,7 +71,7 @@ const browserIsFirefox = /firefox/i.test(navigator.userAgent);
  * @param {?boolean} displayForcedOnlyMode Value of the IMSC1 displayForcedOnlyMode parameter,
  *                   or false if null
  * @param {?ErrorHandler} errorHandler Error callback
- * @param {ISD} previousISDState State saved during processing of the previous ISD, or null if initial call
+ * @param {?ISD} previousISDState State saved during processing of the previous ISD, or null if initial call
  * @param {?boolean} enableRollUp Enables roll-up animations (see CEA 708)
  * @return {ISD} ISD state to be provided when this function is called for the next ISD
  */

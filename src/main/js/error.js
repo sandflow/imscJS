@@ -54,7 +54,8 @@ export function reportFatal(errorHandler, msg) {
  * and returns a single <pre>boolean</pre>, which terminates processing if <pre>true</pre>.
  *
  * @typedef {Object} ErrorHandler
- * @property {(msg: string) => boolean} warn
- * @property {(msg: string) => boolean} error
- * @property {(msg: string) => boolean} fatal
+ * @property {((msg: string) => boolean)} [info]
+ * @property {((msg: string) => boolean)} [warn]
+ * @property {((msg: string) => boolean)} [error]
+ * @property {((msg: string) => boolean)} [fatal]
  */
