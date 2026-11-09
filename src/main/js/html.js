@@ -572,7 +572,7 @@ function processElement(context, dom_parent, isd_element, isd_parent) {
 
                 const body_elem = e.firstElementChild;
 
-                const h = rb.plist[rb.plist.length - 1].after - rb.plist[rb.plist.length - 1].before;
+                const h = rb.plist[rb.plist.length - 1].after - rb.plist[rb.plist.length - 2].after;
 
                 body_elem.style.bottom = "-" + h + "px";
                 body_elem.style.transition = "transform 0.4s";
